@@ -1,243 +1,653 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>The Open Desk · D20 · Main (one desk's living front page)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  :root { --paper:#fcfaf5; --card:#ffffff; --ink:#1a1d22; --muted:#5e6470; --rule:#dcdfd8; --accent:#2d5e3e; --hl:#eaf3ec; --add:#fcefdb; --sec:#f4ecf2; }
-  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.65; }
-  .serif { font-family:'Spectral',Georgia,serif; }
-  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
-  .rule { border-color:var(--rule); }
-  .label { font-size:11px; color:var(--muted); letter-spacing:.04em; }
-  a { color:var(--accent); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .qlink { color:var(--ink); border-bottom:1px solid var(--rule); }
-  .qlink:hover { color:var(--accent); border-bottom-color:var(--accent); }
-  .pill { display:inline-block; padding:2px 9px; background:var(--hl); color:var(--accent); border-radius:99px; font-size:11px; font-family:'JetBrains Mono',monospace; font-weight:500; }
-  .pill.add { background:var(--add); color:#7a5418; }
-  .pill.sec { background:var(--sec); color:#7a2a5a; }
-  .pill.live { background:#dff6ea; color:#1f5e3e; }
-  .pill.live::before { content:"●"; margin-right:.3rem; color:#2d8e3e; }
-  .block { padding:1rem 1.2rem; border-left:3px solid transparent; position:relative; transition:.1s; }
-  .block:hover { background:rgba(45,94,62,.03); border-left-color:var(--accent); }
-  .block:hover .block-add { opacity:1; }
-  .block-add { position:absolute; right:.5rem; top:.65rem; opacity:0; transition:.15s; font-size:11px; color:var(--accent); cursor:pointer; }
-  .author-strip { display:flex; align-items:center; gap:.5rem; font-size:11px; color:var(--muted); margin-top:.5rem; font-family:'JetBrains Mono',monospace; }
-  .ava { width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
-  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
-  .signature-block { background:var(--card); border:1px solid var(--rule); padding:.85rem 1rem; border-left:3px solid var(--accent); margin:1rem 0; }
-  .signature-block.sec { border-left-color:#8a3a5f; background:var(--sec); }
-  .add-block { background:#fff7e8; border:1px dashed #d6b577; padding:1rem 1.2rem; border-radius:4px; }
-  .edit-log-row { display:grid; grid-template-columns:80px 1fr 90px; gap:8px; font-size:12px; padding:.4rem 0; border-bottom:1px solid var(--rule); }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Open Desk — DocketField rebrand · D20</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#FBFAF6;
+      --doc:#FFFFFF;
+      --ink:#1A1D1F;
+      --muted:#62695F;
+      --quiet:#9AA095;
+      --line:#E4E7DF;
+      --line-soft:#EFF2EB;
+      --accent:#2E5E3E;
+      --accent-soft:#E7EFE2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Geist', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 840px; margin: 0 auto; padding: 0 32px; }
+    .wrap-wide { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── nav ────────────────────────────────────── */
+    .nav {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .back, .crumb {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .back:hover, .crumb:hover { color: var(--accent); }
+    .crumb-sep { color: var(--line); font-family: 'Geist Mono', monospace; }
+    .brand {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--paper);
+      background: var(--accent);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      transition: background 120ms ease;
+    }
+    .cta:hover { background: #1F4A2C; }
+
+    /* ── desk header ────────────────────────────── */
+    .desk-head {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .desk-meta-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .desk-tag {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .desk-live {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .desk-live::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .desk-head h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 52px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+    }
+    .desk-head p {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-top: 16px;
+      max-width: 640px;
+    }
+    .desk-contributors {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--quiet);
+    }
+    .av-row {
+      display: inline-flex;
+    }
+    .av {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 10px;
+      font-weight: 600;
+      border: 2px solid var(--paper);
+      margin-left: -6px;
+    }
+    .av-1 { background: #B45A1E; }
+    .av-2 { background: #5C7A8C; }
+    .av-3 { background: #6B7A5C; }
+    .av-4 { background: #8C6B4A; }
+    .av-5 { background: #7C5A6B; }
+    .av-6 { background: #5E5851; }
+    .av-7 { background: #2E5E3E; }
+    .av-more { background: var(--quiet); }
+
+    /* ── content ────────────────────────────────── */
+    .content { padding: 56px 0 80px; }
+
+    .section + .section { margin-top: 56px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .section-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+    }
+    .section h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-top: 4px;
+    }
+    .section-aside {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── block (one editable section) ───────────── */
+    .block {
+      padding: 16px 0 16px 16px;
+      border-left: 2px solid transparent;
+      transition: border-color 120ms ease, background 120ms ease;
+      position: relative;
+    }
+    .block:hover {
+      border-left-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .block:hover .block-add {
+      opacity: 1;
+    }
+    .block-add {
+      position: absolute;
+      right: 0;
+      top: 16px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 120ms ease;
+    }
+    .block p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+      max-width: 680px;
+    }
+    .block p + p { margin-top: 12px; }
+    .block ul {
+      list-style: none;
+      margin-top: 12px;
+      max-width: 680px;
+    }
+    .block li {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink);
+      padding-left: 20px;
+      position: relative;
+    }
+    .block li + li { margin-top: 6px; }
+    .block li::before {
+      content: '·';
+      position: absolute;
+      left: 4px;
+      color: var(--quiet);
+      font-weight: 700;
+    }
+    .block a {
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent-soft);
+      padding-bottom: 1px;
+    }
+    .block a:hover { border-bottom-color: var(--accent); }
+
+    .block-attrib {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.02em;
+    }
+    .block-attrib .av { width: 18px; height: 18px; font-size: 8px; border: none; margin: 0; }
+
+    .block.appended {
+      background: var(--accent-soft);
+      border-left: 2px solid var(--accent);
+    }
+    .appended-tag {
+      display: inline-block;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--paper);
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    /* ── add block ──────────────────────────────── */
+    .add-block {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--doc);
+      border: 1px dashed var(--accent);
+      border-radius: 4px;
+    }
+    .add-block-label {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .add-block textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      resize: none;
+      outline: none;
+    }
+    .add-block textarea::placeholder { color: var(--quiet); }
+    .add-block-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .add-hint {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+    }
+    .send {
+      background: var(--accent);
+      color: var(--paper);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+    }
+    .send:hover { background: #1F4A2C; }
+
+    /* ── companion ──────────────────────────────── */
+    .companion-list {
+      list-style: none;
+    }
+    .companion-list li {
+      padding: 12px 0;
+      border-top: 1px solid var(--line-soft);
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .companion-list li:first-child { border-top: none; padding-top: 0; }
+    .companion-list a { color: var(--ink); }
+    .companion-list a:hover { color: var(--accent); }
+    .companion-list .meta {
+      color: var(--quiet);
+      font-size: 13px;
+      margin-left: auto;
+    }
+
+    /* ── sidebar (edit log) ─────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 56px;
+      padding: 56px 0 80px;
+    }
+
+    .log-aside {
+      padding-top: 4px;
+    }
+    .log-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+      margin-bottom: 16px;
+    }
+    .log-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line-soft);
+      font-size: 13px;
+    }
+    .log-row:first-of-type { border-top: none; padding-top: 0; }
+    .log-time {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      color: var(--quiet);
+      font-size: 11px;
+    }
+    .log-text {
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .log-text strong { font-weight: 500; }
+
+    .house {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--accent-soft);
+      border-left: 2px solid var(--accent);
+    }
+    .house-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .house ul {
+      list-style: none;
+    }
+    .house li {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
+      padding-left: 14px;
+      position: relative;
+    }
+    .house li + li { margin-top: 6px; }
+    .house li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .foot {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--quiet);
+      display: flex;
+      justify-content: space-between;
+    }
+    .foot a { color: var(--quiet); }
+    .foot a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .wrap, .wrap-wide { padding: 0 20px; }
+      .desk-head h1 { font-size: 36px; }
+      .layout { grid-template-columns: 1fr; gap: 32px; }
+      .section h2 { font-size: 22px; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="border-b rule">
-  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-    <div class="flex items-baseline gap-5">
-      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
-      <div class="serif text-2xl tracking-tight font-semibold">Open Desk</div>
-      <span class="label mono">/ a desk is a living page · anyone with value can append</span>
+  <nav class="nav">
+    <div class="wrap-wide nav-row">
+      <div class="nav-left">
+        <a class="back" href="../index.html">←</a>
+        <span class="brand">Open Desk</span>
+        <span class="crumb-sep">/</span>
+        <span class="crumb">Quantum</span>
+      </div>
+      <a class="cta" href="#append">Append to this desk</a>
     </div>
-    <nav class="flex items-center gap-5 text-sm">
-      <a href="#" class="qlink">All 20 desks</a>
-      <a href="./backend.html" class="qlink">My contributions</a>
-      <a href="#" class="qlink">Drafts</a>
-      <button class="px-3 py-1.5 text-xs font-semibold rounded text-white" style="background:var(--accent)">+ Append to this desk</button>
-    </nav>
-  </div>
-</header>
+  </nav>
 
-<section class="border-b rule" style="background:#f4f7f3">
-  <div class="max-w-5xl mx-auto px-6 py-8">
-    <div class="flex items-center gap-2 flex-wrap">
-      <span class="pill">▦ QUANTUM</span>
-      <span class="pill live">14 contributors on this desk now</span>
-      <span class="label mono">· last appended 12s ago by @sam.a · 312 lifetime contributors · 1,247 prior edits</span>
+  <header class="desk-head">
+    <div class="wrap">
+      <div class="desk-meta-top">
+        <span class="desk-tag">QUANTUM · DESK 04</span>
+        <span class="desk-live">14 contributors here now · last appended 12s ago</span>
+      </div>
+      <h1>The Quantum Desk</h1>
+      <p>A continuously rewritten front page on the state of the field. No editor, no gate — just careful additions, attributed and timestamped, from anyone with something to add.</p>
+      <div class="desk-contributors">
+        <div class="av-row">
+          <span class="av av-4">AP</span>
+          <span class="av av-1">SA</span>
+          <span class="av av-2">RM</span>
+          <span class="av av-5">JO</span>
+          <span class="av av-3">DT</span>
+          <span class="av av-6">+9</span>
+        </div>
+        <span>312 lifetime contributors · 1,247 prior edits</span>
+      </div>
     </div>
-    <h1 class="serif text-5xl font-semibold tracking-tight leading-tight mt-4">The Quantum Desk</h1>
-    <p class="serif italic text-2xl mt-3" style="color:var(--muted)">A continuously rewritten front page on the state of the field. No editor. No gate. Just careful additions, attributed and time-stamped, by anyone with something to add.</p>
-    <div class="mt-5 flex items-center gap-4 text-sm flex-wrap">
-      <span class="flex items-center gap-1"><span class="ava a4">AP</span>@alex.p</span>
-      <span class="flex items-center gap-1"><span class="ava a1">SA</span>@sam.a</span>
-      <span class="flex items-center gap-1"><span class="ava a2">RM</span>@rachel.m</span>
-      <span class="flex items-center gap-1"><span class="ava a5">JO</span>@jess.o</span>
-      <span class="flex items-center gap-1"><span class="ava a3">DT</span>@diego.t</span>
-      <span class="flex items-center gap-1"><span class="ava a6">+9</span><span class="label">more contributors right now</span></span>
-    </div>
-  </div>
-</section>
+  </header>
 
-<main class="max-w-5xl mx-auto px-6 py-9 grid grid-cols-[1fr_220px] gap-9">
+  <div class="wrap-wide">
+    <div class="layout">
 
-  <article>
+      <main>
 
-    <section>
-      <div class="flex items-baseline justify-between">
-        <h2 class="serif text-3xl font-semibold">The state of the field — May 27, 2026</h2>
-        <span class="pill add">last touched 14m ago by @jess.o</span>
-      </div>
-
-      <div class="mt-5 space-y-1">
-        <div class="block">
-          <p>The Department of Energy's <a href="#">$1.4 billion Quantum Sensing Initiative</a> is the dominant federal driver of the field over FY24–FY27. <a href="#">Four national laboratories</a> hold about 78% of obligations. <a href="#">No defense-procurement contract above $5M</a> has yet been let to a non-lab vendor.</p>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a4">AP</span>maintained by @alex.p · last touched 6h ago</div>
-        </div>
-
-        <div class="block">
-          <p>As of late May 2026, ground-truth signals from the supply chain suggest <strong>the procurement timeline is six months earlier than the program plan publicly indicates</strong>:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1">
-            <li>Loading-dock equipment cadence at Brookhaven has changed in mix and frequency since March (<a href="#">@sam.a, source</a>).</li>
-            <li>Janis dilution-refrigerator service contracts have grown 3x in six months across BNL, ANL, ORNL (<a href="#">@rachel.m, route-sheet</a>).</li>
-            <li>RFI volume on DOE quantum-sensing has inflected from 1/quarter to 4/quarter in Q1-2026 (<a href="#">@tomás.l, public FedBizOpps query</a>).</li>
-            <li>Small-business set-aside cluster on three vendor names (redacted, see Stack) is the leading-indicator pattern @rosa.t expects 90d before headline RFPs (<a href="#">@rosa.t, accounting view</a>).</li>
-          </ul>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a1">SA</span><span class="ava a2">RM</span><span class="ava a6">RT</span>jointly maintained by @sam.a, @rachel.m, @rosa.t · last touched 12s ago</div>
-        </div>
-
-        <div class="signature-block">
-          <div class="label mb-1 mono">+ APPENDED 14M AGO BY @jess.o · ON CROSS-DESK IMPLICATIONS</div>
-          <p class="serif">"If the procurement timeline is six months earlier, the <a href="#">ITAR rewrite NPRM comment window</a> (closes June 17, 2026) becomes time-sensitive for university quantum labs in a way it currently is not understood to be. University counsel offices have not, in my survey of six, engaged with it yet. The Defense desk has the lead, but it matters here."</p>
-          <p class="serif italic text-sm mt-2" style="color:var(--muted)">@jess.o · ex-Treasury, at-home parent · 5,224 lifetime rep on this network</p>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="mt-10">
-      <div class="flex items-baseline justify-between">
-        <h2 class="serif text-3xl font-semibold">What we're working on</h2>
-        <span class="pill">10 active threads · 3 working briefs · 1 convening on calendar</span>
-      </div>
-
-      <div class="mt-5 space-y-1">
-        <div class="block">
-          <p><strong>Brief #024 v2 — The Sensing Turn</strong> · co-bylined @alex.p + @sam.a + @rosa.t · due Jun 12 · 67% drafted. Live <a href="#">Stack page</a>, 41 layers, 14 contributors.</p>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a4">AP</span>led by @alex.p</div>
-        </div>
-        <div class="block">
-          <p><strong>Memo #018 — IEEE-1xx standards-body log</strong> · led by @k.ito · due Jul 1 · 81% drafted. Open question: <a href="#">what does Phase-1 framework leak mean for vendor entry?</a></p>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a6">KI</span>led by @k.ito</div>
-        </div>
-        <div class="block">
-          <p><strong>Brief #027 — EU lab capacity audit</strong> · led by @m.suzuki · due Jul 1 · 34% drafted. Needs: someone with EUMETSAT or CERN supply-chain visibility.</p>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a3">MS</span>led by @m.suzuki · seeking co-contributors</div>
-        </div>
-        <div class="block">
-          <p><strong>DC Quantum dinner</strong> · Jun 3 · 14 confirmed · off-the-record · @alex.p moderates. <a href="#">Run-of-show on Stack</a>. Open RSVP for Switchboard members closes May 30.</p>
-          <span class="block-add">+ append</span>
-          <div class="author-strip"><span class="ava a4">AP</span>arranged by @alex.p</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mt-10">
-      <div class="flex items-baseline justify-between">
-        <h2 class="serif text-3xl font-semibold">Open questions worth carrying</h2>
-        <span class="pill sec">no answer required to append</span>
-      </div>
-
-      <div class="mt-5 space-y-1">
-        <div class="block">
-          <p>"What does the procurement-vendor list look like when Q4-26 solicitations open? Who clusters? Where does the small-business set-aside leak point?" — held by @alex.p, with @rosa.t.</p>
-          <span class="block-add">+ append</span>
-        </div>
-        <div class="block">
-          <p>"Is the Brookhaven dock signal happening at the other three labs at the same cadence? Argonne partial-confirmed (@rachel.m). Oak Ridge: unknown. LBL: unknown." — held by @sam.a + @rachel.m.</p>
-          <span class="block-add">+ append</span>
-        </div>
-        <div class="block">
-          <p>"Does the IEEE-1xx Phase-1 standards-framework leak (@k.ito sources) shift vendor entry timing, or is it independent of procurement?" — held by @k.ito.</p>
-          <span class="block-add">+ append</span>
-        </div>
-        <div class="block">
-          <p>"How should this desk think about MAD-Q vs. quantum gravimetry as separate sub-fields? Outsider Wesley T. pointed out we lump them together." — held openly · needs someone with metrology background.</p>
-          <span class="block-add">+ append</span>
-        </div>
-
-        <div class="add-block mt-3">
-          <div class="mono text-xs mb-2" style="color:#7a5418">+ APPEND A QUESTION OR EVIDENCE</div>
-          <textarea class="w-full bg-transparent outline-none text-sm" rows="2" placeholder="Type your addition. It becomes a new block, attributed to you and time-stamped. Three-contributor consensus removes anything off-topic; bad-faith adds are quietly muted."></textarea>
-          <div class="mt-2 flex items-center justify-between">
-            <span class="label mono">your add → appears here in &lt;5 seconds, fully attributed</span>
-            <button class="px-3 py-1.5 text-xs font-semibold rounded text-white" style="background:var(--accent)">append</button>
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <div class="section-eyebrow">State of the field</div>
+              <h2>The Sensing Turn, May 2026</h2>
+            </div>
+            <span class="section-aside">Last touched 14m ago by Jess Oduya</span>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="mt-10">
-      <div class="flex items-baseline justify-between">
-        <h2 class="serif text-3xl font-semibold">The companion surfaces</h2>
-        <span class="pill">cross-network links</span>
-      </div>
-      <ul class="mt-4 space-y-2 leading-relaxed">
-        <li>· <a href="#">The Stack</a> · /quantum · 18 live pages, 41-layer DOE-Sensing entry currently editing</li>
-        <li>· <a href="#">The Pile</a> · 8 open questions, 2 bountied (one +150, one +250)</li>
-        <li>· <a href="#">The Boards</a> · 6 boards on Quantum, "Sensing in the wild" most-followed</li>
-        <li>· <a href="#">The Margins</a> · DOE-SC ASCR v1.3 plan being read together, 14 readers now</li>
-        <li>· <a href="#">The Cinema</a> · Episode #024 tonight 7:30 ET, post-show Q&amp;A open</li>
-        <li>· <a href="#">The Lobby</a> · 47 reacts on Sam's thread in the last 8 minutes</li>
-        <li>· <a href="#">The Dispatch</a> · 4 dispatches today across the Quantum channel</li>
-      </ul>
-    </section>
+          <div class="block">
+            <p>The Department of Energy's <a href="#">$1.4 billion Quantum Sensing Initiative</a> is the dominant federal driver of the field over FY24–FY27. <a href="#">Four national laboratories</a> hold approximately 78% of obligations. <a href="#">No defense-procurement contract above $5M</a> has yet been let to a non-lab vendor.</p>
+            <div class="block-attrib">
+              <span class="av av-4">AP</span>
+              <span>maintained by Alex Patel · last touched 6h ago</span>
+            </div>
+            <span class="block-add">+ append</span>
+          </div>
 
-  </article>
+          <div class="block">
+            <p>As of late May 2026, ground-truth signals from the supply chain suggest <strong>the procurement timeline is six months earlier than the program plan publicly indicates</strong>:</p>
+            <ul>
+              <li>Loading-dock equipment cadence at Brookhaven has changed in mix and frequency since March (<a href="#">Sam Ahmadi</a>).</li>
+              <li>Janis dilution-refrigerator service contracts have grown 3× in six months across BNL, ANL, ORNL (<a href="#">Rachel Moss</a>).</li>
+              <li>RFI volume on DOE quantum-sensing has inflected from 1/quarter to 4/quarter in Q1-2026 (<a href="#">Tomás Lima</a>).</li>
+              <li>Small-business set-aside cluster on three vendor names matches the leading-indicator pattern Rosa Torres expects 90 days before headline RFPs (<a href="#">Rosa Torres</a>).</li>
+            </ul>
+            <div class="block-attrib">
+              <span class="av av-1">SA</span>
+              <span class="av av-2">RM</span>
+              <span class="av av-6">RT</span>
+              <span>jointly maintained · last touched 12s ago</span>
+            </div>
+            <span class="block-add">+ append</span>
+          </div>
 
-  <aside class="space-y-6">
+          <div class="block appended">
+            <span class="appended-tag">Appended 14m ago · Jess Oduya</span>
+            <p>If the procurement timeline is six months earlier, the <a href="#">ITAR rewrite NPRM comment window</a> (closes June 17, 2026) becomes time-sensitive for university quantum labs in a way it currently isn't understood to be. University counsel offices have not, in my survey of six, engaged with it yet. The Defense desk has the lead, but it matters here.</p>
+            <div class="block-attrib">
+              <span class="av av-5">JO</span>
+              <span>ex-Treasury, at-home parent · 5,224 lifetime rep</span>
+            </div>
+            <span class="block-add">+ append</span>
+          </div>
+        </section>
 
-    <div>
-      <div class="label mono mb-2">— edit log · last 24h</div>
-      <div class="text-xs">
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">12s ago</span><span><strong>@sam.a</strong> appended evidence block</span><span class="pill add">+47w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">14m</span><span><strong>@jess.o</strong> added cross-desk note</span><span class="pill add">+72w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">2h</span><span><strong>@alex.p</strong> updated procurement signals list</span><span class="pill">edit</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">3h</span><span><strong>@rosa.t</strong> appended accounting context</span><span class="pill add">+38w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">5h</span><span><strong>@k.ito</strong> opened new "what we're working on" item</span><span class="pill add">+28w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">7h</span><span><strong>@diego.t</strong> appended question</span><span class="pill sec">+24w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">11h</span><span><strong>@rachel.m</strong> cited service-route data</span><span class="pill add">+62w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">1d</span><span><strong>@m.suzuki</strong> updated brief #027</span><span class="pill">edit</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">1d</span><span><strong>@wes.t</strong> appended outsider question</span><span class="pill sec">+14w</span></div>
-        <div class="edit-log-row"><span class="mono" style="color:var(--muted)">1d</span><span><strong>@alex.p</strong> refactored "state of field"</span><span class="pill">edit</span></div>
-      </div>
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <div class="section-eyebrow">In progress</div>
+              <h2>What we're working on</h2>
+            </div>
+            <span class="section-aside">10 active · 3 working briefs · 1 convening</span>
+          </div>
+
+          <div class="block">
+            <p><strong>Brief #024 v2 — The Sensing Turn.</strong> Co-bylined Alex Patel + Sam Ahmadi + Rosa Torres · due June 12 · 67% drafted. Live in <a href="#">The Stack</a>, 41 layers across 14 contributors.</p>
+            <div class="block-attrib">
+              <span class="av av-4">AP</span>
+              <span>led by Alex Patel</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <p><strong>Memo #018 — IEEE-1xx standards-body log.</strong> Led by K. Ito · due July 1 · 81% drafted. Open question: what does the Phase-1 framework leak mean for vendor entry?</p>
+            <div class="block-attrib">
+              <span class="av av-6">KI</span>
+              <span>led by K. Ito</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <p><strong>Brief #027 — EU lab capacity audit.</strong> Led by M. Suzuki · due July 1 · 34% drafted. Needs: someone with EUMETSAT or CERN supply-chain visibility.</p>
+            <div class="block-attrib">
+              <span class="av av-3">MS</span>
+              <span>seeking co-contributors</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <p><strong>DC Quantum dinner.</strong> June 3 · 14 confirmed · off-the-record. Alex Patel moderates. <a href="#">Run-of-show on the Stack</a>. Open RSVP closes May 30.</p>
+            <div class="block-attrib">
+              <span class="av av-4">AP</span>
+              <span>arranged by Alex Patel</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <div class="section-eyebrow">Open questions</div>
+              <h2>Worth carrying</h2>
+            </div>
+            <span class="section-aside">No answer required to append</span>
+          </div>
+
+          <div class="block">
+            <p>What does the procurement-vendor list look like when Q4-26 solicitations open? Who clusters? Where does the small-business set-aside leak point?</p>
+            <div class="block-attrib">
+              <span>held by Alex Patel · with Rosa Torres</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <p>Is the Brookhaven dock signal happening at the other three labs at the same cadence? Argonne partial-confirmed. Oak Ridge: unknown. LBL: unknown.</p>
+            <div class="block-attrib">
+              <span>held by Sam Ahmadi + Rachel Moss</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <p>How should this desk think about MAD-Q vs. quantum gravimetry as separate sub-fields? Outsider Wesley T. pointed out we lump them together.</p>
+            <div class="block-attrib">
+              <span>held openly · needs someone with metrology background</span>
+            </div>
+          </div>
+
+          <div class="add-block" id="append">
+            <div class="add-block-label">+ Append a question or evidence</div>
+            <textarea rows="3" placeholder="Type your addition. It becomes a new block, attributed to you and timestamped. Three-contributor consensus removes anything off-topic; bad-faith adds are quietly muted."></textarea>
+            <div class="add-block-foot">
+              <span class="add-hint">Appears here in &lt;5 seconds, fully attributed</span>
+              <button class="send" type="button">Append</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="log-aside">
+        <div class="log-eyebrow">Edit log · last 24 hours</div>
+        <div class="log-row"><span class="log-time">12s ago</span><span class="log-text"><strong>Sam Ahmadi</strong> appended evidence block</span></div>
+        <div class="log-row"><span class="log-time">14m</span><span class="log-text"><strong>Jess Oduya</strong> added cross-desk note</span></div>
+        <div class="log-row"><span class="log-time">2h</span><span class="log-text"><strong>Alex Patel</strong> updated procurement-signals list</span></div>
+        <div class="log-row"><span class="log-time">3h</span><span class="log-text"><strong>Rosa Torres</strong> appended accounting context</span></div>
+        <div class="log-row"><span class="log-time">5h</span><span class="log-text"><strong>K. Ito</strong> opened new "in progress" item</span></div>
+        <div class="log-row"><span class="log-time">7h</span><span class="log-text"><strong>Diego Torres</strong> appended outsider question</span></div>
+        <div class="log-row"><span class="log-time">11h</span><span class="log-text"><strong>Rachel Moss</strong> cited service-route data</span></div>
+        <div class="log-row"><span class="log-time">1d</span><span class="log-text"><strong>M. Suzuki</strong> updated brief #027 status</span></div>
+        <div class="log-row"><span class="log-time">1d</span><span class="log-text"><strong>Wes Trent</strong> appended outsider question</span></div>
+        <div class="log-row"><span class="log-time">1d</span><span class="log-text"><strong>Alex Patel</strong> refactored "state of field"</span></div>
+
+        <aside class="house">
+          <div class="house-eyebrow">House rules</div>
+          <ul>
+            <li>Additions welcome from any contributor.</li>
+            <li>Three-contributor consensus removes off-topic adds.</li>
+            <li>Bad-faith adds are quietly muted, no drama.</li>
+            <li>No owner — the desk belongs to whoever maintains it.</li>
+            <li>Edit log is permanent, never deleted.</li>
+          </ul>
+        </aside>
+      </aside>
+
     </div>
-
-    <div class="border-t rule pt-4">
-      <div class="label mono mb-2">— this desk's house rules</div>
-      <ul class="text-sm space-y-1.5">
-        <li>· additions are always welcome from any contributor</li>
-        <li>· 3-contributor consensus removes off-topic adds</li>
-        <li>· bad-faith adds are quietly muted, no drama</li>
-        <li>· no "owner" — the desk belongs to whoever maintains it</li>
-        <li>· edit log is permanent, never deleted</li>
-      </ul>
-    </div>
-
-    <div class="border-t rule pt-4">
-      <div class="label mono mb-2">— join this desk</div>
-      <p class="text-sm leading-snug">$8/month. Append to any desk. No application. No credential check. The reputation you build is in the contributions that stuck.</p>
-      <button class="mt-3 px-3 py-1.5 text-xs font-semibold rounded text-white" style="background:var(--accent)">join the network →</button>
-    </div>
-
-  </aside>
-
-</main>
-
-<footer class="border-t rule py-5">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
-    <div>Open Desk · D20 · prototype 2026-05-27</div>
-    <div><a href="../index.html">← all 20 directions</a></div>
   </div>
-</footer>
+
+  <footer class="foot">
+    <div class="wrap-wide" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
+      <span>Open Desk · D20 · DocketField rebrand prototype</span>
+      <a href="../index.html">← all directions</a>
+    </div>
+  </footer>
 
 </body>
 </html>

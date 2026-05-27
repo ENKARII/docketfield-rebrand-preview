@@ -3,330 +3,496 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DocketField — Rebrand Brainstorm 2026-05-27 · Compare 20 Directions</title>
+  <title>DocketField — Rebrand brainstorm · 2026-05-27</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600&family=Fraunces:wght@500;600&family=Spectral:wght@500;600&family=Instrument+Serif:wght@400&family=Newsreader:wght@500;600&family=Crimson+Pro:wght@500;600&family=DM+Serif+Display:ital@0;1&family=Lora:wght@500&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#0a0a0b; --paper:#fafaf7; --accent:#1b2bb8; --warm:#c44d2b; }
-    body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); }
-    .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
-    .card { background:white; border:1px solid #e5e5e0; border-radius:6px; transition:transform .15s ease, box-shadow .15s ease; display:block; }
-    .card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.06); }
-    .card.flow { border-left:3px solid var(--warm); }
-    .anchor { background:#fff4eb; border:1px solid #f0d8b8; border-left:4px solid var(--warm); }
+    :root {
+      --paper:#FAF7F0;
+      --card:#FFFEFB;
+      --ink:#1C1A18;
+      --muted:#6E6961;
+      --line:#E8E2D5;
+      --line-soft:#F0EBE0;
+      --accent:#B45A1E;
+      --accent-soft:#FBEEDD;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Geist', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: 'ss01', 'cv11';
+    }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── header ─────────────────────────────────── */
+    .nav {
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0;
+    }
+    .nav-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .nav-meta {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── hero ───────────────────────────────────── */
+    .hero { padding: 96px 0 80px; }
+    .eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    h1.title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      max-width: 720px;
+    }
+    .lede {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 640px;
+      margin-top: 28px;
+    }
+
+    /* ── section ────────────────────────────────── */
+    .section { padding: 64px 0; border-top: 1px solid var(--line); }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      gap: 24px;
+    }
+    .section-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .section-count { font-size: 13px; color: var(--muted); }
+    h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ── polished cards ─────────────────────────── */
+    .polished {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .polished a.row {
+      background: var(--card);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: baseline;
+      text-decoration: none;
+      color: inherit;
+      transition: background 120ms ease;
+    }
+    .polished a.row:hover { background: var(--accent-soft); }
+    .row-id {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .row-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-top: 4px;
+    }
+    .row-desc {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 6px;
+      max-width: 540px;
+    }
+    .row-links {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+      align-self: end;
+    }
+    .row-link {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── sketch list ────────────────────────────── */
+    .sketch-note {
+      background: transparent;
+      border: 1px solid var(--line);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .sketches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .sketches a.s-row {
+      background: var(--card);
+      padding: 20px 24px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 120ms ease;
+    }
+    .sketches a.s-row:hover { background: var(--paper); }
+    .s-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .s-id {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      width: 28px;
+    }
+    .s-name {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .s-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .s-links {
+      display: flex;
+      gap: 12px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .s-links a { color: var(--muted); text-decoration: none; }
+    .s-links a:hover { color: var(--accent); }
+
+    /* ── anchor note ────────────────────────────── */
+    .anchor-note {
+      background: var(--accent-soft);
+      padding: 32px;
+      border-left: 2px solid var(--accent);
+      margin: 64px 0;
+    }
+    .anchor-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .anchor-quote {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+      max-width: 640px;
+    }
+    .anchor-note p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 16px;
+      max-width: 640px;
+    }
+
+    /* ── footer ─────────────────────────────────── */
+    .foot {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--line);
+      margin-top: 80px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 0 20px; }
+      .hero { padding: 56px 0 48px; }
+      h1.title { font-size: 38px; }
+      h2 { font-size: 26px; }
+      .polished a.row { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+      .row-links { align-self: start; }
+      .sketches { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <header class="border-b border-stone-200 bg-white">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex items-baseline justify-between">
-      <div>
-        <div class="mono text-xs uppercase tracking-wider text-stone-500">Rebrand brainstorm · 2026-05-27 · v2</div>
-        <h1 class="text-2xl font-semibold mt-1">DocketField → twenty visual directions</h1>
-      </div>
-      <div class="mono text-xs text-stone-500">10 paint variations + 10 flow variations · 40 surfaces · main + backend per direction</div>
+  <nav class="nav">
+    <div class="wrap nav-row">
+      <span class="brand">DocketField <span class="nav-meta" style="margin-left:8px">rebrand brainstorm</span></span>
+      <span class="nav-meta">2026-05-27</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Twenty directions · three polished · seventeen as sketches</div>
+      <h1 class="title">A rebrand exploration for a community that isn't a PhD hangout.</h1>
+      <p class="lede">Twenty alternative product directions for DocketField, sorted by how seriously each one structurally honors the brief: <em>intellectuals in all walks of life, professional or not in the field, can contribute if there's value</em>. Three directions have been polished to production-grade craft; the rest remain as concept sketches.</p>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-6 py-10">
-
-    <section class="anchor p-5 rounded mb-10">
-      <div class="mono text-xs uppercase tracking-wider mb-2" style="color:var(--warm)">⚑ Re-anchored spirit (v2, 2026-05-27)</div>
-      <h2 class="text-xl font-semibold leading-tight">"This isn't a PhD hangout. It's for intellectuals in all walks of life — professional or not in that field — to contribute if there's value."</h2>
-      <p class="mt-3 text-stone-700 max-w-3xl leading-relaxed">v1 mockups (D0–D10) over-encoded "credentialed expert byline + members-only paywall + 12 cites" which read as gatekept. v2 mockups (D11–D20) push the spirit into <strong>flow and structure</strong>, not just paint: a truck driver's loading-dock observation, a high-school teacher's question, a parent reading the NPRM at nap-time, a freight forwarder reading sanctions — these are the lead voices, not the marginal voices. Reputation accrues from <em>contributions that stuck</em>, not from credentials displayed off-platform.</p>
-    </section>
-
-    <section class="mb-12">
-      <div class="mono text-xs uppercase tracking-wider text-stone-500 mb-3">— v1 · paint variations (D0–D10)</div>
-      <p class="text-sm text-stone-600 mb-4 max-w-3xl">Ten directions that share roughly the same scaffold (header + hero + secondary row + desk grid + working groups + CTA + footer) and differ on typography, color, density, and voice. Useful for seeing which <em>visual register</em> reads best — but they don't change the underlying flow.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D0 · Control case</div>
-          <div class="text-lg font-semibold mt-1">Evolve, don't replace</div>
-          <p class="text-xs text-stone-600 mt-1.5">Kill parliamentary vocab + classification marks. Keep bones.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d0-evolve/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d0-evolve/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Polished directions</div>
+          <h2>Three worth a real look</h2>
         </div>
+        <div class="section-count">3 directions · 6 surfaces</div>
+      </div>
 
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D1 · Editorial</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Playfair Display',serif">Standfirst</div>
-          <p class="text-xs text-stone-600 mt-1.5">Modernized Foreign Affairs. Cream + ink + oxblood.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d1-editorial/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d1-editorial/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
+      <div class="polished">
 
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D2 · Research Lab</div>
-          <div class="text-lg font-semibold mt-1">Concord</div>
-          <p class="text-xs text-stone-600 mt-1.5">Stripe Press / Asimov Press. Books-on-shelves.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d2-research-lab/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d2-research-lab/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
+        <a class="row" href="d11-lobby/main.html">
+          <div>
+            <div class="row-id">D11 · CHAT-LED COMMUNITY</div>
+            <div class="row-name">The Lobby</div>
+            <p class="row-desc">Conversation threads where anyone with something to add can post. Reputation accrues from minds you've shifted, not from credentials displayed off-platform. A truck driver opens; a researcher replies in kind.</p>
           </div>
-        </div>
+          <div class="row-links">
+            <span class="row-link">Main →</span>
+            <a class="row-link" href="d11-lobby/backend.html" onclick="event.stopPropagation()">Thread →</a>
+          </div>
+        </a>
 
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D3 · Think Tank</div>
-          <div class="text-lg font-semibold mt-1">Vantage</div>
-          <p class="text-xs text-stone-600 mt-1.5">Carnegie-meets-tech. Navy + gold.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d3-think-tank/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d3-think-tank/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
+        <a class="row" href="d17-margins/main.html">
+          <div>
+            <div class="row-id">D17 · SOURCE ANNOTATION</div>
+            <div class="row-name">The Margins</div>
+            <p class="row-desc">Source documents pinned for collaborative reading. Anyone can highlight a sentence and add what they noticed in the margin. Reading becomes a group activity; reputation builds from the annotations that helped other readers read more carefully.</p>
           </div>
-        </div>
+          <div class="row-links">
+            <span class="row-link">Main →</span>
+            <a class="row-link" href="d17-margins/backend.html" onclick="event.stopPropagation()">Library →</a>
+          </div>
+        </a>
 
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D4 · Workshop</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Fraunces',serif">Workshop</div>
-          <p class="text-xs text-stone-600 mt-1.5">Recurse Center warmth. Burnt orange.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d4-workshop/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d4-workshop/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
+        <a class="row" href="d20-open-desk/main.html">
+          <div>
+            <div class="row-id">D20 · WIKI-MEETS-FORUM</div>
+            <div class="row-name">Open Desk</div>
+            <p class="row-desc">Each desk is a single continuously-rewritten front page. Any contributor with value to add appends. No editor, no owner; three-contributor consensus removes off-topic adds. The edit log is permanent and visible.</p>
           </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D5 · Field Manual</div>
-          <div class="text-lg font-semibold mt-1 mono">Bearing</div>
-          <p class="text-xs text-stone-600 mt-1.5">Stripe Atlas / Linear docs. Utility-first.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d5-field-manual/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d5-field-manual/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
+          <div class="row-links">
+            <span class="row-link">Main →</span>
+            <a class="row-link" href="d20-open-desk/backend.html" onclick="event.stopPropagation()">Contributor →</a>
           </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D6 · Defense-Tech</div>
-          <div class="text-lg font-semibold mt-1 mono uppercase">▦ VECTOR</div>
-          <p class="text-xs text-stone-600 mt-1.5">Anduril / Palantir. Black + signal orange.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d6-defense-tech/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d6-defense-tech/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D7 · Cartographic</div>
-          <div class="text-lg font-semibold mt-1">Atlas</div>
-          <p class="text-xs text-stone-600 mt-1.5">20 verticals as territory. Map cream.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d7-cartographic/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d7-cartographic/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D8 · Salon</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Playfair Display',serif">The Round</div>
-          <p class="text-xs text-stone-600 mt-1.5">Portrait-first. Wine + gold.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d8-salon/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d8-salon/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D9 · Wiki</div>
-          <div class="text-lg font-semibold mt-1">Codex</div>
-          <p class="text-xs text-stone-600 mt-1.5">Living reference. Cross-linked.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d9-wiki/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d9-wiki/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
-
-        <div class="card p-4">
-          <div class="mono text-xs text-stone-500">D10 · Investor</div>
-          <div class="text-lg font-semibold mt-1">Throughline</div>
-          <p class="text-xs text-stone-600 mt-1.5">BLUF memo. Bridgewater principles.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d10-investor/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Main →</a>
-            <a href="d10-investor/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Backend →</a>
-          </div>
-        </div>
+        </a>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mb-12">
-      <div class="mono text-xs uppercase tracking-wider mb-3" style="color:var(--warm)">— v2 · flow + structure variations (D11–D20) ⚑ recommended starting point</div>
-      <p class="text-sm text-stone-600 mb-4 max-w-3xl">Ten directions that differ on <strong>what the product fundamentally is</strong> — chat-led vs feed-led vs map-led vs Q&amp;A-led vs source-led vs video-led vs wiki-led vs slow-web vs live-board vs visual-curation. The voice is anchored on <em>open contribution from any walk of life</em>: truck driver, HS teacher, ex-Treasury parent, federal-grants accountant, freight forwarder, mining-equipment salesperson. Bylines without credentials. Reputation built on what you contributed, not who you are off-platform.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="wrap">
+    <aside class="anchor-note">
+      <div class="anchor-eyebrow">Re-anchored spirit · 2026-05-27</div>
+      <p class="anchor-quote">"This isn't a PhD hangout. It's for intellectuals in all walks of life — professional or not in that field — to contribute if there's value."</p>
+      <p>The three polished directions above structurally make that real. The seventeen sketches below explore the broader design space — read them as <em>concept sketches</em>, not finished work.</p>
+    </aside>
+  </div>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D11 · Chat-led community</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Instrument Serif',serif">The Lobby</div>
-          <p class="text-xs text-stone-600 mt-1.5">Conversations are the spine. Reputation = "minds you shifted." A truck driver opens; a researcher replies.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d11-lobby/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Lobby →</a>
-            <a href="d11-lobby/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">A thread →</a>
-          </div>
+  <section class="section" style="border-top: none;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Concept sketches · flow + structure</div>
+          <h2>Seven more flow ideas</h2>
         </div>
+        <div class="section-count">7 directions · 14 sketch surfaces</div>
+      </div>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D12 · Collaborative brain</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Newsreader',serif">The Stack</div>
-          <p class="text-xs text-stone-600 mt-1.5">Every page is living. Anyone appends a layer. Attribution is the timeline log, not a byline.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d12-stack/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">A live page →</a>
-            <a href="d12-stack/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Heatmap →</a>
-          </div>
-        </div>
+      <p class="sketch-note">These seven explore alternative product structures (live floor, collaborative shared brain, daily feed, video-led, slow-web weekly, Q&amp;A, visual curation). They are direction concepts, not polished work. Visual cleanup pending if any of these is picked as the chosen spine.</p>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D13 · Daily feed</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Lora',serif">The Dispatch</div>
-          <p class="text-xs text-stone-600 mt-1.5">Substack-meets-Twitter. Many small dispatches/day, many voices, bylines without credentials, chronological.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d13-dispatch/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Today's feed →</a>
-            <a href="d13-dispatch/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">A contributor →</a>
-          </div>
-        </div>
+      <div class="sketches">
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D14 · Visual curation</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Crimson Pro',serif">The Boards</div>
-          <p class="text-xs text-stone-600 mt-1.5">Are.na-like. Members curate boards of mixed-media cards (quotes / PDFs / photos / charts).</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d14-board/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">All boards →</a>
-            <a href="d14-board/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">One board →</a>
+        <a class="s-row" href="d12-stack/main.html">
+          <div class="s-meta">
+            <span class="s-id">D12</span>
+            <div>
+              <div class="s-name">The Stack</div>
+              <div class="s-desc">collaborative living pages</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d12-stack/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d12-stack/backend.html" onclick="event.stopPropagation()">map</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D15 · Q&amp;A community</div>
-          <div class="text-lg font-semibold mt-1">The Pile</div>
-          <p class="text-xs text-stone-600 mt-1.5">Stack Exchange spirit. Anyone asks; anyone answers; community ranks; rep builds from usefulness alone.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d15-pile/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Questions →</a>
-            <a href="d15-pile/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">A question →</a>
+        <a class="s-row" href="d13-dispatch/main.html">
+          <div class="s-meta">
+            <span class="s-id">D13</span>
+            <div>
+              <div class="s-name">The Dispatch</div>
+              <div class="s-desc">chronological daily feed</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d13-dispatch/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d13-dispatch/backend.html" onclick="event.stopPropagation()">channel</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D16 · Video-first</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Fraunces',serif">The Cinema</div>
-          <p class="text-xs text-stone-600 mt-1.5">Long-form recorded conversations pairing experts with practitioners (truck driver + physicist + accountant). Live Q&amp;A.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d16-cinema/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">Now playing →</a>
-            <a href="d16-cinema/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Watch page →</a>
+        <a class="s-row" href="d14-board/main.html">
+          <div class="s-meta">
+            <span class="s-id">D14</span>
+            <div>
+              <div class="s-name">The Boards</div>
+              <div class="s-desc">visual mixed-media curation</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d14-board/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d14-board/backend.html" onclick="event.stopPropagation()">board</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D17 · Source annotation</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Source Serif 4',serif">The Margins</div>
-          <p class="text-xs text-stone-600 mt-1.5">Source documents pinned for collaborative reading. Anyone annotates in the margins. Reading becomes a group activity.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d17-margins/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">A source →</a>
-            <a href="d17-margins/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">My library →</a>
+        <a class="s-row" href="d15-pile/main.html">
+          <div class="s-meta">
+            <span class="s-id">D15</span>
+            <div>
+              <div class="s-name">The Pile</div>
+              <div class="s-desc">Q&amp;A with crowd-ranked answers</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d15-pile/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d15-pile/backend.html" onclick="event.stopPropagation()">question</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D18 · Slow-web weekly</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'DM Serif Display',serif">The Almanac</div>
-          <p class="text-xs text-stone-600 mt-1.5">Fortnightly issues. No algorithm. Permanent. Letterpress aesthetic. Recipes, ledger, things to watch.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d18-almanac/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">This issue →</a>
-            <a href="d18-almanac/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">Archive →</a>
+        <a class="s-row" href="d16-cinema/main.html">
+          <div class="s-meta">
+            <span class="s-id">D16</span>
+            <div>
+              <div class="s-name">The Cinema</div>
+              <div class="s-desc">long-form recorded conversations</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d16-cinema/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d16-cinema/backend.html" onclick="event.stopPropagation()">watch</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D19 · Live status board</div>
-          <div class="text-lg font-semibold mt-1 mono">⌬ SWITCHBOARD</div>
-          <p class="text-xs text-stone-600 mt-1.5">Bloomberg-terminal vibe. Real-time floor across 20 desks. See what intellectual activity is happening right now.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d19-switchboard/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">The floor →</a>
-            <a href="d19-switchboard/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">One desk →</a>
+        <a class="s-row" href="d18-almanac/main.html">
+          <div class="s-meta">
+            <span class="s-id">D18</span>
+            <div>
+              <div class="s-name">The Almanac</div>
+              <div class="s-desc">fortnightly slow-web issue</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d18-almanac/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d18-almanac/backend.html" onclick="event.stopPropagation()">archive</a>
+          </div>
+        </a>
 
-        <div class="card flow p-4">
-          <div class="mono text-xs uppercase tracking-wider" style="color:var(--warm)">D20 · Wiki + forum hybrid</div>
-          <div class="text-lg font-semibold mt-1" style="font-family:'Spectral',serif">Open Desk</div>
-          <p class="text-xs text-stone-600 mt-1.5">Each desk = one continuously-rewritten front page. Anyone with value appends. Edit log permanent.</p>
-          <div class="mt-3 flex items-center gap-3 text-xs">
-            <a href="d20-open-desk/main.html" class="font-medium underline decoration-stone-300 underline-offset-4">A desk →</a>
-            <a href="d20-open-desk/backend.html" class="font-medium underline decoration-stone-300 underline-offset-4">A contributor →</a>
+        <a class="s-row" href="d19-switchboard/main.html">
+          <div class="s-meta">
+            <span class="s-id">D19</span>
+            <div>
+              <div class="s-name">The Switchboard</div>
+              <div class="s-desc">live ambient activity floor</div>
+            </div>
           </div>
-        </div>
+          <div class="s-links">
+            <a href="d19-switchboard/main.html" onclick="event.stopPropagation()">main</a>
+            <a href="d19-switchboard/backend.html" onclick="event.stopPropagation()">desk</a>
+          </div>
+        </a>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mb-12">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-stone-500 mb-4">Comparison · what each direction MAKES the product be</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border border-stone-200 bg-white">
-          <thead class="bg-stone-50 border-b border-stone-200">
-            <tr>
-              <th class="text-left p-3 font-medium">Direction</th>
-              <th class="text-left p-2 font-medium">Spine of the product</th>
-              <th class="text-left p-2 font-medium">Whose voice carries</th>
-              <th class="text-left p-2 font-medium">Open to anyone?</th>
-            </tr>
-          </thead>
-          <tbody class="text-xs">
-            <tr class="border-b border-stone-100" style="background:#f5f5f0"><td class="p-3 font-semibold" colspan="4">— v1 paint variations · all share the article-publication scaffold —</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D0 Evolve</td><td class="p-2">long-form briefs + working groups</td><td class="p-2">credentialed editors</td><td class="p-2">members-only, application gated</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D1 Standfirst</td><td class="p-2">flagship long-form essay</td><td class="p-2">named editors / desk leads</td><td class="p-2">members-only</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D2 Concord</td><td class="p-2">numbered "research releases"</td><td class="p-2">research fellows</td><td class="p-2">members-only</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D3 Vantage</td><td class="p-2">programs + briefs + convenings</td><td class="p-2">program fellows</td><td class="p-2">application gated</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D4 Workshop</td><td class="p-2">"what we're working on" + crews</td><td class="p-2">crews, warmer naming</td><td class="p-2">members-only, less gated</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D5 Bearing</td><td class="p-2">searchable reference topics</td><td class="p-2">contributors</td><td class="p-2">members-only</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D6 ▦ Vector</td><td class="p-2">numbered briefs + cells</td><td class="p-2">cell members</td><td class="p-2">"+ ACCESS"</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D7 Atlas</td><td class="p-2">field reports by region</td><td class="p-2">surveyors</td><td class="p-2">members-only</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D8 The Round</td><td class="p-2">recorded convenings + portraits</td><td class="p-2">invited voices</td><td class="p-2">members + guests</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D9 Codex</td><td class="p-2">canonical entries</td><td class="p-2">primary authors</td><td class="p-2">edit-rights gated</td></tr>
-            <tr class="border-b border-stone-100"><td class="p-3">D10 Throughline</td><td class="p-2">BLUF memos</td><td class="p-2">analysts</td><td class="p-2">subscribers</td></tr>
-
-            <tr class="border-b border-stone-100" style="background:#fff4eb"><td class="p-3 font-semibold" style="color:var(--warm)" colspan="4">— v2 flow variations · each STRUCTURALLY makes openness real —</td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D11 The Lobby</td><td class="p-2">conversation threads</td><td class="p-2"><strong>any voice with something to add</strong>; rep = minds shifted</td><td class="p-2"><strong>$8 read+post, no credential check</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D12 The Stack</td><td class="p-2">living shared pages</td><td class="p-2"><strong>any contributor can append</strong>; attribution = layer log</td><td class="p-2"><strong>$8 read+append, no application</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D13 The Dispatch</td><td class="p-2">chronological feed</td><td class="p-2"><strong>bylines without credentials</strong>; rep = reads + cites</td><td class="p-2"><strong>$9 send dispatches</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D14 The Boards</td><td class="p-2">curated mixed-media collections</td><td class="p-2"><strong>any curator</strong>; rep = cards-collected</td><td class="p-2"><strong>$7 curate, free to follow</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D15 The Pile</td><td class="p-2">Q&amp;A with crowd-ranked answers</td><td class="p-2"><strong>HS teacher and Nobel laureate same vote weight</strong></td><td class="p-2"><strong>$8 post, answer-free</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D16 The Cinema</td><td class="p-2">long-form recorded convos</td><td class="p-2"><strong>practitioners + experts paired</strong>; anyone pitches</td><td class="p-2"><strong>$10 watch+pitch, Q&amp;A open to all</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D17 The Margins</td><td class="p-2">source documents collaboratively annotated</td><td class="p-2"><strong>anyone reading carefully</strong>; rep = thanks</td><td class="p-2"><strong>$9 annotate, free to read</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D18 The Almanac</td><td class="p-2">fortnightly issue, slow-web</td><td class="p-2"><strong>pitches from anyone</strong>; editors are 2 + 1-cross-field</td><td class="p-2"><strong>$6/mo · $60/yr · pitch free</strong></td></tr>
-            <tr class="border-b border-stone-100" style="background:#fffaf3"><td class="p-3">D19 Switchboard</td><td class="p-2">live ambient activity floor</td><td class="p-2"><strong>everyone visible doing the work</strong>; rep = participation</td><td class="p-2"><strong>$8 access</strong></td></tr>
-            <tr style="background:#fffaf3"><td class="p-3">D20 Open Desk</td><td class="p-2">desk-as-living-front-page</td><td class="p-2"><strong>any contributor appends, no owner</strong>; 3-consensus removes</td><td class="p-2"><strong>$8 append, no application</strong></td></tr>
-          </tbody>
-        </table>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Concept sketches · paint variations</div>
+          <h2>Eleven visual treatments on a fixed scaffold</h2>
+        </div>
+        <div class="section-count">11 directions · 22 sketch surfaces</div>
       </div>
-    </section>
 
-    <section class="mt-10 mb-8 border-t border-stone-200 pt-8">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-stone-500 mb-3">My re-anchored recommendation (v2)</h2>
-      <p class="text-stone-700 max-w-3xl leading-relaxed">If the spirit really is "any walk of life can contribute if there's value," then the v1 paint variations (D0–D10) are <em>structurally wrong</em> no matter the visual treatment — they all assume credentialed-editor scaffolding. The interesting question becomes: <strong>which v2 flow is the spine, and which v1 paint sits on top?</strong></p>
-      <p class="mt-3 text-stone-700 max-w-3xl leading-relaxed">Strongest spirit-aligned candidates from the new ten: <strong>D11 (Lobby) + D13 (Dispatch) + D20 (Open Desk)</strong> — all structurally make open contribution real. <strong>D17 (Margins)</strong> is a sleeper — collaborative reading of source documents is genuinely under-served and pairs beautifully with the multi-field expert community. <strong>D15 (Pile)</strong> and <strong>D19 (Switchboard)</strong> are strong second-tier. <strong>D18 (Almanac)</strong> is the warmest if "slow" is the brand promise.</p>
-      <p class="mt-3 text-stone-700 max-w-3xl leading-relaxed">Most products in this space are actually hybrids — not "pick D11" but "D11 as the spine + D20 underneath + D13 as the marketing surface + D17 as a side-mode." If you want to converge in the next pass I can sketch 2-3 hybrid combinations.</p>
-    </section>
+      <p class="sketch-note">These eleven (D0 evolve + D1–D10) all share the same article-publication scaffold (header / hero / secondary row / desk grid / working groups / CTA). They differ on typography, color, density, and voice — useful for testing which <em>visual register</em> reads well, but they do not change the underlying flow.</p>
 
-    <section class="mb-8 border-t border-stone-200 pt-8">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-stone-500 mb-3">Companion docs</h2>
-      <ul class="space-y-2 text-stone-700">
-        <li>→ <code class="text-sm bg-stone-100 px-1 py-0.5 rounded">docs/rebrand-brainstorm-2026-05-27.md</code> — original diagnosis + 10 v1 directions</li>
-        <li>→ <code class="text-sm bg-stone-100 px-1 py-0.5 rounded">docs/rebrand-brainstorm-v2-2026-05-27.md</code> — re-anchored spirit + 10 v2 flow directions</li>
-      </ul>
-    </section>
+      <div class="sketches">
+        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep DocketField, lose parliamentary vocab</div></div></div><div class="s-links"><a href="d0-evolve/main.html" onclick="event.stopPropagation()">main</a><a href="d0-evolve/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d1-editorial/main.html"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><a href="d1-editorial/main.html" onclick="event.stopPropagation()">main</a><a href="d1-editorial/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov Press</div></div></div><div class="s-links"><a href="d2-research-lab/main.html" onclick="event.stopPropagation()">main</a><a href="d2-research-lab/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">modern think-tank · navy + gold</div></div></div><div class="s-links"><a href="d3-think-tank/main.html" onclick="event.stopPropagation()">main</a><a href="d3-think-tank/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d4-workshop/main.html"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><a href="d4-workshop/main.html" onclick="event.stopPropagation()">main</a><a href="d4-workshop/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d5-field-manual/main.html"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><a href="d5-field-manual/main.html" onclick="event.stopPropagation()">main</a><a href="d5-field-manual/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir aesthetic</div></div></div><div class="s-links"><a href="d6-defense-tech/main.html" onclick="event.stopPropagation()">main</a><a href="d6-defense-tech/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">20 verticals as territory</div></div></div><div class="s-links"><a href="d7-cartographic/main.html" onclick="event.stopPropagation()">main</a><a href="d7-cartographic/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d8-salon/main.html"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><a href="d8-salon/main.html" onclick="event.stopPropagation()">main</a><a href="d8-salon/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d9-wiki/main.html"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><a href="d9-wiki/main.html" onclick="event.stopPropagation()">main</a><a href="d9-wiki/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d10-investor/main.html"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><a href="d10-investor/main.html" onclick="event.stopPropagation()">main</a><a href="d10-investor/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+      </div>
+    </div>
+  </section>
 
-  </main>
-
-  <footer class="border-t border-stone-200 py-6 mt-10">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between text-xs text-stone-500">
-      <div class="mono">Authored 2026-05-27 · v2 update same day · solo founder + partner objection</div>
-      <div class="mono">Prototype · CDN scripts without SRI for prototype velocity</div>
+  <footer class="foot">
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none;">
+      <span>DocketField rebrand brainstorm · 2026-05-27</span>
+      <span>Prototype · no production code changed</span>
     </div>
   </footer>
 

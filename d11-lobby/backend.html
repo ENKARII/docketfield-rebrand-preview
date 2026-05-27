@@ -1,187 +1,506 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>The Lobby · D11 · A single thread (Backend)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:wght@400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  :root { --paper:#f6f1ea; --card:#fffaf0; --ink:#1f1a18; --muted:#6a5f57; --rule:#e5d8c6; --warm:#d97757; --cool:#5c87a8; --sage:#7b9070; --reply:#f0e5d2; }
-  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14.5px; line-height:1.55; }
-  .serif { font-family:'Instrument Serif',Georgia,serif; }
-  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
-  .rule { border-color:var(--rule); }
-  .label { font-size:11px; color:var(--muted); font-weight:500; }
-  a { color:inherit; text-decoration:none; }
-  a.qlink { border-bottom:1px solid var(--rule); }
-  a.qlink:hover { border-bottom-color:var(--warm); color:var(--warm); }
-  .avatar { width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-weight:600; font-size:12px; flex-shrink:0; }
-  .a-1 { background:linear-gradient(135deg,#d97757,#a04030); }
-  .a-2 { background:linear-gradient(135deg,#5c87a8,#2c4d6e); }
-  .a-3 { background:linear-gradient(135deg,#7b9070,#3a5530); }
-  .a-4 { background:linear-gradient(135deg,#caa44a,#7b5e22); }
-  .a-5 { background:linear-gradient(135deg,#a86a8a,#5c2a4a); }
-  .a-6 { background:linear-gradient(135deg,#6a5f57,#3a2f27); }
-  .a-7 { background:linear-gradient(135deg,#3a8a8a,#1a4040); }
-  .bubble { background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1rem 1.2rem; }
-  .reply { background:var(--reply); border:1px solid var(--rule); border-radius:12px; padding:.85rem 1rem; }
-  .react { display:inline-flex; align-items:center; gap:.35rem; padding:3px 9px; background:#fff5e8; border:1px solid #e8d5b8; border-radius:99px; font-size:12px; color:#7a5224; font-weight:500; cursor:pointer; }
-  .react.count { color:var(--warm); font-weight:600; }
-  .react .emoji { font-size:13px; line-height:1; }
-  .compose { background:white; border:1.5px solid var(--rule); border-radius:14px; padding:1rem 1.2rem; }
-  .compose:focus-within { border-color:var(--warm); }
-  .shifted { background:linear-gradient(90deg,#fff5e8,transparent); padding:6px 10px; border-left:3px solid var(--warm); border-radius:3px; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A single thread — The Lobby · D11</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#FAF7F0;
+      --card:#FFFEFB;
+      --ink:#1C1A18;
+      --muted:#6E6961;
+      --quiet:#9B948A;
+      --line:#E8E2D5;
+      --accent:#B45A1E;
+      --accent-soft:#FBEEDD;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Geist', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: 'ss01';
+    }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+    .wrap-wide { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+    .nav {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      position: sticky; top: 0;
+      background: rgba(250, 247, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 24px; }
+    .back, .crumb {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .back:hover, .crumb:hover { color: var(--accent); }
+    .crumb-sep { color: var(--line); }
+    .brand {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    /* ── thread head ────────────────────────────── */
+    .thread-head { padding: 64px 0 40px; }
+    .thread-meta-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--quiet);
+      margin-bottom: 24px;
+    }
+    .pinned-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 999px;
+    }
+    .thread-head h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      font-weight: 500;
+    }
+
+    /* ── post ───────────────────────────────────── */
+    .post { padding: 32px 0; border-top: 1px solid var(--line); }
+    .post-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .av-1 { background: #B45A1E; }
+    .av-2 { background: #5C7A8C; }
+    .av-3 { background: #6B7A5C; }
+    .av-4 { background: #8C6B4A; }
+    .av-5 { background: #7C5A6B; }
+    .av-6 { background: #5E5851; }
+
+    .post-meta { flex: 1; }
+    .post-author { font-size: 15px; font-weight: 500; line-height: 1.3; }
+    .post-context {
+      font-size: 13px;
+      color: var(--quiet);
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+    .post-context .dot { color: var(--line); margin: 0 6px; }
+
+    .post-body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .post-body p + p { margin-top: 16px; }
+    .post-body em { color: var(--muted); }
+
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 20px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .react-count { color: var(--accent); font-weight: 500; }
+
+    /* ── replies thread ─────────────────────────── */
+    .replies-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 8px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+    }
+    .replies-label::before,
+    .replies-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .reply {
+      padding: 24px 0 24px 52px;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+    .reply.shifted {
+      background: linear-gradient(90deg, var(--accent-soft) 0%, transparent 60%);
+      padding-left: 52px;
+      padding-right: 24px;
+      margin-left: -24px;
+      border-top-color: transparent;
+    }
+    .reply .post-head { margin-bottom: 16px; }
+    .reply .post-body {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .reply .avatar {
+      width: 28px;
+      height: 28px;
+      font-size: 10px;
+      position: absolute;
+      left: 0;
+      top: 24px;
+    }
+    .reply.shifted .avatar { left: 0; }
+    .reply .post-head {
+      padding-left: 0;
+      gap: 12px;
+    }
+    .reply .post-head .avatar { position: static; }
+    .reply { padding-left: 0; }
+
+    /* ── compose ────────────────────────────────── */
+    .compose {
+      margin-top: 64px;
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .compose-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .compose textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink);
+      resize: none;
+      outline: none;
+    }
+    .compose textarea::placeholder { color: var(--quiet); }
+    .compose-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .compose-hint {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.02em;
+    }
+    .send {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+    .send:hover { background: var(--accent); }
+
+    /* ── house rules ────────────────────────────── */
+    .house {
+      margin: 80px 0 0;
+      padding: 32px;
+      background: var(--accent-soft);
+      border-left: 2px solid var(--accent);
+    }
+    .house-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .house ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .house li {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      padding-left: 20px;
+      position: relative;
+    }
+    .house li + li { margin-top: 8px; }
+    .house li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .foot {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      margin-top: 96px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--quiet);
+      display: flex;
+      justify-content: space-between;
+    }
+    .foot a { color: var(--quiet); }
+    .foot a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .wrap, .wrap-wide { padding: 0 20px; }
+      .thread-head h1 { font-size: 26px; }
+      .post-body { font-size: 17px; }
+      .reply .post-body { font-size: 16px; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="border-b rule sticky top-0 z-10" style="background:rgba(246,241,234,.92); backdrop-filter:blur(8px)">
-  <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-    <div class="flex items-baseline gap-4">
-      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
-      <a href="./main.html" class="qlink text-sm">← lobby</a>
-      <span class="label mono">Quantum · pinned by 8 contributors · 23 replies</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <button class="mono text-xs border rule px-3 py-1.5 rounded-full">⭐ pin</button>
-      <button class="mono text-xs border rule px-3 py-1.5 rounded-full">↗ share</button>
-      <span class="avatar a-1">YOU</span>
-    </div>
-  </div>
-</header>
-
-<main class="max-w-4xl mx-auto px-6 py-7 space-y-5">
-
-  <h1 class="serif text-3xl leading-tight">"I drive freight from Brookhaven Lab three times a week. Here's what I'm seeing from the loading dock."</h1>
-
-  <div class="bubble">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-1">SA</span>
-      <div>
-        <div class="font-semibold">Sam A. <span class="label font-normal">· truck driver, route-13 logistics · 47 minds shifted · 2 years in The Lobby</span></div>
-        <div class="label mono">posted 2h ago · in Quantum</div>
+  <nav class="nav">
+    <div class="wrap-wide nav-row">
+      <div class="nav-left">
+        <a class="back" href="../index.html">←</a>
+        <a class="crumb" href="./main.html">Lobby</a>
+        <span class="crumb-sep mono">/</span>
+        <span class="crumb">Quantum</span>
       </div>
+      <span class="brand">The Lobby</span>
+      <a class="back" href="#join">Share</a>
     </div>
-    <p>"I drive freight from Brookhaven Lab three times a week. The hiring on the loading dock is up — they're shipping in cryo gear that's not in the FY24 plan. Probably means the program is real, but the procurement signal A. Patel is watching might be six months earlier than the brief says. Just what I'm seeing from the truck."</p>
-    <p class="mt-3">"To be clear: I don't know quantum sensing. I know what shows up on the dock. The boxes were marked Janis Research and Bluefors — that's a different mix than they ran last year. Make of it what you will."</p>
-    <div class="mt-4 flex items-center gap-2 flex-wrap">
-      <span class="react count"><span class="emoji">💡</span> 47 changed-my-mind</span>
-      <span class="react"><span class="emoji">🤔</span> 12 thinking</span>
-      <span class="react"><span class="emoji">📌</span> 8 saved</span>
-      <span class="react"><span class="emoji">🙏</span> 4 thanks</span>
-    </div>
-  </div>
+  </nav>
 
-  <div class="flex items-center gap-3 my-6">
-    <div class="flex-1 h-px" style="background:var(--rule)"></div>
-    <span class="label mono">23 replies · sorted by minds-shifted, not recency</span>
-    <div class="flex-1 h-px" style="background:var(--rule)"></div>
-  </div>
-
-  <div class="reply ml-8 shifted">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-4">AP</span>
-      <div>
-        <div class="font-semibold">Alex P. <span class="label font-normal">· quantum researcher, Brookhaven (off-duty) · 891 minds shifted</span></div>
-        <div class="label mono">replied 1h ago · 22 changed-my-mind</div>
+  <header class="thread-head">
+    <div class="wrap">
+      <div class="thread-meta-top">
+        <span class="pinned-pill">Pinned by 8 contributors</span>
+        <span>·</span>
+        <span>23 replies</span>
+        <span>·</span>
+        <span>last active 14m ago</span>
       </div>
+      <h1>I drive freight from Brookhaven Lab three times a week. Here's what I'm seeing from the loading dock.</h1>
     </div>
-    <p>"Sam — this is exactly the ground-truth I keep missing from where I sit. The Janis/Bluefors mix lines up with a cryo-magnetometer testbed I had no idea was being scaled up. Going into the v2 of the brief with attribution. <em>Thank you.</em> This is why this room is the way it is."</p>
-    <div class="mt-3 flex items-center gap-2 flex-wrap">
-      <span class="react count"><span class="emoji">💡</span> 22</span>
-      <span class="react"><span class="emoji">❤️</span> 31</span>
-    </div>
-  </div>
+  </header>
 
-  <div class="reply ml-8">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-2">RM</span>
-      <div>
-        <div class="font-semibold">Rachel M. <span class="label font-normal">· cryo-equipment service tech (formerly Janis) · 134 minds shifted</span></div>
-        <div class="label mono">replied 53m ago · 18 changed-my-mind</div>
+  <article class="post">
+    <div class="wrap">
+      <header class="post-head">
+        <span class="avatar av-1">SA</span>
+        <div class="post-meta">
+          <div class="post-author">Sam Ahmadi</div>
+          <div class="post-context">
+            truck driver, route-13 logistics
+            <span class="dot">·</span>
+            2 hours ago
+          </div>
+        </div>
+      </header>
+      <div class="post-body">
+        <p>I drive freight from Brookhaven Lab three times a week. The hiring on the loading dock is up — they're shipping in cryo gear that's not in the FY24 plan. Probably means the program is real, but the procurement signal A. Patel is watching might be six months earlier than the brief says. Just what I'm seeing from the truck.</p>
+        <p>To be clear: <em>I don't know quantum sensing.</em> I know what shows up on the dock. The boxes were marked Janis Research and Bluefors — that's a different mix than they ran last year. Make of it what you will.</p>
       </div>
+      <footer class="post-actions">
+        <span class="react-count">47 changed my mind</span>
+        <span>12 thinking</span>
+        <span>8 saved</span>
+        <span>4 thanks</span>
+      </footer>
     </div>
-    <p>"Confirming Sam's read from a different angle: I service Janis dilution refrigerators across the eastern seaboard. Brookhaven added two new service contracts in March — that's not normal cadence for them. The market knows something even if the press releases haven't caught up."</p>
-    <div class="mt-3 flex items-center gap-2 flex-wrap">
-      <span class="react count"><span class="emoji">💡</span> 18</span>
-      <span class="react"><span class="emoji">🤝</span> 9 confirming</span>
-    </div>
+  </article>
+
+  <div class="wrap">
+    <div class="replies-label">23 replies · sorted by minds shifted</div>
   </div>
 
-  <div class="reply ml-8 shifted">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-5">JO</span>
-      <div>
-        <div class="font-semibold">Jess O. <span class="label font-normal">· stay-at-home parent, former Treasury analyst · 204 minds shifted</span></div>
-        <div class="label mono">replied 41m ago · 17 changed-my-mind</div>
+  <article class="post reply shifted">
+    <div class="wrap" style="padding-left: 52px;">
+      <header class="post-head">
+        <span class="avatar av-4">AP</span>
+        <div class="post-meta">
+          <div class="post-author">Alex Patel</div>
+          <div class="post-context">
+            quantum researcher, Brookhaven (off-duty)
+            <span class="dot">·</span>
+            1 hour ago
+          </div>
+        </div>
+      </header>
+      <div class="post-body">
+        <p>Sam — this is exactly the ground-truth I keep missing from where I sit. The Janis/Bluefors mix lines up with a cryo-magnetometer testbed I had no idea was being scaled up. Going into v2 of the brief with attribution. <em>Thank you.</em> This is why this room is the way it is.</p>
       </div>
+      <footer class="post-actions">
+        <span class="react-count">22 changed my mind</span>
+        <span>31 thanks</span>
+      </footer>
     </div>
-    <p>"This thread is going to change how I write the ITAR note I'm working on. If the procurement signal is six months earlier than the brief assumes, the 90-day ITAR comment window <em>matters more than people think</em>. Going to flag this in my draft. Sam, Rachel — would either of you be OK with me citing this thread by handle?"</p>
-    <div class="mt-3 flex items-center gap-2 flex-wrap">
-      <span class="react count"><span class="emoji">💡</span> 17</span>
-      <span class="react"><span class="emoji">🔗</span> 6 linkage</span>
-      <span class="react"><span class="emoji">✅</span> 2 "yes" from Sam &amp; Rachel</span>
-    </div>
-  </div>
+  </article>
 
-  <div class="reply ml-8">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-3">DT</span>
-      <div>
-        <div class="font-semibold">Diego T. <span class="label font-normal">· high school chem teacher · 12 minds shifted · new voice</span></div>
-        <div class="label mono">replied 28m ago · 11 changed-my-mind</div>
+  <article class="post reply">
+    <div class="wrap" style="padding-left: 52px;">
+      <header class="post-head">
+        <span class="avatar av-2">RM</span>
+        <div class="post-meta">
+          <div class="post-author">Rachel Moss</div>
+          <div class="post-context">
+            cryo-equipment service tech (formerly Janis)
+            <span class="dot">·</span>
+            53m ago
+          </div>
+        </div>
+      </header>
+      <div class="post-body">
+        <p>Confirming Sam's read from a different angle. I service Janis dilution refrigerators across the eastern seaboard. Brookhaven added two new service contracts in March — that's not normal cadence. The market knows something even if the press releases haven't caught up.</p>
       </div>
+      <footer class="post-actions">
+        <span class="react-count">18 changed my mind</span>
+        <span>9 confirming</span>
+      </footer>
     </div>
-    <p>"Outsider here. Just thanks for showing me what a credible signal of a real federal program looks like. I've taught the CHIPS-Act for two years using newspaper articles. This thread is the kind of thing I'm going to use as a real-world example with my students next semester."</p>
-    <div class="mt-3 flex items-center gap-2 flex-wrap">
-      <span class="react count"><span class="emoji">💡</span> 11</span>
-      <span class="react"><span class="emoji">🎓</span> 7 teach-with</span>
-    </div>
-  </div>
+  </article>
 
-  <div class="reply ml-8">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-6">+18</span>
-      <div>
-        <div class="font-semibold">18 more replies <span class="label font-normal">· in chronological order or sorted by minds-shifted</span></div>
+  <article class="post reply shifted">
+    <div class="wrap" style="padding-left: 52px;">
+      <header class="post-head">
+        <span class="avatar av-5">JO</span>
+        <div class="post-meta">
+          <div class="post-author">Jess Oduya</div>
+          <div class="post-context">
+            ex-Treasury, currently at home with three kids
+            <span class="dot">·</span>
+            41m ago
+          </div>
+        </div>
+      </header>
+      <div class="post-body">
+        <p>This thread is going to change how I write the ITAR note I'm working on. If the procurement signal is six months earlier than the brief assumes, the 90-day ITAR comment window matters more than people think. Going to flag this in my draft. Sam, Rachel — would either of you be OK with me citing this thread by handle?</p>
       </div>
+      <footer class="post-actions">
+        <span class="react-count">17 changed my mind</span>
+        <span>6 yes from Sam &amp; Rachel</span>
+      </footer>
     </div>
-    <a href="#" class="mt-2 inline-block qlink text-sm font-semibold">expand →</a>
-  </div>
+  </article>
 
-  <div class="compose mt-8">
-    <div class="flex items-baseline gap-3 mb-2">
-      <span class="avatar a-1">YOU</span>
-      <div>
-        <div class="font-semibold">You <span class="label font-normal">· city planner, transportation · 18 minds shifted</span></div>
-        <div class="label mono">replying to Sam A. · this room runs on respect, see the lobby rules</div>
+  <article class="post reply">
+    <div class="wrap" style="padding-left: 52px;">
+      <header class="post-head">
+        <span class="avatar av-3">DT</span>
+        <div class="post-meta">
+          <div class="post-author">Diego Torres</div>
+          <div class="post-context">
+            high-school chemistry teacher · new voice
+            <span class="dot">·</span>
+            28m ago
+          </div>
+        </div>
+      </header>
+      <div class="post-body">
+        <p>Outsider here. Just thanks for showing me what a credible signal of a real federal program looks like. I've taught CHIPS-Act for two years using newspaper articles. This thread is the kind of thing I'll use as a real-world example with my students next semester.</p>
       </div>
+      <footer class="post-actions">
+        <span class="react-count">11 changed my mind</span>
+        <span>7 teach with</span>
+      </footer>
     </div>
-    <textarea class="w-full mt-2 bg-transparent outline-none resize-none text-base" rows="3" placeholder="What does this make you think? Add evidence, ask a question, or offer a counter — no credentials required, just care."></textarea>
-    <div class="mt-3 flex items-center justify-between">
-      <div class="label mono">↩ enter to send · ⌘ enter to send as "considered take" (no edits for 30s)</div>
-      <button class="px-4 py-2 rounded-full text-sm font-semibold text-white" style="background:var(--warm)">send</button>
+  </article>
+
+  <div class="wrap" style="margin-top: 48px;">
+    <a href="#" class="mono" style="font-size: 13px; color: var(--accent);">Show 18 more replies →</a>
+  </div>
+
+  <div class="wrap">
+
+    <form class="compose" id="reply">
+      <header class="compose-head">
+        <span class="avatar av-6">YO</span>
+        <div class="post-meta">
+          <div class="post-author">You</div>
+          <div class="post-context">city planner, transportation · replying to Sam</div>
+        </div>
+      </header>
+      <textarea rows="3" placeholder="What does this make you think? Add evidence, ask a question, or offer a counter — no credentials required, just care."></textarea>
+      <div class="compose-foot">
+        <span class="compose-hint">↩ enter to send · ⌘↩ to send as &ldquo;considered take&rdquo;</span>
+        <button class="send" type="button">Send reply</button>
+      </div>
+    </form>
+
+    <aside class="house" id="join">
+      <div class="house-eyebrow">How this room works</div>
+      <ul>
+        <li>Anyone with something to add can post — your job isn't the gate, your contribution is.</li>
+        <li>"Minds shifted" is the only reputation that compounds — voting up a take you already agreed with doesn't count.</li>
+        <li>Good threads get pinned by other contributors, not by editors.</li>
+        <li>Bad-faith posts get quietly muted by five-contributor consensus, no drama.</li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <footer class="foot">
+    <div class="wrap-wide" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
+      <span>The Lobby · D11 · single-thread view · DocketField prototype</span>
+      <a href="../index.html">← all directions</a>
     </div>
-  </div>
-
-  <div class="mt-8 p-4 rounded-xl border rule" style="background:#fff8eb">
-    <div class="label mono mb-1">how this room works</div>
-    <ul class="text-sm space-y-1.5">
-      <li>· anyone with something to add can post — your job isn't the gate, your contribution is</li>
-      <li>· "minds shifted" is the only reputation that compounds — voting up a take you already agreed with doesn't count</li>
-      <li>· good threads get pinned by other contributors, not by editors</li>
-      <li>· bad-faith posts get quietly muted by 5-contributor consensus, no drama</li>
-    </ul>
-  </div>
-
-</main>
-
-<footer class="border-t rule mt-10 py-5">
-  <div class="max-w-4xl mx-auto px-6 flex justify-between label mono">
-    <div>The Lobby · D11 · single-thread view · backend prototype</div>
-    <div><a href="../index.html" class="qlink">← all 20 directions</a></div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>

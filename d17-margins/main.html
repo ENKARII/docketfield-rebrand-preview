@@ -1,190 +1,519 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>The Margins · D17 · Main (a source, annotated)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Caveat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  :root { --paper:#f8f4ea; --doc:#ffffff; --margin:#f0e9d5; --ink:#1a1612; --muted:#6b5f4d; --rule:#d6c9aa; --accent:#7a2e1c; --hl-1:#fff296; --hl-2:#c5e6c5; --hl-3:#f4c6dc; --hl-4:#cde0f1; }
-  body { font-family:'Source Serif 4',Georgia,serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.75; }
-  .sans { font-family:'Inter',system-ui,sans-serif; }
-  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
-  .hand { font-family:'Caveat',cursive; font-size:1.05rem; line-height:1.4; }
-  .rule { border-color:var(--rule); }
-  .label { font-size:11px; color:var(--muted); letter-spacing:.06em; font-family:'Inter',sans-serif; font-weight:500; text-transform:uppercase; }
-  a { color:var(--accent); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .doc { background:var(--doc); border:1px solid var(--rule); padding:3rem 3.5rem; box-shadow:0 2px 8px rgba(0,0,0,.03); }
-  .doc h1 { font-family:'Source Serif 4',serif; font-size:1.6rem; line-height:1.2; font-weight:700; }
-  .doc h2 { font-family:'Source Serif 4',serif; font-size:1.2rem; font-weight:600; margin-top:1.6rem; }
-  .doc p { margin-bottom:.85rem; }
-  .doc-meta { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.06em; }
-  mark { padding:1px 0; cursor:pointer; }
-  mark.h1 { background:var(--hl-1); }
-  mark.h2 { background:var(--hl-2); }
-  mark.h3 { background:var(--hl-3); }
-  mark.h4 { background:var(--hl-4); }
-  mark:hover { outline:1px dashed var(--accent); }
-  .anno { background:var(--margin); border:1px solid var(--rule); padding:.85rem 1rem; border-radius:6px; position:relative; }
-  .anno::before { content:""; position:absolute; left:-7px; top:1rem; width:0; height:0; border-top:7px solid transparent; border-bottom:7px solid transparent; border-right:7px solid var(--margin); }
-  .anno.h2 { background:#e3f0e3; border-color:#a8c8a8; }
-  .anno.h2::before { border-right-color:#e3f0e3; }
-  .anno.h3 { background:#f8dceb; border-color:#d6a8c0; }
-  .anno.h3::before { border-right-color:#f8dceb; }
-  .anno.h4 { background:#dde7f3; border-color:#a8c0d6; }
-  .anno.h4::before { border-right-color:#dde7f3; }
-  .anno-meta { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; margin-bottom:.4rem; display:flex; align-items:center; gap:.4rem; }
-  .ava { width:18px; height:18px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:8px; font-weight:600; }
-  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}.a7{background:#2a6e7e}
-  .pin { display:inline-flex; width:18px; height:18px; align-items:center; justify-content:center; background:var(--accent); color:white; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; border-radius:3px; margin:0 2px; vertical-align:middle; cursor:pointer; }
-  .pin.h2 { background:#3a6e3a; } .pin.h3 { background:#7a2e5a; } .pin.h4 { background:#2c4d6e; }
-  .doodle { position:absolute; right:-44px; color:var(--accent); transform:rotate(-12deg); }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Margins — DocketField rebrand · D17</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#F8F4EA;
+      --doc:#FFFFFF;
+      --ink:#1A1612;
+      --muted:#6B5F4D;
+      --quiet:#9C927E;
+      --line:#E5DDC8;
+      --line-soft:#F0E9D5;
+      --accent:#7A2E1C;
+      --accent-soft:#FBEEDD;
+      --highlight:#FFF1C2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Geist', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── nav ────────────────────────────────────── */
+    .nav {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      background: var(--paper);
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .back {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .back:hover { color: var(--accent); }
+    .brand {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .brand-sub {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+      margin-left: 12px;
+    }
+    .cta {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      transition: all 120ms ease;
+    }
+    .cta:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── source banner ──────────────────────────── */
+    .source-banner {
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      background: var(--line-soft);
+    }
+    .source-banner .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 13px;
+    }
+    .source-name {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .source-label {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+    }
+    .source-name strong {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .source-meta {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .readers {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reader-dots {
+      display: inline-flex;
+    }
+    .reader-dots .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 9px;
+      font-weight: 600;
+      border: 2px solid var(--line-soft);
+      margin-left: -6px;
+    }
+    .av-1 { background: #B45A1E; }
+    .av-2 { background: #5C7A8C; }
+    .av-3 { background: #6B7A5C; }
+    .av-4 { background: #8C6B4A; }
+    .av-5 { background: #7C5A6B; }
+    .av-6 { background: #5E5851; }
+    .av-more { background: var(--quiet); }
+
+    /* ── layout ─────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 64px;
+      padding: 64px 0;
+    }
+
+    /* ── document ───────────────────────────────── */
+    .document {
+      background: var(--doc);
+      border: 1px solid var(--line);
+      padding: 64px 72px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .doc-header {
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+    }
+    .doc-agency {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--quiet);
+      margin-bottom: 12px;
+    }
+    .doc-header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .doc-version {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+      margin-top: 12px;
+    }
+    .document h2 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      letter-spacing: -0.005em;
+    }
+    .document p { margin-bottom: 14px; }
+    .document strong { font-weight: 600; }
+    mark {
+      background: var(--highlight);
+      padding: 1px 2px;
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+    mark:hover { background: #FFE587; }
+    mark .pin {
+      display: inline-block;
+      vertical-align: super;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 9px;
+      color: var(--accent);
+      margin-left: 2px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .doc-footnote {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.04em;
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ── annotations column ─────────────────────── */
+    .annotations {
+      padding-top: 8px;
+    }
+    .ann {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .ann:first-child { padding-top: 0; }
+    .ann-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .ann-pin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+    .ann-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 9px;
+      font-weight: 600;
+    }
+    .ann-author {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .ann-role {
+      font-size: 12px;
+      color: var(--quiet);
+      margin-left: 4px;
+    }
+    .ann-body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-left: 32px;
+    }
+    .ann-body em { color: var(--muted); font-style: italic; }
+    .ann-meta {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      margin-top: 8px;
+      margin-left: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    .ann-add {
+      background: var(--accent-soft);
+      border: 1px dashed var(--accent);
+      padding: 20px;
+      margin-top: 24px;
+      border-radius: 4px;
+    }
+    .ann-add-label {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .ann-add p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .ann-add a {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* ── housing ────────────────────────────────── */
+    .house {
+      margin-top: 32px;
+      padding: 32px;
+      background: var(--accent-soft);
+      border-left: 2px solid var(--accent);
+    }
+    .house-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .house h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+    }
+    .house p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .foot {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      margin-top: 96px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--quiet);
+      display: flex;
+      justify-content: space-between;
+    }
+    .foot a { color: var(--quiet); }
+    .foot a:hover { color: var(--accent); }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; gap: 32px; }
+      .document { padding: 40px 32px; }
+      .wrap { padding: 0 20px; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="border-b rule">
-  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-    <div class="sans flex items-baseline gap-5">
-      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
-      <div class="text-2xl font-bold tracking-tight" style="font-family:'Source Serif 4',serif">The Margins</div>
-      <span class="label">reading is a group activity</span>
+  <nav class="nav">
+    <div class="wrap nav-row">
+      <div class="nav-left">
+        <a class="back" href="../index.html">←</a>
+        <span class="brand">The Margins</span>
+        <span class="brand-sub">reading is a group activity</span>
+      </div>
+      <a class="cta" href="./backend.html">My library</a>
     </div>
-    <nav class="sans flex items-center gap-6 text-sm">
-      <a href="./backend.html" style="color:var(--ink)">My library</a>
-      <a href="#" style="color:var(--ink)">Sources</a>
-      <a href="#" style="color:var(--ink)">Following</a>
-      <a href="#" class="px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">+ Bring a source</a>
-    </nav>
+  </nav>
+
+  <div class="source-banner">
+    <div class="wrap">
+      <div class="source-name">
+        <span class="source-label">Now reading</span>
+        <strong>"Quantum Sensing Initiative" Program Plan v1.3</strong>
+        <span class="source-meta">DOE-SC ASCR · 14 pp · FOIA · captured 2024-09-30</span>
+      </div>
+      <div class="readers">
+        <span class="source-meta">14 reading right now</span>
+        <div class="reader-dots">
+          <span class="dot av-1">SA</span>
+          <span class="dot av-4">AP</span>
+          <span class="dot av-2">RM</span>
+          <span class="dot av-5">JO</span>
+          <span class="dot av-3">DT</span>
+          <span class="dot av-more">+9</span>
+        </div>
+      </div>
+    </div>
   </div>
-</header>
 
-<section class="sans border-b rule">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between text-sm">
-    <div class="flex items-baseline gap-4">
-      <span class="label">currently reading:</span>
-      <strong>DOE-SC ASCR · "Quantum Sensing Initiative" v1.3</strong>
-      <span class="mono text-xs" style="color:var(--muted)">· 14pp · captured 2024-09-30 · via FOIA</span>
-    </div>
-    <div class="flex items-center gap-3 text-xs">
-      <span class="label">14 readers in the margins right now</span>
-      <span class="ava a1">SA</span><span class="ava a4">AP</span><span class="ava a2">RM</span><span class="ava a5">JO</span><span class="ava a3">DT</span><span class="ava a6">+9</span>
+  <div class="wrap">
+    <div class="layout">
+
+      <article class="document">
+        <div class="doc-header">
+          <div class="doc-agency">U.S. Department of Energy · Office of Science · ASCR</div>
+          <h1>Quantum Sensing Initiative</h1>
+          <div class="doc-version">Program Plan v1.3 · September 2024 · Internal — released via FOIA, May 2026</div>
+        </div>
+
+        <h2>§1 Program Scope</h2>
+        <p>The Quantum Sensing Initiative is a <mark>$1.4 billion appropriation<span class="pin">[1]</span></mark> directed at quantum-enabled sensing technologies with defense-adjacent applications, allocated over fiscal years 2024 through 2027. The Initiative consolidates prior DOE quantum-sensing investments into a single coordinated program.</p>
+        <p>Program scope explicitly includes: (i) magnetic-anomaly detection at the quantum noise floor, (ii) cold-atom inertial navigation in GPS-denied environments, (iii) quantum gravimetry for subsurface mapping, and (iv) advanced cryogenic instrumentation supporting (i)–(iii).</p>
+
+        <h2>§2 Lead Laboratories</h2>
+        <p>The Initiative is coordinated through four DOE national laboratories, which together hold approximately <mark>78% of obligated funding<span class="pin">[2]</span></mark> over the program horizon:</p>
+        <p style="margin-left: 24px;">
+          <strong>(a)</strong> <mark>Brookhaven National Laboratory<span class="pin">[3]</span></mark> — atom-trap sensing testbed and prototype development.<br/>
+          <strong>(b)</strong> Argonne National Laboratory — solid-state nitrogen-vacancy program.<br/>
+          <strong>(c)</strong> Oak Ridge National Laboratory — cryo-magnetometer prototype facility.<br/>
+          <strong>(d)</strong> Lawrence Berkeley National Laboratory — quantum gravimetry collaboration with USGS.
+        </p>
+
+        <h2>§3 Procurement Posture</h2>
+        <p>Procurement is anticipated to phase as follows. In FY24–FY25, the program emphasizes testbed instrumentation acquired through lab-direct procurement vehicles. <mark>In FY26 Q4, the program anticipates issuing the first set of solicitations<span class="pin">[4]</span></mark> to non-lab vendors for sensor-array prototypes at TRL 4. In FY27, the program anticipates issuing a second tranche for integration prototypes at TRL 5–6.</p>
+        <p>Contract values above $5M are not anticipated to be let to non-lab vendors prior to FY27 Q1, with the exception of incumbent prime-contractor extensions under existing IDIQ vehicles.</p>
+
+        <h2>§4 Standards Posture</h2>
+        <p>The program participates in IEEE-1xx quantum-sensing measurement-standard negotiations through the Office of Science's standards-engagement office. As of plan-issue date, the IEEE-1xx working group is in active negotiation; consensus on a Phase-1 standard is not anticipated before mid-FY26.</p>
+
+        <p class="doc-footnote">End of excerpt · plan continues for 9 more pages · 47 annotations across this source</p>
+      </article>
+
+      <aside class="annotations">
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-pin">1</span>
+            <span class="ann-avatar av-4">AP</span>
+            <span class="ann-author">Alex Patel</span>
+            <span class="ann-role">quantum researcher</span>
+          </header>
+          <p class="ann-body">Note the <em>obligated</em> language. $1.4B is the appropriation — what's actually obligated through Q1-26 is closer to $890M. The remaining $510M is the trigger to watch. See my brief #024 for the obligation curve.</p>
+          <p class="ann-meta">+ 8 thanks · 3 sub-annotations</p>
+        </div>
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-pin">2</span>
+            <span class="ann-avatar av-6">RT</span>
+            <span class="ann-author">Rosa Torres</span>
+            <span class="ann-role">federal-grants accountant</span>
+          </header>
+          <p class="ann-body">From an accounting view: 78% concentration into four labs is structurally fine for the science phase, but it <em>delays</em> the small-business set-aside signal that usually leaks 90 days before bigger procurements. If you're watching for "is this real," watch SBIR awards under $250K — they fan out to specific vendor names before the headline RFPs.</p>
+          <p class="ann-meta">+ 14 thanks · 6 sub-annotations · pinned by 4 readers</p>
+        </div>
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-pin">3</span>
+            <span class="ann-avatar av-1">SA</span>
+            <span class="ann-author">Sam Ahmadi</span>
+            <span class="ann-role">truck driver, route-13</span>
+          </header>
+          <p class="ann-body">I drive freight here three times a week. Context for whoever's reading: as of March 2026, loading-dock activity at Brookhaven is up — they're shipping in cryo gear (Janis Research and Bluefors brands) at a different cadence than last year. <em>I don't know quantum sensing. I know what shows up on the dock. Whatever's in this plan, the building is already preparing for it.</em></p>
+          <p class="ann-meta">+ 47 thanks · 9 sub-annotations · Sam's first annotation</p>
+        </div>
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-pin">4</span>
+            <span class="ann-avatar av-5">JO</span>
+            <span class="ann-author">Jess Oduya</span>
+            <span class="ann-role">ex-Treasury, at-home parent</span>
+          </header>
+          <p class="ann-body">Read this line against the <a href="#" style="color:var(--accent);">ITAR rewrite NPRM Clause 4(b)</a>. If FY26-Q4 solicitations open before the ITAR comment window closes (June 17), university quantum labs decide their participation posture <em>before</em> the rules they'd comply with are finalized. Going to be a mess. Someone closer to university counsel should flag this.</p>
+          <p class="ann-meta">+ 22 thanks · 4 sub-annotations · cross-referenced by 7 other readers</p>
+        </div>
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-avatar av-3">DT</span>
+            <span class="ann-author">Diego Torres</span>
+            <span class="ann-role">high-school chemistry teacher</span>
+          </header>
+          <p class="ann-body">Outsider question: when the document says "TRL 4" and "TRL 5-6," does that mean what a layperson would assume — early prototype vs. close-to-production? Trying to teach this to AP-physics seniors and want to translate without lying.</p>
+          <p class="ann-meta">+ 6 answers below · marked "good question" by 11 readers</p>
+        </div>
+
+        <div class="ann">
+          <header class="ann-head">
+            <span class="ann-avatar av-2">RM</span>
+            <span class="ann-author">Rachel Moss</span>
+            <span class="ann-role">cryo-equipment service tech</span>
+          </header>
+          <p class="ann-body">Argonne is doing more than the document admits. My service-route shows them as the second-fastest-growing site (after Brookhaven), and the NV diamond program is consuming dilution refrigerators at a clip that doesn't fit "exploratory" phase. The plan understates Argonne by a year.</p>
+          <p class="ann-meta">+ 11 thanks · 2 sub-annotations</p>
+        </div>
+
+        <div class="ann-add">
+          <div class="ann-add-label">Your turn</div>
+          <p>Highlight any sentence on the left and add an annotation. You don't need to be in this field. You need to be reading carefully and willing to add what you noticed.</p>
+          <a href="#">Annotate a line →</a>
+        </div>
+
+        <aside class="house">
+          <div class="house-eyebrow">How The Margins works</div>
+          <h2>The source is the spine. Annotations grow around it.</h2>
+          <p>A source document — a federal program plan, a court filing, a corporate disclosure, a peer-reviewed paper, a leaked memo — gets pinned to The Margins. Anyone can highlight a sentence and add what they notice: corroboration, contradiction, a question, a piece of ground truth. Other readers thank annotations that helped them read more carefully. Nine dollars a month gets you reading and annotation rights.</p>
+        </aside>
+
+      </aside>
     </div>
   </div>
-</section>
 
-<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10">
-
-  <article class="doc relative">
-    <div class="text-center">
-      <div class="doc-meta">DEPARTMENT OF ENERGY · OFFICE OF SCIENCE · ASCR</div>
-      <h1 class="mt-3">Quantum Sensing Initiative</h1>
-      <div class="doc-meta mt-2">Program Plan v1.3 · September 2024 · Internal — released via FOIA, May 2026</div>
+  <footer class="foot">
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
+      <span>The Margins · D17 · DocketField rebrand prototype</span>
+      <a href="../index.html">← all directions</a>
     </div>
-
-    <h2 class="mt-7">§1 Program Scope</h2>
-    <p>The Quantum Sensing Initiative is a <mark class="h1">$1.4 billion appropriation<span class="pin">P1</span></mark> directed at quantum-enabled sensing technologies with defense-adjacent applications, allocated over fiscal years 2024 through 2027. The Initiative consolidates prior DOE quantum-sensing investments into a single coordinated program.</p>
-
-    <p>Program scope explicitly includes: (i) magnetic-anomaly detection at the quantum noise floor, (ii) cold-atom inertial navigation in GPS-denied environments, (iii) quantum gravimetry for subsurface mapping, and (iv) advanced cryogenic instrumentation supporting (i)–(iii).</p>
-
-    <h2 class="mt-7">§2 Lead Laboratories</h2>
-    <p>The Initiative is coordinated through four DOE national laboratories, which together hold approximately <mark class="h2">78% of obligated funding<span class="pin h2">P2</span></mark> over the program horizon:</p>
-
-    <p style="padding-left:1.4rem">
-    <strong>(a)</strong> <mark class="h3">Brookhaven National Laboratory<span class="pin h3">P3</span></mark> — atom-trap sensing testbed and prototype development.<br/>
-    <strong>(b)</strong> Argonne National Laboratory — solid-state nitrogen-vacancy program.<br/>
-    <strong>(c)</strong> Oak Ridge National Laboratory — cryo-magnetometer prototype facility.<br/>
-    <strong>(d)</strong> Lawrence Berkeley National Laboratory — quantum gravimetry collaboration with USGS.</p>
-
-    <h2 class="mt-7">§3 Procurement Posture</h2>
-    <p>Procurement is anticipated to phase as follows. In FY24–FY25, the program emphasizes testbed instrumentation acquired through lab-direct procurement vehicles. <mark class="h4">In FY26 Q4, the program anticipates issuing the first set of solicitations<span class="pin h4">P4</span></mark> to non-lab vendors for sensor-array prototypes at TRL 4. In FY27, the program anticipates issuing a second tranche of solicitations for integration prototypes at TRL 5–6.</p>
-
-    <p>Contract values above $5M are not anticipated to be let to non-lab vendors prior to FY27 Q1, with the exception of incumbent prime-contractor extensions under existing IDIQ vehicles.</p>
-
-    <h2 class="mt-7">§4 Standards Posture</h2>
-    <p>The program participates in IEEE-1xx quantum-sensing measurement-standard negotiations through the Office of Science's standards-engagement office. As of plan-issue date, the IEEE-1xx working group is in active negotiation; consensus on a Phase-1 standard is not anticipated before mid-FY26.</p>
-
-    <p class="doc-meta mt-8">— end of excerpt · plan continues for 9 more pages · annotations available throughout</p>
-  </article>
-
-  <aside class="space-y-5">
-
-    <div class="anno" id="p1">
-      <div class="anno-meta"><span class="pin">P1</span><span class="ava a4">AP</span><strong style="color:var(--ink)">Alex Patel</strong>· Quantum researcher · 14 prior annotations on this source</div>
-      <p>"Note the <em>obligated</em> language. $1.4B is the appropriation — what's actually obligated through Q1-26 is closer to $890M. The remaining ~$510M is the trigger to watch. See <a href="#">my brief #024</a> for the obligation curve."</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 8 thanks · 3 sub-annotations · 1 disagreement</p>
-    </div>
-
-    <div class="anno h2" id="p2">
-      <div class="anno-meta"><span class="pin h2">P2</span><span class="ava a6">RT</span><strong style="color:var(--ink)">Rosa Torres</strong>· Federal-grants accountant</div>
-      <p>"From an accounting view: the 78% concentration into four labs is structurally fine for the science phase, but it <em>delays</em> the small-business set-aside signal that usually leaks 90 days before the bigger procurements. If you're watching for "is this real," watch SBIR awards under $250K — they'll fan out to specific vendor names before the headline RFPs."</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 14 thanks · 6 sub-annotations · pinned by 4 readers</p>
-    </div>
-
-    <div class="anno h3" id="p3">
-      <div class="anno-meta"><span class="pin h3">P3</span><span class="ava a1">SA</span><strong style="color:var(--ink)">Sam Ahmadi</strong>· Truck driver · route-13 logistics · first annotation</div>
-      <p>"I drive freight here three times a week. Some context for whoever's reading: as of March 2026, the loading-dock activity at Brookhaven is up — they're shipping in cryo gear (Janis Research and Bluefors brands) at a different cadence than they were last year. I don't know quantum sensing. I know what shows up on the dock. <span class="hand" style="color:var(--accent)">whatever's in this plan, the building is already preparing for it.</span>"</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 47 thanks · 9 sub-annotations · this is Sam's first annotation in The Margins</p>
-    </div>
-
-    <div class="anno h4" id="p4">
-      <div class="anno-meta"><span class="pin h4">P4</span><span class="ava a5">JO</span><strong style="color:var(--ink)">Jess Oduya</strong>· Ex-Treasury, currently at home with three kids</div>
-      <p>"This is the line that should be read against the <a href="#">ITAR rewrite NPRM Clause 4(b)</a>. If the FY26-Q4 solicitations open before the ITAR comment window closes (June 17), university quantum labs will need to decide their participation posture <em>before</em> the rules they're being asked to comply with are finalized. This is going to be a mess. Somebody who knows university counsel should bring this to their attention."</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 22 thanks · 4 sub-annotations · cross-referenced by 7 other readers</p>
-    </div>
-
-    <div class="anno" style="background:#fffdf0">
-      <div class="anno-meta"><span class="ava a3">DT</span><strong style="color:var(--ink)">Diego Torres</strong>· high-school chemistry teacher · question</div>
-      <p>"Outsider asking: when the document says "TRL 4" and "TRL 5-6," does that mean what a layperson would assume — early prototype vs. close-to-production? Trying to teach this to AP-physics seniors and want to translate it without lying."</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 6 answers below · marked "good question" by 11 readers</p>
-    </div>
-
-    <div class="anno">
-      <div class="anno-meta"><span class="ava a2">RM</span><strong style="color:var(--ink)">Rachel Moss</strong>· cryo-equipment service tech · adding to §2 (b)</div>
-      <p>"Argonne is doing more than the document admits. My service-route shows them as the second-fastest-growing site (after Brookhaven), and the NV diamond program is consuming dilution refrigerators at a clip that doesn't fit "exploratory" phase. I think the plan understates Argonne by a year."</p>
-      <p class="sans text-xs mt-2" style="color:var(--muted)">+ 11 thanks · 2 sub-annotations</p>
-    </div>
-
-    <div class="sans border rule p-4 rounded" style="background:var(--margin)">
-      <div class="label">your turn</div>
-      <p class="sans text-sm mt-2" style="color:var(--muted)">Highlight any sentence on the left and add an annotation. You don't need to be in this field. You need to be reading carefully and willing to add what you noticed.</p>
-      <button class="sans mt-3 px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">+ annotate a line</button>
-    </div>
-
-  </aside>
-
-</main>
-
-<section class="max-w-7xl mx-auto px-6 py-10 border-t rule sans grid grid-cols-1 lg:grid-cols-3 gap-8">
-  <div>
-    <div class="label mb-2">— how this works</div>
-    <p class="text-sm leading-relaxed" style="font-family:'Inter',sans-serif">A source document — a federal program plan, a court filing, a corporate disclosure, a peer-reviewed paper, a leaked memo — gets pinned to The Margins. Anyone can highlight a sentence and add what they notice: corroboration, contradiction, a question, a piece of ground truth. Other readers thank annotations that helped them read more carefully. The source stays the source; the annotations grow around it.</p>
-  </div>
-  <div>
-    <div class="label mb-2">— sources currently open</div>
-    <ul class="text-sm space-y-2" style="font-family:'Inter',sans-serif">
-      <li>· <a href="#">DOE-SC ASCR Quantum Sensing Initiative v1.3</a> <span class="label">· 14 readers</span></li>
-      <li>· <a href="#">EU AI Act trilogue compromise text (consolidated)</a> <span class="label">· 9 readers</span></li>
-      <li>· <a href="#">ITAR rewrite NPRM (Federal Register, 2026-04-30)</a> <span class="label">· 6 readers</span></li>
-      <li>· <a href="#">USGS Critical Minerals Summary 2026</a> <span class="label">· 11 readers</span></li>
-      <li>· <a href="#">ERCOT day-ahead market log, March 2026</a> <span class="label">· 3 readers</span></li>
-      <li class="label">+ 47 more open sources across 18 fields</li>
-    </ul>
-  </div>
-  <div>
-    <div class="label mb-2">— join the readers</div>
-    <p class="text-sm leading-relaxed" style="font-family:'Inter',sans-serif">$9/month gets you reading + annotation rights. You can also "bring a source" — propose a document for the community to read together. The Margins thrives on people who read carefully and have something to add, in any field.</p>
-    <button class="mt-3 px-4 py-2 text-sm font-semibold rounded" style="background:var(--accent); color:white">read with us →</button>
-  </div>
-</section>
-
-<footer class="border-t rule py-5 sans">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
-    <div>The Margins · D17 · prototype 2026-05-27</div>
-    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>

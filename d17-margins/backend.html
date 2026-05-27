@@ -1,210 +1,558 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>The Margins · D17 · Library + your annotations (Backend)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&family=Caveat:wght@500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  :root { --paper:#f8f4ea; --doc:#ffffff; --margin:#f0e9d5; --ink:#1a1612; --muted:#6b5f4d; --rule:#d6c9aa; --accent:#7a2e1c; }
-  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.55; }
-  .serif { font-family:'Source Serif 4',Georgia,serif; }
-  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
-  .hand { font-family:'Caveat',cursive; }
-  .rule { border-color:var(--rule); }
-  .label { font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; font-weight:500; }
-  a { color:var(--accent); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .panel { background:var(--doc); border:1px solid var(--rule); }
-  .src { padding:1rem 1.2rem; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr 140px; gap:1rem; align-items:start; }
-  .pages { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); text-align:center; }
-  .pages .n { display:block; font-size:1.8rem; line-height:1; color:var(--ink); font-weight:700; }
-  .anno-mini { background:var(--margin); border:1px solid var(--rule); padding:.65rem .85rem; border-radius:4px; font-size:13px; }
-  .ava { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
-  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
-  .chip { display:inline-block; padding:1px 7px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; }
-  .chip-open { background:#dfeedb; color:#3a5b2c; }
-  .chip-foia { background:#fbecc5; color:#6b4815; }
-  .chip-pub { background:#dde7f3; color:#2c4d6e; }
-  .chip-leak { background:#f8dceb; color:#7a2a5a; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My library — The Margins · D17</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#F8F4EA;
+      --doc:#FFFFFF;
+      --ink:#1A1612;
+      --muted:#6B5F4D;
+      --quiet:#9C927E;
+      --line:#E5DDC8;
+      --line-soft:#F0E9D5;
+      --accent:#7A2E1C;
+      --accent-soft:#FBEEDD;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Geist', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+    .nav {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .back, .crumb {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .back:hover, .crumb:hover { color: var(--accent); }
+    .brand {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .cta {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      background: var(--accent);
+      color: var(--paper);
+      border-radius: 999px;
+      border: none;
+    }
+    .cta:hover { background: #5A1E0E; }
+
+    /* ── hero ───────────────────────────────────── */
+    .hero { padding: 64px 0 48px; }
+    .hero-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 38px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      max-width: 720px;
+    }
+    .hero p {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-top: 16px;
+      max-width: 640px;
+    }
+
+    /* ── stats row ──────────────────────────────── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 48px;
+    }
+    .stat-label {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+      margin-bottom: 8px;
+    }
+    .stat-val {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .stat-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── sources list ───────────────────────────── */
+    .sources-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .sources-eyebrow {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--quiet);
+    }
+    .filter-bar {
+      display: flex;
+      gap: 4px;
+      font-size: 13px;
+    }
+    .filter-bar a {
+      padding: 6px 12px;
+      color: var(--muted);
+      border-radius: 999px;
+      transition: all 120ms ease;
+    }
+    .filter-bar a.on {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .filter-bar a:not(.on):hover { color: var(--ink); }
+
+    .source-list {
+      background: var(--doc);
+      border: 1px solid var(--line);
+    }
+    .source {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 24px;
+      padding: 24px 28px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      transition: background 120ms ease;
+    }
+    .source:last-child { border-bottom: none; }
+    .source:hover { background: var(--line-soft); }
+    .source.featured { background: var(--accent-soft); }
+    .source.featured:hover { background: #F8E5C9; }
+
+    .source-pages {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.06em;
+    }
+    .source-pages .n {
+      display: block;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .source-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .src-tag {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+    .src-tag-foia { background: #FBEFC2; color: #75571A; }
+    .src-tag-pub { background: #D9E2F2; color: #2D4378; }
+    .src-tag-leak { background: #F2D9E5; color: #782D5A; }
+    .src-tag-fedreg { background: #E8E2D5; color: #5A4D2A; }
+    .src-meta-text {
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .source h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      margin-bottom: 6px;
+    }
+    .source h3 a { color: var(--ink); }
+    .source h3 a:hover { color: var(--accent); }
+    .source p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 560px;
+    }
+    .source-readers {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .reader-dots .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      font-size: 9px;
+      font-weight: 600;
+      border: 2px solid var(--doc);
+      margin-left: -5px;
+    }
+    .av-1 { background: #B45A1E; } .av-2 { background: #5C7A8C; } .av-3 { background: #6B7A5C; }
+    .av-4 { background: #8C6B4A; } .av-5 { background: #7C5A6B; } .av-6 { background: #5E5851; }
+    .av-more { background: var(--quiet); }
+    .source-aside {
+      text-align: right;
+      font-size: 12px;
+      color: var(--quiet);
+      min-width: 120px;
+    }
+    .source-aside strong {
+      display: block;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 2px;
+    }
+    .source-aside.urgent strong { color: var(--accent); }
+
+    /* ── secondary section ──────────────────────── */
+    .section { padding: 64px 0; border-top: 1px solid var(--line); margin-top: 64px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .section h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+    }
+
+    .my-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .my-card {
+      background: var(--doc);
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+    .my-card h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      margin-bottom: 16px;
+    }
+    .my-ann {
+      padding: 12px 0;
+      border-top: 1px solid var(--line-soft);
+    }
+    .my-ann:first-of-type { border-top: none; padding-top: 0; }
+    .my-ann-meta {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--quiet);
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .my-ann-text {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .my-ann-text em { font-style: italic; color: var(--ink); }
+
+    .foot {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      margin-top: 80px;
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--quiet);
+      display: flex;
+      justify-content: space-between;
+    }
+    .foot a { color: var(--quiet); }
+    .foot a:hover { color: var(--accent); }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 0 20px; }
+      .stats { grid-template-columns: 1fr; }
+      .source { grid-template-columns: 1fr; gap: 12px; }
+      .source-aside { text-align: left; }
+      .my-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="border-b rule">
-  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-    <div class="flex items-baseline gap-5">
-      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
-      <div class="serif text-2xl font-bold tracking-tight">The Margins</div>
-      <span class="label">/ my library</span>
+  <nav class="nav">
+    <div class="wrap nav-row">
+      <div class="nav-left">
+        <a class="back" href="../index.html">←</a>
+        <a class="crumb" href="./main.html">The Margins</a>
+        <span class="back">/</span>
+        <span class="crumb">My library</span>
+      </div>
+      <span class="brand">The Margins</span>
+      <a class="cta" href="#">Bring a source</a>
     </div>
-    <div class="flex items-center gap-3 text-sm">
-      <a href="./main.html" style="color:var(--accent)">a source, annotated →</a>
-      <button class="px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">+ Bring a source</button>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow">52 sources open · 312 contributors reading</div>
+      <h1>What we're reading together.</h1>
+      <p>Any contributor can bring a source. We open it for collaborative reading. Join any source, highlight a sentence, add what you noticed. Everything stays attributed.</p>
     </div>
+  </header>
+
+  <div class="wrap">
+
+    <section class="stats">
+      <div>
+        <div class="stat-label">Your annotations · 30 days</div>
+        <div class="stat-val">31</div>
+        <div class="stat-sub">across 6 sources</div>
+      </div>
+      <div>
+        <div class="stat-label">Thanks received</div>
+        <div class="stat-val">112</div>
+        <div class="stat-sub">from 47 readers</div>
+      </div>
+      <div>
+        <div class="stat-label">Cross-cited by</div>
+        <div class="stat-val">8</div>
+        <div class="stat-sub">other readers in their annotations</div>
+      </div>
+    </section>
+
+    <div class="sources-head">
+      <div class="sources-eyebrow">Sources currently open · 52</div>
+      <div class="filter-bar">
+        <a href="#" class="on">All</a>
+        <a href="#">Your fields</a>
+        <a href="#">Unread by you</a>
+        <a href="#">Closing soon</a>
+      </div>
+    </div>
+
+    <div class="source-list">
+
+      <article class="source featured">
+        <div class="source-pages"><span class="n">14</span>pp</div>
+        <div>
+          <div class="source-meta">
+            <span class="src-tag src-tag-foia">FOIA · DOE</span>
+            <span class="src-meta-text">added by Alex Patel · May 14</span>
+          </div>
+          <h3><a href="./main.html">DOE-SC ASCR · Quantum Sensing Initiative v1.3</a></h3>
+          <p>Program plan, internal version, released via FOIA. Contains the procurement-phasing language that drove Brookhaven's equipment orders this spring.</p>
+          <div class="source-readers">
+            <div class="reader-dots">
+              <span class="dot av-4">AP</span>
+              <span class="dot av-6">RT</span>
+              <span class="dot av-1">SA</span>
+              <span class="dot av-5">JO</span>
+              <span class="dot av-2">RM</span>
+              <span class="dot av-3">DT</span>
+              <span class="dot av-more">+8</span>
+            </div>
+            <span>14 readers · 47 annotations · 6 questions</span>
+          </div>
+        </div>
+        <div class="source-aside">
+          Most-pinned<br/><strong>source this week</strong>
+        </div>
+      </article>
+
+      <article class="source">
+        <div class="source-pages"><span class="n">128</span>pp</div>
+        <div>
+          <div class="source-meta">
+            <span class="src-tag src-tag-pub">PUBLIC · EUR-LEX</span>
+            <span class="src-meta-text">added by Maya Khurana · May 4</span>
+          </div>
+          <h3><a href="#">EU AI Act · trilogue compromise text (consolidated)</a></h3>
+          <p>128-page consolidated text. Compliance officers, EU staff lawyers, and open-source ML researchers reading together to figure out which Article-6 carve-outs got narrowed versus widened.</p>
+          <div class="source-readers">
+            <div class="reader-dots">
+              <span class="dot av-2">MK</span>
+              <span class="dot av-4">AP</span>
+              <span class="dot av-more">+7</span>
+            </div>
+            <span>9 readers · 87 annotations · 14 questions</span>
+          </div>
+        </div>
+        <div class="source-aside">
+          Comment window<br/><strong>closes Jun 17</strong>
+        </div>
+      </article>
+
+      <article class="source">
+        <div class="source-pages"><span class="n">42</span>pp</div>
+        <div>
+          <div class="source-meta">
+            <span class="src-tag src-tag-fedreg">FED. REG. · DDTC</span>
+            <span class="src-meta-text">added by Jess Oduya · May 7</span>
+          </div>
+          <h3><a href="#">ITAR rewrite NPRM · Federal Register 2026-04-30</a></h3>
+          <p>Notice of Proposed Rulemaking. Reading focus: clause 4(b) foundational-research carve-out and comment-window timing for university counsel.</p>
+          <div class="source-readers">
+            <div class="reader-dots">
+              <span class="dot av-5">JO</span>
+              <span class="dot av-more">+5</span>
+            </div>
+            <span>6 readers · 31 annotations</span>
+          </div>
+        </div>
+        <div class="source-aside urgent">
+          Comment window<br/><strong>closes Jun 17 →</strong>
+        </div>
+      </article>
+
+      <article class="source">
+        <div class="source-pages"><span class="n">87</span>pp</div>
+        <div>
+          <div class="source-meta">
+            <span class="src-tag src-tag-pub">PUBLIC · USGS</span>
+            <span class="src-meta-text">added by Jamal Okafor · Apr 22</span>
+          </div>
+          <h3><a href="#">USGS Critical Minerals Summary · 2026</a></h3>
+          <p>Annual summary. Reading focus: the methodology footnote in §3 that treats upstream-refining as final-stage. Hot debate in the margins.</p>
+          <div class="source-readers">
+            <div class="reader-dots">
+              <span class="dot av-6">JO</span>
+              <span class="dot av-more">+10</span>
+            </div>
+            <span>11 readers · 64 annotations · 9 questions</span>
+          </div>
+        </div>
+        <div class="source-aside">
+          Most-annotated<br/><strong>this month</strong>
+        </div>
+      </article>
+
+      <article class="source">
+        <div class="source-pages"><span class="n">312</span>pp</div>
+        <div>
+          <div class="source-meta">
+            <span class="src-tag src-tag-leak">LEAK · ERCOT</span>
+            <span class="src-meta-text">added by Wes Trent · May 11</span>
+          </div>
+          <h3><a href="#">ERCOT day-ahead market log · March 2026</a></h3>
+          <p>Day-ahead auction logs. Reading focus: the hour-14 anomaly around the demand-response auction, narrated by the battery operator who first noticed.</p>
+          <div class="source-readers">
+            <div class="reader-dots">
+              <span class="dot av-3">WT</span>
+              <span class="dot av-more">+2</span>
+            </div>
+            <span>3 readers · 14 annotations</span>
+          </div>
+        </div>
+        <div class="source-aside">
+          Recently added
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="#" class="mono" style="font-size:13px; color:var(--accent);">Show 47 more open sources →</a>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Your most-thanked annotations</h2>
+        <span class="mono" style="font-size:12px; color:var(--quiet);">Last 30 days · 8 of 31</span>
+      </div>
+
+      <div class="my-grid">
+        <div class="my-card">
+          <div class="my-ann">
+            <div class="my-ann-meta">DOE Sensing v1.3 · §3 · 47 thanks</div>
+            <p class="my-ann-text">"Note the <em>obligated</em> language. What's actually obligated through Q1-26 is closer to $890M — the remaining $510M is the trigger to watch."</p>
+          </div>
+          <div class="my-ann">
+            <div class="my-ann-meta">EU AI Act trilogue · Article 6 · 22 thanks</div>
+            <p class="my-ann-text">"Three carve-outs narrowed, one widened. Press got this backwards — here's the diff between the November draft and the trilogue text."</p>
+          </div>
+          <div class="my-ann">
+            <div class="my-ann-meta">USGS Crit. Minerals · §3 footnote · 14 thanks</div>
+            <p class="my-ann-text">"If you re-cut by who pours the final metal, seven of seventeen elements concentrate 65%+ into one jurisdiction."</p>
+          </div>
+        </div>
+        <div class="my-card">
+          <h3>Following your annotations · 47</h3>
+          <p style="font-size:14px; color:var(--muted); line-height:1.6;">When you annotate a source, your followers get a quiet digest the next morning. Currently: nine DOE program managers (declared), three university counsel, eleven fellow truck-drivers-with-opinions, twenty-four cross-field readers.</p>
+          <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-top:12px;">No public list. Followers are visible only to you.</p>
+        </div>
+      </div>
+    </section>
+
   </div>
-</header>
 
-<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
-
-  <section class="space-y-6">
-
-    <div>
-      <div class="label mono">— sources currently open in The Margins · 52</div>
-      <h1 class="serif text-3xl font-bold tracking-tight mt-1">What we're reading together</h1>
-      <p class="text-sm mt-2" style="color:var(--muted)">Any contributor can bring a source. We open it for collaborative reading. You can join any source, highlight a sentence, and add what you noticed. Everything stays attributed.</p>
+  <footer class="foot">
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
+      <span>The Margins · D17 · library · DocketField prototype</span>
+      <a href="../index.html">← all directions</a>
     </div>
-
-    <div class="flex items-center gap-2 flex-wrap text-xs">
-      <span class="label mr-2">filter:</span>
-      <button class="border rule px-2.5 py-1 rounded" style="background:var(--accent); color:white">all open · 52</button>
-      <button class="border rule px-2.5 py-1 rounded">your fields</button>
-      <button class="border rule px-2.5 py-1 rounded">unread by you</button>
-      <button class="border rule px-2.5 py-1 rounded">recently annotated</button>
-      <button class="border rule px-2.5 py-1 rounded">closing comment window</button>
-    </div>
-
-    <div class="panel">
-      <div class="src" style="background:#fffaeb">
-        <div class="pages"><span class="n">14</span>pp</div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip chip-foia">FOIA · DOE</span>
-            <span class="chip chip-open">3 reading now</span>
-            <span class="label">added by @alex.p · May 14</span>
-          </div>
-          <h3 class="serif font-bold text-lg mt-1.5"><a href="./main.html" style="color:var(--ink)">DOE-SC ASCR · "Quantum Sensing Initiative" v1.3</a></h3>
-          <p class="text-sm mt-1" style="color:var(--muted)">Program plan, internal version, released via FOIA. Contains the procurement-phasing language driving Brookhaven equipment orders.</p>
-          <div class="mt-2 flex items-center gap-2"><span class="ava a4">AP</span><span class="ava a6">RT</span><span class="ava a1">SA</span><span class="ava a5">JO</span><span class="ava a2">RM</span><span class="ava a3">DT</span><span class="label">+8 readers · 47 annotations · 6 questions</span></div>
-        </div>
-        <div class="text-right">
-          <div class="hand text-2xl" style="color:var(--accent)">"this is the one"</div>
-          <div class="label mt-1">most-pinned source</div>
-        </div>
-      </div>
-
-      <div class="src">
-        <div class="pages"><span class="n">128</span>pp</div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip chip-pub">PUBLIC · EUR-LEX</span>
-            <span class="chip chip-open">9 reading now</span>
-            <span class="label">added by @maya.k · May 4</span>
-          </div>
-          <h3 class="serif font-bold text-lg mt-1.5">EU AI Act · trilogue compromise text (consolidated)</h3>
-          <p class="text-sm mt-1" style="color:var(--muted)">128-page consolidated text. Compliance officers + EU staff lawyers + open-source ML researchers collectively making sense of which Article-6 carve-outs got narrowed vs widened.</p>
-          <div class="mt-2 flex items-center gap-2"><span class="ava a2">MK</span><span class="ava a4">+</span><span class="label">9 readers · 87 annotations · 14 questions</span></div>
-        </div>
-        <div class="text-right text-xs label">comment window<br/><strong style="color:var(--ink)">closes Jun 17</strong></div>
-      </div>
-
-      <div class="src">
-        <div class="pages"><span class="n">42</span>pp</div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip chip-pub">FEDREG · DDTC</span>
-            <span class="chip chip-open">6 reading now</span>
-            <span class="label">added by @jess.o · May 7</span>
-          </div>
-          <h3 class="serif font-bold text-lg mt-1.5">ITAR rewrite · NPRM (Federal Register, 2026-04-30)</h3>
-          <p class="text-sm mt-1" style="color:var(--muted)">Notice of Proposed Rulemaking. Reading focus: clause 4(b) foundational-research carve-out + comment-window timing for university counsel.</p>
-          <div class="mt-2 flex items-center gap-2"><span class="ava a5">JO</span><span class="ava a6">+</span><span class="label">6 readers · 31 annotations</span></div>
-        </div>
-        <div class="text-right text-xs label">comment window<br/><strong style="color:var(--accent)">closes Jun 17 ⏱</strong></div>
-      </div>
-
-      <div class="src">
-        <div class="pages"><span class="n">87</span>pp</div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip chip-pub">PUBLIC · USGS</span>
-            <span class="chip chip-open">11 reading now</span>
-            <span class="label">added by @j.okafor · Apr 22</span>
-          </div>
-          <h3 class="serif font-bold text-lg mt-1.5">USGS Critical Minerals Summary · 2026</h3>
-          <p class="text-sm mt-1" style="color:var(--muted)">Annual summary. Reading focus: the methodology footnote in §3 that treats upstream-refining as final-stage. Hot debate in margins right now.</p>
-          <div class="mt-2 flex items-center gap-2"><span class="ava a6">JO</span><span class="label">11 readers · 64 annotations · 9 questions</span></div>
-        </div>
-        <div></div>
-      </div>
-
-      <div class="src">
-        <div class="pages"><span class="n">312</span>pp</div>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="chip chip-leak">LEAK · ERCOT</span>
-            <span class="chip chip-open">3 reading now</span>
-            <span class="label">added by @w.tx · May 11</span>
-          </div>
-          <h3 class="serif font-bold text-lg mt-1.5">ERCOT day-ahead market log · March 2026</h3>
-          <p class="text-sm mt-1" style="color:var(--muted)">Day-ahead auction logs. Reading focus: the hour-14 anomaly around the demand-response auction, narrated by the battery operator who first noticed.</p>
-          <div class="mt-2 flex items-center gap-2"><span class="ava a3">WT</span><span class="label">3 readers · 14 annotations</span></div>
-        </div>
-        <div></div>
-      </div>
-
-      <div class="src" style="opacity:.85">
-        <div class="pages"><span class="n">+47</span></div>
-        <div>
-          <a href="#" class="serif font-bold text-lg" style="color:var(--accent)">+ 47 more open sources · across 18 fields</a>
-          <p class="text-sm mt-1" style="color:var(--muted)">Papers, court filings, leaked memos, peer-review, congressional transcripts, corporate disclosures, more.</p>
-        </div>
-        <div></div>
-      </div>
-    </div>
-
-  </section>
-
-  <aside class="space-y-6">
-
-    <div class="panel p-5">
-      <div class="label">your annotation history · 30 days</div>
-      <div class="grid grid-cols-3 gap-3 mt-3">
-        <div><div class="serif text-3xl font-bold leading-none">31</div><div class="label mt-1">annotations</div></div>
-        <div><div class="serif text-3xl font-bold leading-none">112</div><div class="label mt-1">thanks</div></div>
-        <div><div class="serif text-3xl font-bold leading-none">8</div><div class="label mt-1">cross-cites</div></div>
-      </div>
-    </div>
-
-    <div class="panel p-5">
-      <div class="label mb-3">your most-thanked annotations</div>
-      <div class="space-y-3">
-        <div class="anno-mini">
-          <div class="label mb-1">on DOE Sensing v1.3 · §3 · 47 thanks</div>
-          "Note the <em>obligated</em> language. What's actually obligated is closer to $890M…"
-        </div>
-        <div class="anno-mini">
-          <div class="label mb-1">on EU AI Act trilogue · Art. 6 · 22 thanks</div>
-          "Three carve-outs narrowed, one widened. Press got this backwards…"
-        </div>
-        <div class="anno-mini">
-          <div class="label mb-1">on USGS Crit. Minerals · §3 footnote · 14 thanks</div>
-          "If you re-cut by who pours the final metal, the concentration jumps…"
-        </div>
-      </div>
-    </div>
-
-    <div class="panel p-5">
-      <div class="label mb-2">people following your annotations · 47</div>
-      <p class="text-sm leading-snug" style="color:var(--muted)">When you annotate a source, your followers get a quiet digest the next morning. Mostly: 9 DOE program managers (declared), 3 university counsel, 11 fellow truck-drivers-with-opinions, 24 across-fields readers.</p>
-    </div>
-
-    <div class="panel p-5">
-      <div class="label mb-2">+ bring a source</div>
-      <p class="text-sm leading-snug" style="color:var(--muted)">Got a document the community should read carefully together? Public, FOIA, leaked, or paywalled (with a recap). Reading rules apply.</p>
-      <button class="mt-3 px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">propose a source</button>
-    </div>
-
-  </aside>
-
-</main>
-
-<footer class="border-t rule py-5">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
-    <div>The Margins · D17 · library · backend prototype</div>
-    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
