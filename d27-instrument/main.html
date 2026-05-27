@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D27 Instrument</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D27 · INSTRUMENT
+     Lineage: Linear · Are.na · the tool-for-thought serious people open daily
+     Thesis: this is precise software, not a publication. Refined dark canvas,
+     a tight grid, one restrained accent, mono for every number and label.
+     Dense but calm. Fast. The twenty fields are a switchboard you live in.
+     ───────────────────────────────────────────────────────────── */
+  :root {
+    --bg:       #0B0C0F;
+    --bg-2:     #0F1115;
+    --panel:    #141720;
+    --panel-2:  #181C26;
+    --line:     #232733;
+    --line-2:   #2C3140;
+    --text:     #E7EAF0;
+    --text-2:   #AEB6C5;
+    --muted:    #6B7385;
+    --accent:   #6E8BFF;
+    --accent-dk:#3F5BD6;
+    --accent-bg:rgba(110,139,255,0.10);
+    --green:    #46C99A;       /* reserved: minds changed only */
+    --green-bg: rgba(70,201,154,0.10);
+    --amber:    #E6A552;
+    --r: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  body {
+    font-family: 'Hanken Grotesk', -apple-system, sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 15px; line-height: 1.55;
+    background-image: radial-gradient(900px 500px at 80% -10%, rgba(110,139,255,0.06), transparent 70%);
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  ::selection { background: var(--accent-bg); }
+
+  /* ── shell ─────────────────────────────────────── */
+  .app { display: grid; grid-template-columns: 248px 1fr; min-height: 100vh; }
+
+  /* rail */
+  .rail {
+    border-right: 1px solid var(--line); background: var(--bg-2);
+    padding: 18px 14px; position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; display: flex; flex-direction: column;
+  }
+  .rail-brand { display: flex; align-items: center; gap: 9px; padding: 4px 8px 18px; }
+  .rail-brand .logo {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dk));
+    display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px;
+  }
+  .rail-brand .name { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+  .rail-search {
+    display: flex; align-items: center; gap: 8px; margin: 0 4px 18px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 7px;
+    padding: 8px 10px; color: var(--muted); font-size: 13px; cursor: text;
+  }
+  .rail-search .kbd {
+    margin-left: auto; font-size: 11px; padding: 2px 6px;
+    border: 1px solid var(--line-2); border-radius: 4px; color: var(--text-2);
+  }
+  .rail-label {
+    font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); padding: 0 8px; margin: 8px 0 6px; font-weight: 600;
+  }
+  .field-row {
+    display: flex; align-items: center; gap: 9px; padding: 6px 8px;
+    border-radius: 6px; font-size: 13.5px; color: var(--text-2);
+    transition: background 120ms, color 120ms;
+  }
+  .field-row:hover { background: var(--panel); color: var(--text); }
+  .field-row.active { background: var(--accent-bg); color: var(--text); }
+  .field-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line-2); flex: none; }
+  .field-row.hot .dot { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
+  .field-row .ct { margin-left: auto; font-size: 11.5px; color: var(--muted); }
+  .rail-foot { margin-top: auto; padding: 12px 8px 4px; border-top: 1px solid var(--line); }
+  .rail-foot a { font-size: 12px; color: var(--muted); }
+  .rail-foot a:hover { color: var(--accent); }
+
+  /* main */
+  .main { min-width: 0; }
+  .topbar {
+    height: 56px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 26px; position: sticky; top: 0;
+    background: rgba(11,12,15,0.8); backdrop-filter: blur(10px); z-index: 20;
+  }
+  .topbar .crumb { font-size: 13.5px; color: var(--text-2); display: flex; align-items: center; gap: 9px; }
+  .topbar .crumb b { color: var(--text); font-weight: 600; }
+  .topbar .crumb .live {
+    font-size: 11px; color: var(--green); background: var(--green-bg);
+    padding: 2px 8px; border-radius: 100px; font-weight: 600;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 12px; }
+  .btn {
+    font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 7px;
+    border: 1px solid var(--line-2); color: var(--text-2); transition: all 130ms;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--text); }
+  .btn-pri { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn-pri:hover { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; }
+
+  .content { padding: 34px 26px 80px; max-width: 920px; }
+
+  .lede h1 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+  .lede h1 em { font-style: normal; color: var(--accent); }
+  .lede p { color: var(--text-2); font-size: 16px; margin-top: 12px; max-width: 60ch; }
+  .stat-strip { display: flex; gap: 26px; margin-top: 22px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .n { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
+  .stat .l { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+  .feed-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin: 44px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line);
+  }
+  .feed-head h2 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
+  .feed-head .sort { font-size: 12px; color: var(--muted); }
+
+  /* cards */
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 20px 22px; margin-bottom: 14px;
+    transition: border-color 140ms, transform 140ms;
+  }
+  .card:hover { border-color: var(--line-2); transform: translateY(-1px); }
+  .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .av {
+    width: 34px; height: 34px; border-radius: 8px; flex: none;
+    display: grid; place-items: center; font-weight: 600; font-size: 13px;
+    color: var(--text);
+  }
+  .card-id { min-width: 0; }
+  .card-id .nm { font-weight: 600; font-size: 14.5px; }
+  .card-id .rl { font-size: 12.5px; color: var(--muted); }
+  .card-chip {
+    margin-left: auto; font-size: 11px; font-weight: 600; color: var(--accent);
+    background: var(--accent-bg); padding: 4px 10px; border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em;
+  }
+  .card-text { font-size: 15.5px; line-height: 1.6; color: var(--text); }
+  .card-text em { font-style: normal; color: var(--accent); }
+  .card-foot {
+    display: flex; align-items: center; gap: 18px; margin-top: 16px;
+    padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--muted);
+  }
+  .card-foot .mono { color: var(--text-2); }
+  .minds {
+    display: inline-flex; align-items: center; gap: 6px; color: var(--green);
+    font-weight: 600; font-family: 'JetBrains Mono', monospace;
+  }
+  .minds svg { width: 13px; height: 13px; }
+  .card-foot .time { margin-left: auto; }
+
+  /* reply inline */
+  .reply {
+    margin-top: 14px; padding: 14px 16px; background: var(--panel-2);
+    border-radius: 7px; border-left: 2px solid var(--accent);
+  }
+  .reply .rhead { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin-bottom: 7px; }
+  .reply .rhead b { font-weight: 600; }
+  .reply .rhead span { color: var(--muted); }
+  .reply p { font-size: 14px; line-height: 1.55; color: var(--text-2); }
+  .reply p em { font-style: normal; color: var(--text); }
+
+  /* signature command moment */
+  .cmd-hint {
+    margin-top: 38px; padding: 18px 22px; border: 1px dashed var(--line-2);
+    border-radius: var(--r); display: flex; align-items: center; gap: 14px;
+    color: var(--text-2); font-size: 14px; background: var(--bg-2);
+  }
+  .cmd-hint .keys { display: flex; gap: 5px; }
+  .cmd-hint .keys .kbd {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 5px;
+    background: var(--panel); color: var(--text);
+  }
+  .cmd-hint b { color: var(--text); font-weight: 600; }
+
+  @media (max-width: 880px) {
+    .app { grid-template-columns: 1fr; }
+    .rail { display: none; }
+    .content { padding: 24px 18px 70px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ── left rail: field switchboard ── -->
+  <aside class="rail">
+    <div class="rail-brand">
+      <div class="logo">D</div>
+      <div class="name">DocketField</div>
+    </div>
+    <div class="rail-search">
+      <span>Jump to a field or person…</span>
+      <span class="kbd mono">⌘K</span>
+    </div>
+
+    <div class="rail-label">Live now</div>
+    <a class="field-row active hot"><span class="dot"></span>Quantum<span class="ct mono">4</span></a>
+    <a class="field-row hot"><span class="dot"></span>AI<span class="ct mono">7</span></a>
+    <a class="field-row hot"><span class="dot"></span>Space<span class="ct mono">9</span></a>
+    <a class="field-row"><span class="dot"></span>Cybersecurity<span class="ct mono">6</span></a>
+    <a class="field-row"><span class="dot"></span>Defense<span class="ct mono">5</span></a>
+    <a class="field-row"><span class="dot"></span>Geopolitics<span class="ct mono">5</span></a>
+    <a class="field-row"><span class="dot"></span>Supply Chain<span class="ct mono">4</span></a>
+    <a class="field-row"><span class="dot"></span>Biosecurity<span class="ct mono">3</span></a>
+    <a class="field-row"><span class="dot"></span>Nuclear<span class="ct mono">3</span></a>
+    <a class="field-row"><span class="dot"></span>Robotics<span class="ct mono">3</span></a>
+
+    <div class="rail-label" style="margin-top:14px;">Quieter desks</div>
+    <a class="field-row"><span class="dot"></span>Energy<span class="ct mono">2</span></a>
+    <a class="field-row"><span class="dot"></span>Materials<span class="ct mono">2</span></a>
+    <a class="field-row"><span class="dot"></span>Public Health<span class="ct mono">2</span></a>
+    <a class="field-row"><span class="dot"></span>Genomics<span class="ct mono">1</span></a>
+    <a class="field-row"><span class="dot"></span>Maritime<span class="ct mono">1</span></a>
+
+    <div class="rail-foot">
+      <a href="../index.html">← all directions</a>
+    </div>
+  </aside>
+
+  <!-- ── main column ── -->
+  <div class="main">
+    <div class="topbar">
+      <div class="crumb">The Lobby <span style="color:var(--muted)">/</span> <b>All fields</b> <span class="live mono">312 online</span></div>
+      <div class="topbar-actions">
+        <a class="btn">Read-only view</a>
+        <a class="btn btn-pri" href="../index.html">Sign in · $8/mo</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="lede">
+        <h1>The room is open. <em>Anyone with something real to add belongs here.</em></h1>
+        <p>Twenty fields, one record. No credential check — a freight driver's observation can outrank a desk model, because the only question is whether it holds up.</p>
+        <div class="stat-strip">
+          <div class="stat"><span class="n mono">312</span><span class="l">Contributors</span></div>
+          <div class="stat"><span class="n mono">20</span><span class="l">Fields</span></div>
+          <div class="stat"><span class="n mono">61</span><span class="l">Live questions</span></div>
+          <div class="stat"><span class="n mono" style="color:var(--green)">1,940</span><span class="l">Minds changed · 30d</span></div>
+        </div>
+      </div>
+
+      <div class="feed-head">
+        <h2>Worth reading right now</h2>
+        <span class="sort mono">sort: minds-changed ↓</span>
+      </div>
+
+      <!-- entry 1 -->
+      <article class="card">
+        <div class="card-top">
+          <div class="av" style="background:#23304d;color:#9db4ff">SA</div>
+          <div class="card-id"><div class="nm">Sam Ahmadi</div><div class="rl">Freight driver · Route-13 logistics, Eastern Seaboard</div></div>
+          <span class="card-chip">quantum</span>
+        </div>
+        <p class="card-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+        <div class="reply">
+          <div class="rhead"><b>Alex Patel</b> <span>· Quantum researcher, Brookhaven · replying</span></div>
+          <p>Sam — that's ground truth I can't see from my desk. <em>Going into v2 of the brief with your observation attributed.</em></p>
+        </div>
+        <div class="card-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>47 minds changed</span>
+          <span class="mono">23 replies</span>
+          <span class="mono">pinned · 8</span>
+          <span class="time mono">2h</span>
+        </div>
+      </article>
+
+      <!-- entry 2 -->
+      <article class="card">
+        <div class="card-top">
+          <div class="av" style="background:#3a2a44;color:#d6a8ee">MK</div>
+          <div class="card-id"><div class="nm">Maya Khurana</div><div class="rl">Compliance officer · Regional bank, Midwest</div></div>
+          <span class="card-chip">cyber</span>
+        </div>
+        <p class="card-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We reclassify everything by Q3 and <em>we are not ready.</em> If anyone has mapped the path, I'll trade notes.</p>
+        <div class="card-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>38 minds changed</span>
+          <span class="mono">31 replies</span>
+          <span class="mono">19 me-too</span>
+          <span class="time mono">4h</span>
+        </div>
+      </article>
+
+      <!-- entry 3 -->
+      <article class="card">
+        <div class="card-top">
+          <div class="av" style="background:#1f3a33;color:#7ad4b3">DT</div>
+          <div class="card-id"><div class="nm">Diego Torres</div><div class="rl">High-school chemistry teacher · Public school, Texas</div></div>
+          <span class="card-chip">biosec</span>
+        </div>
+        <p class="card-text">My students keep asking me to explain gain-of-function. Every definition is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+        <div class="card-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>28 thanks</span>
+          <span class="mono">11 drafting</span>
+          <span class="mono" style="color:var(--amber)">new voice</span>
+          <span class="time mono">6h</span>
+        </div>
+      </article>
+
+      <!-- entry 4 -->
+      <article class="card">
+        <div class="card-top">
+          <div class="av" style="background:#43361f;color:#e6c07a">JO</div>
+          <div class="card-id"><div class="nm">Jess Oduya</div><div class="rl">Former Treasury analyst · at home with three kids</div></div>
+          <span class="card-chip">defense</span>
+        </div>
+        <p class="card-text">Reading the ITAR rewrite at nap-time for two weeks. Three things nobody's flagged: the foundational-research carve-out tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+        <div class="card-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>56 minds changed</span>
+          <span class="mono">18 replies</span>
+          <span class="mono">14 please-write</span>
+          <span class="time mono">1d</span>
+        </div>
+      </article>
+
+      <div class="cmd-hint">
+        <div class="keys"><span class="kbd">⌘</span><span class="kbd">K</span></div>
+        <span><b>Jump to any field, person, or live question</b> — the whole record is one keystroke away.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

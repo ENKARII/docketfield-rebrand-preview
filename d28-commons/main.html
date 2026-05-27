@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D28 Commons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D28 · COMMONS
+     Lineage: Anthropic · Stripe Press · a beautifully made members' commons
+     Thesis: warm and human WITHOUT being stuffy — the register that resolves
+     "open to all walks of life" and "serious enough for universities" at once.
+     A sophisticated warm neutral (bone, not cream-yellow), a serious Fraunces
+     display, one deep considered accent (forest), generous reading space.
+     Distance from the rejected "Institutional Confidence" cream+rust.
+     ───────────────────────────────────────────────────────────── */
+  :root {
+    --ground:   #F4F1EA;        /* warm bone — neutral, not cream-yellow */
+    --paper:    #FCFBF7;
+    --ink:      #20201C;
+    --ink-soft: #4A483F;
+    --muted:    #74716A;
+    --line:     #E2DDD1;
+    --line-2:   #D6D0C2;
+    --forest:   #1F5C45;        /* deep considered accent */
+    --forest-dk:#164533;
+    --forest-bg:#E6EFE9;
+    --gold:     #9C7A2E;        /* whisper accent, minds-changed only */
+    --r: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  body {
+    font-family: 'Mulish', -apple-system, sans-serif;
+    background: var(--ground); color: var(--ink);
+    font-size: 17px; line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--forest-bg); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 44px; }
+
+  /* ── header ───────────────────────────────────── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0; max-width: 1080px; margin: 0 auto; padding-left: 44px; padding-right: 44px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 13px; }
+  .brand .mark { font-family: 'Fraunces', serif; font-size: 25px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .tag { font-size: 13px; color: var(--muted); }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a { font-size: 14.5px; color: var(--ink-soft); font-weight: 500; transition: color 150ms; }
+  nav a:hover { color: var(--forest); }
+  nav .join {
+    background: var(--forest); color: #fff; padding: 9px 18px;
+    border-radius: 100px; font-weight: 600; font-size: 14px; transition: background 150ms;
+  }
+  nav .join:hover { background: var(--forest-dk); }
+  @media (max-width: 760px) { nav a:not(.join) { display: none; } .brand .tag { display: none; } }
+
+  /* ── hero ─────────────────────────────────────── */
+  .hero { padding: 70px 0 56px; max-width: 880px; }
+  .hero .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 13px; font-weight: 600; color: var(--forest);
+    background: var(--forest-bg); padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero .eyebrow .pip { width: 7px; height: 7px; border-radius: 50%; background: var(--forest); }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(42px, 6vw, 74px); line-height: 1.02;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .hero h1 em { font-style: italic; color: var(--forest-dk); }
+  .hero p {
+    font-size: clamp(18px, 2.2vw, 21px); line-height: 1.55;
+    color: var(--ink-soft); margin-top: 26px; max-width: 56ch;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 20px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-actions .primary {
+    background: var(--ink); color: var(--ground); padding: 14px 26px;
+    border-radius: 100px; font-weight: 600; font-size: 15.5px; transition: transform 150ms, background 150ms;
+  }
+  .hero-actions .primary:hover { background: var(--forest); transform: translateY(-1px); }
+  .hero-actions .meta { font-size: 14.5px; color: var(--muted); }
+  .hero-actions .meta b { color: var(--ink); font-weight: 700; }
+
+  /* ── field ribbon ─────────────────────────────── */
+  .ribbon {
+    display: flex; flex-wrap: wrap; gap: 9px; padding: 30px 0 8px;
+    border-top: 1px solid var(--line); margin-top: 8px;
+  }
+  .ribbon-label {
+    width: 100%; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; margin-bottom: 14px;
+  }
+  .pill {
+    font-size: 13.5px; font-weight: 500; padding: 7px 15px; border-radius: 100px;
+    background: var(--paper); border: 1px solid var(--line-2); color: var(--ink-soft);
+    transition: all 150ms;
+  }
+  .pill:hover { border-color: var(--forest); color: var(--forest); }
+  .pill.hot { background: var(--forest); border-color: var(--forest); color: #fff; }
+  .pill .n { opacity: 0.6; margin-left: 6px; font-weight: 600; }
+
+  /* ── the room ─────────────────────────────────── */
+  .room { padding: 64px 0 20px; }
+  .room-head { margin-bottom: 30px; }
+  .room-head h2 { font-family: 'Fraunces', serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 500; letter-spacing: -0.015em; }
+  .room-head p { color: var(--muted); font-size: 15.5px; margin-top: 8px; }
+
+  .voice {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 30px 34px; margin-bottom: 20px;
+    transition: box-shadow 180ms, transform 180ms;
+  }
+  .voice:hover { box-shadow: 0 12px 34px -18px rgba(31,92,69,0.25); transform: translateY(-2px); }
+  .voice-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .av {
+    width: 46px; height: 46px; border-radius: 50%; flex: none;
+    display: grid; place-items: center; font-family: 'Fraunces', serif;
+    font-weight: 600; font-size: 17px;
+  }
+  .voice-id { min-width: 0; }
+  .voice-id .nm { font-weight: 700; font-size: 16.5px; letter-spacing: -0.005em; }
+  .voice-id .rl { font-size: 13.5px; color: var(--muted); }
+  .voice-field {
+    margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--forest);
+    background: var(--forest-bg); padding: 5px 13px; border-radius: 100px;
+  }
+  .voice-text {
+    font-family: 'Fraunces', serif; font-size: 21px; line-height: 1.5;
+    letter-spacing: -0.005em; color: var(--ink);
+  }
+  .voice-text em { font-style: italic; color: var(--forest-dk); }
+  .voice-foot {
+    display: flex; align-items: center; gap: 20px; margin-top: 22px;
+    font-size: 14px; color: var(--muted);
+  }
+  .minds {
+    display: inline-flex; align-items: center; gap: 7px; font-weight: 700;
+    color: var(--forest);
+  }
+  .minds svg { width: 15px; height: 15px; }
+  .voice-foot .time { margin-left: auto; }
+  .voice-foot a:hover { color: var(--forest); }
+
+  .reply {
+    margin-top: 22px; padding: 20px 24px; background: var(--forest-bg);
+    border-radius: 12px;
+  }
+  .reply .rhead { display: flex; align-items: center; gap: 9px; font-size: 13.5px; margin-bottom: 9px; }
+  .reply .rhead b { font-weight: 700; }
+  .reply .rhead span { color: var(--forest-dk); opacity: 0.7; }
+  .reply p { font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.5; color: var(--forest-dk); }
+  .reply p em { font-style: italic; }
+
+  @media (max-width: 720px) {
+    .wrap, header { padding-left: 22px; padding-right: 22px; }
+    .voice { padding: 24px 22px; }
+  }
+
+  /* ── house rule ───────────────────────────────── */
+  .rule {
+    text-align: center; padding: 90px 0; margin: 40px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .rule blockquote {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(28px, 4.4vw, 46px); line-height: 1.22;
+    letter-spacing: -0.02em; max-width: 20ch; margin: 0 auto; color: var(--ink);
+  }
+  .rule .src { font-size: 13px; font-weight: 600; color: var(--forest); margin-top: 28px; letter-spacing: 0.04em; }
+
+  /* ── manifesto ────────────────────────────────── */
+  .mani { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; padding-bottom: 90px; align-items: start; }
+  .mani h2 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(30px, 4vw, 46px); line-height: 1.08; letter-spacing: -0.02em;
+  }
+  .mani h2 em { font-style: italic; color: var(--forest-dk); }
+  .mani-body p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); }
+  .mani-body p + p { margin-top: 18px; }
+  .mani-body strong { color: var(--ink); font-weight: 700; }
+  .mani-cta {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
+    background: var(--forest); color: #fff; padding: 14px 26px; border-radius: 100px;
+    font-weight: 600; font-size: 15px; transition: background 150ms;
+  }
+  .mani-cta:hover { background: var(--forest-dk); }
+  @media (max-width: 760px) { .mani { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* ── footer ───────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--line); padding: 30px 0 64px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px;
+  }
+  footer .mark { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); font-size: 16px; }
+  footer a:hover { color: var(--forest); }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="mark">DocketField</span>
+      <span class="tag">a commons across twenty fields</span>
+    </div>
+    <nav>
+      <a href="#room">The room</a>
+      <a href="#fields">Fields</a>
+      <a href="#about">What this is</a>
+      <a href="../index.html" class="join">Join · $8/mo</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section class="hero">
+      <span class="eyebrow"><span class="pip"></span>312 people are thinking out loud right now</span>
+      <h1>Anyone with something <em>real</em> to add belongs here.</h1>
+      <p>A slow, serious room that runs across twenty fields. A truck driver opens a thread; a quantum researcher answers in kind. No credential check — the only question is whether what you said holds up.</p>
+      <div class="hero-actions">
+        <a href="../index.html" class="primary">Pull up a chair</a>
+        <span class="meta"><b>$8</b>/month · anyone can read, anyone can post</span>
+      </div>
+    </section>
+
+    <section id="fields" class="ribbon">
+      <span class="ribbon-label">Where the conversation is alive today</span>
+      <a class="pill hot">Space<span class="n">9</span></a>
+      <a class="pill hot">AI<span class="n">7</span></a>
+      <a class="pill hot">Cybersecurity<span class="n">6</span></a>
+      <a class="pill hot">Defense<span class="n">5</span></a>
+      <a class="pill hot">Geopolitics<span class="n">5</span></a>
+      <a class="pill">Supply Chain<span class="n">4</span></a>
+      <a class="pill">Quantum<span class="n">4</span></a>
+      <a class="pill">Biosecurity<span class="n">3</span></a>
+      <a class="pill">Nuclear<span class="n">3</span></a>
+      <a class="pill">Robotics<span class="n">3</span></a>
+      <a class="pill">Energy<span class="n">2</span></a>
+      <a class="pill">Materials<span class="n">2</span></a>
+      <a class="pill">Public Health<span class="n">2</span></a>
+      <a class="pill">Genomics<span class="n">1</span></a>
+      <a class="pill">Maritime<span class="n">1</span></a>
+      <a class="pill" style="border-style:dashed;">+ 5 more desks</a>
+    </section>
+
+    <section id="room" class="room">
+      <div class="room-head">
+        <h2>The room right now</h2>
+        <p>Five voices worth your attention — ordered by minds changed, not by who spoke loudest.</p>
+      </div>
+
+      <!-- voice 1 -->
+      <article class="voice">
+        <div class="voice-top">
+          <div class="av" style="background:#dbe7e0;color:#1f5c45">SA</div>
+          <div class="voice-id"><div class="nm">Sam Ahmadi</div><div class="rl">Freight driver — Route-13 logistics, Eastern Seaboard</div></div>
+          <span class="voice-field">Quantum</span>
+        </div>
+        <p class="voice-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+        <div class="reply">
+          <div class="rhead"><b>Alex Patel</b> <span>— Quantum researcher, Brookhaven · replying</span></div>
+          <p>Sam — that's the ground truth I keep missing from my desk. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+        </div>
+        <div class="voice-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>47 minds changed</span>
+          <a href="#">23 replies</a>
+          <span>pinned by 8 stewards</span>
+          <span class="time">2h ago</span>
+        </div>
+      </article>
+
+      <!-- voice 2 -->
+      <article class="voice">
+        <div class="voice-top">
+          <div class="av" style="background:#ece0d4;color:#9c5a2e">MK</div>
+          <div class="voice-id"><div class="nm">Maya Khurana</div><div class="rl">Compliance officer — regional bank, Midwest</div></div>
+          <span class="voice-field">Cybersecurity</span>
+        </div>
+        <p class="voice-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the path, I'll trade notes.</p>
+        <div class="voice-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>38 minds changed</span>
+          <a href="#">31 replies</a>
+          <span>19 me-too</span>
+          <span class="time">4h ago</span>
+        </div>
+      </article>
+
+      <!-- voice 3 -->
+      <article class="voice">
+        <div class="voice-top">
+          <div class="av" style="background:#e0e7da;color:#3f5a2e">DT</div>
+          <div class="voice-id"><div class="nm">Diego Torres</div><div class="rl">High-school chemistry teacher — public school, Texas</div></div>
+          <span class="voice-field">Biosecurity</span>
+        </div>
+        <p class="voice-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+        <div class="voice-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>28 thanks</span>
+          <a href="#">11 drafting answers</a>
+          <span style="color:var(--gold);font-weight:600;">new voice</span>
+          <span class="time">6h ago</span>
+        </div>
+      </article>
+
+      <!-- voice 4 -->
+      <article class="voice">
+        <div class="voice-top">
+          <div class="av" style="background:#e7e2d4;color:#7a6a2e">JO</div>
+          <div class="voice-id"><div class="nm">Jess Oduya</div><div class="rl">Former Treasury analyst — at home with three kids</div></div>
+          <span class="voice-field">Defense</span>
+        </div>
+        <p class="voice-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things nobody's flagged: the foundational-research carve-out tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed yet.</em></p>
+        <div class="voice-foot">
+          <span class="minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>56 minds changed</span>
+          <a href="#">18 replies</a>
+          <span>14 asked her to write it up</span>
+          <span class="time">yesterday</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="rule">
+      <blockquote>“Reputation here is the number of people you have genuinely caused to change their mind.”</blockquote>
+      <div class="src">HOUSE RULE NO. 2 · THE LOBBY</div>
+    </section>
+
+    <section id="about" class="mani">
+      <h2>Not a PhD hangout. <em>A working room.</em></h2>
+      <div class="mani-body">
+        <p>DocketField is the open record universities already use as the working-group backbone for the disciplines they teach. The Lobby is its front door — a slow room where practitioners across twenty fields come to think out loud, and where the conversation stays on the record.</p>
+        <p><strong>Anyone can read, anyone can post.</strong> Eight dollars a month, no application, no credential check. A freight driver's loading-dock observation can outrank a tenured analyst's desk model — because here the question is never <em>who are you</em>, it's <em>does this hold up.</em></p>
+        <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only standing that compounds is whether the people who read you walked away thinking differently than they arrived.</p>
+        <a href="../index.html" class="mani-cta">Pull up a chair → enter The Lobby</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    <span class="mark">DocketField</span>
+    <span>D28 — Commons · warm premium reading-room register</span>
+    <a href="../index.html">← all directions</a>
+  </footer>
+
+</body>
+</html>

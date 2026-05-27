@@ -6,351 +6,121 @@
   <title>DocketField — Rebrand brainstorm · 2026-05-27</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Playfair+Display:wght@600;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper:#FAF7F0;
-      --card:#FFFEFB;
-      --ink:#1C1A18;
-      --muted:#6E6961;
-      --line:#E8E2D5;
-      --line-soft:#F0EBE0;
-      --accent:#B45A1E;
-      --accent-soft:#FBEEDD;
-      --wild:#1A1612;
-      --wild-soft:#F4EFE2;
+      --ground:#FBFCFD;
+      --card:#FFFFFF;
+      --ink:#14181F;
+      --ink-soft:#38414F;
+      --muted:#5A6472;
+      --line:#E4E8EE;
+      --line-soft:#EFF2F6;
+      --indigo:#2D4ECF;
+      --indigo-dk:#1E3AA8;
+      --indigo-bg:#EEF1FC;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
     body {
-      font-family: 'Geist', system-ui, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.6;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      background: var(--ground); color: var(--ink);
+      font-size: 16px; line-height: 1.6;
     }
-    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
-    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
     a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 36px; }
 
-    .wrap { max-width: 920px; margin: 0 auto; padding: 0 32px; }
-
-    /* ── nav ────────────────────────────────────── */
-    .nav { border-bottom: 1px solid var(--line); padding: 20px 0; }
+    /* nav */
+    .nav { border-bottom: 1px solid var(--line); padding: 18px 0; position: sticky; top: 0; background: rgba(251,252,253,0.86); backdrop-filter: blur(8px); z-index: 40; }
     .nav-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
-    .brand { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
-    .nav-meta { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); }
+    .brand { font-family: 'Newsreader', serif; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+    .nav-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
 
-    /* ── hero ───────────────────────────────────── */
-    .hero { padding: 80px 0 56px; }
-    .eyebrow {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    h1.title {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: clamp(38px, 6vw, 56px);
-      line-height: 1.04;
-      letter-spacing: -0.02em;
-      font-weight: 500;
-      max-width: 720px;
-    }
-    .lede {
-      font-size: 18px;
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 640px;
-      margin-top: 24px;
-    }
+    /* hero */
+    .hero { padding: 76px 0 52px; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--indigo); margin-bottom: 22px; }
+    h1.title { font-family: 'Newsreader', serif; font-size: clamp(36px, 5.4vw, 56px); line-height: 1.04; letter-spacing: -0.02em; font-weight: 500; max-width: 760px; }
+    h1.title em { font-style: italic; color: var(--indigo-dk); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--ink-soft); max-width: 680px; margin-top: 24px; }
+    .lede strong { color: var(--ink); font-weight: 600; }
 
-    /* ── section ────────────────────────────────── */
-    .section { padding: 64px 0; border-top: 1px solid var(--line); }
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      gap: 24px;
-    }
-    .section-eyebrow {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
+    /* section */
+    .section { padding: 60px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 30px; gap: 24px; }
+    .section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
     .section-count { font-size: 13px; color: var(--muted); }
-    h2 {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 32px;
-      line-height: 1.15;
-      letter-spacing: -0.015em;
-      font-weight: 500;
-      margin-top: 4px;
+    h2 { font-family: 'Newsreader', serif; font-size: 30px; line-height: 1.14; letter-spacing: -0.015em; font-weight: 500; margin-top: 4px; }
+
+    /* featured directions */
+    .feature-eyebrow { color: var(--indigo); font-weight: 600; }
+    .features { display: grid; gap: 22px; }
+    .ftile {
+      display: grid; grid-template-columns: 240px 1fr; gap: 32px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+      overflow: hidden; transition: border-color 180ms, box-shadow 180ms, transform 180ms;
+    }
+    .ftile:hover { border-color: var(--line); box-shadow: 0 18px 44px -24px rgba(20,24,31,0.28); transform: translateY(-2px); }
+    .ftile-preview { padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-height: 200px; border-right: 1px solid var(--line-soft); }
+    .ftile-body { padding: 30px 32px 30px 0; display: flex; flex-direction: column; justify-content: center; }
+    .ftile-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .ftile-name { font-size: 26px; line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 8px; font-weight: 600; }
+    .ftile-school { font-size: 13px; color: var(--indigo); font-weight: 500; margin-bottom: 14px; }
+    .ftile-desc { font-size: 15px; line-height: 1.58; color: var(--ink-soft); max-width: 460px; }
+    .ftile-link { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--indigo); font-weight: 500; }
+
+    /* per-direction preview flavor */
+    .pv-obs { background: #FBFCFD; }
+    .pv-obs .pv-mark { font-family: 'Newsreader', serif; font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: #14181F; }
+    .pv-obs .pv-sub { font-family: 'Newsreader', serif; font-style: italic; font-size: 15px; color: #2D4ECF; margin-top: 8px; }
+    .pv-obs .pv-tag { margin-top: 16px; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: #1E3AA8; background: #EEF1FC; padding: 4px 9px; border-radius: 100px; }
+
+    .pv-ins { background: #0B0C0F; background-image: radial-gradient(400px 200px at 80% 0%, rgba(110,139,255,0.12), transparent 70%); }
+    .pv-ins .pv-mark { font-family: 'Hanken Grotesk', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #E7EAF0; }
+    .pv-ins .pv-mark em { font-style: normal; color: #6E8BFF; }
+    .pv-ins .pv-row { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #AEB6C5; }
+    .pv-ins .pv-dot { width: 6px; height: 6px; border-radius: 50%; background: #6E8BFF; box-shadow: 0 0 0 3px rgba(110,139,255,0.12); }
+    .pv-ins .pv-kbd { margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #E7EAF0; border: 1px solid #2C3140; background: #141720; padding: 4px 9px; border-radius: 5px; }
+
+    .pv-com { background: #F4F1EA; }
+    .pv-com .pv-mark { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: #20201C; }
+    .pv-com .pv-mark em { font-style: italic; color: #1F5C45; }
+    .pv-com .pv-pill { margin-top: 16px; font-size: 12px; font-weight: 600; color: #fff; background: #1F5C45; padding: 6px 14px; border-radius: 100px; }
+    .pv-com .pv-sub { font-family: 'Mulish', 'Inter Tight', sans-serif; font-size: 13px; color: #74716A; margin-top: 12px; }
+
+    @media (max-width: 760px) {
+      .ftile { grid-template-columns: 1fr; }
+      .ftile-preview { border-right: none; border-bottom: 1px solid var(--line-soft); min-height: 150px; }
+      .ftile-body { padding: 24px; }
     }
 
-    /* ── wildcards (D21–D25) ────────────────────── */
-    .wild-eyebrow { color: var(--wild); font-weight: 600; }
-    .wildcards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .wild-tile {
-      background: var(--card);
-      border: 2px solid var(--wild);
-      padding: 32px;
-      position: relative;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-      display: block;
-    }
-    .wild-tile:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 5px 5px 0 var(--wild);
-    }
-    .wild-tile .tile-id {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .wild-tile .tile-name {
-      font-size: 32px;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .wild-tile .tile-desc {
-      font-size: 15px;
-      line-height: 1.55;
-      color: var(--muted);
-      margin-bottom: 20px;
-      max-width: 380px;
-    }
-    .wild-tile .tile-link {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--wild);
-      font-weight: 600;
-    }
+    /* anchor note */
+    .anchor-note { background: var(--indigo-bg); padding: 26px 30px; border-left: 2px solid var(--indigo); border-radius: 6px; margin: 56px 0; }
+    .anchor-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--indigo-dk); margin-bottom: 12px; font-weight: 600; }
+    .anchor-quote { font-family: 'Newsreader', serif; font-size: 20px; line-height: 1.4; letter-spacing: -0.01em; font-weight: 400; max-width: 660px; color: var(--ink); }
+    .anchor-note p { font-size: 14.5px; color: var(--muted); margin-top: 14px; max-width: 680px; line-height: 1.62; }
+    .anchor-note strong { color: var(--ink-soft); font-weight: 600; }
 
-    /* per-tile visual hints (just a flavor swatch each) */
-    .wild-tile.d21 {
-      background: #FFFFFF;
-      font-family: Times, 'Times New Roman', serif;
-      border-style: solid;
-    }
-    .wild-tile.d21 .tile-name { font-family: Times, 'Times New Roman', serif; font-weight: 700; font-size: 28px; }
-    .wild-tile.d21 .tile-link { font-family: Times, serif; color: #0000EE; text-decoration: underline; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 14px; }
-
-    .wild-tile.d22 {
-      background: #FFFFFF;
-      border-color: #000;
-    }
-    .wild-tile.d22 .tile-name {
-      font-family: 'Inter Tight', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      font-size: 48px;
-    }
-    .wild-tile.d22 .tile-link { font-family: 'Geist Mono', monospace; color: #000; font-size: 11px; }
-
-    .wild-tile.d23 {
-      background:
-        radial-gradient(circle at 1px 1px, rgba(26,22,18,0.08) 1.2px, transparent 1.5px) 0 0 / 6px 6px,
-        #F2EAD3;
-      border-color: #1A1612;
-      box-shadow: 4px 4px 0 #FF4F8B;
-    }
-    .wild-tile.d23:hover { box-shadow: 6px 6px 0 #FF4F8B; }
-    .wild-tile.d23 .tile-name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-variation-settings: 'opsz' 144, 'wght' 900, 'WONK' 1;
-      color: #1A1612;
-    }
-    .wild-tile.d23 .tile-name em { color: #FF4F8B; font-style: italic; }
-    .wild-tile.d23 .tile-link { color: #FF4F8B; }
-
-    .wild-tile.d24 {
-      background: #F5E5D2;
-      border-color: #1A1614;
-      border-width: 1px;
-      border-top: 4px double #1A1614;
-      border-bottom: 4px double #1A1614;
-    }
-    .wild-tile.d24 .tile-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 900;
-      color: #1A1614;
-    }
-    .wild-tile.d24 .tile-link { color: #861E2C; font-family: 'Source Sans 3', sans-serif; }
-
-    .wild-tile.d25 {
-      background: #FFE4D0;
-      border-color: #2A241C;
-      border-radius: 20px;
-      box-shadow: 5px 7px 0 #2A241C;
-    }
-    .wild-tile.d25:hover { box-shadow: 7px 9px 0 #2A241C; }
-    .wild-tile.d25 .tile-name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-variation-settings: 'opsz' 144, 'wght' 500, 'SOFT' 100;
-      color: #2A241C;
-    }
-    .wild-tile.d25 .tile-name em { color: #C95F3D; font-style: italic; }
-    .wild-tile.d25 .tile-link { color: #C95F3D; }
-
-    /* ── polished trio (D11/D17/D20) ────────────── */
-    .polished {
-      display: grid;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .polished a.row {
-      background: var(--card);
-      padding: 24px 28px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: baseline;
-      transition: background 120ms ease;
-    }
-    .polished a.row:hover { background: var(--accent-soft); }
-    .row-id {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .row-name {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-top: 4px;
-    }
-    .row-desc {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 4px;
-      max-width: 520px;
-    }
-    .row-links { display: flex; gap: 16px; flex-shrink: 0; align-self: end; }
-    .row-link {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    /* ── sketch list ────────────────────────────── */
-    .sketch-note {
-      border: 1px solid var(--line);
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .sketches {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .sketches a.s-row {
-      background: var(--card);
-      padding: 18px 22px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      transition: background 120ms ease;
-    }
-    .sketches a.s-row:hover { background: var(--paper); }
+    /* archive list */
+    .sketch-note { border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin-bottom: 22px; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+    .sketches { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+    .sketches a.s-row { background: var(--card); padding: 16px 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; transition: background 120ms; }
+    .sketches a.s-row:hover { background: var(--indigo-bg); }
     .s-meta { display: flex; align-items: baseline; gap: 12px; }
-    .s-id {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      width: 28px;
-    }
+    .s-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; width: 30px; }
     .s-name { font-size: 14.5px; font-weight: 500; }
     .s-desc { font-size: 12.5px; color: var(--muted); }
-    .s-links {
-      display: flex;
-      gap: 12px;
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .s-links { display: flex; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
 
-    /* ── anchor note ────────────────────────────── */
-    .anchor-note {
-      background: var(--wild-soft);
-      padding: 28px 32px;
-      border-left: 2px solid var(--wild);
-      margin: 64px 0;
-    }
-    .anchor-eyebrow {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--wild);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .anchor-quote {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 20px;
-      line-height: 1.4;
-      letter-spacing: -0.01em;
-      font-weight: 400;
-      max-width: 640px;
-    }
-    .anchor-note p {
-      font-size: 14.5px;
-      color: var(--muted);
-      margin-top: 14px;
-      max-width: 640px;
-      line-height: 1.6;
-    }
-
-    /* ── foot ───────────────────────────────────── */
-    .foot {
-      padding: 40px 0 56px;
-      border-top: 1px solid var(--line);
-      margin-top: 64px;
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-    }
+    /* foot */
+    .foot { padding: 38px 0 56px; border-top: 1px solid var(--line); margin-top: 56px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.03em; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; }
 
     @media (max-width: 720px) {
       .wrap { padding: 0 20px; }
-      .hero { padding: 56px 0 32px; }
+      .hero { padding: 52px 0 32px; }
       h1.title { font-size: 32px; }
       h2 { font-size: 24px; }
-      .wildcards { grid-template-columns: 1fr; }
-      .polished a.row { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
-      .row-links { align-self: start; }
       .sketches { grid-template-columns: 1fr; }
-      .wild-tile .tile-name { font-size: 24px !important; }
     }
   </style>
 </head>
@@ -359,63 +129,73 @@
   <nav class="nav">
     <div class="wrap nav-row">
       <span class="brand">DocketField <span class="nav-meta" style="margin-left:8px">rebrand brainstorm</span></span>
-      <span class="nav-meta">2026-05-27 · v3</span>
+      <span class="nav-meta">2026-05-27 · v4</span>
     </div>
   </nav>
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Five wildcards · five aesthetic universes · same content</div>
-      <h1 class="title">Five genuinely different worlds. Same community. Pick a universe.</h1>
-      <p class="lede">After two earlier rounds (twenty paint variations, then three polished in the same modern-editorial school of taste), the operator was right: those all looked the same. This round actually swings. Five directions occupying entirely different design lineages — brutalist text-web, Italian fashion magazine, riso-print zine, broadsheet newspaper, playful atelier — all rendering the same Sam Ahmadi loading-dock story so the visual differences are pure visual differences.</p>
+      <div class="eyebrow">Round 4 · the serious-intellectual register</div>
+      <h1 class="title">Three directions for a record <em>universities and serious minds</em> would actually choose.</h1>
+      <p class="lede">Earlier rounds missed in both directions. The first three "polished" directions were three colorways of one generic-SaaS school. The five wildcards over-corrected into magazine and zine territory — wrong for a platform built for university working groups and practitioners. <strong>This round targets the register serious intellectual products actually live in</strong> — Quanta, Distill, Anthropic, Stripe Press, Linear, Are.na. Three genuinely distinct lineages, no shared typeface, palette, or layout logic, all rendering the same loading-dock story so the differences are real.</p>
     </div>
   </header>
 
-  <section class="section" style="border-top: 2px solid var(--wild);">
+  <section class="section" style="border-top: 2px solid var(--indigo);">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow wild-eyebrow">⚑ Wildcards · v3</div>
-          <h2>Five aesthetic universes</h2>
+          <div class="section-eyebrow feature-eyebrow">★ Round 4 · the real candidates</div>
+          <h2>Three serious directions</h2>
         </div>
-        <div class="section-count">5 directions · 1 main page each · same content, different worlds</div>
+        <div class="section-count">3 directions · 1 complete community home each</div>
       </div>
 
-      <div class="wildcards">
+      <div class="features">
 
-        <a class="wild-tile d21" href="d21-brutalist/main.html">
-          <div class="tile-id" style="font-family: Times, serif; color: #666;">D21 · BRUTALIST WEB</div>
-          <div class="tile-name">The Lobby</div>
-          <p class="tile-desc" style="font-family: Times, serif;">System fonts, default browser styling, table-as-layout, default blue links. The brutalist-web lineage: Hacker News, text.npr.org, old Are.na. The argument is that a serious community doesn't need designed surface to be taken seriously.</p>
-          <span class="tile-link">[open the lobby →]</span>
+        <a class="ftile" href="d26-observatory/main.html">
+          <div class="ftile-preview pv-obs">
+            <div class="pv-mark">DocketField</div>
+            <div class="pv-sub">A working record for serious questions.</div>
+            <span class="pv-tag">Quantum · 47 minds changed</span>
+          </div>
+          <div class="ftile-body">
+            <div class="ftile-id">D26 · Observatory</div>
+            <div class="ftile-name">Observatory</div>
+            <div class="ftile-school">Quanta Magazine · Distill.pub · scholarly digital publication</div>
+            <p class="ftile-desc">Reads like a great science journal — calm, credible, intelligent. Newsreader serif for reading; a single indigo for structure; one reserved green for the one metric that matters (minds changed). Cool, light, scholarly. The register that says "this is where serious ideas get worked out."</p>
+            <span class="ftile-link">open the community home →</span>
+          </div>
         </a>
 
-        <a class="wild-tile d22" href="d22-editorial-max/main.html">
-          <div class="tile-id">D22 · EDITORIAL MAXIMUM</div>
-          <div class="tile-name">THE LOBBY</div>
-          <p class="tile-desc" style="font-family: 'Inter Tight', sans-serif;">032c / Bottega Veneta / SSENSE. One typeface. Two scales — giant + tiny. No accent color. Eighty percent white space. Italian fashion-magazine discipline applied to a community feed.</p>
-          <span class="tile-link">→ INDEX OF VOICES</span>
+        <a class="ftile" href="d27-instrument/main.html">
+          <div class="ftile-preview pv-ins">
+            <div class="pv-mark">Docket<em>Field</em></div>
+            <div class="pv-row"><span class="pv-dot"></span>Quantum · 4 live</div>
+            <span class="pv-kbd">⌘K — jump anywhere</span>
+          </div>
+          <div class="ftile-body">
+            <div class="ftile-id">D27 · Instrument</div>
+            <div class="ftile-name">Instrument</div>
+            <div class="ftile-school">Linear · Are.na · the tool-for-thought serious people open daily</div>
+            <p class="ftile-desc">Precise software, not a publication. Refined dark canvas, a tight grid, a slim field-switchboard rail, mono for every number and label, one restrained blue. Dense but calm, fast, command-palette-first. The register that says "this is the instrument brilliant people live in."</p>
+            <span class="ftile-link">open the community home →</span>
+          </div>
         </a>
 
-        <a class="wild-tile d23" href="d23-riso-zine/main.html">
-          <div class="tile-id" style="color:#FF4F8B;">D23 · RISOGRAPH ZINE</div>
-          <div class="tile-name">The L<em>o</em>bby</div>
-          <p class="tile-desc" style="font-family: 'Space Grotesk', sans-serif;">Two-color riso print: ink + fluorescent pink, on cream paper with halftone dots. Weird display serif (Fraunces wonk italic). Slight rotations. Hand-feel. <em>Asterisk Magazine</em> energy.</p>
-          <span class="tile-link" style="font-family: 'Space Mono', monospace;">→ TURN THE PAGE</span>
-        </a>
-
-        <a class="wild-tile d24" href="d24-newspaper/main.html">
-          <div class="tile-id" style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; color: #861E2C;">D24 · BROADSHEET</div>
-          <div class="tile-name">The Lobby</div>
-          <p class="tile-desc">Financial Times / WSJ classic. Real broadsheet typography (Playfair Display + Source Serif 4). Multi-column lead with drop cap. Market-data table for live activity. Salmon paper. Editorial column. Subscribe banner.</p>
-          <span class="tile-link" style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Read the front page →</span>
-        </a>
-
-        <a class="wild-tile d25" href="d25-atelier/main.html">
-          <div class="tile-id" style="color: #C95F3D;">D25 · PLAYFUL ATELIER</div>
-          <div class="tile-name">The L<em>o</em>bby</div>
-          <p class="tile-desc">Recurse Center / Glitch / Robin Sloan warmth. Pastel multi-color palette (peach, sage, butter, sky, plum). Round corners, hand-drawn SVG illustration, soft shadows. Real joy without twee.</p>
-          <span class="tile-link">come on in →</span>
+        <a class="ftile" href="d28-commons/main.html">
+          <div class="ftile-preview pv-com">
+            <div class="pv-mark">Anyone with something <em>real</em> to add.</div>
+            <div class="pv-sub">$8/month · anyone can read, anyone can post</div>
+            <span class="pv-pill">56 minds changed</span>
+          </div>
+          <div class="ftile-body">
+            <div class="ftile-id">D28 · Commons</div>
+            <div class="ftile-name">Commons</div>
+            <div class="ftile-school">Anthropic · Stripe Press · a beautifully made members' commons</div>
+            <p class="ftile-desc">Warm and human without being stuffy — the register that resolves "open to all walks of life" and "serious enough for universities" at once. A sophisticated warm bone (not the rejected cream-yellow), a serious Fraunces display, one deep forest accent, generous reading space. Welcome plus gravitas.</p>
+            <span class="ftile-link">open the community home →</span>
+          </div>
         </a>
 
       </div>
@@ -424,9 +204,9 @@
 
   <div class="wrap">
     <aside class="anchor-note">
-      <div class="anchor-eyebrow">⚑ Re-anchored spirit · constant across all directions</div>
-      <p class="anchor-quote">"This isn't a PhD hangout. It's for intellectuals in all walks of life — professional or not in that field — to contribute if there's value."</p>
-      <p>Same five-voice cast threaded through every wildcard: <strong>Sam Ahmadi</strong> (truck driver, loading-dock signal), <strong>Alex Patel</strong> (Brookhaven researcher off-duty), <strong>Maya Khurana</strong> (regional-bank compliance officer), <strong>Diego Torres</strong> (high-school chemistry teacher), <strong>Jess Oduya</strong> (ex-Treasury parent reading NPRMs at nap-time). The visual language changes; the spirit doesn't.</p>
+      <div class="anchor-eyebrow">⚑ Constant across all three</div>
+      <p class="anchor-quote">"Not a PhD hangout. A working room — for intellectuals in all walks of life, professional or not in that field, to contribute if there's value."</p>
+      <p>Same five-voice cast threaded through every direction: <strong>Sam Ahmadi</strong> (freight driver, loading-dock signal), <strong>Alex Patel</strong> (Brookhaven researcher, replying), <strong>Maya Khurana</strong> (regional-bank compliance officer), <strong>Diego Torres</strong> (high-school chemistry teacher), <strong>Jess Oduya</strong> (former Treasury analyst reading NPRMs at nap-time). The visual language changes; the spirit doesn't.</p>
     </aside>
   </div>
 
@@ -434,130 +214,33 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">v2 polish · first attempt</div>
-          <h2>Three from the first polish pass</h2>
+          <div class="section-eyebrow">Archive · earlier rounds</div>
+          <h2>What came before</h2>
         </div>
-        <div class="section-count">3 directions · 6 surfaces</div>
+        <div class="section-count">kept for comparison only</div>
       </div>
 
-      <p class="sketch-note">These three were the first attempt at "polished" but landed in the same school of modern-editorial taste (warm cream paper, single accent, Geist + Source Serif). The operator correctly called them mid for being three colorways of the same chassis. Kept here for comparison against the wildcards above.</p>
-
-      <div class="polished">
-
-        <a class="row" href="d11-lobby/main.html">
-          <div>
-            <div class="row-id">D11 · CHAT-LED COMMUNITY</div>
-            <div class="row-name">The Lobby (warm minimal)</div>
-            <p class="row-desc">Same brief as D21/D22/D23/D24/D25 — rendered as restrained Stripe-school editorial. Clay-rust accent on warm cream paper.</p>
-          </div>
-          <div class="row-links">
-            <span class="row-link">Main →</span>
-            <a class="row-link" href="d11-lobby/backend.html" onclick="event.stopPropagation()">Thread →</a>
-          </div>
-        </a>
-
-        <a class="row" href="d17-margins/main.html">
-          <div>
-            <div class="row-id">D17 · SOURCE ANNOTATION</div>
-            <div class="row-name">The Margins</div>
-            <p class="row-desc">Source documents pinned for collaborative reading. Margins annotation. Different concept from the wildcards, same visual school.</p>
-          </div>
-          <div class="row-links">
-            <span class="row-link">Main →</span>
-            <a class="row-link" href="d17-margins/backend.html" onclick="event.stopPropagation()">Library →</a>
-          </div>
-        </a>
-
-        <a class="row" href="d20-open-desk/main.html">
-          <div>
-            <div class="row-id">D20 · WIKI-MEETS-FORUM</div>
-            <div class="row-name">Open Desk</div>
-            <p class="row-desc">Each desk is one continuously-rewritten front page. Anyone appends. No editor, no owner. Forest-green accent on sage paper.</p>
-          </div>
-          <div class="row-links">
-            <span class="row-link">Main →</span>
-            <a class="row-link" href="d20-open-desk/backend.html" onclick="event.stopPropagation()">Contributor →</a>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-eyebrow">v2 sketches · flow + structure</div>
-          <h2>Seven more flow ideas</h2>
-        </div>
-        <div class="section-count">7 directions · 14 sketch surfaces</div>
-      </div>
-
-      <p class="sketch-note">Alternative product structures (live floor, collaborative shared brain, daily feed, video-led, slow-web weekly, Q&amp;A, visual curation). Concept sketches, not polished work. If any of these flows is the right spine, the visual treatment from any wildcard (D21–D25) can sit on top.</p>
+      <p class="sketch-note"><strong>Round 3 (deleted):</strong> five wildcards — brutalist, editorial-maximum, riso-zine, broadsheet, pastel-atelier. Removed: wrong register for a serious intellectual platform. <strong>Round 2:</strong> three "polished" directions (D11 Lobby, D17 Margins, D20 Open Desk) that landed in one generic modern-SaaS school. <strong>Round 1:</strong> eleven paint variations on a fixed scaffold. All kept below for reference; none are live candidates.</p>
 
       <div class="sketches">
-
-        <a class="s-row" href="d12-stack/main.html">
-          <div class="s-meta"><span class="s-id">D12</span><div><div class="s-name">The Stack</div><div class="s-desc">collaborative living pages</div></div></div>
-          <div class="s-links"><span>main</span><span>map</span></div>
-        </a>
-
-        <a class="s-row" href="d13-dispatch/main.html">
-          <div class="s-meta"><span class="s-id">D13</span><div><div class="s-name">The Dispatch</div><div class="s-desc">chronological daily feed</div></div></div>
-          <div class="s-links"><span>main</span><span>channel</span></div>
-        </a>
-
-        <a class="s-row" href="d14-board/main.html">
-          <div class="s-meta"><span class="s-id">D14</span><div><div class="s-name">The Boards</div><div class="s-desc">visual mixed-media curation</div></div></div>
-          <div class="s-links"><span>main</span><span>board</span></div>
-        </a>
-
-        <a class="s-row" href="d15-pile/main.html">
-          <div class="s-meta"><span class="s-id">D15</span><div><div class="s-name">The Pile</div><div class="s-desc">Q&amp;A with crowd-ranked answers</div></div></div>
-          <div class="s-links"><span>main</span><span>question</span></div>
-        </a>
-
-        <a class="s-row" href="d16-cinema/main.html">
-          <div class="s-meta"><span class="s-id">D16</span><div><div class="s-name">The Cinema</div><div class="s-desc">long-form recorded conversations</div></div></div>
-          <div class="s-links"><span>main</span><span>watch</span></div>
-        </a>
-
-        <a class="s-row" href="d18-almanac/main.html">
-          <div class="s-meta"><span class="s-id">D18</span><div><div class="s-name">The Almanac</div><div class="s-desc">fortnightly slow-web issue</div></div></div>
-          <div class="s-links"><span>main</span><span>archive</span></div>
-        </a>
-
-        <a class="s-row" href="d19-switchboard/main.html">
-          <div class="s-meta"><span class="s-id">D19</span><div><div class="s-name">The Switchboard</div><div class="s-desc">live ambient activity floor</div></div></div>
-          <div class="s-links"><span>main</span><span>desk</span></div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-eyebrow">v1 sketches · paint variations</div>
-          <h2>Eleven visual treatments on a fixed scaffold</h2>
-        </div>
-        <div class="section-count">11 directions · 22 sketch surfaces</div>
-      </div>
-
-      <p class="sketch-note">These eleven (D0 evolve + D1–D10) all share the same article-publication scaffold (header / hero / secondary row / desk grid / working groups / CTA). Useful for visual register comparison, weak for actual product direction. Kept for completeness.</p>
-
-      <div class="sketches">
-        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep DocketField, lose parliamentary vocab</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d11-lobby/main.html"><div class="s-meta"><span class="s-id">D11</span><div><div class="s-name">The Lobby</div><div class="s-desc">chat-led · modern-SaaS school</div></div></div><div class="s-links"><span>main</span><span>thread</span></div></a>
+        <a class="s-row" href="d17-margins/main.html"><div class="s-meta"><span class="s-id">D17</span><div><div class="s-name">The Margins</div><div class="s-desc">source annotation</div></div></div><div class="s-links"><span>main</span><span>library</span></div></a>
+        <a class="s-row" href="d20-open-desk/main.html"><div class="s-meta"><span class="s-id">D20</span><div><div class="s-name">Open Desk</div><div class="s-desc">wiki-meets-forum</div></div></div><div class="s-links"><span>main</span><span>contributor</span></div></a>
+        <a class="s-row" href="d12-stack/main.html"><div class="s-meta"><span class="s-id">D12</span><div><div class="s-name">The Stack</div><div class="s-desc">collaborative living pages</div></div></div><div class="s-links"><span>main</span><span>map</span></div></a>
+        <a class="s-row" href="d13-dispatch/main.html"><div class="s-meta"><span class="s-id">D13</span><div><div class="s-name">The Dispatch</div><div class="s-desc">chronological daily feed</div></div></div><div class="s-links"><span>main</span><span>channel</span></div></a>
+        <a class="s-row" href="d14-board/main.html"><div class="s-meta"><span class="s-id">D14</span><div><div class="s-name">The Boards</div><div class="s-desc">visual mixed-media curation</div></div></div><div class="s-links"><span>main</span><span>board</span></div></a>
+        <a class="s-row" href="d15-pile/main.html"><div class="s-meta"><span class="s-id">D15</span><div><div class="s-name">The Pile</div><div class="s-desc">Q&amp;A crowd-ranked</div></div></div><div class="s-links"><span>main</span><span>question</span></div></a>
+        <a class="s-row" href="d16-cinema/main.html"><div class="s-meta"><span class="s-id">D16</span><div><div class="s-name">The Cinema</div><div class="s-desc">long-form conversations</div></div></div><div class="s-links"><span>main</span><span>watch</span></div></a>
+        <a class="s-row" href="d18-almanac/main.html"><div class="s-meta"><span class="s-id">D18</span><div><div class="s-name">The Almanac</div><div class="s-desc">fortnightly slow-web issue</div></div></div><div class="s-links"><span>main</span><span>archive</span></div></a>
+        <a class="s-row" href="d19-switchboard/main.html"><div class="s-meta"><span class="s-id">D19</span><div><div class="s-name">The Switchboard</div><div class="s-desc">live ambient activity floor</div></div></div><div class="s-links"><span>main</span><span>desk</span></div></a>
+        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep name, lose parliamentary vocab</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d1-editorial/main.html"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov Press</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">modern think-tank · navy + gold</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">think-tank · navy + gold</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d4-workshop/main.html"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d5-field-manual/main.html"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir aesthetic</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">20 verticals as territory</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">verticals as territory</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d8-salon/main.html"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d9-wiki/main.html"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
         <a class="s-row" href="d10-investor/main.html"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
@@ -566,8 +249,8 @@
   </section>
 
   <footer class="foot">
-    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
-      <span>DocketField rebrand brainstorm · 2026-05-27 · v3 with 5 wildcards</span>
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 36px; width:calc(100% - 72px);">
+      <span>DocketField rebrand brainstorm · 2026-05-27 · v4 — three serious directions</span>
       <span>Prototype · no production code changed</span>
     </div>
   </footer>
