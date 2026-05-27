@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D30 Atrium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D30 · ATRIUM
+     Lineage: architectural calm — MoMA lobby, university press,
+     intellectual-Kinfolk. Huge whitespace as luxury. Restraint
+     is the statement. Calm as signal of seriousness.
+     Palette: limestone ground · ink · single slate-blue accent.
+     Type: Schibsted Grotesk (display) + Source Serif 4 (body).
+     ───────────────────────────────────────────────────────────── */
+  :root {
+    --ground:    #ECEAE4;     /* limestone warm-grey */
+    --paper:     #FFFFFF;
+    --ink:       #1C1E22;
+    --ink-soft:  #3A3D44;
+    --muted:     #5C6068;
+    --faint:     #61656D;
+    --hairline:  #E0DED7;
+    --slate:     #3A5169;     /* single considered accent */
+    --slate-dk:  #2B3D50;
+    --slate-bg:  #EBF0F5;
+    --minds-col: #2B5C45;     /* reserved: minds changed only */
+    --minds-bg:  #E4EFEA;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Schibsted Grotesk', -apple-system, sans-serif;
+    background: var(--ground);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--slate-bg); color: var(--slate-dk); }
+
+  /* ── layout ──────────────────────────────────────── */
+  .wrap     { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
+  .wrap-sm  { max-width: 960px;  margin: 0 auto; padding: 0 64px; }
+
+  @media (max-width: 900px) {
+    .wrap, .wrap-sm { padding: 0 36px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .wrap-sm { padding: 0 24px; }
+  }
+
+  /* ── masthead ────────────────────────────────────── */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(236, 234, 228, 0.92);
+    backdrop-filter: saturate(120%) blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .brand .mark {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .brand .tag {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    border-left: 1px solid var(--hairline);
+    padding-left: 18px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 150ms ease;
+    letter-spacing: 0.005em;
+  }
+  .nav a:hover { color: var(--slate); }
+  .nav a:focus-visible {
+    outline: 2px solid var(--slate);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .nav .join {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 10px 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 150ms ease;
+  }
+  .nav .join:hover { background: var(--slate); }
+  @media (max-width: 760px) {
+    .nav a:not(.join) { display: none; }
+    .brand .tag { display: none; }
+  }
+
+  /* ── hero ────────────────────────────────────────── */
+  .hero {
+    padding: 120px 0 130px;
+    max-width: 820px;
+  }
+  .hero-eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-weight: 600;
+    margin-bottom: 36px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: clamp(46px, 6.5vw, 80px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--slate);
+  }
+  .hero-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(19px, 2.4vw, 23px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: 36px;
+    max-width: 52ch;
+    font-weight: 400;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 52px;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-stat .n {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .hero-stat .l {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+  .hero-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--hairline);
+    align-self: center;
+  }
+  .hero-cta {
+    margin-top: 56px;
+  }
+  .hero-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 28px;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 150ms ease;
+  }
+  .hero-cta a:hover { background: var(--slate); }
+  .hero-cta a:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+  .hero-cta .arrow { font-size: 18px; line-height: 1; }
+
+  /* ── section labels ──────────────────────────────── */
+  .section-hed {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid var(--ink);
+    padding-top: 16px;
+    margin-bottom: 0;
+  }
+  .section-hed h2 {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-hed .note {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── fields — architectural bays ────────────────── */
+  .fields-section { padding: 0 0 110px; }
+  .fields-section .section-hed { margin-bottom: 56px; }
+
+  .bays {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+  }
+  .bay {
+    background: var(--ground);
+    padding: 40px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 150ms ease;
+    min-height: 130px;
+    position: relative;
+  }
+  .bay::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 150ms ease;
+  }
+  .bay:hover { background: var(--paper); }
+  .bay:hover::before { background: var(--slate); }
+  .bay:focus-within { background: var(--paper); }
+  .bay:focus-within::before { background: var(--slate); }
+  .bay a:focus-visible { outline: none; }
+  .bay-name {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .bay-count {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .bay-count.live {
+    color: var(--slate);
+    font-weight: 500;
+  }
+
+  @media (max-width: 1000px) { .bays { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 760px)  { .bays { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px)  { .bays { grid-template-columns: 1fr 1fr; } }
+
+  /* ── voices ──────────────────────────────────────── */
+  .voices-section { padding: 0 0 0; }
+  .voices-section .section-hed { margin-bottom: 0; }
+
+  .voice-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 72px;
+    padding: 72px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .voice-row:first-of-type { border-top: 1px solid var(--hairline); }
+
+  .voice-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 6px;
+  }
+  .field-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--slate);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+    align-self: flex-start;
+    width: 100%;
+  }
+  .voice-time {
+    font-size: 12.5px;
+    color: var(--faint);
+    font-weight: 400;
+  }
+
+  .voice-main {}
+  .voice-author {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .voice-role {
+    font-size: 13.5px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .voice-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(19px, 2vw, 22px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+  .voice-text em {
+    font-style: italic;
+    color: var(--ink);
+  }
+  .voice-foot {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .minds {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--minds-col);
+    background: var(--minds-bg);
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .minds svg { width: 13px; height: 13px; flex: none; }
+  .voice-foot a { transition: color 130ms ease; }
+  .voice-foot a:hover { color: var(--slate); }
+  .voice-foot a:focus-visible { outline: 2px solid var(--slate); outline-offset: 2px; }
+  .sep { color: var(--hairline); }
+
+  /* reply */
+  .reply-block {
+    margin-top: 32px;
+    padding: 28px 32px;
+    background: var(--paper);
+    border-left: 2px solid var(--slate);
+    max-width: 58ch;
+  }
+  .reply-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .reply-head b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .reply-head .arc {
+    color: var(--faint);
+    font-weight: 400;
+  }
+  .reply-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1.58;
+    color: var(--ink-soft);
+  }
+  .reply-text em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  @media (max-width: 840px) {
+    .voice-row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 52px 0;
+    }
+    .voice-aside {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      padding-top: 0;
+    }
+    .field-tag {
+      border-bottom: none;
+      padding-bottom: 0;
+      width: auto;
+    }
+  }
+
+  /* ── house rule ──────────────────────────────────── */
+  .house-rule {
+    padding: 130px 0 120px;
+    text-align: center;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin: 100px 0;
+  }
+  .house-rule blockquote {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: clamp(28px, 4.2vw, 46px);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    max-width: 24ch;
+    margin: 0 auto;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .house-rule .rule-src {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-weight: 600;
+    margin-top: 36px;
+  }
+
+  /* ── about ───────────────────────────────────────── */
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    padding-bottom: 130px;
+    align-items: start;
+  }
+  .about-hed {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .about-hed em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--slate);
+  }
+  .about-body p {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .about-body p + p { margin-top: 20px; }
+  .about-body strong { color: var(--ink); font-weight: 600; }
+  .about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 36px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 28px;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 150ms ease;
+  }
+  .about-cta:hover { background: var(--slate); }
+  .about-cta:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+  @media (max-width: 780px) {
+    .about-section { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* ── footer ──────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 32px 0 68px;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .footer-mark {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .footer-links a { transition: color 130ms ease; }
+  .footer-links a:hover { color: var(--slate); }
+  .footer-links a:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+  <!-- ── masthead ────────────────────────────────────── -->
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="brand">
+        <span class="mark">DocketField</span>
+        <span class="tag">An open record across twenty fields</span>
+      </div>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#fields">Fields</a>
+        <a href="#voices">The room</a>
+        <a href="#about">About</a>
+        <a href="../index.html" class="join">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── surface switcher ────────────────────────────── -->
+    <div class="wrap">
+</div>
+
+    <!-- ── hero ────────────────────────────────────────── -->
+    <div class="wrap">
+      <section class="hero" aria-labelledby="hero-heading">
+        <span class="hero-eyebrow">The Lobby · live across all desks</span>
+        <h1 id="hero-heading">A working record for serious questions — open to <em>anyone</em> with something real to add.</h1>
+        <p class="hero-sub">Practitioners across twenty disciplines think out loud here. A truck driver opens a thread; a quantum researcher answers in kind. The only standing that compounds is the number of minds you have genuinely caused to change.</p>
+
+        <div class="hero-meta" aria-label="Platform statistics">
+          <div class="hero-stat">
+            <span class="n">312</span>
+            <span class="l">contributors</span>
+          </div>
+          <div class="hero-divider" role="presentation"></div>
+          <div class="hero-stat">
+            <span class="n">20</span>
+            <span class="l">fields</span>
+          </div>
+          <div class="hero-divider" role="presentation"></div>
+          <div class="hero-stat">
+            <span class="n">$8</span>
+            <span class="l">per month · anyone can read, anyone can post</span>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="../index.html">Enter The Lobby <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── fields ───────────────────────────────────────── -->
+    <div class="wrap">
+      <section id="fields" class="fields-section" aria-labelledby="fields-heading">
+        <div class="section-hed">
+          <h2 id="fields-heading">Today across the fields</h2>
+          <span class="note">Live question count · updated continuously</span>
+        </div>
+
+        <div class="bays" role="list">
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Quantum</a><span class="bay-count live">4 live · 2 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Cybersecurity</a><span class="bay-count live">6 live · 1 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Biosecurity</a><span class="bay-count live">3 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Defense</a><span class="bay-count live">5 live · 1 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Space</a><span class="bay-count live">9 live · 3 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Energy</a><span class="bay-count">2 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">AI</a><span class="bay-count live">7 live · 2 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Semiconductors</a><span class="bay-count live">3 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Genomics</a><span class="bay-count">1 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Materials</a><span class="bay-count">2 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Nuclear</a><span class="bay-count live">3 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Geopolitics</a><span class="bay-count live">5 live · 1 hot</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Public Health</a><span class="bay-count">2 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Maritime</a><span class="bay-count">1 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Robotics</a><span class="bay-count live">3 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Supply Chain</a><span class="bay-count live">4 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Autonomy</a><span class="bay-count">1 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Manufacturing</a><span class="bay-count">1 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Synthetic Biology</a><span class="bay-count">1 live</span></div>
+          <div class="bay" role="listitem"><a href="#" class="bay-name">Pharmaceuticals</a><span class="bay-count">1 live</span></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── voices ───────────────────────────────────────── -->
+    <div class="wrap">
+      <section id="voices" class="voices-section" aria-labelledby="voices-heading">
+        <div class="section-hed">
+          <h2 id="voices-heading">Four entries worth reading right now</h2>
+          <span class="note">Ranked by minds changed, not by recency</span>
+        </div>
+
+        <!-- voice 1: Sam Ahmadi -->
+        <article class="voice-row" aria-label="Entry by Sam Ahmadi">
+          <div class="voice-aside">
+            <span class="field-tag">Quantum</span>
+            <span class="voice-time">2 hours ago</span>
+          </div>
+          <div class="voice-main">
+            <div class="voice-author">Sam Ahmadi</div>
+            <div class="voice-role">Freight driver — Route-13 logistics, Eastern Seaboard</div>
+            <p class="voice-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+
+            <div class="reply-block" aria-label="Reply from Alex Patel">
+              <div class="reply-head">
+                <b>Alex Patel</b>
+                <span class="arc">— Quantum researcher, Brookhaven · replying to this thread</span>
+              </div>
+              <p class="reply-text">Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+            </div>
+
+            <div class="voice-foot">
+              <span class="minds" aria-label="47 minds changed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                47 minds changed
+              </span>
+              <span>23 replies</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="#">pinned by 8 stewards</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- voice 2: Maya Khurana -->
+        <article class="voice-row" aria-label="Entry by Maya Khurana">
+          <div class="voice-aside">
+            <span class="field-tag">Cybersecurity</span>
+            <span class="voice-time">4 hours ago</span>
+          </div>
+          <div class="voice-main">
+            <div class="voice-author">Maya Khurana</div>
+            <div class="voice-role">Compliance officer — Regional bank, Midwest</div>
+            <p class="voice-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+            <div class="voice-foot">
+              <span class="minds" aria-label="38 minds changed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                38 minds changed
+              </span>
+              <span>31 replies</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="#">19 me-too</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- voice 3: Diego Torres -->
+        <article class="voice-row" aria-label="Entry by Diego Torres">
+          <div class="voice-aside">
+            <span class="field-tag">Biosecurity</span>
+            <span class="voice-time">6 hours ago</span>
+          </div>
+          <div class="voice-main">
+            <div class="voice-author">Diego Torres</div>
+            <div class="voice-role">High-school chemistry teacher — Public school, Texas</div>
+            <p class="voice-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+            <div class="voice-foot">
+              <span class="minds" aria-label="28 thanks">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                28 thanks
+              </span>
+              <span>11 drafting answers</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="#">new voice</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- voice 4: Jess Oduya -->
+        <article class="voice-row" aria-label="Entry by Jess Oduya">
+          <div class="voice-aside">
+            <span class="field-tag">Defense</span>
+            <span class="voice-time">yesterday</span>
+          </div>
+          <div class="voice-main">
+            <div class="voice-author">Jess Oduya</div>
+            <div class="voice-role">Former Treasury analyst — at home with three kids</div>
+            <p class="voice-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things no one has flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+            <div class="voice-foot">
+              <span class="minds" aria-label="56 minds changed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                56 minds changed
+              </span>
+              <span>18 replies</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="#">14 asked her to write it up</a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+
+    <!-- ── house rule ────────────────────────────────────── -->
+    <div class="wrap-sm">
+      <div class="house-rule" role="complementary" aria-label="House rule">
+        <blockquote>"Reputation here is the number of people you have genuinely caused to change their mind."</blockquote>
+        <div class="rule-src">House rule no. 2 · The Lobby</div>
+      </div>
+    </div>
+
+    <!-- ── about ─────────────────────────────────────────── -->
+    <div class="wrap">
+      <section id="about" class="about-section" aria-labelledby="about-heading">
+        <h2 class="about-hed" id="about-heading">Not a PhD hangout. A <em>working room.</em></h2>
+        <div class="about-body">
+          <p>The Lobby is a slow, serious room that runs across twenty fields — the same record universities use as the working-group backbone for the disciplines they teach. Practitioners come here to think out loud, and the conversation stays on the record.</p>
+          <p>There is no credential check. <strong>Anyone can read, anyone can post</strong> — eight dollars a month. A truck driver's loading-dock observation can outrank a tenured analyst's desk model, because here the question is never <em>who are you</em> — it is <em>does this hold up.</em></p>
+          <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only thing that compounds is whether the people who read you walked away thinking differently.</p>
+          <a href="../index.html" class="about-cta">Sign in or join <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ── footer ───────────────────────────────────────── -->
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-mark">DocketField</span>
+      <div class="footer-links">
+        <span>D30 — Atrium · architectural-calm register</span>
+        <a href="../index.html">← all directions</a>
+        <a href="../index.html">Sign in / Join</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

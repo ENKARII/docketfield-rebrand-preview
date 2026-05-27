@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D36 Seminar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D36 · SEMINAR
+     Lineage: salon / round-table — portrait-led, intimate.
+     The PEOPLE are the design. Humans gathered around a table;
+     the conversation is the centerpiece.
+
+     Palette:  ground #F3F0E9 · panel #FFFFFF · ink #211E1A
+               muted #71695E · rule #E4DDD1 · plum #5B3A52
+     Type:     Figtree (UI/body) + Fraunces SERIOUS (names/quotes)
+     Signature: large portrait-card cluster — people before posts.
+  ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --ground:    #F3F0E9;
+    --panel:     #FFFFFF;
+    --ink:       #211E1A;
+    --ink-soft:  #403A34;
+    --muted:     #71695E;
+    --line:      #E4DDD1;
+    --line-soft: #EDE8DF;
+    --plum:      #5B3A52;
+    --plum-dk:   #3E2639;
+    --plum-bg:   #F0EAF0;
+    --plum-mid:  #C4A8BC;
+    --minds:     #2E6B4F;     /* reserved: minds-changed metric only */
+    --minds-bg:  #E5F0EA;
+    --r-sm:      6px;
+    --r:         14px;
+    --r-lg:      20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Figtree', -apple-system, sans-serif;
+    background: var(--ground);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--plum-bg); color: var(--plum-dk); }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── Masthead ──────────────────────────────────────────────── */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(243, 240, 233, 0.94);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .masthead-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .brand-mark {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .brand-tag {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+    border-left: 1px solid var(--line);
+    padding-left: 14px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color 150ms;
+  }
+  .nav a:hover { color: var(--plum); }
+  .nav-join {
+    background: var(--plum) !important;
+    color: #fff !important;
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    transition: background 150ms !important;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav-join:hover { background: var(--plum-dk) !important; }
+
+  @media (max-width: 768px) {
+    .nav a:not(.nav-join) { display: none; }
+    .brand-tag { display: none; }
+    .wrap { padding: 0 22px; }
+  }
+
+  /* ── Hero ──────────────────────────────────────────────────── */
+  .hero {
+    padding: 52px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-left { max-width: 540px; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow-pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--plum);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(38px, 4.4vw, 58px);
+    line-height: 1.06;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--plum);
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.8vw, 18.5px);
+    line-height: 1.62;
+    color: var(--ink-soft);
+    margin-top: 22px;
+    max-width: 50ch;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 28px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+  .hero-stat-n {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .hero-stat-l {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--panel);
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 150ms, transform 150ms;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--plum); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    font-weight: 500;
+    transition: color 150ms;
+  }
+  .btn-ghost:hover { color: var(--plum); }
+
+  /* Hero right — teaser portrait cluster */
+  .hero-right { position: relative; }
+  .hero-portrait-cluster {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .hpc-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 180ms, transform 180ms;
+  }
+  .hpc-card:hover { box-shadow: 0 8px 28px -12px rgba(91,58,82,0.22); transform: translateY(-2px); }
+  .hpc-card.span2 { grid-column: span 2; flex-direction: row; align-items: center; gap: 20px; }
+  .hpc-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    flex: none;
+    display: grid;
+    place-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .hpc-avatar-lg {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    flex: none;
+    display: grid;
+    place-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .hpc-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .hpc-role {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+  .hpc-field {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--plum);
+    background: var(--plum-bg);
+    padding: 3px 8px;
+    border-radius: 100px;
+    align-self: flex-start;
+  }
+  .hpc-snippet {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { margin-top: 30px; }
+  }
+
+  /* ── Section scaffolding ───────────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid var(--ink);
+    padding-top: 16px;
+    margin-top: 56px;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .section-header h2 {
+    font-size: 11.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-header .note {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── Field ribbon ──────────────────────────────────────────── */
+  .fields-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 64px;
+  }
+  .field-pill {
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--ink-soft);
+    transition: all 150ms;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .field-pill:hover { border-color: var(--plum); color: var(--plum); }
+  .field-pill.live {
+    background: var(--plum);
+    border-color: var(--plum);
+    color: #fff;
+  }
+  .field-pill .count { opacity: 0.7; font-size: 12px; }
+  .field-pill.live .count { opacity: 0.75; }
+
+  /* ── Seminar table — the signature portrait-cluster ────────── */
+  .seminar-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .seminar-table.full-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Portrait card */
+  .seat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: box-shadow 180ms, transform 180ms;
+    position: relative;
+    overflow: hidden;
+  }
+  .seat:hover {
+    box-shadow: 0 16px 48px -20px rgba(91,58,82,0.20);
+    transform: translateY(-3px);
+  }
+  /* Subtle plum edge on the active/top seat */
+  .seat.featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--plum);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+
+  .seat-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  .seat-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    flex: none;
+    display: grid;
+    place-items: center;
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    border: 2px solid var(--line);
+    flex-shrink: 0;
+  }
+  .seat-identity { flex: 1; min-width: 0; padding-top: 4px; }
+  .seat-name {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .seat-role {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .seat-field {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--plum);
+    background: var(--plum-bg);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  .seat-quote {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.008em;
+    color: var(--ink-soft);
+    flex: 1;
+    margin-bottom: 24px;
+  }
+  .seat-quote em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .seat-foot {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+  }
+  .minds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--minds);
+    background: var(--minds-bg);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .minds-badge svg { width: 13px; height: 13px; flex: none; }
+  .seat-meta {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .seat-meta a { transition: color 150ms; }
+  .seat-meta a:hover { color: var(--plum); }
+  .seat-time {
+    margin-left: auto;
+    font-size: 12.5px;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  /* Horizontal wide seat — featured top spot, fills full width */
+  .seat.wide {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 40px;
+    align-items: start;
+    padding: 36px 40px 32px;
+  }
+  .seat.wide .seat-top {
+    flex-direction: column;
+    margin-bottom: 0;
+    gap: 14px;
+    padding-top: 0;
+    width: 120px;
+  }
+  .seat.wide .seat-avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 30px;
+    border-width: 2.5px;
+  }
+  .seat.wide .seat-name { font-size: clamp(22px, 2.5vw, 28px); }
+  .seat.wide .seat-body { display: flex; flex-direction: column; height: 100%; }
+  .seat.wide .seat-quote { font-size: clamp(17px, 1.9vw, 21px); margin-bottom: 20px; }
+  .seat.wide .seat-field { margin-top: 0; }
+
+  /* Reply nested inside wide seat */
+  .seat-reply {
+    background: var(--ground);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 18px 22px;
+    margin-bottom: 22px;
+  }
+  .seat-reply-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 9px;
+    font-size: 13px;
+  }
+  .seat-reply-head .rname { font-weight: 700; color: var(--ink); }
+  .seat-reply-head .rarc { color: var(--muted); }
+  .seat-reply p {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .seat-reply p em { font-style: italic; color: var(--ink); }
+
+  @media (max-width: 768px) {
+    .seminar-table { grid-template-columns: 1fr; }
+    .seat.wide { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; }
+    .seat.wide .seat-top { flex-direction: row; width: auto; align-items: center; }
+    .seat.wide .seat-avatar { width: 68px; height: 68px; font-size: 22px; }
+    .seat { padding: 26px 24px 22px; }
+  }
+
+  /* ── House rule pull ───────────────────────────────────────── */
+  .rule {
+    text-align: center;
+    padding: 88px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 16px 0 0;
+  }
+  .rule blockquote {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 44px);
+    line-height: 1.24;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .rule-src {
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--plum);
+    margin-top: 32px;
+  }
+  .rule-decoration {
+    width: 40px;
+    height: 2px;
+    background: var(--plum-mid);
+    margin: 0 auto 32px;
+    border-radius: 1px;
+  }
+
+  /* ── About / manifesto ─────────────────────────────────────── */
+  .manifesto {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    align-items: start;
+    padding: 72px 0 96px;
+  }
+  .manifesto-left h2 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(30px, 3.8vw, 46px);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+  }
+  .manifesto-left h2 em {
+    font-style: italic;
+    color: var(--plum);
+  }
+  .manifesto-right p {
+    font-size: 17px;
+    line-height: 1.72;
+    color: var(--ink-soft);
+  }
+  .manifesto-right p + p { margin-top: 18px; }
+  .manifesto-right strong { color: var(--ink); font-weight: 600; }
+  .manifesto-cta {
+    margin-top: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--plum);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 150ms, transform 150ms;
+    min-height: 52px;
+  }
+  .manifesto-cta:hover { background: var(--plum-dk); transform: translateY(-1px); }
+
+  @media (max-width: 768px) {
+    .manifesto { grid-template-columns: 1fr; gap: 28px; padding: 56px 0 72px; }
+  }
+
+  /* ── Footer ────────────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 28px 0 56px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer .mark {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  footer a { transition: color 150ms; }
+  footer a:hover { color: var(--plum); }
+
+  /* ── Accessibility: visible focus ──────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--plum);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ── Utility ───────────────────────────────────────────────── */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  @media (max-width: 480px) {
+    .seat { padding: 22px 18px 18px; }
+    .seat.wide { padding: 22px 18px; }
+    .rule { padding: 64px 0; }
+    .hero-stats { gap: 18px; }
+  }
+
+  @media (min-width: 1280px) {
+    .wrap { padding: 0 56px; }
+    .seminar-table { gap: 24px; }
+  }
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+  <!-- ── Masthead ──────────────────────────────────────────── -->
+  <header class="masthead" role="banner">
+    <div class="wrap masthead-inner">
+      <div class="brand">
+        <span class="brand-mark">DocketField</span>
+        <span class="brand-tag">A seminar across twenty fields</span>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#room">The room</a>
+        <a href="#fields">Fields</a>
+        <a href="#about">What this is</a>
+        <a href="../index.html" class="nav-join">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+<!-- ── Hero ──────────────────────────────────────────── -->
+      <section class="hero" aria-label="Platform introduction">
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-pip" aria-hidden="true"></span>
+            312 people thinking out loud right now
+          </div>
+          <h1>Everyone at the table. Nobody at the door.</h1>
+          <p class="hero-sub">DocketField is a slow, on-the-record seminar across twenty fields. A truck driver opens a thread. A quantum researcher answers in kind. No credential check — the only question is whether what you said <em>holds up.</em></p>
+          <div class="hero-stats" role="list" aria-label="Platform statistics">
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-n">312</span>
+              <span class="hero-stat-l">contributors</span>
+            </div>
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-n">20</span>
+              <span class="hero-stat-l">fields</span>
+            </div>
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-n">$8</span>
+              <span class="hero-stat-l">per month</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="../index.html" class="btn-primary">Pull up a chair →</a>
+            <a href="../index.html" class="btn-ghost">Sign in</a>
+          </div>
+        </div>
+
+        <!-- Portrait teaser cluster, right column desktop only -->
+        <div class="hero-right" aria-hidden="true">
+          <div class="hero-portrait-cluster">
+
+            <div class="hpc-card">
+              <div class="hpc-avatar" style="background:#F0EAF0;color:#5B3A52;">SA</div>
+              <div>
+                <div class="hpc-name">Sam Ahmadi</div>
+                <div class="hpc-role">Freight driver — Eastern Seaboard</div>
+                <div class="hpc-field">Quantum</div>
+              </div>
+              <div class="hpc-snippet">"The dock doesn't match the published timeline."</div>
+            </div>
+
+            <div class="hpc-card">
+              <div class="hpc-avatar" style="background:#E5F0EA;color:#2E6B4F;">AP</div>
+              <div>
+                <div class="hpc-name">Alex Patel</div>
+                <div class="hpc-role">Researcher — Brookhaven</div>
+                <div class="hpc-field">Quantum</div>
+              </div>
+              <div class="hpc-snippet">"Ground truth I can't see from my desk."</div>
+            </div>
+
+            <div class="hpc-card span2">
+              <div class="hpc-avatar-lg" style="background:#F3EFEA;color:#6B4B2E;">JO</div>
+              <div>
+                <div class="hpc-name">Jess Oduya</div>
+                <div class="hpc-role">Former Treasury analyst — at home with three kids</div>
+                <div class="hpc-field">Defense</div>
+                <div class="hpc-snippet" style="margin-top:8px;">"Reading the ITAR rewrite at nap-time. Three things no one flagged yet."</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Fields ─────────────────────────────────────────── -->
+      <section id="fields" aria-label="Active fields">
+        <div class="section-header">
+          <h2>Where the conversation is live today</h2>
+          <span class="note">Updated continuously · ordered by activity</span>
+        </div>
+        <div class="fields-ribbon" role="list">
+          <a class="field-pill live" role="listitem" href="#">Space <span class="count">9</span></a>
+          <a class="field-pill live" role="listitem" href="#">AI <span class="count">7</span></a>
+          <a class="field-pill live" role="listitem" href="#">Cybersecurity <span class="count">6</span></a>
+          <a class="field-pill live" role="listitem" href="#">Defense <span class="count">5</span></a>
+          <a class="field-pill live" role="listitem" href="#">Geopolitics <span class="count">5</span></a>
+          <a class="field-pill" role="listitem" href="#">Supply Chain <span class="count">4</span></a>
+          <a class="field-pill" role="listitem" href="#">Quantum <span class="count">4</span></a>
+          <a class="field-pill" role="listitem" href="#">Biosecurity <span class="count">3</span></a>
+          <a class="field-pill" role="listitem" href="#">Nuclear <span class="count">3</span></a>
+          <a class="field-pill" role="listitem" href="#">Robotics <span class="count">3</span></a>
+          <a class="field-pill" role="listitem" href="#">Energy <span class="count">2</span></a>
+          <a class="field-pill" role="listitem" href="#">Materials <span class="count">2</span></a>
+          <a class="field-pill" role="listitem" href="#">Public Health <span class="count">2</span></a>
+          <a class="field-pill" role="listitem" href="#">Genomics <span class="count">1</span></a>
+          <a class="field-pill" role="listitem" href="#">Maritime <span class="count">1</span></a>
+          <a class="field-pill" role="listitem" href="#" style="border-style:dashed;">+ 5 more desks</a>
+        </div>
+      </section>
+
+    </div><!-- /wrap -->
+
+    <!-- ── Seminar table — the signature section ─────────────── -->
+    <section id="room" aria-label="Who is at the table right now">
+      <div class="wrap">
+        <div class="section-header">
+          <h2>Who's at the table right now</h2>
+          <span class="note">Ranked by minds changed — not by recency, not by rank</span>
+        </div>
+      </div>
+
+      <div class="wrap">
+
+        <!-- Row 1: Full-width featured seat (Jess — highest minds changed) -->
+        <div class="seminar-table full-row" style="margin-bottom:20px;">
+          <article class="seat wide featured" aria-label="Entry by Jess Oduya">
+            <div class="seat-top">
+              <div class="seat-avatar" style="background:#F3EFEA;color:#6B4B2E;" aria-hidden="true">JO</div>
+              <div class="seat-identity">
+                <div class="seat-name">Jess Oduya</div>
+                <div class="seat-role">Former Treasury analyst — at home with three kids</div>
+                <span class="seat-field">Defense</span>
+              </div>
+            </div>
+
+            <div class="seat-body">
+              <p class="seat-quote">I've been reading the ITAR rewrite at nap-time for two weeks. Three things nobody has flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+              <div class="seat-foot">
+                <span class="minds-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  56 minds changed
+                </span>
+                <span class="seat-meta"><a href="#">18 replies</a></span>
+                <span class="seat-meta">14 asked her to write it up</span>
+                <span class="seat-time">yesterday</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Row 2: Two seats side by side -->
+        <div class="seminar-table" style="margin-bottom:20px;">
+
+          <!-- Sam Ahmadi -->
+          <article class="seat" aria-label="Entry by Sam Ahmadi">
+            <div class="seat-top">
+              <div class="seat-avatar" style="background:#F0EAF0;color:#5B3A52;" aria-hidden="true">SA</div>
+              <div class="seat-identity">
+                <div class="seat-name">Sam Ahmadi</div>
+                <div class="seat-role">Freight driver — Route-13 logistics, Eastern Seaboard</div>
+                <span class="seat-field">Quantum</span>
+              </div>
+            </div>
+
+            <p class="seat-quote">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+
+            <div class="seat-reply">
+              <div class="seat-reply-head">
+                <span class="rname">Alex Patel</span>
+                <span class="rarc">— Quantum researcher, Brookhaven · replying</span>
+              </div>
+              <p>Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+            </div>
+
+            <div class="seat-foot">
+              <span class="minds-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                47 minds changed
+              </span>
+              <span class="seat-meta"><a href="#">23 replies</a></span>
+              <span class="seat-meta">pinned by 8 stewards</span>
+              <span class="seat-time">2h ago</span>
+            </div>
+          </article>
+
+          <!-- Maya Khurana -->
+          <article class="seat" aria-label="Entry by Maya Khurana">
+            <div class="seat-top">
+              <div class="seat-avatar" style="background:#EDE8F2;color:#5B3A52;" aria-hidden="true">MK</div>
+              <div class="seat-identity">
+                <div class="seat-name">Maya Khurana</div>
+                <div class="seat-role">Compliance officer — regional bank, Midwest</div>
+                <span class="seat-field">Cybersecurity</span>
+              </div>
+            </div>
+
+            <p class="seat-quote">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+
+            <div class="seat-foot">
+              <span class="minds-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                38 minds changed
+              </span>
+              <span class="seat-meta"><a href="#">31 replies</a></span>
+              <span class="seat-meta">19 me-too</span>
+              <span class="seat-time">4h ago</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Row 3: Diego — full width, quieter voice, newcomer dignity -->
+        <div class="seminar-table full-row">
+          <article class="seat" aria-label="Entry by Diego Torres" style="padding:32px 36px 28px;">
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;">
+              <div>
+                <div class="seat-avatar" style="background:#EAF0E8;color:#3B5E30;width:80px;height:80px;font-size:26px;" aria-hidden="true">DT</div>
+              </div>
+              <div>
+                <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px;">
+                  <div class="seat-name">Diego Torres</div>
+                  <span class="seat-field">Biosecurity</span>
+                </div>
+                <div class="seat-role" style="margin-bottom:18px;">High-school chemistry teacher — public school, Texas</div>
+                <p class="seat-quote" style="margin-bottom:20px;">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+                <div class="seat-foot" style="border-top:1px solid var(--line-soft);padding-top:18px;">
+                  <span class="minds-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    28 thanks
+                  </span>
+                  <span class="seat-meta"><a href="#">11 drafting answers</a></span>
+                  <span class="seat-meta" style="color:var(--plum);font-weight:600;">new voice</span>
+                  <span class="seat-time">6h ago</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div><!-- /wrap -->
+    </section>
+
+    <!-- ── House rule pull ─────────────────────────────────────── -->
+    <div class="wrap">
+      <section class="rule" aria-label="House rule">
+        <div class="rule-decoration" aria-hidden="true"></div>
+        <blockquote>"Reputation here is the number of people you have genuinely caused to change their mind."</blockquote>
+        <div class="rule-src">House rule no. 2 · The Lobby</div>
+      </section>
+    </div>
+
+    <!-- ── About / manifesto ───────────────────────────────────── -->
+    <div class="wrap">
+      <section id="about" class="manifesto" aria-label="About DocketField">
+        <div class="manifesto-left">
+          <h2>Not a PhD hangout. <em>A working room.</em></h2>
+        </div>
+        <div class="manifesto-right">
+          <p>DocketField is the open record universities already use as the working-group backbone for the disciplines they teach. It is a slow, serious room that runs across twenty fields — where practitioners come to think out loud, and where the conversation stays on the record.</p>
+          <p><strong>Anyone can read, anyone can post.</strong> Eight dollars a month, no application, no credential check. A freight driver's loading-dock observation can outrank a tenured analyst's desk model — because the question here is never <em>who are you</em>, it's <em>does this hold up.</em></p>
+          <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only standing that compounds is whether the people who read you walked away thinking differently than they arrived.</p>
+          <a href="../index.html" class="manifesto-cta">Pull up a chair → enter The Lobby</a>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="wrap" role="contentinfo">
+    <span class="mark">DocketField</span>
+    <span>D36 — Seminar · portrait-led, salon register</span>
+    <a href="../index.html">← all directions</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D29 Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D29 · LEDGER
+     Lineage: Edward Tufte · scientific lab notebook · typeset
+     financial ledger · FRED economic data done elegantly.
+     Thesis: DocketField AS a beautiful archival register —
+     light, tabular, precise, permanent. The community home is
+     a lovingly-typeset RECORD. Hairline rules. Monospace figures
+     in alignment. A journal-style nameplate. Footnote annotations.
+     Palette: warm bone-paper ground, single oxblood accent
+     reserved for live state + the one metric that matters.
+     ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --ground:      #F7F5F0;   /* warm bone-paper */
+    --panel:       #FFFFFF;
+    --ink:         #1A1A17;
+    --muted:       #6B6760;
+    --faint:       #9B9792;
+    --hair:        #DAD6CC;   /* hairline rules */
+    --hair-light:  #EAE6DF;
+    --oxblood:     #7B2D26;   /* single accent: live + minds-changed only */
+    --oxblood-bg:  #F5EDEC;
+    --r:           2px;       /* minimal radius — archival, not digital-bubbly */
+
+    --font-body:   'Spectral', Georgia, serif;
+    --font-mono:   'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+  body {
+    font-family: var(--font-body);
+    background: var(--ground);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible {
+    outline: 2px solid var(--oxblood);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+  ::selection { background: var(--oxblood-bg); }
+
+  /* ── layout ───────────────────────────────────── */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 760px) { .wrap { padding: 0 22px; } }
+
+  /* ─────────────────────────────────────────────
+     NAMEPLATE / MASTHEAD
+     The platform name rendered like a journal's
+     masthead — ruled, typeset, declared.
+  ───────────────────────────────────────────────*/
+  .nameplate {
+    border-bottom: 2px solid var(--ink);
+    background: var(--panel);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nameplate-inner {
+    display: flex; align-items: stretch;
+    height: 60px;
+  }
+  /* Journal title block — left anchor */
+  .np-brand {
+    display: flex; align-items: baseline; gap: 0;
+    padding-right: 24px;
+    border-right: 1px solid var(--hair);
+    align-self: center;
+  }
+  .np-brand .mark {
+    font-family: var(--font-body);
+    font-weight: 600; font-size: 21px;
+    letter-spacing: -0.01em;
+  }
+  /* Dateline / descriptor — sits beside brand like a journal's vol/issue */
+  .np-meta {
+    display: flex; align-items: center;
+    padding-left: 24px;
+    font-family: var(--font-mono);
+    font-size: 10.5px; color: var(--muted);
+    letter-spacing: 0.02em; gap: 20px;
+    flex: 1;
+  }
+  .np-meta .sep { color: var(--hair); }
+  /* nav right-hand cluster */
+  .np-nav {
+    display: flex; align-items: center; gap: 24px;
+    padding-left: 24px; border-left: 1px solid var(--hair);
+  }
+  .np-nav a {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    transition: color 140ms;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  .np-nav a:hover { color: var(--ink); }
+  .np-nav .join {
+    background: var(--ink); color: var(--panel);
+    padding: 9px 18px; border-radius: var(--r);
+    font-size: 11px; font-weight: 600;
+    transition: background 140ms;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  .np-nav .join:hover { background: var(--oxblood); }
+  @media (max-width: 900px) {
+    .np-meta .np-vol { display: none; }
+    .np-meta .sep:first-of-type { display: none; }
+  }
+  @media (max-width: 760px) {
+    .np-meta { display: none; }
+    .np-nav a:not(.join) { display: none; }
+    .np-brand { padding-right: 16px; }
+    .np-nav { padding-left: 16px; }
+  }
+
+  /* ─────────────────────────────────────────────
+     SURFACE SWITCHER
+  ───────────────────────────────────────────────*/
+
+  /* ─────────────────────────────────────────────
+     MASTHEAD / DECLARATION
+     Full-width typeset statement — the journal's
+     editorial declaration on the front page.
+  ───────────────────────────────────────────────*/
+  .declaration {
+    padding: 52px 0 0;
+    border-bottom: 1px solid var(--hair);
+    margin-bottom: 0;
+  }
+  .decl-rule {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .decl-rule::after {
+    content: ''; flex: 1; height: 1px; background: var(--hair);
+  }
+  .decl-h1 {
+    font-family: var(--font-body); font-weight: 500;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.06; letter-spacing: -0.018em;
+    max-width: 18ch; margin-bottom: 26px;
+  }
+  .decl-h1 em { font-style: italic; }
+  .decl-body {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    padding-bottom: 48px;
+  }
+  .decl-lede {
+    font-family: var(--font-body); font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.6; color: var(--muted); max-width: 52ch;
+  }
+  .decl-lede em { font-style: italic; color: var(--ink); }
+  /* Register summary — tabular figures, right column */
+  .decl-summary {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--hair); border-radius: var(--r);
+    background: var(--panel); overflow: hidden;
+    align-self: start;
+  }
+  .decl-summary-head {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); padding: 10px 20px;
+    border-bottom: 1px solid var(--hair);
+    background: var(--ground);
+  }
+  .sum-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: baseline; padding: 10px 20px;
+    border-bottom: 1px solid var(--hair-light);
+    gap: 24px;
+  }
+  .sum-row:last-child { border-bottom: none; }
+  .sum-row .sum-label {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--muted); letter-spacing: 0.02em;
+  }
+  .sum-row .sum-val {
+    font-family: var(--font-mono); font-size: 14px;
+    font-weight: 600; color: var(--ink); text-align: right;
+    white-space: nowrap;
+  }
+  .sum-row .sum-val.live { color: var(--oxblood); }
+  @media (max-width: 760px) {
+    .decl-body { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ─────────────────────────────────────────────
+     FIELD REGISTER
+     20 fields rendered as a typeset table —
+     field code, full name, live activity.
+  ───────────────────────────────────────────────*/
+  .field-register { margin: 48px 0; }
+  .register-head {
+    display: grid;
+    grid-template-columns: 64px 1fr 120px 100px;
+    gap: 0; padding: 8px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--hair);
+    margin-bottom: 0;
+  }
+  .register-head span {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .register-head .col-right { text-align: right; }
+  .register-head .col-center { text-align: center; }
+
+  .field-table { width: 100%; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 120px 100px;
+    gap: 0;
+    border-bottom: 1px solid var(--hair-light);
+    padding: 9px 0;
+    transition: background 130ms;
+    cursor: default;
+  }
+  .field-row:hover { background: var(--panel); }
+  .field-row .f-code {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--faint); letter-spacing: 0.06em;
+    padding-top: 2px;
+  }
+  .field-row .f-name {
+    font-family: var(--font-body); font-size: 14.5px;
+    font-weight: 400; color: var(--ink); letter-spacing: -0.003em;
+  }
+  .field-row .f-count {
+    font-family: var(--font-mono); font-size: 11.5px;
+    color: var(--muted); text-align: center;
+  }
+  .field-row .f-live {
+    font-family: var(--font-mono); font-size: 11px;
+    text-align: right; font-weight: 500;
+    color: var(--oxblood);
+  }
+  .field-row .f-live.quiet { color: var(--faint); }
+  .field-row .f-live .pip {
+    display: inline-block; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--oxblood);
+    margin-right: 5px; vertical-align: middle;
+    margin-bottom: 1px;
+  }
+  @media (max-width: 640px) {
+    .register-head,
+    .field-row {
+      grid-template-columns: 52px 1fr 80px;
+    }
+    .register-head .col-right:last-child,
+    .field-row .f-live { display: none; }
+  }
+
+  /* ─────────────────────────────────────────────
+     ENTRY LEDGER
+     The five voices rendered as a ledger with
+     entry numbers, tabular columns, hairline rules,
+     generous leading. The record made beautiful.
+  ───────────────────────────────────────────────*/
+  .ledger-section { margin: 56px 0 0; }
+
+  /* Column header row */
+  .ledger-cols {
+    display: grid;
+    grid-template-columns: 40px 80px 200px 1fr 120px 72px;
+    gap: 0; padding: 8px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--hair);
+  }
+  .ledger-cols span {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .ledger-cols .lc-right { text-align: right; }
+
+  /* Individual ledger entry */
+  .ledger-entry {
+    border-bottom: 1px solid var(--hair);
+    padding: 32px 0 28px;
+  }
+  /* The main row — tabular columns */
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 40px 80px 200px 1fr 120px 72px;
+    gap: 0; align-items: start;
+    margin-bottom: 20px;
+  }
+  .le-num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--faint); padding-top: 3px;
+    letter-spacing: 0.02em;
+  }
+  .le-field {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--muted); padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+  .le-contributor {
+    padding-right: 16px;
+  }
+  .le-contributor .le-name {
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 15px; letter-spacing: -0.005em;
+    color: var(--ink); line-height: 1.2;
+  }
+  .le-contributor .le-role {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--muted); margin-top: 4px;
+    letter-spacing: 0.01em; line-height: 1.5;
+  }
+  /* The actual text — the meat of the entry */
+  .le-text {
+    font-family: var(--font-body); font-size: 18px;
+    line-height: 1.62; color: var(--ink);
+    padding-right: 32px;
+  }
+  .le-text em { font-style: italic; }
+  /* Minds changed — oxblood, right-aligned, tabular */
+  .le-minds {
+    text-align: right; padding-top: 3px;
+  }
+  .le-minds .minds-fig {
+    font-family: var(--font-mono); font-size: 15px;
+    font-weight: 600; color: var(--oxblood);
+    display: block; line-height: 1;
+  }
+  .le-minds .minds-label {
+    font-family: var(--font-mono); font-size: 9px;
+    color: var(--muted); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-top: 3px;
+    display: block;
+  }
+  /* Age / timestamp */
+  .le-age {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--faint); text-align: right; padding-top: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Footnote-style annotations beneath the entry text */
+  .le-footnotes {
+    padding-left: calc(40px + 80px + 200px); /* indent to text column */
+    display: flex; gap: 24px; flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .le-fn {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--muted); letter-spacing: 0.01em;
+  }
+  .le-fn::before {
+    content: '†'; margin-right: 5px; color: var(--faint);
+  }
+  .le-fn a { border-bottom: 1px solid var(--hair); transition: border-color 140ms, color 140ms; }
+  .le-fn a:hover { color: var(--ink); border-color: var(--muted); }
+
+  /* Reply — filed like a marginal annotation */
+  .le-reply {
+    padding-left: calc(40px + 80px + 200px);
+    margin-top: 22px;
+  }
+  .le-reply-inner {
+    border-left: 2px solid var(--hair);
+    padding-left: 20px;
+  }
+  .le-reply-head {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--muted); margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .le-reply-head b { color: var(--ink); font-weight: 600; }
+  .le-reply-head .arc { color: var(--faint); }
+  .le-reply-text {
+    font-family: var(--font-body); font-size: 16px;
+    line-height: 1.58; color: var(--muted);
+  }
+  .le-reply-text em { font-style: italic; color: var(--ink); }
+
+  /* Ledger total / summary row */
+  .ledger-total {
+    display: grid;
+    grid-template-columns: 40px 80px 200px 1fr 120px 72px;
+    gap: 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .ledger-total .lt-label {
+    grid-column: 1 / 4;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .ledger-total .lt-note {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--muted); font-style: italic;
+  }
+  .ledger-total .lt-total {
+    font-family: var(--font-mono); font-size: 13px;
+    font-weight: 600; color: var(--oxblood); text-align: right;
+  }
+  .ledger-total .lt-age {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--faint); text-align: right;
+  }
+
+  @media (max-width: 880px) {
+    .ledger-cols,
+    .ledger-row,
+    .ledger-total {
+      grid-template-columns: 36px 72px 160px 1fr 100px;
+    }
+    .ledger-cols .lc-right:last-child,
+    .ledger-row .le-age,
+    .ledger-total .lt-age { display: none; }
+    .le-footnotes,
+    .le-reply { padding-left: calc(36px + 72px + 160px); }
+  }
+  @media (max-width: 640px) {
+    .ledger-cols,
+    .ledger-row,
+    .ledger-total {
+      grid-template-columns: 1fr;
+      display: block;
+    }
+    .le-footnotes,
+    .le-reply { padding-left: 0; }
+    .le-minds { text-align: left; margin-top: 12px; }
+    .le-minds .minds-fig { display: inline; font-size: 13px; }
+    .le-minds .minds-label { display: inline; margin-left: 6px; font-size: 9px; }
+    .le-age { text-align: left; }
+    .le-num,
+    .le-field { display: inline; margin-right: 8px; }
+    .le-text { font-size: 16px; margin-top: 10px; }
+    .ledger-cols { display: none; }
+    .ledger-total { display: block; padding: 10px 0; }
+    .ledger-total .lt-label { display: block; margin-bottom: 4px; }
+  }
+
+  /* ─────────────────────────────────────────────
+     HOUSE RULE PULL — set like a ledger footnote
+     at the bottom of the register page.
+  ───────────────────────────────────────────────*/
+  .rule-pull {
+    margin: 72px 0;
+    padding: 56px 0;
+    border-top: 1px solid var(--hair);
+    border-bottom: 1px solid var(--hair);
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px;
+    align-items: center;
+  }
+  .rule-pull .rp-label {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    line-height: 2.2;
+  }
+  .rule-pull blockquote {
+    font-family: var(--font-body); font-style: italic;
+    font-size: clamp(22px, 3.2vw, 34px); line-height: 1.3;
+    letter-spacing: -0.012em; color: var(--ink);
+    font-weight: 400;
+  }
+  @media (max-width: 640px) {
+    .rule-pull { grid-template-columns: 1fr; gap: 22px; padding: 40px 0; }
+  }
+
+  /* ─────────────────────────────────────────────
+     ABOUT / MANIFESTO — editorial statement,
+     typeset like the journal's colophon.
+  ───────────────────────────────────────────────*/
+  .colophon {
+    display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px;
+    padding-bottom: 96px; align-items: start;
+  }
+  .colophon-head {
+    position: sticky; top: 80px;
+  }
+  .colophon-head h2 {
+    font-family: var(--font-body); font-weight: 500;
+    font-size: clamp(26px, 3.2vw, 38px); line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+  .colophon-head h2 em { font-style: italic; }
+  .colophon-rule {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 18px;
+  }
+  .colophon-body p {
+    font-family: var(--font-body); font-size: 17px;
+    line-height: 1.72; color: var(--muted);
+  }
+  .colophon-body p + p { margin-top: 18px; }
+  .colophon-body strong { color: var(--ink); font-weight: 600; }
+  .colophon-body em { font-style: italic; color: var(--ink); }
+  .colophon-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 32px;
+    background: var(--ink); color: var(--panel);
+    padding: 13px 22px; border-radius: var(--r);
+    font-family: var(--font-mono); font-size: 12px;
+    font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: background 150ms;
+    min-height: 44px;
+  }
+  .colophon-cta:hover { background: var(--oxblood); }
+  @media (max-width: 760px) {
+    .colophon { grid-template-columns: 1fr; gap: 28px; }
+    .colophon-head { position: static; }
+  }
+
+  /* ─────────────────────────────────────────────
+     FOOTER — the journal's colophon / imprint
+  ───────────────────────────────────────────────*/
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 24px 0 64px;
+  }
+  .footer-inner {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-brand {
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 16px; color: var(--ink);
+  }
+  .footer-meta {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--muted); letter-spacing: 0.04em;
+  }
+  .footer-links {
+    display: flex; gap: 24px;
+  }
+  .footer-links a {
+    font-family: var(--font-mono); font-size: 10.5px;
+    color: var(--muted); letter-spacing: 0.04em;
+    transition: color 140ms;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ─────────────────────────────────────────────
+     UTILITY
+  ───────────────────────────────────────────────*/
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── NAMEPLATE ─────────────────────────────────────────── -->
+  <header class="nameplate" role="banner">
+    <div class="wrap nameplate-inner">
+      <div class="np-brand">
+        <span class="mark">DocketField</span>
+      </div>
+      <div class="np-meta">
+        <span class="np-vol">An open record across twenty fields</span>
+        <span class="sep">·</span>
+        <span>Vol. I, 2026</span>
+        <span class="sep">·</span>
+        <span>312 contributors</span>
+      </div>
+      <nav class="np-nav" aria-label="Primary navigation">
+        <a href="#register">Register</a>
+        <a href="#fields">Fields</a>
+        <a href="#about">About</a>
+        <a href="../index.html" class="join">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- surface switcher -->
+      <!-- ── DECLARATION / MASTHEAD ─────────────────────────── -->
+      <section class="declaration" aria-labelledby="decl-heading">
+        <div class="decl-rule">The Lobby · open record</div>
+        <h1 class="decl-h1" id="decl-heading">A working record for serious questions — open to <em>anyone</em> with something real to add.</h1>
+        <div class="decl-body">
+          <p class="decl-lede">Practitioners across twenty disciplines think out loud here. A truck driver opens a thread; a quantum researcher answers in kind. The only standing that compounds is the number of minds you have <em>genuinely caused to change.</em></p>
+          <!-- Register summary — tabular figures -->
+          <div class="decl-summary" role="region" aria-label="Platform summary">
+            <div class="decl-summary-head">Register summary</div>
+            <div class="sum-row">
+              <span class="sum-label">Active contributors</span>
+              <span class="sum-val">312</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-label">Fields of record</span>
+              <span class="sum-val">20</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-label">Membership</span>
+              <span class="sum-val">$8.00 / month</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-label">Credential requirement</span>
+              <span class="sum-val">None</span>
+            </div>
+            <div class="sum-row">
+              <span class="sum-label">Active threads right now</span>
+              <span class="sum-val live">47 live</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FIELD REGISTER ─────────────────────────────────── -->
+      <section id="fields" class="field-register" aria-labelledby="fields-heading">
+        <h2 class="visually-hidden" id="fields-heading">Field register</h2>
+        <div class="register-head" role="row">
+          <span>Code</span>
+          <span>Field</span>
+          <span class="col-center">Active today</span>
+          <span class="col-right">Status</span>
+        </div>
+        <div class="field-table" role="table" aria-label="Fields of record">
+          <div class="field-row" role="row"><span class="f-code">SPC</span><span class="f-name">Space</span><span class="f-count">9 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>3 hot</span></div>
+          <div class="field-row" role="row"><span class="f-code">AI</span><span class="f-name">Artificial Intelligence</span><span class="f-count">7 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>2 hot</span></div>
+          <div class="field-row" role="row"><span class="f-code">CYB</span><span class="f-name">Cybersecurity</span><span class="f-count">6 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>1 hot</span></div>
+          <div class="field-row" role="row"><span class="f-code">DEF</span><span class="f-name">Defense</span><span class="f-count">5 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>1 hot</span></div>
+          <div class="field-row" role="row"><span class="f-code">GEO</span><span class="f-name">Geopolitics</span><span class="f-count">5 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>1 hot</span></div>
+          <div class="field-row" role="row"><span class="f-code">QNT</span><span class="f-name">Quantum</span><span class="f-count">4 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>live</span></div>
+          <div class="field-row" role="row"><span class="f-code">SCH</span><span class="f-name">Supply Chain</span><span class="f-count">4 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>live</span></div>
+          <div class="field-row" role="row"><span class="f-code">NUC</span><span class="f-name">Nuclear</span><span class="f-count">3 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>live</span></div>
+          <div class="field-row" role="row"><span class="f-code">BIO</span><span class="f-name">Biosecurity</span><span class="f-count">3 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>live</span></div>
+          <div class="field-row" role="row"><span class="f-code">ROB</span><span class="f-name">Robotics</span><span class="f-count">3 threads</span><span class="f-live"><span class="pip" aria-hidden="true"></span>live</span></div>
+          <div class="field-row" role="row"><span class="f-code">ENE</span><span class="f-name">Energy</span><span class="f-count">2 threads</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">MAT</span><span class="f-name">Materials</span><span class="f-count">2 threads</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">PH</span><span class="f-name">Public Health</span><span class="f-count">2 threads</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">SEM</span><span class="f-name">Semiconductors</span><span class="f-count">3 threads</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">GEN</span><span class="f-name">Genomics</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">MAR</span><span class="f-name">Maritime</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">AUT</span><span class="f-name">Autonomy</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">MFG</span><span class="f-name">Manufacturing</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">SYN</span><span class="f-name">Synthetic Biology</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+          <div class="field-row" role="row"><span class="f-code">PHA</span><span class="f-name">Pharmaceuticals</span><span class="f-count">1 thread</span><span class="f-live quiet">open</span></div>
+        </div>
+      </section>
+
+      <!-- ── ENTRY LEDGER ───────────────────────────────────── -->
+      <section id="register" class="ledger-section" aria-labelledby="ledger-heading">
+        <h2 class="visually-hidden" id="ledger-heading">Five entries worth reading right now</h2>
+
+        <!-- Column headers -->
+        <div class="ledger-cols" role="row" aria-hidden="true">
+          <span>No.</span>
+          <span>Field</span>
+          <span>Contributor</span>
+          <span>Entry</span>
+          <span class="lc-right">Minds changed</span>
+          <span class="lc-right">Age</span>
+        </div>
+
+        <!-- Entry 001 — Sam Ahmadi / Quantum -->
+        <article class="ledger-entry" aria-labelledby="entry-001-name">
+          <div class="ledger-row">
+            <span class="le-num">001</span>
+            <span class="le-field">QNT</span>
+            <div class="le-contributor">
+              <div class="le-name" id="entry-001-name">Sam Ahmadi</div>
+              <div class="le-role">Freight driver<br>Route-13 logistics,<br>Eastern Seaboard</div>
+            </div>
+            <p class="le-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+            <div class="le-minds">
+              <span class="minds-fig">47</span>
+              <span class="minds-label">minds changed</span>
+            </div>
+            <span class="le-age">2h ago</span>
+          </div>
+
+          <!-- Footnote annotations -->
+          <div class="le-footnotes">
+            <span class="le-fn"><a href="#">23 replies</a></span>
+            <span class="le-fn"><a href="#">pinned by 8 stewards</a></span>
+          </div>
+
+          <!-- Reply — marginal annotation style -->
+          <div class="le-reply">
+            <div class="le-reply-inner">
+              <div class="le-reply-head">
+                <b>Alex Patel</b>
+                <span class="arc"> — Quantum researcher, Brookhaven · replying to this entry</span>
+              </div>
+              <p class="le-reply-text">Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Entry 002 — Maya Khurana / Cybersecurity -->
+        <article class="ledger-entry" aria-labelledby="entry-002-name">
+          <div class="ledger-row">
+            <span class="le-num">002</span>
+            <span class="le-field">CYB</span>
+            <div class="le-contributor">
+              <div class="le-name" id="entry-002-name">Maya Khurana</div>
+              <div class="le-role">Compliance officer<br>Regional bank,<br>Midwest</div>
+            </div>
+            <p class="le-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+            <div class="le-minds">
+              <span class="minds-fig">38</span>
+              <span class="minds-label">minds changed</span>
+            </div>
+            <span class="le-age">4h ago</span>
+          </div>
+          <div class="le-footnotes">
+            <span class="le-fn"><a href="#">31 replies</a></span>
+            <span class="le-fn"><a href="#">19 me-too</a></span>
+          </div>
+        </article>
+
+        <!-- Entry 003 — Diego Torres / Biosecurity -->
+        <article class="ledger-entry" aria-labelledby="entry-003-name">
+          <div class="ledger-row">
+            <span class="le-num">003</span>
+            <span class="le-field">BIO</span>
+            <div class="le-contributor">
+              <div class="le-name" id="entry-003-name">Diego Torres</div>
+              <div class="le-role">High-school chemistry<br>teacher — public school,<br>Texas</div>
+            </div>
+            <p class="le-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+            <div class="le-minds">
+              <span class="minds-fig">28</span>
+              <span class="minds-label">thanks</span>
+            </div>
+            <span class="le-age">6h ago</span>
+          </div>
+          <div class="le-footnotes">
+            <span class="le-fn"><a href="#">11 drafting answers</a></span>
+            <span class="le-fn">new voice</span>
+          </div>
+        </article>
+
+        <!-- Entry 004 — Jess Oduya / Defense -->
+        <article class="ledger-entry" aria-labelledby="entry-004-name">
+          <div class="ledger-row">
+            <span class="le-num">004</span>
+            <span class="le-field">DEF</span>
+            <div class="le-contributor">
+              <div class="le-name" id="entry-004-name">Jess Oduya</div>
+              <div class="le-role">Former Treasury analyst<br>at home with<br>three kids</div>
+            </div>
+            <p class="le-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things no one has flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+            <div class="le-minds">
+              <span class="minds-fig">56</span>
+              <span class="minds-label">minds changed</span>
+            </div>
+            <span class="le-age">yesterday</span>
+          </div>
+          <div class="le-footnotes">
+            <span class="le-fn"><a href="#">18 replies</a></span>
+            <span class="le-fn"><a href="#">14 asked her to write it up</a></span>
+          </div>
+        </article>
+
+        <!-- Ledger total / summary row -->
+        <div class="ledger-total" role="row" aria-label="Ledger summary">
+          <span class="lt-label">Showing 4 of 47 active entries · ranked by minds changed, not recency</span>
+          <span class="lt-note">Five-contributor consensus governs mutes</span>
+          <span class="lt-total">169 total</span>
+          <span class="lt-age">live</span>
+        </div>
+
+      </section>
+
+      <!-- ── HOUSE RULE ─────────────────────────────────────── -->
+      <div class="rule-pull" role="region" aria-label="House rule">
+        <div class="rp-label">
+          House rule no. 2<br>
+          The Lobby<br>
+          DocketField
+        </div>
+        <blockquote>"Reputation here is the number of people you have genuinely caused to change their mind."</blockquote>
+      </div>
+
+      <!-- ── COLOPHON / ABOUT ───────────────────────────────── -->
+      <section id="about" class="colophon" aria-labelledby="colophon-heading">
+        <div class="colophon-head">
+          <div class="colophon-rule">About this record</div>
+          <h2 id="colophon-heading">Not a PhD hangout.<br><em>A working room.</em></h2>
+        </div>
+        <div class="colophon-body">
+          <p>DocketField is the open record that universities already use as the working-group backbone for the disciplines they teach. The Lobby is its front door — a slow, serious room where practitioners across twenty fields come to think out loud, and where the conversation stays on the record.</p>
+          <p><strong>Anyone can read, anyone can post.</strong> Eight dollars a month, no application, no credential check. A truck driver's loading-dock observation can outrank a tenured analyst's desk model — because here the question is never <em>who are you</em>, it is <em>does this hold up.</em></p>
+          <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only thing that compounds is whether the people who read you walked away thinking differently than they arrived.</p>
+          <a href="../index.html" class="colophon-cta">Enter the register →</a>
+        </div>
+      </section>
+
+    </div><!-- /wrap -->
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-brand">DocketField</span>
+      <span class="footer-meta">D29 — Ledger · archival register direction</span>
+      <div class="footer-links">
+        <a href="../index.html">← all directions</a>
+        <a href="../index.html">Sign in / Join</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

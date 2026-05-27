@@ -74,6 +74,21 @@
     .ftile-go.is-primary:hover { background: var(--indigo); border-color: var(--indigo); color: #fff; }
     .ftile-twoviews { font-size: 11.5px; color: var(--muted); margin-left: 2px; }
 
+    /* round 5 — ten directions, palette-swatch tiles */
+    .r5-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .r5 { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: transform 160ms, box-shadow 160ms, border-color 160ms; }
+    .r5:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -26px rgba(20,24,31,0.30); }
+    .r5-swatch { height: 60px; display: flex; }
+    .r5-swatch span { flex: 1; }
+    .r5-body { padding: 18px 22px 20px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+    .r5-id { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .r5-name { font-family: 'Newsreader', serif; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    .r5-school { font-size: 12.5px; color: var(--indigo); font-weight: 500; }
+    .r5-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; margin-top: 3px; flex: 1; }
+    .r5-go { margin-top: 15px; align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.02em; padding: 8px 14px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink-soft); transition: all 140ms; }
+    .r5-go:hover { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-bg); }
+    @media (max-width: 680px) { .r5-grid { grid-template-columns: 1fr; } }
+
     /* per-direction preview flavor */
     .pv-obs { background: #FBFCFD; }
     .pv-obs .pv-mark { font-family: 'Newsreader', serif; font-size: 30px; font-weight: 600; letter-spacing: -0.01em; color: #14181F; }
@@ -109,13 +124,14 @@
     /* archive list */
     .sketch-note { border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin-bottom: 22px; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
     .sketches { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-    .sketches a.s-row { background: var(--card); padding: 16px 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; transition: background 120ms; }
-    .sketches a.s-row:hover { background: var(--indigo-bg); }
+    .sketches .s-row { background: var(--card); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .s-meta { display: flex; align-items: baseline; gap: 12px; }
     .s-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; width: 30px; }
     .s-name { font-size: 14.5px; font-weight: 500; }
     .s-desc { font-size: 12.5px; color: var(--muted); }
-    .s-links { display: flex; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .s-links { display: flex; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; flex-shrink: 0; }
+    .s-links a { padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); letter-spacing: 0.02em; transition: all 130ms; }
+    .s-links a:hover { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-bg); }
 
     /* foot */
     .foot { padding: 38px 0 56px; border-top: 1px solid var(--line); margin-top: 56px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.03em; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; }
@@ -140,9 +156,9 @@
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Round 4 · the serious-intellectual register</div>
-      <h1 class="title">Three directions for a record <em>universities and serious minds</em> would actually choose.</h1>
-      <p class="lede">Earlier rounds missed in both directions. The first three "polished" directions were three colorways of one generic-SaaS school. The five wildcards over-corrected into magazine and zine territory — wrong for a platform built for university working groups and practitioners. <strong>This round targets the register serious intellectual products actually live in</strong> — Quanta, Distill, Anthropic, Stripe Press, Linear, Are.na. Three genuinely distinct lineages, no shared typeface, palette, or layout logic, all rendering the same loading-dock story so the differences are real.</p>
+      <div class="eyebrow">Round 5 · thirteen directions in the serious register</div>
+      <h1 class="title">Thirteen directions for a record <em>universities and serious minds</em> would actually choose.</h1>
+      <p class="lede">Every direction here lives in the register serious intellectual products actually occupy — Quanta, Distill, Anthropic, Stripe Press, Linear, Are.na. No generic-SaaS sameness, no cream-and-rust legal feel, no magazine kitsch. <strong>Ten new directions this round</strong>, each its own distinct lineage — archival register, architectural calm, ideas quarterly, technical doc, Swiss directory, institutional authority, dark reading-room, round-table, reference almanac, book imprint — built through a full multi-agent design pass and reviewed against WCAG contrast and craft axes. Below them, the three earlier candidates already developed to two views each. Same five-voice loading-dock story throughout, so the only variable is the design.</p>
     </div>
   </header>
 
@@ -150,7 +166,133 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow feature-eyebrow">★ Round 4 · the real candidates</div>
+          <div class="section-eyebrow feature-eyebrow">★ Round 5 · ten new directions</div>
+          <h2>Ten more, each its own world</h2>
+        </div>
+        <div class="section-count">10 directions · community-home surface · pick one and it gets the full two-view build</div>
+      </div>
+
+      <div class="r5-grid">
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#F7F5F0"></span><span style="background:#DAD6CC"></span><span style="background:#7B2D26"></span><span style="background:#1A1A17"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D29 · Ledger</div>
+            <div class="r5-name">Ledger</div>
+            <div class="r5-school">archival register · Tufte / lab notebook</div>
+            <p class="r5-desc">The record made beautiful — tabular ledger rows with hairline rules and monospace figures, a single oxblood reserved for the minds-changed count.</p>
+            <a class="r5-go" href="d29-ledger/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#ECEAE4"></span><span style="background:#FFFFFF"></span><span style="background:#3A5169"></span><span style="background:#1C1E22"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D30 · Atrium</div>
+            <div class="r5-name">Atrium</div>
+            <div class="r5-school">architectural calm · museum / university press</div>
+            <p class="r5-desc">Vast, confident whitespace and one slate accent — the serenity of a great university hall. Calm as the signal of seriousness.</p>
+            <a class="r5-go" href="d30-atrium/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#F4EFE6"></span><span style="background:#6A2A3A"></span><span style="background:#1C4E4A"></span><span style="background:#211C18"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D31 · Quarterly</div>
+            <div class="r5-name">Quarterly</div>
+            <div class="r5-school">ideas quarterly · Works in Progress / Asterisk</div>
+            <p class="r5-desc">A literary cover-story lead with a drop-cap and a contents list — the community framed as an intelligent ideas quarterly.</p>
+            <a class="r5-go" href="d31-quarterly/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#FAFAF8"></span><span style="background:#E6E7EA"></span><span style="background:#2563EB"></span><span style="background:#16181D"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D32 · Terminal</div>
+            <div class="r5-name">Terminal</div>
+            <div class="r5-school">technical document · RFC / dev-tool doc</div>
+            <p class="r5-desc">Light monospace, section-numbered — rigor signaled typographically. None of the dark or the brutalism the look usually drags in.</p>
+            <a class="r5-go" href="d32-terminal/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#FFFFFF"></span><span style="background:#ECECEC"></span><span style="background:#CE2A14"></span><span style="background:#0E0E10"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D33 · Atlas</div>
+            <div class="r5-name">Atlas</div>
+            <div class="r5-school">Swiss directory · Müller-Brockmann</div>
+            <p class="r5-desc">A strict modular grid where the numbered 20-field directory is the centerpiece — you read the system before you read a word.</p>
+            <a class="r5-go" href="d33-atlas/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#F2F1EC"></span><span style="background:#1B2A4A"></span><span style="background:#7A5A1E"></span><span style="background:#20242C"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D34 · Institute</div>
+            <div class="r5-name">Institute</div>
+            <div class="r5-school">institutional-modern · NBER / central bank</div>
+            <p class="r5-desc">Deep-navy authority bands and measured serif — the gravitas a university already trusts, redesigned for this year.</p>
+            <a class="r5-go" href="d34-institute/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#14110E"></span><span style="background:#1C1813"></span><span style="background:#D98A4E"></span><span style="background:#ECE6DC"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D35 · Nocturne</div>
+            <div class="r5-name">Nocturne</div>
+            <div class="r5-school">dark reading-room · premium editorial</div>
+            <p class="r5-desc">Warm serif longform on a warm near-black ground — a dark reading-room at night, not a dark dashboard.</p>
+            <a class="r5-go" href="d35-nocturne/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#F3F0E9"></span><span style="background:#FFFFFF"></span><span style="background:#5B3A52"></span><span style="background:#211E1A"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D36 · Seminar</div>
+            <div class="r5-name">Seminar</div>
+            <div class="r5-school">salon / round-table · portrait-led</div>
+            <p class="r5-desc">Portrait cards arranged like people around a table — the human mix is the argument for belonging, before any copy is read.</p>
+            <a class="r5-go" href="d36-seminar/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#F5F1E8"></span><span style="background:#E2DACB"></span><span style="background:#2E5D3B"></span><span style="background:#1E1B16"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D37 · Almanac</div>
+            <div class="r5-name">Almanac</div>
+            <div class="r5-school">reference register · annual review</div>
+            <p class="r5-desc">A dense, lovingly-typeset register with a period table and marginal notes — the almanac of the fields. The opposite of an empty landing page.</p>
+            <a class="r5-go" href="d37-almanac/main.html">Open the home →</a>
+          </div>
+        </div>
+
+        <div class="r5">
+          <div class="r5-swatch"><span style="background:#15231D"></span><span style="background:#C2A14E"></span><span style="background:#F3EEE3"></span><span style="background:#ECE7DA"></span></div>
+          <div class="r5-body">
+            <div class="r5-id">D38 · Press</div>
+            <div class="r5-name">Press</div>
+            <div class="r5-school">book imprint · Stripe Press</div>
+            <p class="r5-desc">A deep book-cover ground with a gold-foil title that opens into warm paper pages — the community as a published imprint.</p>
+            <a class="r5-go" href="d38-press/main.html">Open the home →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow feature-eyebrow">★ Round 4 · developed to two views</div>
           <h2>Three serious directions</h2>
         </div>
         <div class="section-count">3 directions · 2 views each (community home + thread)</div>
@@ -240,27 +382,27 @@
       <p class="sketch-note"><strong>Round 3 (deleted):</strong> five wildcards — brutalist, editorial-maximum, riso-zine, broadsheet, pastel-atelier. Removed: wrong register for a serious intellectual platform. <strong>Round 2:</strong> three "polished" directions (D11 Lobby, D17 Margins, D20 Open Desk) that landed in one generic modern-SaaS school. <strong>Round 1:</strong> eleven paint variations on a fixed scaffold. All kept below for reference; none are live candidates.</p>
 
       <div class="sketches">
-        <a class="s-row" href="d11-lobby/main.html"><div class="s-meta"><span class="s-id">D11</span><div><div class="s-name">The Lobby</div><div class="s-desc">chat-led · modern-SaaS school</div></div></div><div class="s-links"><span>main</span><span>thread</span></div></a>
-        <a class="s-row" href="d17-margins/main.html"><div class="s-meta"><span class="s-id">D17</span><div><div class="s-name">The Margins</div><div class="s-desc">source annotation</div></div></div><div class="s-links"><span>main</span><span>library</span></div></a>
-        <a class="s-row" href="d20-open-desk/main.html"><div class="s-meta"><span class="s-id">D20</span><div><div class="s-name">Open Desk</div><div class="s-desc">wiki-meets-forum</div></div></div><div class="s-links"><span>main</span><span>contributor</span></div></a>
-        <a class="s-row" href="d12-stack/main.html"><div class="s-meta"><span class="s-id">D12</span><div><div class="s-name">The Stack</div><div class="s-desc">collaborative living pages</div></div></div><div class="s-links"><span>main</span><span>map</span></div></a>
-        <a class="s-row" href="d13-dispatch/main.html"><div class="s-meta"><span class="s-id">D13</span><div><div class="s-name">The Dispatch</div><div class="s-desc">chronological daily feed</div></div></div><div class="s-links"><span>main</span><span>channel</span></div></a>
-        <a class="s-row" href="d14-board/main.html"><div class="s-meta"><span class="s-id">D14</span><div><div class="s-name">The Boards</div><div class="s-desc">visual mixed-media curation</div></div></div><div class="s-links"><span>main</span><span>board</span></div></a>
-        <a class="s-row" href="d15-pile/main.html"><div class="s-meta"><span class="s-id">D15</span><div><div class="s-name">The Pile</div><div class="s-desc">Q&amp;A crowd-ranked</div></div></div><div class="s-links"><span>main</span><span>question</span></div></a>
-        <a class="s-row" href="d16-cinema/main.html"><div class="s-meta"><span class="s-id">D16</span><div><div class="s-name">The Cinema</div><div class="s-desc">long-form conversations</div></div></div><div class="s-links"><span>main</span><span>watch</span></div></a>
-        <a class="s-row" href="d18-almanac/main.html"><div class="s-meta"><span class="s-id">D18</span><div><div class="s-name">The Almanac</div><div class="s-desc">fortnightly slow-web issue</div></div></div><div class="s-links"><span>main</span><span>archive</span></div></a>
-        <a class="s-row" href="d19-switchboard/main.html"><div class="s-meta"><span class="s-id">D19</span><div><div class="s-name">The Switchboard</div><div class="s-desc">live ambient activity floor</div></div></div><div class="s-links"><span>main</span><span>desk</span></div></a>
-        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep name, lose parliamentary vocab</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d1-editorial/main.html"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">think-tank · navy + gold</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d4-workshop/main.html"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d5-field-manual/main.html"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">verticals as territory</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d8-salon/main.html"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d9-wiki/main.html"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
-        <a class="s-row" href="d10-investor/main.html"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D11</span><div><div class="s-name">The Lobby</div><div class="s-desc">chat-led · modern-SaaS school</div></div></div><div class="s-links"><a href="d11-lobby/main.html">home</a><a href="d11-lobby/backend.html">thread</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D17</span><div><div class="s-name">The Margins</div><div class="s-desc">source annotation</div></div></div><div class="s-links"><a href="d17-margins/main.html">home</a><a href="d17-margins/backend.html">library</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D20</span><div><div class="s-name">Open Desk</div><div class="s-desc">wiki-meets-forum</div></div></div><div class="s-links"><a href="d20-open-desk/main.html">home</a><a href="d20-open-desk/backend.html">contributor</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D12</span><div><div class="s-name">The Stack</div><div class="s-desc">collaborative living pages</div></div></div><div class="s-links"><a href="d12-stack/main.html">home</a><a href="d12-stack/backend.html">map</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D13</span><div><div class="s-name">The Dispatch</div><div class="s-desc">chronological daily feed</div></div></div><div class="s-links"><a href="d13-dispatch/main.html">home</a><a href="d13-dispatch/backend.html">channel</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D14</span><div><div class="s-name">The Boards</div><div class="s-desc">visual mixed-media curation</div></div></div><div class="s-links"><a href="d14-board/main.html">home</a><a href="d14-board/backend.html">board</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D15</span><div><div class="s-name">The Pile</div><div class="s-desc">Q&amp;A crowd-ranked</div></div></div><div class="s-links"><a href="d15-pile/main.html">home</a><a href="d15-pile/backend.html">question</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D16</span><div><div class="s-name">The Cinema</div><div class="s-desc">long-form conversations</div></div></div><div class="s-links"><a href="d16-cinema/main.html">home</a><a href="d16-cinema/backend.html">watch</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D18</span><div><div class="s-name">The Almanac</div><div class="s-desc">fortnightly slow-web issue</div></div></div><div class="s-links"><a href="d18-almanac/main.html">home</a><a href="d18-almanac/backend.html">archive</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D19</span><div><div class="s-name">The Switchboard</div><div class="s-desc">live ambient activity floor</div></div></div><div class="s-links"><a href="d19-switchboard/main.html">home</a><a href="d19-switchboard/backend.html">desk</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep name, lose parliamentary vocab</div></div></div><div class="s-links"><a href="d0-evolve/main.html">home</a><a href="d0-evolve/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><a href="d1-editorial/main.html">home</a><a href="d1-editorial/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov</div></div></div><div class="s-links"><a href="d2-research-lab/main.html">home</a><a href="d2-research-lab/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">think-tank · navy + gold</div></div></div><div class="s-links"><a href="d3-think-tank/main.html">home</a><a href="d3-think-tank/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><a href="d4-workshop/main.html">home</a><a href="d4-workshop/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><a href="d5-field-manual/main.html">home</a><a href="d5-field-manual/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir</div></div></div><div class="s-links"><a href="d6-defense-tech/main.html">home</a><a href="d6-defense-tech/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas (old)</div><div class="s-desc">verticals as territory</div></div></div><div class="s-links"><a href="d7-cartographic/main.html">home</a><a href="d7-cartographic/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><a href="d8-salon/main.html">home</a><a href="d8-salon/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><a href="d9-wiki/main.html">home</a><a href="d9-wiki/backend.html">backend</a></div></div>
+        <div class="s-row"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><a href="d10-investor/main.html">home</a><a href="d10-investor/backend.html">backend</a></div></div>
       </div>
     </div>
   </section>

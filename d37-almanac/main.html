@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D37 Almanac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D37 · ALMANAC
+     Lineage: the annual register — a beautifully made reference book.
+     Thesis: comprehensiveness handled with elegance. Dense, warm,
+     structured. Reference-book typographic care: small caps, hairline
+     rules, running heads, marginal annotations, indexed tables.
+     The OPPOSITE of an empty landing page — this is the almanac
+     of the fields, lovingly typeset.
+     Palette: warm parchment ground · forest-ink accent · muted slate.
+     Type: Bitter (book serif, display + reading) · Inter (metadata, labels).
+     ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --parchment:   #F5F1E8;
+    --paper:       #FDFBF6;
+    --ink:         #1E1B16;
+    --ink-soft:    #3A3628;
+    --muted:       #6E665A;
+    --faint:       #9C9388;
+    --rule:        #E2DACB;
+    --rule-light:  #EDE8DC;
+    --rule-dark:   #C8BFAF;
+    --forest:      #2E5D3B;
+    --forest-dk:   #1F4229;
+    --forest-bg:   #E8F0EA;
+    --forest-line: #C0D4C5;
+    --gold-ink:    #6B5B1E;
+    --gold-bg:     #F2ECDA;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Bitter', Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--forest-bg); }
+
+  /* ── utility ──────────────────────────────────── */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+  /* Small-caps label — the almanac's typographic signature */
+  .sc {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sc-forest { color: var(--forest); }
+  .sc-ink    { color: var(--ink-soft); }
+
+  /* Hairline double-rule separator */
+  .double-rule {
+    border: none;
+    border-top: 1px solid var(--ink);
+    margin-top: 2px;
+    position: relative;
+  }
+  .double-rule::before {
+    content: '';
+    display: block;
+    border-top: 3px solid var(--ink);
+    margin-bottom: 3px;
+    margin-top: -5px;
+  }
+
+  /* Running head — the almanac-page top label */
+  .running-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-dark);
+  }
+
+  /* ── masthead ──────────────────────────────────── */
+  .masthead {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule-dark);
+    position: sticky; top: 0; z-index: 60;
+  }
+  .masthead-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 0; }
+  .brand .logotype {
+    font-family: 'Bitter', serif;
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .brand .vol-marker {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--faint);
+    margin-left: 16px; padding-left: 16px;
+    border-left: 1px solid var(--rule);
+    align-self: center;
+  }
+  .masthead-nav { display: flex; align-items: center; gap: 32px; }
+  .masthead-nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px; font-weight: 500; color: var(--muted);
+    letter-spacing: 0.04em; transition: color 140ms;
+  }
+  .masthead-nav a:hover { color: var(--forest); }
+  .masthead-nav .join {
+    color: var(--paper); background: var(--ink);
+    padding: 8px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    transition: background 140ms;
+  }
+  .masthead-nav .join:hover { background: var(--forest); }
+
+  /* focus states — AA accessible */
+  a:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 760px) {
+    .masthead-nav a:not(.join) { display: none; }
+    .brand .vol-marker { display: none; }
+  }
+
+  /* ── page layout: two-column with marginal gutter ── */
+  .almanac-body {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    align-items: start;
+  }
+  .almanac-main { min-width: 0; }
+  .almanac-margin {
+    border-left: 1px solid var(--rule);
+    padding: 0 0 0 32px;
+    position: sticky;
+    top: 60px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  @media (max-width: 1000px) {
+    .almanac-body { grid-template-columns: 1fr; }
+    .almanac-margin { display: none; }
+  }
+
+  /* ── masthead bar (below nav) — annual register header ── */
+  .register-banner {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 18px 0;
+    text-align: center;
+  }
+  .register-banner-inner {
+    display: flex; align-items: baseline; justify-content: center; gap: 48px;
+    flex-wrap: wrap;
+  }
+  .reg-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .reg-item .reg-val {
+    font-family: 'Bitter', serif;
+    font-size: 28px; font-weight: 600; line-height: 1;
+    color: #fff;
+  }
+  .reg-item .reg-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.17em;
+    text-transform: uppercase; color: #A09880;
+  }
+  .reg-divider {
+    width: 1px; height: 36px; background: #3A3628; align-self: center;
+  }
+
+  /* ── hero / volume front matter ─────────────────── */
+  .front-matter {
+    padding: 52px 0 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .front-matter .running-head { margin-bottom: 28px; }
+  .front-matter .volume-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--forest);
+    margin-bottom: 16px; display: block;
+  }
+  .front-matter h1 {
+    font-family: 'Bitter', serif;
+    font-size: clamp(36px, 4.8vw, 58px);
+    line-height: 1.07; letter-spacing: -0.01em; font-weight: 500;
+    color: var(--ink); max-width: 26ch;
+    margin-bottom: 20px;
+  }
+  .front-matter h1 em { font-style: italic; }
+  .front-matter .lede {
+    font-family: 'Bitter', serif;
+    font-size: clamp(17px, 2vw, 20px); line-height: 1.6;
+    color: var(--ink-soft); max-width: 58ch;
+    margin-bottom: 32px;
+  }
+
+  /* ── period summary table ─────────────────────── */
+  .period-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+  }
+  .period-table thead tr {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .period-table thead th {
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+    padding: 10px 14px 10px 0;
+    text-align: left;
+  }
+  .period-table thead th:first-child { padding-left: 0; }
+  .period-table tbody tr {
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 130ms;
+  }
+  .period-table tbody tr:hover { background: var(--paper); }
+  .period-table td {
+    padding: 9px 14px 9px 0;
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  .period-table td:first-child { padding-left: 0; }
+  .period-table .field-nm {
+    font-family: 'Bitter', serif;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    white-space: nowrap;
+  }
+  .period-table .activity-bar {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .period-table .bar-track {
+    width: 80px; height: 4px; background: var(--rule);
+    border-radius: 2px; overflow: hidden;
+    flex-shrink: 0;
+  }
+  .period-table .bar-fill {
+    height: 100%; background: var(--forest); border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .period-table .bar-val {
+    font-size: 11px; color: var(--muted); min-width: 32px;
+  }
+  .period-table .status-live {
+    display: inline-flex; align-items: center; gap: 5px;
+    color: var(--forest); font-weight: 600;
+  }
+  .period-table .status-live::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--forest); flex-shrink: 0;
+  }
+  .period-table .status-quiet { color: var(--faint); }
+  .period-table .top-voice {
+    font-style: italic; font-family: 'Bitter', serif; font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* ── section header — almanac-style ─────────────── */
+  .section-head {
+    padding: 48px 0 0;
+    margin-bottom: 0;
+  }
+  .section-head .rule-wrap {
+    border-top: 3px solid var(--ink);
+    padding-top: 10px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .section-head h2 {
+    font-family: 'Bitter', serif;
+    font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .section-head .section-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--muted); text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* ── register entries (the five voices) ─────────── */
+  .register { margin: 0; }
+
+  .reg-entry {
+    display: grid;
+    /* margin column | entry content */
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 36px 0;
+    align-items: start;
+  }
+  .reg-entry:first-of-type { border-top: 1px solid var(--rule); margin-top: 16px; }
+
+  .reg-meta {
+    padding-right: 32px;
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 12px;
+    padding-top: 4px;
+  }
+  .reg-meta .field-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--forest);
+    border: 1px solid var(--forest-line);
+    display: inline-block; padding: 4px 9px;
+    background: var(--forest-bg);
+  }
+  .reg-meta .entry-no {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--faint);
+  }
+  .reg-meta .timestamp {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; color: var(--faint);
+  }
+  .reg-meta .minds-stat {
+    display: flex; flex-direction: column; gap: 3px;
+    margin-top: 4px;
+  }
+  .reg-meta .minds-num {
+    font-family: 'Bitter', serif;
+    font-size: 26px; font-weight: 600; line-height: 1;
+    color: var(--forest);
+  }
+  .reg-meta .minds-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--forest);
+    opacity: 0.7;
+  }
+  .reg-meta .annotation {
+    font-family: 'Bitter', serif;
+    font-size: 12.5px; font-style: italic;
+    color: var(--muted); line-height: 1.5;
+    border-left: 2px solid var(--rule-dark);
+    padding-left: 10px;
+    margin-top: 8px;
+  }
+
+  .reg-content { padding-left: 36px; }
+  .reg-content .contributor-name {
+    font-family: 'Bitter', serif;
+    font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .reg-content .contributor-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    letter-spacing: 0.02em; margin-bottom: 20px;
+    border-bottom: 1px solid var(--rule-light);
+    padding-bottom: 12px;
+  }
+  .reg-content .entry-text {
+    font-family: 'Bitter', serif;
+    font-size: 18px; line-height: 1.65;
+    color: var(--ink-soft); max-width: 60ch;
+  }
+  .reg-content .entry-text em {
+    font-style: italic; color: var(--ink);
+  }
+
+  /* reply / response — indented, bracketed */
+  .reg-response {
+    margin-top: 24px;
+    border-left: 2px solid var(--forest-line);
+    padding: 18px 22px;
+    background: var(--paper);
+    max-width: 60ch;
+  }
+  .reg-response .resp-head {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .reg-response .resp-text {
+    font-family: 'Bitter', serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .reg-response .resp-text em { font-style: italic; color: var(--ink); }
+
+  .reg-foot {
+    display: flex; align-items: center; gap: 20px;
+    margin-top: 18px; flex-wrap: wrap;
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px; color: var(--muted);
+  }
+  .reg-foot a { transition: color 140ms; }
+  .reg-foot a:hover { color: var(--forest); }
+  .reg-foot .sep { color: var(--rule-dark); }
+
+  @media (max-width: 760px) {
+    .reg-entry {
+      grid-template-columns: 1fr;
+    }
+    .reg-meta {
+      border-right: none;
+      border-bottom: 1px solid var(--rule-light);
+      padding-right: 0; padding-bottom: 18px;
+      flex-direction: row; flex-wrap: wrap;
+      align-items: center; gap: 16px;
+    }
+    .reg-meta .annotation { display: none; }
+    .reg-meta .minds-stat { flex-direction: row; align-items: baseline; gap: 8px; }
+    .reg-meta .minds-num { font-size: 20px; }
+    .reg-content { padding-left: 0; padding-top: 20px; }
+  }
+
+  /* ── margin sidebar content ──────────────────────── */
+  .margin-section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .margin-section:first-child { padding-top: 36px; }
+  .margin-section .mg-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 14px; display: block;
+    border-top: 1px solid var(--ink); padding-top: 10px;
+  }
+  .margin-section .mg-stat-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .margin-section .mg-stat-row:last-child { border-bottom: none; }
+  .margin-section .mg-stat-field {
+    font-family: 'Bitter', serif;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .margin-section .mg-stat-n {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 600; color: var(--muted);
+  }
+  .margin-section .mg-stat-n.live { color: var(--forest); }
+  .margin-note {
+    font-family: 'Bitter', serif;
+    font-size: 13px; font-style: italic;
+    line-height: 1.55; color: var(--muted);
+    margin-top: 8px;
+  }
+  .margin-cta {
+    display: block; margin-top: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--forest);
+    padding: 10px 0; border-top: 1px solid var(--forest-line);
+    border-bottom: 1px solid var(--forest-line);
+    text-align: center; transition: background 140ms, color 140ms;
+  }
+  .margin-cta:hover { background: var(--forest); color: #fff; padding: 10px 12px; }
+
+  /* ── house-rule centrepiece ──────────────────────── */
+  .house-rule {
+    padding: 72px 0;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule-dark);
+    margin: 48px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .house-rule .rule-number {
+    font-family: 'Bitter', serif;
+    font-size: 80px; font-weight: 300; line-height: 1;
+    color: var(--rule-dark); text-align: center;
+    letter-spacing: -0.04em;
+  }
+  .house-rule-body {}
+  .house-rule .rule-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--forest);
+    margin-bottom: 16px; display: block;
+  }
+  .house-rule blockquote {
+    font-family: 'Bitter', serif;
+    font-style: italic; font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.3; letter-spacing: -0.01em;
+    color: var(--ink); max-width: 38ch;
+  }
+  .house-rule .rule-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; color: var(--faint);
+    margin-top: 16px; letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 600px) {
+    .house-rule { grid-template-columns: 1fr; gap: 16px; }
+    .house-rule .rule-number { font-size: 48px; text-align: left; }
+  }
+
+  /* ── about / manifesto ───────────────────────────── */
+  .about-section {
+    padding: 0 0 80px;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px; align-items: start;
+    margin-top: 24px;
+  }
+  .about-grid .about-heading {
+    font-family: 'Bitter', serif;
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .about-grid .about-heading em {
+    font-style: italic; color: var(--forest-dk);
+  }
+  .about-body {}
+  .about-body p {
+    font-family: 'Bitter', serif;
+    font-size: 17px; line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .about-body p + p { margin-top: 18px; }
+  .about-body strong { color: var(--ink); font-weight: 600; }
+  .about-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-top: 28px;
+    background: var(--ink); color: var(--parchment);
+    padding: 13px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em;
+    text-transform: uppercase;
+    transition: background 150ms;
+  }
+  .about-cta:hover { background: var(--forest); }
+
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ── fields index ────────────────────────────────── */
+  .fields-index { padding: 0 0 0; }
+  .fields-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule-dark);
+    margin-top: 16px;
+  }
+  .field-cell {
+    padding: 14px 16px;
+    border-right: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+    display: flex; flex-direction: column; gap: 4px;
+    transition: background 130ms;
+    min-height: 70px;
+  }
+  .field-cell:hover { background: var(--paper); cursor: pointer; }
+  .field-cell .fc-name {
+    font-family: 'Bitter', serif;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+  }
+  .field-cell .fc-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px; color: var(--muted);
+  }
+  .field-cell .fc-count.active { color: var(--forest); font-weight: 600; }
+
+  @media (max-width: 880px) { .fields-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .fields-grid { grid-template-columns: 1fr; } }
+
+  /* ── footer ──────────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 36px 0 56px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+  }
+  .footer-mark {
+    font-family: 'Bitter', serif;
+    font-size: 20px; font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff; margin-bottom: 8px;
+  }
+  .footer-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #7A7060;
+  }
+  .footer-links {
+    display: flex; flex-direction: column; gap: 10px; text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; color: #7A7060;
+  }
+  .footer-links a { transition: color 140ms; }
+  .footer-links a:hover { color: #B5AA98; }
+  .footer-separator {
+    border: none;
+    border-top: 1px solid #2E2A22;
+    margin: 28px 0;
+  }
+  .footer-bottom {
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; color: #5A5448;
+    flex-wrap: wrap; gap: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-links { text-align: left; }
+  }
+
+  /* ── page spacing ─────────────────────────────────── */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 22px; }
+    .front-matter { padding-top: 36px; }
+    .period-table { font-size: 11.5px; }
+    .period-table .bar-track { width: 50px; }
+  }
+
+  /* ── subtle hover transitions ─────────────────────── */
+  .field-cell, .reg-entry, .reg-response, .about-cta, .margin-cta {
+    will-change: transform;
+  }
+  .reg-entry .entry-text {
+    transition: color 180ms;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       MASTHEAD
+  ═══════════════════════════════════════════════ -->
+  <header class="masthead" role="banner">
+    <div class="wrap masthead-inner">
+      <div class="brand">
+        <span class="logotype">DocketField</span>
+        <span class="vol-marker">Annual Register · 2026 Edition</span>
+      </div>
+      <nav class="masthead-nav" aria-label="Primary navigation">
+        <a href="#index">Index</a>
+        <a href="#register">Register</a>
+        <a href="#about">About</a>
+        <a href="../index.html" class="join">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       REGISTER BANNER — stats as a title-page stat block
+  ═══════════════════════════════════════════════ -->
+  <div class="register-banner" role="complementary" aria-label="Platform statistics">
+    <div class="wrap register-banner-inner">
+      <div class="reg-item">
+        <span class="reg-val">20</span>
+        <span class="reg-label">Fields of Record</span>
+      </div>
+      <div class="reg-divider" aria-hidden="true"></div>
+      <div class="reg-item">
+        <span class="reg-val">312</span>
+        <span class="reg-label">Contributors</span>
+      </div>
+      <div class="reg-divider" aria-hidden="true"></div>
+      <div class="reg-item">
+        <span class="reg-val">$8</span>
+        <span class="reg-label">Per month · open to all</span>
+      </div>
+      <div class="reg-divider" aria-hidden="true"></div>
+      <div class="reg-item">
+        <span class="reg-val" style="font-size:20px;letter-spacing:-0.02em;">Anyone</span>
+        <span class="reg-label">Can read · Can post</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="wrap">
+
+      <!-- ═════════════════════════════════════════
+           FRONT MATTER — volume header + period summary table
+      ═════════════════════════════════════════ -->
+      <section class="front-matter" aria-labelledby="hero-heading">
+
+        <div class="running-head">
+          <span class="sc">DocketField · The Lobby</span>
+          <span class="sc">Period · May 2026</span>
+        </div>
+
+        <span class="volume-label">Volume I, Issue 5 · May 2026</span>
+
+        <h1 id="hero-heading">
+          A working record for serious questions —<br>
+          open to <em>anyone</em> with something real to add.
+        </h1>
+
+        <p class="lede">
+          Practitioners across twenty disciplines think out loud here. A truck driver opens a thread;
+          a quantum researcher answers in kind. The only standing that compounds is the number of
+          minds you have genuinely caused to change.
+        </p>
+
+        <!-- Period Summary Table — the almanac's structured overview -->
+        <div id="index" role="region" aria-labelledby="period-table-label">
+          <div class="section-head" style="padding-top:0; margin-bottom:0;">
+            <div class="rule-wrap">
+              <h2 id="period-table-label">This period across the fields</h2>
+              <span class="section-note">Activity index · updated continuously</span>
+            </div>
+          </div>
+
+          <table class="period-table" aria-label="Field activity this period">
+            <thead>
+              <tr>
+                <th scope="col" style="width:160px">Field</th>
+                <th scope="col">Activity</th>
+                <th scope="col" style="width:90px">Status</th>
+                <th scope="col">Leading voice this period</th>
+                <th scope="col" style="width:60px;text-align:right">Threads</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-nm">Space</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-val">9 live</span></div></td>
+                <td><span class="status-live">Hot</span></td>
+                <td class="top-voice">Orbital debris logistics — practical frame</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">9</td>
+              </tr>
+              <tr>
+                <td class="field-nm">AI</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-val">7 live</span></div></td>
+                <td><span class="status-live">Hot</span></td>
+                <td class="top-voice">Maya Khurana — EU AI Act Article-6</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">7</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Cybersecurity</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div><span class="bar-val">6 live</span></div></td>
+                <td><span class="status-live">Hot</span></td>
+                <td class="top-voice">Model-risk reclassification pipeline</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">6</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Defense</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div><span class="bar-val">5 live</span></div></td>
+                <td><span class="status-live">Hot</span></td>
+                <td class="top-voice">Jess Oduya — ITAR foundational-research carve-out</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">5</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Geopolitics</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div><span class="bar-val">5 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">South China Sea corridor analysis</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">5</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Supply Chain</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="bar-val">4 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">Red Sea re-routing cost structures</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">4</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Quantum</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><span class="bar-val">4 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">Sam Ahmadi — Brookhaven dock observation</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">4</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Biosecurity</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">3 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">Diego Torres — gain-of-function definition</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">3</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Nuclear</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">3 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">SMR licensing timeline gaps</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">3</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Robotics</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">3 live</span></div></td>
+                <td><span class="status-live">Active</span></td>
+                <td class="top-voice">Assembly-line autonomy failure modes</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">3</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Energy</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-val">2 live</span></div></td>
+                <td><span class="status-quiet">Quiet</span></td>
+                <td class="top-voice">Grid-scale storage economics</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">2</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Materials</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-val">2 live</span></div></td>
+                <td><span class="status-quiet">Quiet</span></td>
+                <td class="top-voice">Rare-earth substitution pathways</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">2</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Public Health</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-val">2 live</span></div></td>
+                <td><span class="status-quiet">Quiet</span></td>
+                <td class="top-voice">Wastewater surveillance coverage gaps</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">2</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Genomics</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-val">1 live</span></div></td>
+                <td><span class="status-quiet">Quiet</span></td>
+                <td class="top-voice">Polygenic score clinical validity</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">1</td>
+              </tr>
+              <tr>
+                <td class="field-nm">Maritime</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><span class="bar-val">1 live</span></div></td>
+                <td><span class="status-quiet">Quiet</span></td>
+                <td class="top-voice">Autonomous vessel insurance gaps</td>
+                <td style="text-align:right;font-size:11px;color:var(--muted)">1</td>
+              </tr>
+              <tr>
+                <td class="field-nm" style="color:var(--faint);font-style:italic">+ 5 more desks</td>
+                <td><div class="activity-bar"><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--rule-dark)"></div></div><span class="bar-val" style="color:var(--faint)">Semiconductors, Autonomy, Manufacturing, Synthetic Biology, Pharmaceuticals</span></div></td>
+                <td><span class="status-quiet">Standby</span></td>
+                <td class="top-voice" style="color:var(--faint)">—</td>
+                <td style="text-align:right;font-size:11px;color:var(--faint)">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- /wrap -->
+
+    <!-- ═════════════════════════════════════════
+         TWO-COLUMN: REGISTER ENTRIES + MARGIN
+    ═════════════════════════════════════════ -->
+    <div class="wrap">
+      <div class="almanac-body">
+
+        <!-- MAIN COLUMN -->
+        <div class="almanac-main">
+
+          <section id="register" class="section-head" aria-labelledby="register-heading">
+            <div class="rule-wrap">
+              <h2 id="register-heading">Register of notable entries</h2>
+              <span class="section-note">Ordered by minds changed · not by recency</span>
+            </div>
+          </section>
+
+          <div class="register" role="feed" aria-label="Register entries">
+
+            <!-- ─── Entry 1 · Sam Ahmadi ─── -->
+            <article class="reg-entry" aria-labelledby="entry1-name">
+              <div class="reg-meta">
+                <span class="field-badge">Quantum</span>
+                <span class="entry-no">Entry 01 of 05</span>
+                <span class="timestamp">2 hours ago</span>
+                <div class="minds-stat">
+                  <span class="minds-num">47</span>
+                  <span class="minds-lbl">Minds changed</span>
+                </div>
+                <p class="annotation">Pinned by 8 stewards. Ground-truth observation from outside the lab.</p>
+              </div>
+              <div class="reg-content">
+                <div id="entry1-name" class="contributor-name">Sam Ahmadi</div>
+                <div class="contributor-role">Freight driver — Route-13 logistics, Eastern Seaboard</div>
+                <p class="entry-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+
+                <div class="reg-response" role="region" aria-label="Response from Alex Patel">
+                  <div class="resp-head">Response · Alex Patel — Quantum researcher, Brookhaven</div>
+                  <p class="resp-text">Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+                </div>
+
+                <div class="reg-foot">
+                  <span>23 replies</span>
+                  <span class="sep">·</span>
+                  <a href="#">Pinned by 8 stewards</a>
+                  <span class="sep">·</span>
+                  <a href="#">Read full thread</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- ─── Entry 2 · Jess Oduya ─── -->
+            <article class="reg-entry" aria-labelledby="entry2-name">
+              <div class="reg-meta">
+                <span class="field-badge">Defense</span>
+                <span class="entry-no">Entry 02 of 05</span>
+                <span class="timestamp">Yesterday</span>
+                <div class="minds-stat">
+                  <span class="minds-num">56</span>
+                  <span class="minds-lbl">Minds changed</span>
+                </div>
+                <p class="annotation">14 asked her to write it up. University counsel offices have not noticed yet.</p>
+              </div>
+              <div class="reg-content">
+                <div id="entry2-name" class="contributor-name">Jess Oduya</div>
+                <div class="contributor-role">Former Treasury analyst — at home with three kids</div>
+                <p class="entry-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things no one has flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+
+                <div class="reg-foot">
+                  <span>18 replies</span>
+                  <span class="sep">·</span>
+                  <a href="#">14 asked her to write it up</a>
+                  <span class="sep">·</span>
+                  <a href="#">Read full thread</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- ─── Entry 3 · Maya Khurana ─── -->
+            <article class="reg-entry" aria-labelledby="entry3-name">
+              <div class="reg-meta">
+                <span class="field-badge">Cybersecurity</span>
+                <span class="entry-no">Entry 03 of 05</span>
+                <span class="timestamp">4 hours ago</span>
+                <div class="minds-stat">
+                  <span class="minds-num">38</span>
+                  <span class="minds-lbl">Minds changed</span>
+                </div>
+                <p class="annotation">19 me-too responses. Compliance practitioners across three continents.</p>
+              </div>
+              <div class="reg-content">
+                <div id="entry3-name" class="contributor-name">Maya Khurana</div>
+                <div class="contributor-role">Compliance officer — Regional bank, Midwest</div>
+                <p class="entry-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+
+                <div class="reg-foot">
+                  <span>31 replies</span>
+                  <span class="sep">·</span>
+                  <a href="#">19 me-too</a>
+                  <span class="sep">·</span>
+                  <a href="#">Read full thread</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- ─── Entry 4 · Diego Torres ─── -->
+            <article class="reg-entry" aria-labelledby="entry4-name">
+              <div class="reg-meta">
+                <span class="field-badge">Biosecurity</span>
+                <span class="entry-no">Entry 04 of 05</span>
+                <span class="timestamp">6 hours ago</span>
+                <div class="minds-stat">
+                  <span class="minds-num">28</span>
+                  <span class="minds-lbl">Thanks</span>
+                </div>
+                <p class="annotation">New voice. 11 researchers drafting answers. Rare: a question that clarifies what experts have left unsaid.</p>
+              </div>
+              <div class="reg-content">
+                <div id="entry4-name" class="contributor-name">Diego Torres</div>
+                <div class="contributor-role">High-school chemistry teacher — Public school, Texas</div>
+                <p class="entry-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+
+                <div class="reg-foot">
+                  <span>11 drafting answers</span>
+                  <span class="sep">·</span>
+                  <a href="#">New voice</a>
+                  <span class="sep">·</span>
+                  <a href="#">Read full thread</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- ─── Entry 5 · Alex Patel (standalone) ─── -->
+            <article class="reg-entry" aria-labelledby="entry5-name">
+              <div class="reg-meta">
+                <span class="field-badge">Quantum</span>
+                <span class="entry-no">Entry 05 of 05</span>
+                <span class="timestamp">3 hours ago</span>
+                <div class="minds-stat">
+                  <span class="minds-num">21</span>
+                  <span class="minds-lbl">Minds changed</span>
+                </div>
+                <p class="annotation">The expert acknowledging what the practitioner saw first. The record at its best.</p>
+              </div>
+              <div class="reg-content">
+                <div id="entry5-name" class="contributor-name">Alex Patel</div>
+                <div class="contributor-role">Quantum researcher — Brookhaven National Laboratory</div>
+                <p class="entry-text">Sam Ahmadi's loading-dock observation changed v2 of the brief. I filed it with attribution before I filed the brief itself. <em>The record here is the only place I know of where a freight driver's logistics read gets into a lab report — correctly, not as colour.</em></p>
+
+                <div class="reg-foot">
+                  <span>9 replies</span>
+                  <span class="sep">·</span>
+                  <a href="#">Cited in field brief</a>
+                  <span class="sep">·</span>
+                  <a href="#">Read full thread</a>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /register -->
+
+        </div><!-- /almanac-main -->
+
+        <!-- MARGIN COLUMN — the almanac's running annotation -->
+        <aside class="almanac-margin" aria-label="Almanac margin notes">
+
+          <div class="margin-section">
+            <span class="mg-label">Fields active now</span>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Space</span>
+              <span class="mg-stat-n live">9 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">AI</span>
+              <span class="mg-stat-n live">7 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Cybersecurity</span>
+              <span class="mg-stat-n live">6 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Defense</span>
+              <span class="mg-stat-n live">5 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Geopolitics</span>
+              <span class="mg-stat-n live">5 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Quantum</span>
+              <span class="mg-stat-n">4 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Supply Chain</span>
+              <span class="mg-stat-n">4 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Biosecurity</span>
+              <span class="mg-stat-n">3 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Nuclear</span>
+              <span class="mg-stat-n">3 threads</span>
+            </div>
+            <div class="mg-stat-row">
+              <span class="mg-stat-field">Robotics</span>
+              <span class="mg-stat-n">3 threads</span>
+            </div>
+          </div>
+
+          <div class="margin-section">
+            <span class="mg-label">Margin note · Reputation</span>
+            <p class="margin-note">The only metric that compounds here: how many people left a thread thinking differently than they arrived. No credential check. No follower counts.</p>
+          </div>
+
+          <div class="margin-section">
+            <span class="mg-label">Margin note · Access</span>
+            <p class="margin-note">Eight dollars a month. Anyone can read; anyone can post. Universities use this record as the working-group backbone for the disciplines they teach.</p>
+            <a href="../index.html" class="margin-cta" aria-label="Join DocketField for $8 per month">Join the record →</a>
+          </div>
+
+          <div class="margin-section">
+            <span class="mg-label">Margin note · Moderation</span>
+            <p class="margin-note">Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The floor is the argument; the ceiling is whether it holds.</p>
+          </div>
+
+        </aside>
+
+      </div><!-- /almanac-body -->
+    </div><!-- /wrap -->
+
+    <!-- ═════════════════════════════════════════
+         HOUSE RULE NO. 2
+    ═════════════════════════════════════════ -->
+    <div class="wrap">
+      <div class="house-rule" aria-label="House rule number two">
+        <div class="rule-number" aria-hidden="true">2</div>
+        <div class="house-rule-body">
+          <span class="rule-label">House rule no. 2 · The Lobby</span>
+          <blockquote>"Reputation here is the number of people you have genuinely caused to change their mind."</blockquote>
+          <p class="rule-note">Not follower count. Not credential. Not seniority. The only thing that compounds.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════════
+         ABOUT / MANIFESTO
+    ═════════════════════════════════════════ -->
+    <div class="wrap">
+      <section id="about" class="about-section" aria-labelledby="about-heading">
+        <div class="section-head">
+          <div class="rule-wrap">
+            <h2 id="about-heading">What this is</h2>
+            <span class="section-note">The Lobby · open record</span>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <h3 class="about-heading">Not a PhD hangout. <em>A working room.</em></h3>
+          <div class="about-body">
+            <p>The Lobby is a slow, serious room that runs across twenty fields — the same record universities use as the working-group backbone for the disciplines they teach. Practitioners come here to think out loud, and the conversation stays on the record.</p>
+            <p>There is no credential check. <strong>Anyone can read, anyone can post</strong>, eight dollars a month. A truck driver's loading-dock observation can outrank a tenured analyst's desk model — because here the question is never <em>who are you</em>, it is <em>does this hold up.</em></p>
+            <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only thing that compounds is whether the people who read you walked away thinking differently.</p>
+            <a href="../index.html" class="about-cta">Read the room → enter The Lobby</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═════════════════════════════════════════
+         FULL FIELDS INDEX
+    ═════════════════════════════════════════ -->
+    <div class="wrap">
+      <section class="fields-index" aria-labelledby="fields-index-heading">
+        <div class="section-head">
+          <div class="rule-wrap">
+            <h2 id="fields-index-heading">All twenty desks</h2>
+            <span class="section-note">The complete register · 2026</span>
+          </div>
+        </div>
+        <div class="fields-grid" role="list" aria-label="All twenty fields">
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Space</span><span class="fc-count active">9 live · 3 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">AI</span><span class="fc-count active">7 live · 2 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Cybersecurity</span><span class="fc-count active">6 live · 1 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Defense</span><span class="fc-count active">5 live · 1 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Geopolitics</span><span class="fc-count active">5 live · 1 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Supply Chain</span><span class="fc-count active">4 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Quantum</span><span class="fc-count active">4 live · 2 hot</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Biosecurity</span><span class="fc-count active">3 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Nuclear</span><span class="fc-count active">3 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Robotics</span><span class="fc-count active">3 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Energy</span><span class="fc-count">2 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Materials</span><span class="fc-count">2 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Public Health</span><span class="fc-count">2 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Genomics</span><span class="fc-count">1 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Maritime</span><span class="fc-count">1 live</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Semiconductors</span><span class="fc-count">Standby</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Autonomy</span><span class="fc-count">Standby</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Manufacturing</span><span class="fc-count">Standby</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Synthetic Biology</span><span class="fc-count">Standby</span></div>
+          <div class="field-cell" role="listitem" tabindex="0"><span class="fc-name">Pharmaceuticals</span><span class="fc-count">Standby</span></div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER — ink-ground, almanac colophon
+  ═══════════════════════════════════════════════ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-mark">DocketField</div>
+          <div class="footer-sub">D37 — Almanac · Annual register of the fields</div>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html" aria-label="Back to all design directions">← All directions</a>
+          <a href="../index.html" aria-label="Sign in to DocketField">Sign in</a>
+          <a href="../index.html" aria-label="Join DocketField">Join · $8/mo</a>
+        </div>
+      </div>
+
+      <hr class="footer-separator" aria-hidden="true">
+
+      <div class="footer-bottom">
+        <span>20 fields · 312 contributors · Open to all walks of life</span>
+        <span>Volume I · 2026 Edition</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

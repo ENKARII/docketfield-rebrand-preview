@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D38 Press</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D38 · PRESS
+     Lineage: Stripe Press imprint / book-object
+     Thesis: DocketField as a beautifully bound published imprint.
+     Dark ink-green "cover" bands frame the open; warm paper pages
+     carry the conversation. The transition is the experience —
+     lifting the cover to find the pages inside.
+     ───────────────────────────────────────────────────────────── */
+  :root {
+    /* Cover palette — dark ink-green ground */
+    --cover:       #15231D;
+    --cover-deep:  #0F1A14;
+    --cover-mid:   #1D2E26;
+    --cover-text:  #ECE7DA;
+    --cover-muted: #8FA898;
+    --cover-line:  rgba(236,231,218,0.12);
+
+    /* Gold foil accent — used sparingly */
+    --gold:        #C2A14E;
+    --gold-dim:    #9E8040;
+    --gold-faint:  rgba(194,161,78,0.15);
+
+    /* Paper palette — warm reading pages */
+    --paper:       #F3EEE3;
+    --paper-deep:  #EDE8DC;
+    --paper-white: #FDFAF3;
+    --ink:         #1A1A17;
+    --ink-soft:    #3C3B35;
+    --ink-muted:   #6A6860;
+    --ink-faint:   #9A9890;
+    --paper-line:  #DDD8CB;
+    --paper-line2: #E8E3D7;
+
+    /* Minds-changed accent on paper */
+    --minds-ink:   #15231D;
+    --minds-bg:    #DDE8E2;
+
+    --r: 3px;
+    --r-lg: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--gold-faint); color: var(--ink); }
+
+  /* ─────────────────────────────────────
+     WRAP
+     ───────────────────────────────────── */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 760px) { .wrap { padding: 0 24px; } }
+  @media (max-width: 420px) { .wrap { padding: 0 18px; } }
+
+  /* ─────────────────────────────────────
+     COVER NAV — pinned, dark ground
+     ───────────────────────────────────── */
+  .cover-nav {
+    background: var(--cover);
+    border-bottom: 1px solid var(--cover-line);
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+  .cover-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+  .brand .wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--cover-text);
+    font-optical-sizing: auto;
+  }
+  .brand .imprint-sep {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background: var(--cover-line);
+    margin: 0 16px 0 16px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .brand .imprint-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cover-muted);
+    font-weight: 500;
+  }
+  .cover-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .cover-nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cover-muted);
+    transition: color 160ms;
+    letter-spacing: 0.01em;
+  }
+  .cover-nav-links a:hover { color: var(--cover-text); }
+  .cover-nav-links .join-btn {
+    color: var(--cover);
+    background: var(--gold);
+    padding: 8px 18px;
+    border-radius: var(--r);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    transition: background 160ms, transform 160ms;
+  }
+  .cover-nav-links .join-btn:hover {
+    background: var(--gold-dim);
+    transform: translateY(-1px);
+  }
+  .cover-nav-links .join-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  @media (max-width: 760px) {
+    .cover-nav-links a:not(.join-btn) { display: none; }
+    .brand .imprint-sep,
+    .brand .imprint-tag { display: none; }
+  }
+
+  /* ─────────────────────────────────────
+     HERO COVER — book-cover band
+     ───────────────────────────────────── */
+  .hero-cover {
+    background: var(--cover);
+    padding-top: 80px;
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle vertical rules — binding feel */
+  .hero-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: var(--cover-line);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 760px) { .hero-inner { padding: 0 24px; } }
+
+  /* Colophon line — imprint identity */
+  .colophon {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+  .colophon-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.45;
+    max-width: 56px;
+  }
+  .colophon-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    opacity: 0.85;
+  }
+  .colophon-rule-right {
+    flex: 1;
+    height: 1px;
+    background: var(--cover-line);
+    max-width: 9999px;
+  }
+
+  /* Book-cover title */
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(54px, 7.8vw, 108px);
+    line-height: 0.94;
+    letter-spacing: -0.03em;
+    color: var(--cover-text);
+    font-optical-sizing: auto;
+    max-width: 14ch;
+  }
+  .hero-title .gold-word {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 300;
+    display: block;
+  }
+
+  /* Hero descriptor / subtitle */
+  .hero-sub {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    padding-bottom: 64px;
+  }
+  @media (max-width: 680px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 28px; padding-bottom: 48px; }
+  }
+  .hero-desc {
+    font-family: 'Spectral', serif;
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.55;
+    color: var(--cover-muted);
+    max-width: 44ch;
+  }
+  .hero-desc em { font-style: italic; color: var(--cover-text); }
+
+  .hero-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
+  }
+  @media (max-width: 680px) { .hero-meta-block { align-items: flex-start; } }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: right;
+  }
+  @media (max-width: 680px) { .stat { text-align: left; } }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--cover-text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cover-muted);
+    font-weight: 500;
+  }
+
+  .hero-join {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid rgba(194,161,78,0.5);
+    color: var(--gold);
+    padding: 11px 22px;
+    border-radius: var(--r);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 160ms, border-color 160ms, color 160ms;
+    min-height: 44px;
+  }
+  .hero-join:hover {
+    background: var(--gold-faint);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .hero-join:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* Page-break line — cover to pages */
+  .cover-to-pages {
+    background: var(--cover);
+    position: relative;
+  }
+  .cover-to-pages::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, var(--cover-deep) 0%, var(--gold) 35%, var(--gold) 65%, var(--cover-deep) 100%);
+    opacity: 0.6;
+  }
+
+  /* ─────────────────────────────────────
+     FIELD INDEX — paper inset
+     ───────────────────────────────────── */
+  .field-section {
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--paper-line);
+    padding: 52px 0;
+  }
+  .field-section-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 760px) { .field-section-inner { padding: 0 24px; } }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+  .section-note {
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .fields-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 1px solid var(--paper-line);
+    background: var(--paper-white);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  @media (max-width: 960px) { .fields-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 680px) { .fields-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 380px) { .fields-grid { grid-template-columns: 1fr; } }
+
+  .field-item {
+    padding: 18px 20px;
+    border-right: 1px solid var(--paper-line2);
+    border-bottom: 1px solid var(--paper-line2);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 140ms;
+    min-height: 44px;
+  }
+  .field-item:hover { background: var(--paper-deep); }
+  .field-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .field-activity {
+    font-size: 11.5px;
+    color: var(--ink-muted);
+  }
+  .field-activity.live {
+    color: var(--minds-ink);
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────────────
+     PIECES IN THE COLLECTION
+     warm paper pages
+     ───────────────────────────────────── */
+  .collection {
+    background: var(--paper);
+    padding: 72px 0 0;
+  }
+  .collection-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 760px) { .collection-inner { padding: 0 24px; } }
+
+  .collection-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid var(--ink);
+    padding-top: 16px;
+    margin-bottom: 8px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .collection-head h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .collection-note {
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* Each piece — a page in the imprint */
+  .piece {
+    border-bottom: 1px solid var(--paper-line);
+    padding: 52px 0;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 56px;
+  }
+  .piece:first-of-type {
+    border-top: 1px solid var(--paper-line);
+    margin-top: 32px;
+  }
+  @media (max-width: 760px) {
+    .piece {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 36px 0;
+    }
+  }
+
+  /* Piece spine — left column */
+  .piece-spine {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 2px;
+  }
+  @media (max-width: 760px) {
+    .piece-spine { flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
+  }
+
+  .field-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--cover);
+    border: 1px solid rgba(21,35,29,0.3);
+    padding: 5px 10px;
+    border-radius: 2px;
+    align-self: flex-start;
+    transition: background 150ms, color 150ms;
+  }
+  .field-tag:hover {
+    background: var(--cover);
+    color: var(--cover-text);
+  }
+
+  .piece-time {
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  /* Gold rule decoration — appears on featured piece only */
+  .piece-gold-rule {
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 4px;
+  }
+
+  /* Piece body — right column */
+  .piece-body {}
+
+  .piece-byline {
+    margin-bottom: 6px;
+  }
+  .piece-author {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .piece-role {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 3px;
+  }
+
+  .piece-text {
+    font-family: 'Spectral', serif;
+    font-size: clamp(18px, 2vw, 21px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 22px;
+    max-width: 60ch;
+  }
+  .piece-text em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* Reply — nestled page within the piece */
+  .piece-reply {
+    margin-top: 28px;
+    padding: 24px 30px;
+    background: var(--paper-deep);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 var(--r-lg) var(--r-lg) 0;
+    max-width: 56ch;
+  }
+  .reply-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .reply-head b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .reply-head .reply-arc {
+    color: var(--ink-faint);
+    font-size: 12.5px;
+  }
+  .reply p {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    line-height: 1.58;
+    color: var(--ink-soft);
+  }
+  .reply p em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .piece-foot {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    flex-wrap: wrap;
+  }
+
+  .minds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--gold-dim);
+    letter-spacing: -0.005em;
+  }
+  .minds-badge .minds-num {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cover);
+  }
+  .minds-badge svg {
+    width: 14px;
+    height: 14px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .piece-foot-sep {
+    color: var(--paper-line);
+  }
+  .piece-foot a {
+    transition: color 150ms;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .piece-foot a:hover { color: var(--cover); }
+
+  /* Fifth voice — no portrait, just the question */
+  .piece-question-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  /* ─────────────────────────────────────
+     HOUSE RULE SPREAD
+     returns to dark cover ground
+     ───────────────────────────────────── */
+  .rule-spread {
+    background: var(--cover);
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+  }
+  .rule-spread::before,
+  .rule-spread::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    left: 48px; right: 48px;
+  }
+  .rule-spread::before { top: 0; }
+  .rule-spread::after { bottom: 0; }
+
+  .rule-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+  .rule-ornament-line {
+    width: 64px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.45;
+  }
+  .rule-ornament-diamond {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+
+  .rule-spread blockquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(26px, 4.2vw, 48px);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin: 0 auto;
+    color: var(--cover-text);
+    font-optical-sizing: auto;
+  }
+  .rule-spread blockquote em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .rule-source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: 36px;
+    opacity: 0.8;
+  }
+
+  /* ─────────────────────────────────────
+     MANIFESTO — paper pages, two column
+     ───────────────────────────────────── */
+  .manifesto {
+    background: var(--paper-white);
+    padding: 80px 0 96px;
+    border-top: 1px solid var(--paper-line);
+  }
+  .manifesto-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .manifesto-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
+  }
+
+  .manifesto h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-optical-sizing: auto;
+  }
+  .manifesto h2 em {
+    font-style: italic;
+    color: var(--cover);
+  }
+  .manifesto-body p {
+    font-family: 'Spectral', serif;
+    font-size: 17.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .manifesto-body p + p { margin-top: 20px; }
+  .manifesto-body strong { color: var(--ink); font-weight: 600; }
+
+  .manifesto-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 36px;
+    background: var(--cover);
+    color: var(--cover-text);
+    padding: 14px 26px;
+    border-radius: var(--r);
+    font-weight: 600;
+    font-size: 14.5px;
+    letter-spacing: 0.01em;
+    transition: background 160ms;
+    min-height: 44px;
+  }
+  .manifesto-cta:hover { background: var(--cover-deep); }
+  .manifesto-cta:focus-visible {
+    outline: 2px solid var(--cover);
+    outline-offset: 3px;
+  }
+
+  /* ─────────────────────────────────────
+     FOOTER COVER BAND
+     ───────────────────────────────────── */
+  footer {
+    background: var(--cover-deep);
+    border-top: 1px solid var(--cover-line);
+    padding: 32px 0 52px;
+  }
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .footer-inner { padding: 0 24px; } }
+  .footer-wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cover-text);
+    letter-spacing: -0.01em;
+  }
+  .footer-edition {
+    font-size: 12px;
+    color: var(--cover-muted);
+    letter-spacing: 0.02em;
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--cover-muted);
+  }
+  .footer-links a {
+    transition: color 150ms;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─────────────────────────────────────
+     FOCUS RING — accessible, consistent
+     ───────────────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ─────────────────────────────────────
+     MOTION — subtle, purposeful
+     ───────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .field-item,
+    .field-tag,
+    .piece-foot a,
+    .cover-nav-links a,
+    .manifesto-cta,
+    .hero-join,
+    .join-btn {
+      transition-duration: 160ms;
+      transition-timing-function: ease;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0ms !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── COVER NAV ─────────────────────────────────── -->
+  <header class="cover-nav" role="banner">
+    <div class="wrap cover-nav-inner">
+      <div class="brand">
+        <span class="wordmark">DocketField</span>
+        <span class="imprint-sep" aria-hidden="true"></span>
+        <span class="imprint-tag">An open record · twenty fields</span>
+      </div>
+      <nav class="cover-nav-links" aria-label="Site navigation">
+        <a href="#collection">The collection</a>
+        <a href="#fields">Fields</a>
+        <a href="#about">What this is</a>
+        <a href="../index.html" class="join-btn">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── HERO COVER ─────────────────────────────────── -->
+  <section class="hero-cover" aria-labelledby="hero-title">
+    <div class="hero-inner">
+
+      <div class="colophon" role="presentation">
+        <span class="colophon-rule" aria-hidden="true"></span>
+        <span class="colophon-text">DocketField Press · Est. 2024</span>
+        <span class="colophon-rule-right" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        The working record<br>
+        for questions that<br>
+        <em class="gold-word">actually matter.</em>
+      </h1>
+
+      <div class="hero-sub">
+        <p class="hero-desc">
+          An open imprint across twenty expert fields — the same record universities use as the working-group backbone for the disciplines they teach. Anyone with something real to add <em>belongs here.</em>
+        </p>
+
+        <div class="hero-meta-block">
+          <div class="hero-stats" aria-label="Community statistics">
+            <div class="stat">
+              <span class="stat-num">312</span>
+              <span class="stat-label">Contributors</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">20</span>
+              <span class="stat-label">Fields</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">$8</span>
+              <span class="stat-label">Per month</span>
+            </div>
+          </div>
+          <a href="../index.html" class="hero-join">
+            Read the imprint
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover-to-pages transition rule -->
+  <div class="cover-to-pages" aria-hidden="true"></div>
+
+  <!-- ── FIELD INDEX ─────────────────────────────────── -->
+  <section class="field-section" id="fields" aria-labelledby="fields-label">
+    <div class="field-section-inner">
+      <div class="section-head">
+        <span class="section-label" id="fields-label">Where the record is active today</span>
+        <span class="section-note">Live thread count · updated continuously</span>
+      </div>
+      <div class="fields-grid" role="list">
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Space</span><span class="field-activity live">9 threads · 3 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">AI</span><span class="field-activity live">7 threads · 2 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Cybersecurity</span><span class="field-activity live">6 threads · 1 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Defense</span><span class="field-activity live">5 threads · 1 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Geopolitics</span><span class="field-activity live">5 threads · 1 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Supply Chain</span><span class="field-activity live">4 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Quantum</span><span class="field-activity live">4 threads · 2 hot</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Biosecurity</span><span class="field-activity">3 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Nuclear</span><span class="field-activity">3 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Robotics</span><span class="field-activity">3 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Energy</span><span class="field-activity">2 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Materials</span><span class="field-activity">2 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Public Health</span><span class="field-activity">2 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Semiconductors</span><span class="field-activity">3 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Genomics</span><span class="field-activity">1 thread</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Maritime</span><span class="field-activity">1 thread</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Autonomy</span><span class="field-activity">2 threads</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Manufacturing</span><span class="field-activity">1 thread</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Synthetic Biology</span><span class="field-activity">1 thread</span></div>
+        <div class="field-item" role="listitem" tabindex="0"><span class="field-name">Pharmaceuticals</span><span class="field-activity">2 threads</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLLECTION — pieces in the imprint ─────────── -->
+  <section class="collection" id="collection" aria-labelledby="collection-label">
+    <div class="collection-inner">
+      <div class="collection-head">
+        <h2 id="collection-label">Four pieces worth reading right now</h2>
+        <span class="collection-note">Ordered by minds changed · not by recency</span>
+      </div>
+
+      <!-- Piece 1 — Sam Ahmadi -->
+      <article class="piece" aria-labelledby="piece1-author">
+        <div class="piece-spine">
+          <span class="field-tag" tabindex="0">Quantum</span>
+          <span class="piece-time">2 hours ago</span>
+          <span class="piece-gold-rule" aria-hidden="true"></span>
+        </div>
+        <div class="piece-body">
+          <div class="piece-byline">
+            <div class="piece-author" id="piece1-author">Sam Ahmadi</div>
+            <div class="piece-role">Freight driver — Route-13 logistics, Eastern Seaboard</div>
+          </div>
+          <p class="piece-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+
+          <div class="piece-reply">
+            <div class="reply-head">
+              <b>Alex Patel</b>
+              <span class="reply-arc">— Quantum researcher, Brookhaven · replying to this thread</span>
+            </div>
+            <p>Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+          </div>
+
+          <div class="piece-foot">
+            <span class="minds-badge" aria-label="47 minds changed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="minds-num">47</span> minds changed
+            </span>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <a href="#">23 replies</a>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <span>pinned by 8 stewards</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Piece 2 — Maya Khurana -->
+      <article class="piece" aria-labelledby="piece2-author">
+        <div class="piece-spine">
+          <span class="field-tag" tabindex="0">Cybersecurity</span>
+          <span class="piece-time">4 hours ago</span>
+        </div>
+        <div class="piece-body">
+          <div class="piece-byline">
+            <div class="piece-author" id="piece2-author">Maya Khurana</div>
+            <div class="piece-role">Compliance officer — Regional bank, Midwest</div>
+          </div>
+          <p class="piece-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+          <div class="piece-foot">
+            <span class="minds-badge" aria-label="38 minds changed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="minds-num">38</span> minds changed
+            </span>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <a href="#">31 replies</a>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <span>19 me-too</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Piece 3 — Diego Torres -->
+      <article class="piece" aria-labelledby="piece3-author">
+        <div class="piece-spine">
+          <span class="field-tag" tabindex="0">Biosecurity</span>
+          <span class="piece-time">6 hours ago</span>
+        </div>
+        <div class="piece-body">
+          <div class="piece-byline">
+            <div class="piece-author" id="piece3-author">Diego Torres</div>
+            <div class="piece-role">High-school chemistry teacher — Public school, Texas</div>
+          </div>
+          <p class="piece-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+          <div class="piece-foot">
+            <span class="minds-badge" aria-label="28 thanks">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="minds-num">28</span> thanks
+            </span>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <a href="#">11 drafting answers</a>
+            <span class="piece-question-note">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 11v-.5M8 5a1.5 1.5 0 0 1 0 3"/></svg>
+              new voice
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Piece 4 — Jess Oduya -->
+      <article class="piece" aria-labelledby="piece4-author">
+        <div class="piece-spine">
+          <span class="field-tag" tabindex="0">Defense</span>
+          <span class="piece-time">yesterday</span>
+        </div>
+        <div class="piece-body">
+          <div class="piece-byline">
+            <div class="piece-author" id="piece4-author">Jess Oduya</div>
+            <div class="piece-role">Former Treasury analyst — at home with three kids</div>
+          </div>
+          <p class="piece-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things no one has flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+          <div class="piece-foot">
+            <span class="minds-badge" aria-label="56 minds changed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="minds-num">56</span> minds changed
+            </span>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <a href="#">18 replies</a>
+            <span class="piece-foot-sep" aria-hidden="true">·</span>
+            <span>14 asked her to write it up</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── HOUSE RULE SPREAD — back to dark cover ──────── -->
+  <section class="rule-spread" aria-label="House rule">
+    <div class="rule-ornament" aria-hidden="true">
+      <span class="rule-ornament-line"></span>
+      <span class="rule-ornament-diamond"></span>
+      <span class="rule-ornament-line"></span>
+    </div>
+    <blockquote>
+      "Reputation here is the number of people you have genuinely caused to <em>change their mind.</em>"
+    </blockquote>
+    <p class="rule-source">House rule no. 2 · The Lobby</p>
+  </section>
+
+  <!-- ── MANIFESTO — warm paper, two column ─────────── -->
+  <section class="manifesto" id="about" aria-labelledby="manifesto-title">
+    <div class="manifesto-inner">
+      <h2 id="manifesto-title">Not a PhD hangout. <em>A working room.</em></h2>
+      <div class="manifesto-body">
+        <p>DocketField is the open record universities already use as the working-group backbone for the disciplines they teach. The Lobby is its front door — a slow room where practitioners across twenty fields come to think out loud, and where the conversation stays on the record.</p>
+        <p><strong>Anyone can read, anyone can post.</strong> Eight dollars a month, no application, no credential check. A freight driver's loading-dock observation can outrank a tenured analyst's desk model — because here the question is never <em>who are you</em>, it's <em>does this hold up.</em></p>
+        <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only standing that compounds is whether the people who read you walked away thinking differently than they arrived.</p>
+        <a href="../index.html" class="manifesto-cta">Open the imprint → enter The Lobby</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER COVER BAND ──────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-wordmark">DocketField</div>
+        <div class="footer-edition">D38 — Press · book-object imprint register</div>
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">← all directions</a>
+        <a href="../index.html">Sign in</a>
+        <a href="../index.html">Join · $8/mo</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

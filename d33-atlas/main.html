@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D33 Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Archivo+Narrow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     D33 · ATLAS
+     Lineage: Swiss International Typographic Style — Müller-Brockmann,
+     Armin Hofmann, Basel school. The transit map. The directory.
+     The modular grid IS the design — structure as beauty.
+     Palette: white, ink, grid-grey, one signal red — disciplined.
+     Type: Archivo (tight grotesque). Big confident numerals.
+     Thesis: the 20-field directory is the hero. Order = intelligence.
+     ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --white:      #FFFFFF;
+    --ink:        #0E0E10;
+    --grid:       #ECECEC;
+    --grid-soft:  #F5F5F5;
+    --muted:      #6B6B72;
+    --faint:      #ABABB2;
+    --red:        #CE2A14;    /* signal red — live indicators + key accents only */
+    --red-soft:   #FDF1EF;
+
+    /* baseline unit: 8px */
+    --u1: 8px;
+    --u2: 16px;
+    --u3: 24px;
+    --u4: 32px;
+    --u5: 40px;
+    --u6: 48px;
+    --u8: 64px;
+    --u10: 80px;
+    --u12: 96px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #0E0E10; color: #fff; }
+
+  /* ── GRID CONTAINER ─────────────────────────────── */
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--u5);
+  }
+
+  /* ── MASTHEAD ────────────────────────────────────── */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--white);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .masthead-inner {
+    display: flex;
+    align-items: stretch;
+    height: 56px;
+  }
+
+  .brand-cell {
+    display: flex;
+    align-items: center;
+    padding-right: var(--u5);
+    border-right: 1px solid var(--grid);
+    flex: none;
+  }
+
+  .brand-cell .mark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .brand-cell .mark span {
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--muted);
+    font-size: 13px;
+    margin-left: var(--u2);
+    text-transform: none;
+  }
+
+  .nav-cells {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+  }
+
+  .nav-cells a {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--u3);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-right: 1px solid var(--grid);
+    transition: color 150ms, background 150ms;
+    min-height: 44px;
+  }
+
+  .nav-cells a:hover {
+    color: var(--ink);
+    background: var(--grid-soft);
+  }
+
+  .nav-cells .nav-join {
+    margin-left: auto;
+    background: var(--ink);
+    color: var(--white);
+    font-weight: 700;
+    border-right: none;
+    padding: 0 var(--u4);
+    transition: background 150ms;
+  }
+
+  .nav-cells .nav-join:hover { background: var(--red); }
+
+  @media (max-width: 760px) {
+    .nav-cells a:not(.nav-join) { display: none; }
+    .brand-cell .mark span { display: none; }
+    .brand-cell { border-right: none; }
+    .nav-cells .nav-join { margin-left: auto; border-left: 1px solid var(--grid); }
+  }
+
+  /* ── SURFACE SWITCHER ───────────────────────────── */
+
+  .ss-tabs {
+    display: inline-flex;
+    border: 1px solid var(--ink);
+  }
+
+  .ss-tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-right: 1px solid var(--ink);
+    transition: background 120ms, color 120ms;
+    min-height: 44px;
+  }
+
+  .ss-tab:last-child { border-right: none; }
+  .ss-tab:hover { background: var(--grid-soft); color: var(--ink); }
+  .ss-tab.is-active { background: var(--ink); color: var(--white); }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 2px solid var(--ink);
+    margin-top: var(--u2);
+  }
+
+  .hero-left {
+    padding: var(--u8) 0 var(--u8);
+    border-right: 1px solid var(--grid);
+    padding-right: var(--u8);
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--u3);
+    display: flex;
+    align-items: center;
+    gap: var(--u2);
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: blink 2s ease-in-out infinite;
+    flex: none;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5.8vw, 80px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: var(--u5);
+  }
+
+  .hero h1 .accent { color: var(--red); }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 44ch;
+    margin-bottom: var(--u5);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0;
+    border: 1px solid var(--grid);
+    width: fit-content;
+  }
+
+  .stat {
+    padding: var(--u2) var(--u3);
+    border-right: 1px solid var(--grid);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-n {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .stat-n .unit { font-size: 18px; font-weight: 700; }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* hero right — top voice preview */
+  .hero-right {
+    padding: var(--u8) 0 var(--u8) var(--u8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-right-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--u4);
+    padding-bottom: var(--u2);
+    border-bottom: 1px solid var(--grid);
+  }
+
+  .top-voice {
+    border-left: 3px solid var(--red);
+    padding-left: var(--u3);
+    margin-bottom: var(--u5);
+  }
+
+  .tv-field {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: var(--u1);
+  }
+
+  .tv-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+
+  .tv-role {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: var(--u2);
+    font-weight: 500;
+  }
+
+  .tv-quote {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .tv-quote em { font-style: italic; }
+
+  .tv-foot {
+    display: flex;
+    align-items: center;
+    gap: var(--u2);
+    margin-top: var(--u2);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .minds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--red);
+    font-weight: 700;
+    font-size: 11px;
+  }
+
+  .minds-badge svg { width: 11px; height: 11px; }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; padding-right: 0; }
+    .hero-right { padding-left: 0; border-top: 1px solid var(--grid); padding-top: var(--u5); }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { grid-template-columns: repeat(2, auto); }
+    .stat:nth-child(3) { border-right: none; }
+  }
+
+  /* ── FIELD DIRECTORY (THE CENTERPIECE) ─────────── */
+  .dir-header {
+    display: grid;
+    grid-template-columns: var(--u8) 1fr auto;
+    align-items: baseline;
+    gap: var(--u3);
+    padding: var(--u3) 0;
+    border-bottom: 2px solid var(--ink);
+    margin-top: var(--u6);
+  }
+
+  .dir-header .dir-section-n {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .dir-header h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .dir-header .dir-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* THE DIRECTORY GRID — modular, strict */
+  .dir-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-left: 1px solid var(--grid);
+    border-top: 1px solid var(--grid);
+    margin-bottom: var(--u8);
+  }
+
+  .dir-cell {
+    border-right: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
+    padding: var(--u3) var(--u3);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--u1);
+    min-height: 110px;
+    transition: background 120ms;
+    position: relative;
+  }
+
+  .dir-cell:hover { background: var(--grid-soft); }
+
+  .dir-cell-n {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .dir-cell-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.15;
+    align-self: end;
+  }
+
+  .dir-cell-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* live cells with red indicator */
+  .dir-cell.is-live .dir-cell-count {
+    color: var(--red);
+  }
+
+  .dir-cell.is-live .dir-cell-count::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--red);
+    flex: none;
+  }
+
+  .dir-cell.is-hot {
+    background: var(--ink);
+  }
+
+  .dir-cell.is-hot:hover { background: #1e1e22; }
+
+  .dir-cell.is-hot .dir-cell-n { color: var(--faint); }
+  .dir-cell.is-hot .dir-cell-name { color: var(--white); }
+
+  .dir-cell.is-hot .dir-cell-count {
+    color: var(--red);
+  }
+
+  .dir-cell.is-hot .dir-cell-count::before {
+    background: var(--red);
+  }
+
+  @media (max-width: 880px) {
+    .dir-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .dir-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 380px) {
+    .dir-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── VOICES SECTION ─────────────────────────────── */
+  .voices-header {
+    display: grid;
+    grid-template-columns: var(--u8) 1fr auto;
+    align-items: baseline;
+    gap: var(--u3);
+    padding: var(--u3) 0;
+    border-bottom: 2px solid var(--ink);
+    border-top: 1px solid var(--ink);
+  }
+
+  .voices-header .sect-n {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .voices-header h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .voices-header .v-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* voice row — grid-aligned */
+  .voice-row {
+    display: grid;
+    grid-template-columns: var(--u8) 180px 1fr auto;
+    gap: 0;
+    border-bottom: 1px solid var(--grid);
+    align-items: start;
+    transition: background 120ms;
+  }
+
+  .voice-row:hover { background: var(--grid-soft); }
+
+  .vr-index {
+    padding: var(--u4) var(--u3) var(--u4) 0;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--grid);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    align-self: start;
+    padding-top: var(--u4);
+  }
+
+  .vr-meta {
+    padding: var(--u4) var(--u3) var(--u4) var(--u2);
+    border-left: 1px solid var(--grid);
+    border-right: 1px solid var(--grid);
+    display: flex;
+    flex-direction: column;
+    gap: var(--u1);
+    align-self: start;
+    min-height: 100%;
+  }
+
+  .vr-field {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .vr-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .vr-role {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.35;
+    font-weight: 400;
+  }
+
+  .vr-time {
+    font-size: 10px;
+    color: var(--faint);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-top: var(--u1);
+  }
+
+  .vr-body {
+    padding: var(--u4) var(--u5) var(--u4) var(--u5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--u3);
+  }
+
+  .vr-text {
+    font-size: 17px;
+    line-height: 1.58;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 62ch;
+  }
+
+  .vr-text em { font-style: italic; }
+
+  /* nested reply */
+  .vr-reply {
+    background: var(--grid-soft);
+    border-left: 2px solid var(--ink);
+    padding: var(--u2) var(--u3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--u1);
+    max-width: 56ch;
+  }
+
+  .vr-reply-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .vr-reply-head strong {
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+  }
+
+  .vr-reply p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .vr-reply p em { font-style: italic; }
+
+  .vr-foot {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    flex-wrap: wrap;
+  }
+
+  .vr-minds {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--red);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .vr-minds svg { width: 11px; height: 11px; }
+
+  .vr-score-col {
+    padding: var(--u4) 0 var(--u4) var(--u3);
+    border-left: 1px solid var(--grid);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--u1);
+    min-width: 80px;
+    align-self: start;
+  }
+
+  .vr-score {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .vr-score-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 960px) {
+    .voice-row {
+      grid-template-columns: var(--u6) 1fr;
+      grid-template-rows: auto auto;
+    }
+    .vr-index { padding: var(--u3) var(--u2) 0 0; font-size: 20px; }
+    .vr-meta {
+      grid-column: 2;
+      grid-row: 1;
+      border-left: none;
+      border-right: none;
+      padding-left: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--u2);
+      padding-bottom: var(--u2);
+    }
+    .vr-role { display: none; }
+    .vr-time { margin-top: 0; }
+    .vr-body {
+      grid-column: 1 / -1;
+      padding: 0 0 var(--u4);
+      border-top: 1px solid var(--grid);
+      padding-top: var(--u3);
+    }
+    .vr-score-col { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 var(--u3); }
+    .vr-text { font-size: 15px; }
+    .dir-header, .voices-header { grid-template-columns: auto 1fr; }
+    .dir-note, .v-note { display: none; }
+  }
+
+  /* ── HOUSE RULE ─────────────────────────────────── */
+  .rule-section {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin: var(--u10) 0;
+    display: grid;
+    grid-template-columns: var(--u8) 1fr;
+    align-items: stretch;
+  }
+
+  .rule-n {
+    border-right: 1px solid var(--grid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--u6) var(--u3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .rule-body {
+    padding: var(--u10) var(--u8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--u3);
+  }
+
+  .rule-body blockquote {
+    font-size: clamp(24px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    text-transform: uppercase;
+    color: var(--ink);
+    max-width: 18ch;
+  }
+
+  .rule-body blockquote .ital {
+    font-weight: 400;
+    font-style: italic;
+    text-transform: none;
+    font-size: 0.85em;
+    letter-spacing: -0.02em;
+    color: var(--muted);
+  }
+
+  .rule-src {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  @media (max-width: 600px) {
+    .rule-section { grid-template-columns: 1fr; }
+    .rule-n { writing-mode: horizontal-tb; transform: none; border-right: none; border-bottom: 1px solid var(--grid); padding: var(--u2) var(--u3); justify-content: flex-start; }
+    .rule-body { padding: var(--u5) var(--u3); }
+  }
+
+  /* ── MANIFESTO ──────────────────────────────────── */
+  .mani-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--grid);
+    margin-bottom: var(--u12);
+  }
+
+  .mani-left {
+    padding: var(--u8) var(--u8) var(--u8) 0;
+    border-right: 1px solid var(--grid);
+  }
+
+  .mani-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--u5);
+    display: block;
+  }
+
+  .mani-left h2 {
+    font-size: clamp(28px, 4vw, 50px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: var(--u5);
+  }
+
+  .mani-left h2 .lower {
+    text-transform: none;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.8em;
+    letter-spacing: -0.02em;
+    display: block;
+    color: var(--muted);
+  }
+
+  .mani-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--u2);
+    background: var(--ink);
+    color: var(--white);
+    padding: 13px var(--u4);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 150ms;
+    min-height: 44px;
+  }
+
+  .mani-cta:hover { background: var(--red); }
+
+  .mani-right {
+    padding: var(--u8) 0 var(--u8) var(--u8);
+  }
+
+  .mani-right p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: var(--u3);
+  }
+
+  .mani-right p:last-of-type { margin-bottom: 0; }
+  .mani-right strong { color: var(--ink); font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .mani-section { grid-template-columns: 1fr; }
+    .mani-left { border-right: none; padding-right: 0; padding-bottom: var(--u5); border-bottom: 1px solid var(--grid); }
+    .mani-right { padding-left: 0; padding-top: var(--u5); }
+  }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    border-top: 2px solid var(--ink);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--u5);
+    padding: var(--u4) 0 var(--u6);
+  }
+
+  .footer-mark {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .footer-id {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer-back {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 150ms;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-back:hover { color: var(--ink); }
+
+  @media (max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: var(--u3); }
+    .footer-id { grid-column: 1 / -1; order: 3; }
+  }
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+  <!-- ─── MASTHEAD ─────────────────────────────────── -->
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="brand-cell">
+        <span class="mark">DocketField<span>An open record across twenty fields</span></span>
+      </div>
+      <nav class="nav-cells">
+        <a href="#directory">Directory</a>
+        <a href="#voices">Voices</a>
+        <a href="#about">About</a>
+        <a href="../index.html" class="nav-join">Join · $8/mo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ─── SURFACE SWITCHER ───────────────────────── -->
+    </div>
+
+    <!-- ─── HERO ──────────────────────────────────── -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-label"><span class="live-dot"></span>Live across all desks</p>
+        <h1>A working<br>room.<br><span class="accent">Open.</span></h1>
+        <p class="hero-sub">Practitioners across twenty disciplines think out loud here. A truck driver opens a thread; a quantum researcher answers in kind. The only standing that compounds is the number of minds you have genuinely caused to change.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-n">312</span>
+            <span class="stat-label">Contributors</span>
+          </div>
+          <div class="stat">
+            <span class="stat-n">20</span>
+            <span class="stat-label">Fields</span>
+          </div>
+          <div class="stat">
+            <span class="stat-n"><span class="unit">$</span>8</span>
+            <span class="stat-label">Per month</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p class="hero-right-label">Top voice right now — ranked by minds changed</p>
+
+        <div class="top-voice">
+          <div class="tv-field">Defense</div>
+          <div class="tv-name">Jess Oduya</div>
+          <div class="tv-role">Former Treasury analyst — at home with three kids</div>
+          <p class="tv-quote">I've been reading the ITAR rewrite at nap-time for two weeks. Three things nobody's flagged: the foundational-research carve-out tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed yet.</em></p>
+          <div class="tv-foot">
+            <span class="minds-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>56 minds changed</span>
+            <span>18 replies</span>
+            <span>14 asked her to write it up</span>
+          </div>
+        </div>
+
+        <div class="top-voice">
+          <div class="tv-field">Quantum</div>
+          <div class="tv-name">Sam Ahmadi</div>
+          <div class="tv-role">Freight driver — Route-13 logistics, Eastern Seaboard</div>
+          <p class="tv-quote">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock.</em></p>
+          <div class="tv-foot">
+            <span class="minds-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>47 minds changed</span>
+            <span>23 replies</span>
+            <span>pinned by 8 stewards</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FIELD DIRECTORY ────────────────────────── -->
+    <section id="directory">
+      <div class="dir-header">
+        <span class="dir-section-n">§ 01</span>
+        <h2>Field Directory — 20 active desks</h2>
+        <span class="dir-note">Live question count · updated continuously</span>
+      </div>
+
+      <div class="dir-grid">
+        <!-- hot cells (highest activity) rendered with inverted treatment -->
+        <a class="dir-cell is-hot" href="#">
+          <span class="dir-cell-n">01</span>
+          <span class="dir-cell-name">Space</span>
+          <span class="dir-cell-count">9 live · 3 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">02</span>
+          <span class="dir-cell-name">AI</span>
+          <span class="dir-cell-count">7 live · 2 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">03</span>
+          <span class="dir-cell-name">Cybersecurity</span>
+          <span class="dir-cell-count">6 live · 1 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">04</span>
+          <span class="dir-cell-name">Defense</span>
+          <span class="dir-cell-count">5 live · 1 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">05</span>
+          <span class="dir-cell-name">Geopolitics</span>
+          <span class="dir-cell-count">5 live · 1 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">06</span>
+          <span class="dir-cell-name">Supply Chain</span>
+          <span class="dir-cell-count">4 live</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">07</span>
+          <span class="dir-cell-name">Quantum</span>
+          <span class="dir-cell-count">4 live · 2 hot</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">08</span>
+          <span class="dir-cell-name">Biosecurity</span>
+          <span class="dir-cell-count">3 live</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">09</span>
+          <span class="dir-cell-name">Nuclear</span>
+          <span class="dir-cell-count">3 live</span>
+        </a>
+        <a class="dir-cell is-live" href="#">
+          <span class="dir-cell-n">10</span>
+          <span class="dir-cell-name">Robotics</span>
+          <span class="dir-cell-count">3 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">11</span>
+          <span class="dir-cell-name">Energy</span>
+          <span class="dir-cell-count">2 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">12</span>
+          <span class="dir-cell-name">Materials</span>
+          <span class="dir-cell-count">2 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">13</span>
+          <span class="dir-cell-name">Public Health</span>
+          <span class="dir-cell-count">2 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">14</span>
+          <span class="dir-cell-name">Semiconductors</span>
+          <span class="dir-cell-count">2 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">15</span>
+          <span class="dir-cell-name">Autonomy</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">16</span>
+          <span class="dir-cell-name">Genomics</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">17</span>
+          <span class="dir-cell-name">Maritime</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">18</span>
+          <span class="dir-cell-name">Manufacturing</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">19</span>
+          <span class="dir-cell-name">Synthetic Biology</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+        <a class="dir-cell" href="#">
+          <span class="dir-cell-n">20</span>
+          <span class="dir-cell-name">Pharmaceuticals</span>
+          <span class="dir-cell-count">1 live</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── VOICES ─────────────────────────────────── -->
+    <section id="voices">
+      <div class="voices-header">
+        <span class="sect-n">§ 02</span>
+        <h2>Five voices worth reading right now</h2>
+        <span class="v-note">Ranked by minds changed — not by recency</span>
+      </div>
+
+      <!-- Voice 01 — Jess Oduya -->
+      <article class="voice-row">
+        <div class="vr-index">01</div>
+        <div class="vr-meta">
+          <span class="vr-field">Defense</span>
+          <span class="vr-name">Jess Oduya</span>
+          <span class="vr-role">Former Treasury analyst — at home with three kids</span>
+          <span class="vr-time">Yesterday</span>
+        </div>
+        <div class="vr-body">
+          <p class="vr-text">I've been reading the ITAR rewrite at nap-time for two weeks. Three things nobody's flagged yet: the foundational-research carve-out got tightened in clause 4(b), not 5; the comment window closes June 17; and <em>university counsel offices have not noticed.</em></p>
+          <div class="vr-foot">
+            <span class="vr-minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>56 minds changed</span>
+            <span>18 replies</span>
+            <span>14 asked her to write it up</span>
+          </div>
+        </div>
+        <div class="vr-score-col">
+          <span class="vr-score">56</span>
+          <span class="vr-score-label">Minds<br>changed</span>
+        </div>
+      </article>
+
+      <!-- Voice 02 — Sam Ahmadi -->
+      <article class="voice-row">
+        <div class="vr-index">02</div>
+        <div class="vr-meta">
+          <span class="vr-field">Quantum</span>
+          <span class="vr-name">Sam Ahmadi</span>
+          <span class="vr-role">Freight driver — Route-13 logistics, Eastern Seaboard</span>
+          <span class="vr-time">2 hours ago</span>
+        </div>
+        <div class="vr-body">
+          <p class="vr-text">I drive freight out of Brookhaven Lab three times a week. Hiring on the loading dock is up — cryo gear arriving that isn't in the published FY24 plan. <em>I don't know quantum sensing. I know what shows up on the dock, and it doesn't match the timeline everyone's working from.</em></p>
+          <div class="vr-reply">
+            <div class="vr-reply-head"><strong>Alex Patel</strong> — Quantum researcher, Brookhaven · replying</div>
+            <p>Sam — that's the ground truth I keep missing from my desk. Dock-level hiring is something I literally cannot see from where I sit. <em>Going into v2 of the brief with your observation attributed. Thank you.</em></p>
+          </div>
+          <div class="vr-foot">
+            <span class="vr-minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>47 minds changed</span>
+            <span>23 replies</span>
+            <span>pinned by 8 stewards</span>
+          </div>
+        </div>
+        <div class="vr-score-col">
+          <span class="vr-score">47</span>
+          <span class="vr-score-label">Minds<br>changed</span>
+        </div>
+      </article>
+
+      <!-- Voice 03 — Maya Khurana -->
+      <article class="voice-row">
+        <div class="vr-index">03</div>
+        <div class="vr-meta">
+          <span class="vr-field">Cybersecurity</span>
+          <span class="vr-name">Maya Khurana</span>
+          <span class="vr-role">Compliance officer — regional bank, Midwest</span>
+          <span class="vr-time">4 hours ago</span>
+        </div>
+        <div class="vr-body">
+          <p class="vr-text">The EU AI Act Article-6 narrowing is going to break model-risk pipelines before it breaks any frontier lab. We have to reclassify everything by Q3 and <em>we are not ready.</em> If anyone here has mapped the reclassification path, I will trade notes.</p>
+          <div class="vr-foot">
+            <span class="vr-minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>38 minds changed</span>
+            <span>31 replies</span>
+            <span>19 me-too</span>
+          </div>
+        </div>
+        <div class="vr-score-col">
+          <span class="vr-score">38</span>
+          <span class="vr-score-label">Minds<br>changed</span>
+        </div>
+      </article>
+
+      <!-- Voice 04 — Diego Torres -->
+      <article class="voice-row">
+        <div class="vr-index">04</div>
+        <div class="vr-meta">
+          <span class="vr-field">Biosecurity</span>
+          <span class="vr-name">Diego Torres</span>
+          <span class="vr-role">High-school chemistry teacher — public school, Texas</span>
+          <span class="vr-time">6 hours ago</span>
+        </div>
+        <div class="vr-body">
+          <p class="vr-text">My students keep asking me to explain gain-of-function. Every definition I find is either too narrow to be honest or too scary to be useful. <em>Is there a one-paragraph version a working biosecurity researcher would actually sign their name to?</em></p>
+          <div class="vr-foot">
+            <span class="vr-minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>28 thanks</span>
+            <span>11 drafting answers</span>
+            <span>new voice</span>
+          </div>
+        </div>
+        <div class="vr-score-col">
+          <span class="vr-score">28</span>
+          <span class="vr-score-label">Thanks</span>
+        </div>
+      </article>
+
+      <!-- Voice 05 — Alex Patel (own thread) -->
+      <article class="voice-row">
+        <div class="vr-index">05</div>
+        <div class="vr-meta">
+          <span class="vr-field">Quantum</span>
+          <span class="vr-name">Alex Patel</span>
+          <span class="vr-role">Quantum researcher — Brookhaven National Laboratory</span>
+          <span class="vr-time">3 hours ago</span>
+        </div>
+        <div class="vr-body">
+          <p class="vr-text">A correction to my FY24 briefing note: the cryogenic procurement timeline is materially different from what I published. <em>I was working from desk data. A freight driver showed me the dock data. They are not the same document.</em></p>
+          <div class="vr-foot">
+            <span class="vr-minds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>21 minds changed</span>
+            <span>9 replies</span>
+            <span>correction on the record</span>
+          </div>
+        </div>
+        <div class="vr-score-col">
+          <span class="vr-score">21</span>
+          <span class="vr-score-label">Minds<br>changed</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- ─── HOUSE RULE ─────────────────────────────── -->
+    <div class="rule-section">
+      <div class="rule-n" aria-hidden="true">House Rule No. 2</div>
+      <div class="rule-body">
+        <blockquote>"Reputation here is the number of people<br><span class="ital">you have genuinely caused to change their mind."</span></blockquote>
+        <span class="rule-src">House Rule No. 2 · The Lobby</span>
+      </div>
+    </div>
+
+    <!-- ─── MANIFESTO ──────────────────────────────── -->
+    <section id="about" class="mani-section">
+      <div class="mani-left">
+        <span class="mani-label">What this is</span>
+        <h2>Not a PhD<br>hangout.<br><span class="lower">A working room.</span></h2>
+        <a href="../index.html" class="mani-cta">Enter The Lobby →</a>
+      </div>
+      <div class="mani-right">
+        <p>DocketField is the open record universities already use as the working-group backbone for the disciplines they teach. The Lobby is its front door — a slow room where practitioners across twenty fields come to think out loud, and where the conversation stays on the record.</p>
+        <p><strong>Anyone can read, anyone can post.</strong> Eight dollars a month, no application, no credential check. A freight driver's loading-dock observation can outrank a tenured analyst's desk model — because here the question is never <em>who are you</em>, it's <em>does this hold up.</em></p>
+        <p>Bad-faith posts are quietly muted by five-contributor consensus. No pile-ons, no theater. The only standing that compounds is whether the people who read you walked away thinking differently than they arrived.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ─────────────────────────────────── -->
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-mark">DocketField</span>
+      <span class="footer-id">D33 · Atlas · Swiss modular grid register</span>
+      <a href="../index.html" class="footer-back">← All directions</a>
+    </div>
+  </footer>
+
+</body>
+</html>
