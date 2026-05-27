@@ -1,0 +1,6 @@
+node_modules/
+.audit/
+.crucible/
+.DS_Store
+Thumbs.db
+
