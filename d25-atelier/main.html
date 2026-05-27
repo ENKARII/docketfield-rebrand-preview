@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Lobby — DocketField D25 (playful atelier)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Reference: Recurse Center · Glitch · Robin Sloan · Cosmos magazine. */
+  /* Warmth without twee: pastel palette, rounded, soft illustration,    */
+  /* friendly micro-copy. Real joy, disciplined.                         */
+
+  :root {
+    --paper: #FBF4E4;
+    --paper-warm: #F5EAD0;
+    --ink: #2A241C;
+    --muted: #6E6353;
+    --peach: #FFB68A;
+    --peach-soft: #FFE4D0;
+    --sage: #A8C09A;
+    --sage-soft: #D8E5CB;
+    --butter: #F5D77A;
+    --butter-soft: #FBEBC2;
+    --terracotta: #C95F3D;
+    --sky: #9BB8D4;
+    --sky-soft: #D4E2EF;
+    --plum: #A87CA0;
+    --plum-soft: #E2D2DC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    background-image:
+      radial-gradient(circle at 8% 12%, var(--peach-soft) 0%, transparent 14%),
+      radial-gradient(circle at 92% 88%, var(--sage-soft) 0%, transparent 14%),
+      radial-gradient(circle at 88% 8%, var(--butter-soft) 0%, transparent 11%);
+    min-height: 100vh;
+  }
+  .serif { font-family: 'Fraunces', Georgia, serif; font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+  .hand { font-family: 'Caveat', cursive; font-weight: 500; }
+  a { color: inherit; text-decoration: none; }
+
+  .page { max-width: 1080px; margin: 0 auto; padding: 24px 28px; }
+
+  /* ── top nav ────────────────────────────────── */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--paper-warm);
+    border-radius: 999px;
+  }
+  .top .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 60, 'wght' 600, 'SOFT' 100;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .top .brand svg { width: 32px; height: 32px; }
+  .top nav {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .top nav a:hover { color: var(--terracotta); }
+  .top .pill {
+    background: var(--terracotta);
+    color: var(--paper);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .top .pill:hover { background: #A84A2C; }
+
+  /* ── hero ───────────────────────────────────── */
+  .hero {
+    padding: 80px 0 56px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-text { position: relative; }
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'wght' 500, 'SOFT' 100;
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'wght' 600, 'SOFT' 100;
+    color: var(--terracotta);
+  }
+  .hero h1 .underline {
+    background: linear-gradient(transparent 65%, var(--butter) 65%, var(--butter) 92%, transparent 92%);
+  }
+  .hero p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-top: 28px;
+    max-width: 520px;
+  }
+  .hero .scribble {
+    position: absolute;
+    top: -32px;
+    right: 60px;
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--terracotta);
+    transform: rotate(-6deg);
+    line-height: 1;
+  }
+  .hero .scribble::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 28px;
+    border: 2px dashed var(--terracotta);
+    border-radius: 50%;
+    border-bottom: none;
+    margin-bottom: -10px;
+    margin-left: -40px;
+    transform: rotate(-15deg);
+  }
+  .hero-illo {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-illo svg {
+    width: 100%;
+    height: 100%;
+    max-width: 380px;
+  }
+
+  /* ── invite chips ───────────────────────────── */
+  .invite-row {
+    margin-top: 40px;
+    padding: 28px 32px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 0 var(--peach-soft);
+    border: 2px solid var(--ink);
+    transform: rotate(-0.4deg);
+  }
+  .invite-label {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 60, 'wght' 500;
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .invite-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .chip {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip-peach { background: var(--peach-soft); }
+  .chip-sage { background: var(--sage-soft); }
+  .chip-butter { background: var(--butter-soft); }
+  .chip-sky { background: var(--sky-soft); }
+  .chip-plum { background: var(--plum-soft); }
+  .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta); }
+  .chip-sage .chip-dot { background: #5C7848; }
+  .chip-peach .chip-dot { background: var(--terracotta); }
+  .chip-butter .chip-dot { background: #B49031; }
+  .chip-sky .chip-dot { background: #4C7AA0; }
+  .chip-plum .chip-dot { background: #7A4C72; }
+
+  /* ── threads grid ───────────────────────────── */
+  .threads-head {
+    margin-top: 80px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .threads-head h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'wght' 600, 'SOFT' 100;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+  }
+  .threads-head .small {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .threads {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+  }
+  .thread {
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .thread:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: 5px 7px 0 var(--ink);
+  }
+  .thread.t-feat {
+    background: var(--peach-soft);
+    box-shadow: 4px 6px 0 var(--ink);
+  }
+  .thread.t-feat:hover { box-shadow: 6px 9px 0 var(--ink); }
+  .thread.t-sage { background: var(--sage-soft); box-shadow: 3px 5px 0 var(--ink); }
+  .thread.t-butter { background: var(--butter-soft); box-shadow: 3px 5px 0 var(--ink); }
+  .thread.t-sky { background: var(--sky-soft); box-shadow: 3px 5px 0 var(--ink); }
+  .thread.t-plum { background: var(--plum-soft); box-shadow: 3px 5px 0 var(--ink); }
+
+  .thread .room-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .thread .pinned-mark {
+    position: absolute;
+    top: -10px;
+    right: 24px;
+    background: var(--butter);
+    color: var(--ink);
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: rotate(4deg);
+  }
+  .thread h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 60, 'wght' 600, 'SOFT' 100;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .thread.t-feat h3 { font-size: 26px; }
+  .thread h3 em { font-style: italic; }
+
+  .thread-byline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+  }
+  .av-1 { background: var(--terracotta); }
+  .av-2 { background: var(--sky); color: var(--ink); }
+  .av-3 { background: var(--sage); color: var(--ink); }
+  .av-4 { background: var(--butter); color: var(--ink); }
+  .av-5 { background: var(--plum); color: var(--paper); }
+  .av-6 { background: var(--ink); color: var(--paper); }
+
+  .by-text { font-size: 14px; line-height: 1.3; }
+  .by-text strong { font-weight: 700; display: block; }
+  .by-text .role { color: var(--muted); font-size: 12.5px; }
+
+  .thread blockquote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 60, 'wght' 400, 'SOFT' 100;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.5;
+    margin: 12px 0 16px;
+    padding-left: 14px;
+    border-left: 3px solid var(--ink);
+    color: var(--ink);
+  }
+
+  .thread .reacts {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1.5px dashed var(--ink);
+  }
+  .react {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .react.minds {
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
+  }
+  .react .em {
+    font-style: normal;
+  }
+
+  /* ── manifesto card ─────────────────────────── */
+  .manifesto {
+    margin: 80px 0;
+    padding: 48px;
+    background: var(--sage-soft);
+    border: 2px solid var(--ink);
+    border-radius: 28px;
+    box-shadow: 6px 8px 0 var(--ink);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+  }
+  .manifesto h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'wght' 500, 'SOFT' 100;
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .manifesto h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-variation-settings: 'opsz' 144, 'wght' 600;
+  }
+  .manifesto .hand {
+    position: absolute;
+    top: 24px;
+    right: 36px;
+    font-size: 28px;
+    color: var(--terracotta);
+    transform: rotate(-6deg);
+  }
+  .manifesto .rules {
+    background: white;
+    padding: 24px 28px;
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 3px 4px 0 var(--ink);
+  }
+  .manifesto .rules h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 60, 'wght' 600;
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .manifesto .rules ul { list-style: none; }
+  .manifesto .rules li {
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .manifesto .rules li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  /* ── join card ──────────────────────────────── */
+  .join {
+    margin: 64px 0;
+    padding: 56px 40px;
+    text-align: center;
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 24px;
+    box-shadow: 5px 7px 0 var(--terracotta);
+    position: relative;
+  }
+  .join .price {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'wght' 600, 'SOFT' 100;
+    font-size: clamp(56px, 9vw, 96px);
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .join .price em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-variation-settings: 'opsz' 144, 'wght' 600;
+  }
+  .join p {
+    margin-top: 16px;
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .join button {
+    margin-top: 28px;
+    background: var(--terracotta);
+    color: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 3px 4px 0 var(--ink);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .join button:hover { transform: translate(-1px, -2px); box-shadow: 4px 6px 0 var(--ink); }
+  .join .hand-floating {
+    position: absolute;
+    bottom: -16px;
+    right: 40px;
+    font-size: 22px;
+    color: var(--ink);
+    transform: rotate(-5deg);
+  }
+
+  /* ── footer ─────────────────────────────────── */
+  .colophon {
+    text-align: center;
+    padding: 24px 0 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .colophon a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--peach); text-underline-offset: 3px; }
+  .colophon a:hover { color: var(--terracotta); }
+
+  @media (max-width: 780px) {
+    .page { padding: 16px; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 32px 0; }
+    .hero-illo { max-width: 280px; margin: 0 auto; }
+    .threads { grid-template-columns: 1fr; }
+    .manifesto { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
+    .top nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="17" fill="#FFB68A" stroke="#2A241C" stroke-width="2.5"/>
+        <circle cx="14" cy="17" r="2" fill="#2A241C"/>
+        <circle cx="26" cy="17" r="2" fill="#2A241C"/>
+        <path d="M13 25 Q20 31 27 25" stroke="#2A241C" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>The Lobby</span>
+    </div>
+    <nav>
+      <a href="#rooms">Rooms</a>
+      <a href="#threads">Threads</a>
+      <a href="#manifesto">House rules</a>
+      <a href="#join" class="pill">Pull up a chair</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <span class="scribble">come on in →</span>
+      <h1>A room for anyone with <span class="underline">something real</span> to add. <em>From every walk of life.</em></h1>
+      <p>The Lobby is a slow chat room across twenty fields. A truck driver opens a thread; a researcher replies. A high-school teacher asks the question that cracks open a debate. Eight dollars a month. No application, no credential check — just bring what you noticed.</p>
+    </div>
+
+    <div class="hero-illo">
+      <svg viewBox="0 0 380 380" fill="none">
+        <!-- background sun -->
+        <circle cx="290" cy="80" r="46" fill="#F5D77A"/>
+        <!-- table -->
+        <ellipse cx="190" cy="280" rx="155" ry="22" fill="#A8C09A"/>
+        <rect x="35" y="270" width="310" height="20" rx="10" fill="#2A241C"/>
+
+        <!-- left chair (truck driver / Sam) -->
+        <g transform="translate(70 165)">
+          <circle cx="0" cy="0" r="32" fill="#FFB68A" stroke="#2A241C" stroke-width="2.5"/>
+          <text x="0" y="6" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#2A241C">SA</text>
+          <path d="M-22 38 L-22 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22 38 L22 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- right chair (researcher / Alex) -->
+        <g transform="translate(310 165)">
+          <circle cx="0" cy="0" r="32" fill="#9BB8D4" stroke="#2A241C" stroke-width="2.5"/>
+          <text x="0" y="6" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#2A241C">AP</text>
+          <path d="M-22 38 L-22 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22 38 L22 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- center chair (teacher / Diego) -->
+        <g transform="translate(190 195)">
+          <circle cx="0" cy="0" r="38" fill="#A87CA0" stroke="#2A241C" stroke-width="2.5"/>
+          <text x="0" y="7" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="15" font-weight="700" fill="#FBF4E4">DT</text>
+          <path d="M-26 44 L-26 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+          <path d="M26 44 L26 100" stroke="#2A241C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- speech bubble from Sam -->
+        <g transform="translate(115 130)">
+          <path d="M0 16 Q0 0 16 0 L80 0 Q96 0 96 16 L96 32 Q96 48 80 48 L40 48 L30 60 L34 48 L16 48 Q0 48 0 32 Z" fill="#FFFAEF" stroke="#2A241C" stroke-width="2"/>
+          <text x="48" y="30" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="#2A241C">"From the dock"</text>
+        </g>
+
+        <!-- speech bubble from Alex -->
+        <g transform="translate(180 95)">
+          <path d="M0 16 Q0 0 16 0 L80 0 Q96 0 96 16 L96 32 Q96 48 80 48 L52 48 L46 60 L42 48 L16 48 Q0 48 0 32 Z" fill="#FFFAEF" stroke="#2A241C" stroke-width="2"/>
+          <text x="48" y="30" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="#2A241C">"Thank you."</text>
+        </g>
+
+        <!-- coffee on table -->
+        <g transform="translate(140 265)">
+          <rect x="0" y="0" width="22" height="18" rx="2" fill="#C95F3D" stroke="#2A241C" stroke-width="1.5"/>
+          <path d="M22 4 Q30 4 30 10 Q30 14 22 14" fill="none" stroke="#2A241C" stroke-width="1.5"/>
+          <path d="M6 -4 Q8 -8 6 -10" stroke="#2A241C" stroke-width="1.5" fill="none"/>
+          <path d="M14 -4 Q16 -8 14 -10" stroke="#2A241C" stroke-width="1.5" fill="none"/>
+        </g>
+
+        <!-- paper on table -->
+        <g transform="translate(220 270)">
+          <rect x="0" y="0" width="40" height="14" fill="#FBF4E4" stroke="#2A241C" stroke-width="1.5"/>
+          <line x1="4" y1="5" x2="36" y2="5" stroke="#6E6353" stroke-width="1"/>
+          <line x1="4" y1="9" x2="30" y2="9" stroke="#6E6353" stroke-width="1"/>
+        </g>
+
+        <!-- small sun rays -->
+        <g stroke="#2A241C" stroke-width="2" stroke-linecap="round">
+          <line x1="290" y1="20" x2="290" y2="28"/>
+          <line x1="240" y1="80" x2="248" y2="80"/>
+          <line x1="340" y1="80" x2="332" y2="80"/>
+          <line x1="255" y1="45" x2="261" y2="51"/>
+          <line x1="325" y1="45" x2="319" y2="51"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="invite-row" id="rooms">
+    <div class="invite-label">Rooms open today &mdash; <span class="hand" style="color:var(--terracotta);">choose your seat</span></div>
+    <div class="invite-chips">
+      <span class="chip chip-peach"><span class="chip-dot"></span>Quantum · 47 live</span>
+      <span class="chip chip-sage"><span class="chip-dot"></span>Cyber · 22 live</span>
+      <span class="chip chip-butter"><span class="chip-dot"></span>Defense · 31 live</span>
+      <span class="chip chip-plum"><span class="chip-dot"></span>Biosec · 18 live</span>
+      <span class="chip chip-sky"><span class="chip-dot"></span>Energy · 11</span>
+      <span class="chip"><span class="chip-dot"></span>AI</span>
+      <span class="chip"><span class="chip-dot"></span>Space</span>
+      <span class="chip"><span class="chip-dot"></span>Materials</span>
+      <span class="chip"><span class="chip-dot"></span>Pharma</span>
+      <span class="chip"><span class="chip-dot"></span>Public Health</span>
+      <span class="chip" style="color:var(--muted);">+ 10 more</span>
+    </div>
+  </section>
+
+  <header class="threads-head" id="threads">
+    <h2>What's happening today</h2>
+    <span class="small">312 contributors online · sorted by minds shifted</span>
+  </header>
+
+  <section class="threads">
+
+    <article class="thread t-feat">
+      <span class="room-pill">Quantum</span>
+      <span class="pinned-mark">★ Pinned</span>
+      <h3>"I drive freight from Brookhaven three times a week. <em>Here's what I see from the loading dock.</em>"</h3>
+      <div class="thread-byline">
+        <span class="avatar av-1">SA</span>
+        <span class="by-text">
+          <strong>Sam Ahmadi</strong>
+          <span class="role">truck driver · route-13 logistics · 2h ago</span>
+        </span>
+      </div>
+      <blockquote>The hiring on the loading dock is up — cryo gear arriving that isn't in the FY24 plan. I don't know quantum sensing. I know what shows up on the dock. Whatever's coming, the building is already preparing for it.</blockquote>
+      <div class="reacts">
+        <span class="react minds">💡 47 changed my mind</span>
+        <span class="react">🤔 12 thinking</span>
+        <span class="react">📌 8 saved</span>
+        <span class="react">💬 23 replies</span>
+      </div>
+    </article>
+
+    <article class="thread t-sage">
+      <span class="room-pill">Cyber</span>
+      <h3>Hot take from a non-cyber person: EU AI Act narrows pipelines <em>before any AI lab feels it.</em></h3>
+      <div class="thread-byline">
+        <span class="avatar av-2">MK</span>
+        <span class="by-text">
+          <strong>Maya Khurana</strong>
+          <span class="role">compliance officer · regional bank · 4h ago</span>
+        </span>
+      </div>
+      <div class="reacts">
+        <span class="react minds">💡 38 changed my mind</span>
+        <span class="react">🙋 19 me too</span>
+        <span class="react">💬 31 replies</span>
+      </div>
+    </article>
+
+    <article class="thread t-butter">
+      <span class="room-pill">Biosec</span>
+      <h3>Outsider question: how do I explain gain-of-function <em>to seventeen-year-olds?</em></h3>
+      <div class="thread-byline">
+        <span class="avatar av-5">DT</span>
+        <span class="by-text">
+          <strong>Diego Torres</strong>
+          <span class="role">HS chemistry teacher · new voice · 6h ago</span>
+        </span>
+      </div>
+      <div class="reacts">
+        <span class="react minds">🙏 28 good question</span>
+        <span class="react">📝 11 drafting answer</span>
+        <span class="react">💬 9 replies</span>
+      </div>
+    </article>
+
+    <article class="thread t-plum">
+      <span class="room-pill">Defense</span>
+      <h3>Reading ITAR rewrite at nap-time: three things <em>nobody's flagged.</em></h3>
+      <div class="thread-byline">
+        <span class="avatar av-4">JO</span>
+        <span class="by-text">
+          <strong>Jess Oduya</strong>
+          <span class="role">ex-Treasury, at home with three kids · yesterday</span>
+        </span>
+      </div>
+      <div class="reacts">
+        <span class="react minds">💡 56 changed my mind</span>
+        <span class="react">⏰ 14 please write</span>
+        <span class="react">💬 18 replies</span>
+      </div>
+    </article>
+
+    <article class="thread t-sky">
+      <span class="room-pill">Quantum · reply</span>
+      <h3>"Sam — that's the ground-truth I keep missing. <em>Going into v2 with your byline.</em>"</h3>
+      <div class="thread-byline">
+        <span class="avatar av-3">AP</span>
+        <span class="by-text">
+          <strong>Alex Patel</strong>
+          <span class="role">quantum researcher, Brookhaven (off-duty) · 1h ago</span>
+        </span>
+      </div>
+      <div class="reacts">
+        <span class="react minds">💡 22 changed my mind</span>
+        <span class="react">❤️ 31 thanks</span>
+      </div>
+    </article>
+
+    <article class="thread">
+      <span class="room-pill">Materials</span>
+      <h3>Rare-earth concentration risk, <em>from inside a mining-equipment company.</em></h3>
+      <div class="thread-byline">
+        <span class="avatar av-6">JO</span>
+        <span class="by-text">
+          <strong>Jamal Okafor</strong>
+          <span class="role">sells equipment to refineries · 6 years</span>
+        </span>
+      </div>
+      <div class="reacts">
+        <span class="react minds">💡 22 changed my mind</span>
+        <span class="react">🔁 9 corroborating</span>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="manifesto" id="manifesto">
+    <span class="hand">how this room actually works ↘</span>
+    <div>
+      <h2>The only reputation that compounds here is the <em>minds you've shifted</em>.</h2>
+    </div>
+    <div class="rules">
+      <h3>House rules</h3>
+      <ul>
+        <li>Anyone with something to add can post — your job isn't the gate, your contribution is.</li>
+        <li>Voting up takes you already agreed with doesn't count.</li>
+        <li>Good threads get pinned by other contributors, not by editors.</li>
+        <li>Bad-faith posts get quietly muted by five-contributor consensus, no drama.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="price">$8<em>/mo</em></div>
+    <p>Read everything. Post in any room. No application, no credential check — your contributions earn your reputation here, not your CV.</p>
+    <button>Pull up a chair →</button>
+    <span class="hand-floating">we'll save you a seat ✿</span>
+  </section>
+
+  <footer class="colophon">
+    The Lobby · D25 Playful Atelier · DocketField rebrand prototype · <a href="../index.html">← all directions</a>
+  </footer>
+
+</div>
+</body>
+</html>

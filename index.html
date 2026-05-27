@@ -6,7 +6,7 @@
   <title>DocketField — Rebrand brainstorm · 2026-05-27</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Playfair+Display:wght@600;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper:#FAF7F0;
@@ -17,6 +17,8 @@
       --line-soft:#F0EBE0;
       --accent:#B45A1E;
       --accent-soft:#FBEEDD;
+      --wild:#1A1612;
+      --wild-soft:#F4EFE2;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -26,37 +28,21 @@
       color: var(--ink);
       font-size: 16px;
       line-height: 1.6;
-      font-feature-settings: 'ss01', 'cv11';
     }
     .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
     .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
 
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 32px; }
 
-    /* ── header ─────────────────────────────────── */
-    .nav {
-      border-bottom: 1px solid var(--line);
-      padding: 20px 0;
-    }
-    .nav-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .nav-meta {
-      font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    /* ── nav ────────────────────────────────────── */
+    .nav { border-bottom: 1px solid var(--line); padding: 20px 0; }
+    .nav-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+    .nav-meta { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: var(--muted); }
 
     /* ── hero ───────────────────────────────────── */
-    .hero { padding: 96px 0 80px; }
+    .hero { padding: 80px 0 56px; }
     .eyebrow {
       font-family: 'Geist Mono', ui-monospace, monospace;
       font-size: 12px;
@@ -66,18 +52,18 @@
     }
     h1.title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 56px;
+      font-size: clamp(38px, 6vw, 56px);
       line-height: 1.04;
       letter-spacing: -0.02em;
       font-weight: 500;
       max-width: 720px;
     }
     .lede {
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.55;
       color: var(--muted);
       max-width: 640px;
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
     /* ── section ────────────────────────────────── */
@@ -86,7 +72,7 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       gap: 24px;
     }
     .section-eyebrow {
@@ -105,7 +91,122 @@
       margin-top: 4px;
     }
 
-    /* ── polished cards ─────────────────────────── */
+    /* ── wildcards (D21–D25) ────────────────────── */
+    .wild-eyebrow { color: var(--wild); font-weight: 600; }
+    .wildcards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .wild-tile {
+      background: var(--card);
+      border: 2px solid var(--wild);
+      padding: 32px;
+      position: relative;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      display: block;
+    }
+    .wild-tile:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--wild);
+    }
+    .wild-tile .tile-id {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .wild-tile .tile-name {
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .wild-tile .tile-desc {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 380px;
+    }
+    .wild-tile .tile-link {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--wild);
+      font-weight: 600;
+    }
+
+    /* per-tile visual hints (just a flavor swatch each) */
+    .wild-tile.d21 {
+      background: #FFFFFF;
+      font-family: Times, 'Times New Roman', serif;
+      border-style: solid;
+    }
+    .wild-tile.d21 .tile-name { font-family: Times, 'Times New Roman', serif; font-weight: 700; font-size: 28px; }
+    .wild-tile.d21 .tile-link { font-family: Times, serif; color: #0000EE; text-decoration: underline; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 14px; }
+
+    .wild-tile.d22 {
+      background: #FFFFFF;
+      border-color: #000;
+    }
+    .wild-tile.d22 .tile-name {
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      font-size: 48px;
+    }
+    .wild-tile.d22 .tile-link { font-family: 'Geist Mono', monospace; color: #000; font-size: 11px; }
+
+    .wild-tile.d23 {
+      background:
+        radial-gradient(circle at 1px 1px, rgba(26,22,18,0.08) 1.2px, transparent 1.5px) 0 0 / 6px 6px,
+        #F2EAD3;
+      border-color: #1A1612;
+      box-shadow: 4px 4px 0 #FF4F8B;
+    }
+    .wild-tile.d23:hover { box-shadow: 6px 6px 0 #FF4F8B; }
+    .wild-tile.d23 .tile-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: 'opsz' 144, 'wght' 900, 'WONK' 1;
+      color: #1A1612;
+    }
+    .wild-tile.d23 .tile-name em { color: #FF4F8B; font-style: italic; }
+    .wild-tile.d23 .tile-link { color: #FF4F8B; }
+
+    .wild-tile.d24 {
+      background: #F5E5D2;
+      border-color: #1A1614;
+      border-width: 1px;
+      border-top: 4px double #1A1614;
+      border-bottom: 4px double #1A1614;
+    }
+    .wild-tile.d24 .tile-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      color: #1A1614;
+    }
+    .wild-tile.d24 .tile-link { color: #861E2C; font-family: 'Source Sans 3', sans-serif; }
+
+    .wild-tile.d25 {
+      background: #FFE4D0;
+      border-color: #2A241C;
+      border-radius: 20px;
+      box-shadow: 5px 7px 0 #2A241C;
+    }
+    .wild-tile.d25:hover { box-shadow: 7px 9px 0 #2A241C; }
+    .wild-tile.d25 .tile-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: 'opsz' 144, 'wght' 500, 'SOFT' 100;
+      color: #2A241C;
+    }
+    .wild-tile.d25 .tile-name em { color: #C95F3D; font-style: italic; }
+    .wild-tile.d25 .tile-link { color: #C95F3D; }
+
+    /* ── polished trio (D11/D17/D20) ────────────── */
     .polished {
       display: grid;
       gap: 1px;
@@ -114,55 +215,49 @@
     }
     .polished a.row {
       background: var(--card);
-      padding: 32px;
+      padding: 24px 28px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 32px;
+      gap: 24px;
       align-items: baseline;
-      text-decoration: none;
-      color: inherit;
       transition: background 120ms ease;
     }
     .polished a.row:hover { background: var(--accent-soft); }
     .row-id {
       font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
     .row-name {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 500;
       letter-spacing: -0.01em;
       margin-top: 4px;
     }
     .row-desc {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--muted);
-      margin-top: 6px;
-      max-width: 540px;
+      margin-top: 4px;
+      max-width: 520px;
     }
-    .row-links {
-      display: flex;
-      gap: 20px;
-      flex-shrink: 0;
-      align-self: end;
-    }
+    .row-links { display: flex; gap: 16px; flex-shrink: 0; align-self: end; }
     .row-link {
       font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
       letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     /* ── sketch list ────────────────────────────── */
     .sketch-note {
-      background: transparent;
       border: 1px solid var(--line);
-      padding: 20px 24px;
-      margin-bottom: 28px;
-      font-size: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 13.5px;
       color: var(--muted);
       line-height: 1.6;
     }
@@ -175,21 +270,15 @@
     }
     .sketches a.s-row {
       background: var(--card);
-      padding: 20px 24px;
+      padding: 18px 22px;
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 16px;
-      text-decoration: none;
-      color: inherit;
       transition: background 120ms ease;
     }
     .sketches a.s-row:hover { background: var(--paper); }
-    .s-meta {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
+    .s-meta { display: flex; align-items: baseline; gap: 12px; }
     .s-id {
       font-family: 'Geist Mono', ui-monospace, monospace;
       font-size: 11px;
@@ -197,14 +286,8 @@
       letter-spacing: 0.06em;
       width: 28px;
     }
-    .s-name {
-      font-size: 15px;
-      font-weight: 500;
-    }
-    .s-desc {
-      font-size: 13px;
-      color: var(--muted);
-    }
+    .s-name { font-size: 14.5px; font-weight: 500; }
+    .s-desc { font-size: 12.5px; color: var(--muted); }
     .s-links {
       display: flex;
       gap: 12px;
@@ -212,45 +295,46 @@
       font-size: 11px;
       color: var(--muted);
     }
-    .s-links a { color: var(--muted); text-decoration: none; }
-    .s-links a:hover { color: var(--accent); }
 
     /* ── anchor note ────────────────────────────── */
     .anchor-note {
-      background: var(--accent-soft);
-      padding: 32px;
-      border-left: 2px solid var(--accent);
+      background: var(--wild-soft);
+      padding: 28px 32px;
+      border-left: 2px solid var(--wild);
       margin: 64px 0;
     }
     .anchor-eyebrow {
       font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--wild);
       margin-bottom: 12px;
+      font-weight: 600;
     }
     .anchor-quote {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.4;
       letter-spacing: -0.01em;
       font-weight: 400;
       max-width: 640px;
     }
     .anchor-note p {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--muted);
-      margin-top: 16px;
+      margin-top: 14px;
       max-width: 640px;
+      line-height: 1.6;
     }
 
-    /* ── footer ─────────────────────────────────── */
+    /* ── foot ───────────────────────────────────── */
     .foot {
-      padding: 48px 0 64px;
+      padding: 40px 0 56px;
       border-top: 1px solid var(--line);
-      margin-top: 80px;
+      margin-top: 64px;
       font-family: 'Geist Mono', ui-monospace, monospace;
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
       color: var(--muted);
       display: flex;
       justify-content: space-between;
@@ -259,12 +343,14 @@
 
     @media (max-width: 720px) {
       .wrap { padding: 0 20px; }
-      .hero { padding: 56px 0 48px; }
-      h1.title { font-size: 38px; }
-      h2 { font-size: 26px; }
-      .polished a.row { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+      .hero { padding: 56px 0 32px; }
+      h1.title { font-size: 32px; }
+      h2 { font-size: 24px; }
+      .wildcards { grid-template-columns: 1fr; }
+      .polished a.row { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
       .row-links { align-self: start; }
       .sketches { grid-template-columns: 1fr; }
+      .wild-tile .tile-name { font-size: 24px !important; }
     }
   </style>
 </head>
@@ -273,35 +359,96 @@
   <nav class="nav">
     <div class="wrap nav-row">
       <span class="brand">DocketField <span class="nav-meta" style="margin-left:8px">rebrand brainstorm</span></span>
-      <span class="nav-meta">2026-05-27</span>
+      <span class="nav-meta">2026-05-27 · v3</span>
     </div>
   </nav>
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Twenty directions · three polished · seventeen as sketches</div>
-      <h1 class="title">A rebrand exploration for a community that isn't a PhD hangout.</h1>
-      <p class="lede">Twenty alternative product directions for DocketField, sorted by how seriously each one structurally honors the brief: <em>intellectuals in all walks of life, professional or not in the field, can contribute if there's value</em>. Three directions have been polished to production-grade craft; the rest remain as concept sketches.</p>
+      <div class="eyebrow">Five wildcards · five aesthetic universes · same content</div>
+      <h1 class="title">Five genuinely different worlds. Same community. Pick a universe.</h1>
+      <p class="lede">After two earlier rounds (twenty paint variations, then three polished in the same modern-editorial school of taste), the operator was right: those all looked the same. This round actually swings. Five directions occupying entirely different design lineages — brutalist text-web, Italian fashion magazine, riso-print zine, broadsheet newspaper, playful atelier — all rendering the same Sam Ahmadi loading-dock story so the visual differences are pure visual differences.</p>
     </div>
   </header>
+
+  <section class="section" style="border-top: 2px solid var(--wild);">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow wild-eyebrow">⚑ Wildcards · v3</div>
+          <h2>Five aesthetic universes</h2>
+        </div>
+        <div class="section-count">5 directions · 1 main page each · same content, different worlds</div>
+      </div>
+
+      <div class="wildcards">
+
+        <a class="wild-tile d21" href="d21-brutalist/main.html">
+          <div class="tile-id" style="font-family: Times, serif; color: #666;">D21 · BRUTALIST WEB</div>
+          <div class="tile-name">The Lobby</div>
+          <p class="tile-desc" style="font-family: Times, serif;">System fonts, default browser styling, table-as-layout, default blue links. The brutalist-web lineage: Hacker News, text.npr.org, old Are.na. The argument is that a serious community doesn't need designed surface to be taken seriously.</p>
+          <span class="tile-link">[open the lobby →]</span>
+        </a>
+
+        <a class="wild-tile d22" href="d22-editorial-max/main.html">
+          <div class="tile-id">D22 · EDITORIAL MAXIMUM</div>
+          <div class="tile-name">THE LOBBY</div>
+          <p class="tile-desc" style="font-family: 'Inter Tight', sans-serif;">032c / Bottega Veneta / SSENSE. One typeface. Two scales — giant + tiny. No accent color. Eighty percent white space. Italian fashion-magazine discipline applied to a community feed.</p>
+          <span class="tile-link">→ INDEX OF VOICES</span>
+        </a>
+
+        <a class="wild-tile d23" href="d23-riso-zine/main.html">
+          <div class="tile-id" style="color:#FF4F8B;">D23 · RISOGRAPH ZINE</div>
+          <div class="tile-name">The L<em>o</em>bby</div>
+          <p class="tile-desc" style="font-family: 'Space Grotesk', sans-serif;">Two-color riso print: ink + fluorescent pink, on cream paper with halftone dots. Weird display serif (Fraunces wonk italic). Slight rotations. Hand-feel. <em>Asterisk Magazine</em> energy.</p>
+          <span class="tile-link" style="font-family: 'Space Mono', monospace;">→ TURN THE PAGE</span>
+        </a>
+
+        <a class="wild-tile d24" href="d24-newspaper/main.html">
+          <div class="tile-id" style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; color: #861E2C;">D24 · BROADSHEET</div>
+          <div class="tile-name">The Lobby</div>
+          <p class="tile-desc">Financial Times / WSJ classic. Real broadsheet typography (Playfair Display + Source Serif 4). Multi-column lead with drop cap. Market-data table for live activity. Salmon paper. Editorial column. Subscribe banner.</p>
+          <span class="tile-link" style="font-family: 'Source Sans 3', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">Read the front page →</span>
+        </a>
+
+        <a class="wild-tile d25" href="d25-atelier/main.html">
+          <div class="tile-id" style="color: #C95F3D;">D25 · PLAYFUL ATELIER</div>
+          <div class="tile-name">The L<em>o</em>bby</div>
+          <p class="tile-desc">Recurse Center / Glitch / Robin Sloan warmth. Pastel multi-color palette (peach, sage, butter, sky, plum). Round corners, hand-drawn SVG illustration, soft shadows. Real joy without twee.</p>
+          <span class="tile-link">come on in →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <aside class="anchor-note">
+      <div class="anchor-eyebrow">⚑ Re-anchored spirit · constant across all directions</div>
+      <p class="anchor-quote">"This isn't a PhD hangout. It's for intellectuals in all walks of life — professional or not in that field — to contribute if there's value."</p>
+      <p>Same five-voice cast threaded through every wildcard: <strong>Sam Ahmadi</strong> (truck driver, loading-dock signal), <strong>Alex Patel</strong> (Brookhaven researcher off-duty), <strong>Maya Khurana</strong> (regional-bank compliance officer), <strong>Diego Torres</strong> (high-school chemistry teacher), <strong>Jess Oduya</strong> (ex-Treasury parent reading NPRMs at nap-time). The visual language changes; the spirit doesn't.</p>
+    </aside>
+  </div>
 
   <section class="section">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">Polished directions</div>
-          <h2>Three worth a real look</h2>
+          <div class="section-eyebrow">v2 polish · first attempt</div>
+          <h2>Three from the first polish pass</h2>
         </div>
         <div class="section-count">3 directions · 6 surfaces</div>
       </div>
+
+      <p class="sketch-note">These three were the first attempt at "polished" but landed in the same school of modern-editorial taste (warm cream paper, single accent, Geist + Source Serif). The operator correctly called them mid for being three colorways of the same chassis. Kept here for comparison against the wildcards above.</p>
 
       <div class="polished">
 
         <a class="row" href="d11-lobby/main.html">
           <div>
             <div class="row-id">D11 · CHAT-LED COMMUNITY</div>
-            <div class="row-name">The Lobby</div>
-            <p class="row-desc">Conversation threads where anyone with something to add can post. Reputation accrues from minds you've shifted, not from credentials displayed off-platform. A truck driver opens; a researcher replies in kind.</p>
+            <div class="row-name">The Lobby (warm minimal)</div>
+            <p class="row-desc">Same brief as D21/D22/D23/D24/D25 — rendered as restrained Stripe-school editorial. Clay-rust accent on warm cream paper.</p>
           </div>
           <div class="row-links">
             <span class="row-link">Main →</span>
@@ -313,7 +460,7 @@
           <div>
             <div class="row-id">D17 · SOURCE ANNOTATION</div>
             <div class="row-name">The Margins</div>
-            <p class="row-desc">Source documents pinned for collaborative reading. Anyone can highlight a sentence and add what they noticed in the margin. Reading becomes a group activity; reputation builds from the annotations that helped other readers read more carefully.</p>
+            <p class="row-desc">Source documents pinned for collaborative reading. Margins annotation. Different concept from the wildcards, same visual school.</p>
           </div>
           <div class="row-links">
             <span class="row-link">Main →</span>
@@ -325,7 +472,7 @@
           <div>
             <div class="row-id">D20 · WIKI-MEETS-FORUM</div>
             <div class="row-name">Open Desk</div>
-            <p class="row-desc">Each desk is a single continuously-rewritten front page. Any contributor with value to add appends. No editor, no owner; three-contributor consensus removes off-topic adds. The edit log is permanent and visible.</p>
+            <p class="row-desc">Each desk is one continuously-rewritten front page. Anyone appends. No editor, no owner. Forest-green accent on sage paper.</p>
           </div>
           <div class="row-links">
             <span class="row-link">Main →</span>
@@ -337,124 +484,53 @@
     </div>
   </section>
 
-  <div class="wrap">
-    <aside class="anchor-note">
-      <div class="anchor-eyebrow">Re-anchored spirit · 2026-05-27</div>
-      <p class="anchor-quote">"This isn't a PhD hangout. It's for intellectuals in all walks of life — professional or not in that field — to contribute if there's value."</p>
-      <p>The three polished directions above structurally make that real. The seventeen sketches below explore the broader design space — read them as <em>concept sketches</em>, not finished work.</p>
-    </aside>
-  </div>
-
-  <section class="section" style="border-top: none;">
+  <section class="section">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">Concept sketches · flow + structure</div>
+          <div class="section-eyebrow">v2 sketches · flow + structure</div>
           <h2>Seven more flow ideas</h2>
         </div>
         <div class="section-count">7 directions · 14 sketch surfaces</div>
       </div>
 
-      <p class="sketch-note">These seven explore alternative product structures (live floor, collaborative shared brain, daily feed, video-led, slow-web weekly, Q&amp;A, visual curation). They are direction concepts, not polished work. Visual cleanup pending if any of these is picked as the chosen spine.</p>
+      <p class="sketch-note">Alternative product structures (live floor, collaborative shared brain, daily feed, video-led, slow-web weekly, Q&amp;A, visual curation). Concept sketches, not polished work. If any of these flows is the right spine, the visual treatment from any wildcard (D21–D25) can sit on top.</p>
 
       <div class="sketches">
 
         <a class="s-row" href="d12-stack/main.html">
-          <div class="s-meta">
-            <span class="s-id">D12</span>
-            <div>
-              <div class="s-name">The Stack</div>
-              <div class="s-desc">collaborative living pages</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d12-stack/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d12-stack/backend.html" onclick="event.stopPropagation()">map</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D12</span><div><div class="s-name">The Stack</div><div class="s-desc">collaborative living pages</div></div></div>
+          <div class="s-links"><span>main</span><span>map</span></div>
         </a>
 
         <a class="s-row" href="d13-dispatch/main.html">
-          <div class="s-meta">
-            <span class="s-id">D13</span>
-            <div>
-              <div class="s-name">The Dispatch</div>
-              <div class="s-desc">chronological daily feed</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d13-dispatch/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d13-dispatch/backend.html" onclick="event.stopPropagation()">channel</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D13</span><div><div class="s-name">The Dispatch</div><div class="s-desc">chronological daily feed</div></div></div>
+          <div class="s-links"><span>main</span><span>channel</span></div>
         </a>
 
         <a class="s-row" href="d14-board/main.html">
-          <div class="s-meta">
-            <span class="s-id">D14</span>
-            <div>
-              <div class="s-name">The Boards</div>
-              <div class="s-desc">visual mixed-media curation</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d14-board/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d14-board/backend.html" onclick="event.stopPropagation()">board</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D14</span><div><div class="s-name">The Boards</div><div class="s-desc">visual mixed-media curation</div></div></div>
+          <div class="s-links"><span>main</span><span>board</span></div>
         </a>
 
         <a class="s-row" href="d15-pile/main.html">
-          <div class="s-meta">
-            <span class="s-id">D15</span>
-            <div>
-              <div class="s-name">The Pile</div>
-              <div class="s-desc">Q&amp;A with crowd-ranked answers</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d15-pile/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d15-pile/backend.html" onclick="event.stopPropagation()">question</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D15</span><div><div class="s-name">The Pile</div><div class="s-desc">Q&amp;A with crowd-ranked answers</div></div></div>
+          <div class="s-links"><span>main</span><span>question</span></div>
         </a>
 
         <a class="s-row" href="d16-cinema/main.html">
-          <div class="s-meta">
-            <span class="s-id">D16</span>
-            <div>
-              <div class="s-name">The Cinema</div>
-              <div class="s-desc">long-form recorded conversations</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d16-cinema/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d16-cinema/backend.html" onclick="event.stopPropagation()">watch</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D16</span><div><div class="s-name">The Cinema</div><div class="s-desc">long-form recorded conversations</div></div></div>
+          <div class="s-links"><span>main</span><span>watch</span></div>
         </a>
 
         <a class="s-row" href="d18-almanac/main.html">
-          <div class="s-meta">
-            <span class="s-id">D18</span>
-            <div>
-              <div class="s-name">The Almanac</div>
-              <div class="s-desc">fortnightly slow-web issue</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d18-almanac/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d18-almanac/backend.html" onclick="event.stopPropagation()">archive</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D18</span><div><div class="s-name">The Almanac</div><div class="s-desc">fortnightly slow-web issue</div></div></div>
+          <div class="s-links"><span>main</span><span>archive</span></div>
         </a>
 
         <a class="s-row" href="d19-switchboard/main.html">
-          <div class="s-meta">
-            <span class="s-id">D19</span>
-            <div>
-              <div class="s-name">The Switchboard</div>
-              <div class="s-desc">live ambient activity floor</div>
-            </div>
-          </div>
-          <div class="s-links">
-            <a href="d19-switchboard/main.html" onclick="event.stopPropagation()">main</a>
-            <a href="d19-switchboard/backend.html" onclick="event.stopPropagation()">desk</a>
-          </div>
+          <div class="s-meta"><span class="s-id">D19</span><div><div class="s-name">The Switchboard</div><div class="s-desc">live ambient activity floor</div></div></div>
+          <div class="s-links"><span>main</span><span>desk</span></div>
         </a>
 
       </div>
@@ -465,33 +541,33 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">Concept sketches · paint variations</div>
+          <div class="section-eyebrow">v1 sketches · paint variations</div>
           <h2>Eleven visual treatments on a fixed scaffold</h2>
         </div>
         <div class="section-count">11 directions · 22 sketch surfaces</div>
       </div>
 
-      <p class="sketch-note">These eleven (D0 evolve + D1–D10) all share the same article-publication scaffold (header / hero / secondary row / desk grid / working groups / CTA). They differ on typography, color, density, and voice — useful for testing which <em>visual register</em> reads well, but they do not change the underlying flow.</p>
+      <p class="sketch-note">These eleven (D0 evolve + D1–D10) all share the same article-publication scaffold (header / hero / secondary row / desk grid / working groups / CTA). Useful for visual register comparison, weak for actual product direction. Kept for completeness.</p>
 
       <div class="sketches">
-        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep DocketField, lose parliamentary vocab</div></div></div><div class="s-links"><a href="d0-evolve/main.html" onclick="event.stopPropagation()">main</a><a href="d0-evolve/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d1-editorial/main.html"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><a href="d1-editorial/main.html" onclick="event.stopPropagation()">main</a><a href="d1-editorial/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov Press</div></div></div><div class="s-links"><a href="d2-research-lab/main.html" onclick="event.stopPropagation()">main</a><a href="d2-research-lab/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">modern think-tank · navy + gold</div></div></div><div class="s-links"><a href="d3-think-tank/main.html" onclick="event.stopPropagation()">main</a><a href="d3-think-tank/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d4-workshop/main.html"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><a href="d4-workshop/main.html" onclick="event.stopPropagation()">main</a><a href="d4-workshop/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d5-field-manual/main.html"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><a href="d5-field-manual/main.html" onclick="event.stopPropagation()">main</a><a href="d5-field-manual/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir aesthetic</div></div></div><div class="s-links"><a href="d6-defense-tech/main.html" onclick="event.stopPropagation()">main</a><a href="d6-defense-tech/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">20 verticals as territory</div></div></div><div class="s-links"><a href="d7-cartographic/main.html" onclick="event.stopPropagation()">main</a><a href="d7-cartographic/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d8-salon/main.html"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><a href="d8-salon/main.html" onclick="event.stopPropagation()">main</a><a href="d8-salon/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d9-wiki/main.html"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><a href="d9-wiki/main.html" onclick="event.stopPropagation()">main</a><a href="d9-wiki/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
-        <a class="s-row" href="d10-investor/main.html"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><a href="d10-investor/main.html" onclick="event.stopPropagation()">main</a><a href="d10-investor/backend.html" onclick="event.stopPropagation()">backend</a></div></a>
+        <a class="s-row" href="d0-evolve/main.html"><div class="s-meta"><span class="s-id">D0</span><div><div class="s-name">Evolve</div><div class="s-desc">keep DocketField, lose parliamentary vocab</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d1-editorial/main.html"><div class="s-meta"><span class="s-id">D1</span><div><div class="s-name">Standfirst</div><div class="s-desc">modernized Foreign Affairs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d2-research-lab/main.html"><div class="s-meta"><span class="s-id">D2</span><div><div class="s-name">Concord</div><div class="s-desc">Stripe Press / Asimov Press</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d3-think-tank/main.html"><div class="s-meta"><span class="s-id">D3</span><div><div class="s-name">Vantage</div><div class="s-desc">modern think-tank · navy + gold</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d4-workshop/main.html"><div class="s-meta"><span class="s-id">D4</span><div><div class="s-name">Workshop</div><div class="s-desc">Recurse Center warmth</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d5-field-manual/main.html"><div class="s-meta"><span class="s-id">D5</span><div><div class="s-name">Bearing</div><div class="s-desc">Stripe Atlas / Linear docs</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d6-defense-tech/main.html"><div class="s-meta"><span class="s-id">D6</span><div><div class="s-name">Vector</div><div class="s-desc">Anduril / Palantir aesthetic</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d7-cartographic/main.html"><div class="s-meta"><span class="s-id">D7</span><div><div class="s-name">Atlas</div><div class="s-desc">20 verticals as territory</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d8-salon/main.html"><div class="s-meta"><span class="s-id">D8</span><div><div class="s-name">The Round</div><div class="s-desc">salon · portrait-first</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d9-wiki/main.html"><div class="s-meta"><span class="s-id">D9</span><div><div class="s-name">Codex</div><div class="s-desc">living reference</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
+        <a class="s-row" href="d10-investor/main.html"><div class="s-meta"><span class="s-id">D10</span><div><div class="s-name">Throughline</div><div class="s-desc">diligence-grade memo</div></div></div><div class="s-links"><span>main</span><span>backend</span></div></a>
       </div>
     </div>
   </section>
 
   <footer class="foot">
-    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none;">
-      <span>DocketField rebrand brainstorm · 2026-05-27</span>
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:24px; padding:0; max-width:none; margin:0 32px; width:calc(100% - 64px);">
+      <span>DocketField rebrand brainstorm · 2026-05-27 · v3 with 5 wildcards</span>
       <span>Prototype · no production code changed</span>
     </div>
   </footer>
