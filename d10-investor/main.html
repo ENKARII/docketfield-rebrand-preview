@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Throughline · D10 Investor / Diligence · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#f4f6fa; --ink:#0d1929; --muted:#5a6477; --rule:#dde1ea; --accent:#0d1929; --signal:#0046cc; --pos:#0a7032; --neg:#a3220e; }
+  * { font-variant-numeric:tabular-nums; }
+  body { font-family:'Inter',Helvetica,system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .signal { color:var(--signal); }
+  a { color:var(--signal); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .bluf { background:var(--panel); border-left:3px solid var(--signal); padding:1.5rem 1.75rem; }
+  .stat { display:flex; flex-direction:column; gap:.25rem; }
+  .stat-val { font-size:1.85rem; font-weight:700; letter-spacing:-.02em; line-height:1.05; }
+  .stat-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  table.lt th,table.lt td { padding:.55rem .75rem; border-bottom:1px solid var(--rule); text-align:left; font-size:13.5px; }
+  table.lt th { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; background:var(--panel); }
+  .pill-up { color:var(--pos); font-family:'JetBrains Mono',monospace; font-size:11px; }
+  .pill-dn { color:var(--neg); font-family:'JetBrains Mono',monospace; font-size:11px; }
+  .pill-flat { color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule" style="background:var(--paper)">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs">←</a>
+      <div class="text-xl font-extrabold tracking-tight" style="color:var(--ink)">Throughline</div>
+      <span class="label">Diligence-grade research · twenty desks</span>
+    </div>
+    <nav class="flex items-center gap-6 text-sm font-medium">
+      <a href="#" style="color:var(--ink)">Memos</a>
+      <a href="#" style="color:var(--ink)">Desks</a>
+      <a href="#" style="color:var(--ink)">Tracker</a>
+      <a href="#" style="color:var(--ink)">Distribution</a>
+      <a href="#" class="px-3 py-1.5 text-white rounded" style="background:var(--ink)">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-5 gap-10">
+    <div class="lg:col-span-3">
+      <div class="label">Memo · #024 · Quantum desk · May 27, 2026</div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mt-3 leading-[1.08]">The DOE quantum-sensing program · what the next twelve months tell us.</h1>
+      <div class="bluf mt-7">
+        <div class="label signal">Bottom line up front</div>
+        <p class="mt-2 text-base font-medium">DOE's $1.4&nbsp;B sensing allocation has not yet produced a defense-procurement signal three years in. Earliest credible window is Q4-2026. The four labs concentrating 78% of obligations are still hiring rather than transitioning; the standards-body fight is the binding constraint, not science risk. <strong class="signal">Watch Q4 solicitation count + standards-body cadence; ignore lab headcount.</strong></p>
+      </div>
+      <div class="mt-6 flex items-center gap-5">
+        <a href="#" class="px-5 py-2.5 text-sm font-semibold text-white" style="background:var(--ink)">Read memo (14 min)</a>
+        <span class="mono text-xs" style="color:var(--muted)">A. Patel · 12 sources · members</span>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2 border-l rule pl-8">
+      <div class="label">Key figures</div>
+      <div class="mt-4 grid grid-cols-2 gap-5">
+        <div class="stat"><div class="stat-val">$1.4B</div><div class="stat-label">DOE alloc · 2024–27</div></div>
+        <div class="stat"><div class="stat-val">78%</div><div class="stat-label">to 4 nat'l labs</div></div>
+        <div class="stat"><div class="stat-val">Q4-26</div><div class="stat-label">earliest signal</div></div>
+        <div class="stat"><div class="stat-val">0</div><div class="stat-label">$5M+ vendor contracts let</div></div>
+      </div>
+      <div class="mt-7 text-sm border-t rule pt-5">
+        <div class="label">Conviction</div>
+        <div class="mt-2 flex items-baseline justify-between"><span>Procurement signal Q4-26</span><span class="pill-up">▲ medium-high</span></div>
+        <div class="mt-2 flex items-baseline justify-between"><span>Standards-body resolves '26</span><span class="pill-dn">▼ low</span></div>
+        <div class="mt-2 flex items-baseline justify-between"><span>Lab → vendor handoff '27</span><span class="pill-flat">→ medium</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <div>
+    <div class="label">Recent memos · this week</div>
+    <h2 class="text-2xl font-bold tracking-tight mt-2">Four briefs, four decisions.</h2>
+    <p class="mt-3 text-sm" style="color:var(--muted)">Each memo opens with the bottom line, then defends it in numbered findings. Reads in ten minutes. Decision in two.</p>
+  </div>
+  <div class="lg:col-span-2 space-y-5">
+    <article class="border rule p-5 flex gap-5">
+      <div class="mono text-xs font-bold" style="min-width:60px">#023</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-base">EU AI Act compromise — what the trilogue text actually narrows</h3>
+        <p class="text-sm mt-1" style="color:var(--muted)">BLUF: three Article-6 carve-outs narrowed; one widened. Net regulatory risk down for high-risk-classified models, up for foundation-model providers operating in EU. Cyber desk · M. Kim · 9 min.</p>
+      </div>
+    </article>
+    <article class="border rule p-5 flex gap-5">
+      <div class="mono text-xs font-bold" style="min-width:60px">#022</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-base">Biosec preprint moratorium — current state and break-point</h3>
+        <p class="text-sm mt-1" style="color:var(--muted)">BLUF: informal moratorium loses force by Q3 absent journal-side action. Watch Nature + Science editorial in July. Biosec desk · L. Vega · 11 min.</p>
+      </div>
+    </article>
+    <article class="border rule p-5 flex gap-5">
+      <div class="mono text-xs font-bold" style="min-width:60px">#021</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-base">ITAR rewrite — university-lab impact in practice</h3>
+        <p class="text-sm mt-1" style="color:var(--muted)">BLUF: four lines narrow foundational-research carve-out; three preserve it. Net: university quantum labs gain compliance burden ≈ 18-24mo. Defense desk · S. Chen · 8 min.</p>
+      </div>
+    </article>
+    <article class="border rule p-5 flex gap-5">
+      <div class="mono text-xs font-bold" style="min-width:60px">#020</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-base">Rare-earth concentration — the single-point exposure we underrate</h3>
+        <p class="text-sm mt-1" style="color:var(--muted)">BLUF: 7 of 17 critical elements concentrate 65%+ into a single jurisdiction. Risk-weighted exposure understated by current public estimates. Materials desk · J. Okafor · 12 min.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="flex items-baseline justify-between mb-6">
+    <div><div class="label">Open questions tracker</div><h2 class="text-2xl font-bold tracking-tight mt-2">Decisions we're tracking</h2></div>
+    <a href="#" class="text-sm">All open questions →</a>
+  </div>
+  <table class="lt w-full border rule">
+    <thead><tr><th>Question</th><th>Desk</th><th>Window</th><th>Conviction</th><th>Last update</th></tr></thead>
+    <tbody>
+      <tr><td class="font-medium"><a href="#">DOE Q4-26 procurement signal arrives?</a></td><td>Quantum</td><td class="mono text-xs">Q4-2026</td><td><span class="pill-up">▲ med-high</span></td><td class="mono text-xs">May 27</td></tr>
+      <tr><td class="font-medium"><a href="#">EU AI Act enforcement window holds?</a></td><td>Cyber</td><td class="mono text-xs">2026-Q3</td><td><span class="pill-flat">→ medium</span></td><td class="mono text-xs">May 26</td></tr>
+      <tr><td class="font-medium"><a href="#">Biosec preprint moratorium survives Q3?</a></td><td>Biosec</td><td class="mono text-xs">Q3-2026</td><td><span class="pill-dn">▼ low</span></td><td class="mono text-xs">May 25</td></tr>
+      <tr><td class="font-medium"><a href="#">ITAR + AI export-control overlap clarifies?</a></td><td>Defense</td><td class="mono text-xs">H2-2026</td><td><span class="pill-flat">→ medium</span></td><td class="mono text-xs">May 23</td></tr>
+      <tr><td class="font-medium"><a href="#">Rare-earth single-point exposure recognized?</a></td><td>Materials</td><td class="mono text-xs">2027</td><td><span class="pill-up">▲ medium</span></td><td class="mono text-xs">May 19</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <div>
+    <div class="label">Recent decisions · downstream of our memos</div>
+    <h2 class="text-2xl font-bold tracking-tight mt-2">What members did with the work.</h2>
+    <ul class="mt-5 space-y-5 text-sm">
+      <li>
+        <div class="font-semibold">WG on biosec standards chartered · Apr 22</div>
+        <div class="mono text-xs" style="color:var(--muted)">9 fellows · paper Q3 · L. Vega chair</div>
+      </li>
+      <li>
+        <div class="font-semibold">WG on ITAR reform chartered · May 4</div>
+        <div class="mono text-xs" style="color:var(--muted)">6 fellows · memo Jul 1 · S. Chen chair</div>
+      </li>
+      <li>
+        <div class="font-semibold">DC convening confirmed · Jun 3</div>
+        <div class="mono text-xs" style="color:var(--muted)">Quantum dinner · 14 confirmed · off-the-record</div>
+      </li>
+    </ul>
+  </div>
+  <div class="border-l rule pl-12">
+    <div class="label">Twenty desks</div>
+    <h2 class="text-2xl font-bold tracking-tight mt-2">Coverage at scale</h2>
+    <div class="grid grid-cols-2 gap-x-6 gap-y-2 mt-5 text-sm font-medium">
+      <a href="#">Defense</a><a href="#">Cyber</a>
+      <a href="#">Quantum</a><a href="#">Biosecurity</a>
+      <a href="#">Energy</a><a href="#">AI</a>
+      <a href="#">Space</a><a href="#">Materials</a>
+      <a href="#">Pharma</a><a href="#">Manufacturing</a>
+      <a href="#">Telecom</a><a href="#">Supply Chain</a>
+      <a href="#">Transportation</a><a href="#">Public Health</a>
+      <a href="#">Nuclear</a><a href="#">Geopolitics</a>
+      <a href="#">Intelligence</a><a href="#">Autonomy</a>
+      <a href="#">Synthetic Bio</a><a href="#">Sensors</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-12" style="background:var(--ink); color:white">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    <div class="md:col-span-2">
+      <div class="label" style="color:#a3b5d6">Membership</div>
+      <h2 class="text-3xl font-bold tracking-tight mt-3">$24/month · diligence-grade memos · twenty desks · weekly cadence.</h2>
+      <p class="mt-3 text-sm opacity-85 max-w-xl">Every memo opens with the bottom line, defends it in numbered findings, and exits with one decision recommendation. Founding seats: 14 of 100 remain for the year.</p>
+    </div>
+    <a href="#" class="md:justify-self-end px-6 py-3.5 inline-block font-semibold text-center" style="background:white; color:var(--ink)">Subscribe →</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>Throughline · D10 Investor / Diligence · prototype 2026-05-27</div>
+    <div>Σ 42/50 · <a href="../index.html">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

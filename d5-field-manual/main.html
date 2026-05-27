@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bearing · D5 Field Manual · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#f6f7f9; --ink:#0a0a0b; --muted:#5b6068; --rule:#e3e6ea; --accent:#0066ff; --kbd:#eef0f3; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.55; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  a.qlink { color:var(--accent); text-decoration:none; }
+  a.qlink:hover { text-decoration:underline; }
+  .kbd { display:inline-flex; align-items:center; padding:1px 6px; background:var(--kbd); border:1px solid var(--rule); border-bottom-width:2px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); }
+  .search { display:flex; align-items:center; gap:.75rem; padding:.85rem 1rem; border:1.5px solid var(--rule); border-radius:8px; background:var(--paper); transition:border .12s; }
+  .search:focus-within { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,102,255,.08); }
+  .pill { display:inline-block; padding:1px 7px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.06em; }
+  .pill-pub { background:#e1efff; color:var(--accent); }
+  .pill-draft { background:#fff1d6; color:#8a5b00; }
+  .pill-review { background:#eef0f3; color:var(--muted); }
+  table.lt th,table.lt td { padding:.55rem .8rem; border-bottom:1px solid var(--rule); text-align:left; }
+  table.lt th { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule sticky top-0 bg-white z-10">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="mono text-lg font-semibold">Bearing</div>
+      <span class="mono text-xs" style="color:var(--muted)">/ operator reference / 20 desks</span>
+    </div>
+    <nav class="flex items-center gap-5 text-sm">
+      <a href="#" class="mono qlink" style="color:var(--muted)">Desks</a>
+      <a href="#" class="mono qlink" style="color:var(--muted)">Contributors</a>
+      <a href="#" class="mono qlink" style="color:var(--muted)">Changelog</a>
+      <a href="#" class="px-3 py-1.5 mono text-xs rounded" style="background:var(--accent); color:white">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<section class="max-w-3xl mx-auto px-6 pt-14 pb-8 text-center">
+  <div class="mono text-xs" style="color:var(--muted)">B-1.247 · operator-grade reference · twenty desks · last sync 14:02</div>
+  <h1 class="text-4xl md:text-5xl font-semibold tracking-tight mt-3">Search what 312 operators across 20 desks know.</h1>
+  <p class="mt-4 text-base" style="color:var(--muted)">Bearing is the operator reference for deep-tech and national-security work. Every topic is sourced, dated, contributed by a named expert.</p>
+  <div class="search max-w-2xl mx-auto mt-7">
+    <span class="mono" style="color:var(--muted)">⌘K</span>
+    <input type="text" placeholder="Search 1,247 topics across 20 desks…" class="flex-1 outline-none text-base" />
+    <span class="kbd">⌘ K</span>
+  </div>
+  <div class="mt-4 mono text-xs" style="color:var(--muted)">Try: <a href="#" class="qlink">"quantum sensing procurement"</a> · <a href="#" class="qlink">"EU AI Act article 6"</a> · <a href="#" class="qlink">"ITAR university labs"</a></div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-10 border-t rule">
+
+  <div class="lg:col-span-2">
+    <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Most-used this week</div>
+    <ul class="mt-3 divide-y rule">
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">How to evaluate a quantum-sensing pitch</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: quantum · last reviewed: 2026-05-22 · A. Patel + 3</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">1,247 reads</div>
+      </li>
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">ITAR-controlled tech: a starter map for non-counsel</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: defense · last reviewed: 2026-05-18 · S. Chen</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">843 reads</div>
+      </li>
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">DOE grant cycles · plain-text reference</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: energy · last reviewed: 2026-05-12 · J. Park + 2</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">621 reads</div>
+      </li>
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">DIB vendor onboarding · gotchas</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: defense · last reviewed: 2026-05-19 · S. Chen + 4</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">517 reads</div>
+      </li>
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">EU AI Act Article 6 · annotated</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: cyber · last reviewed: 2026-05-26 · M. Kim</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">412 reads</div>
+      </li>
+      <li class="py-3 flex items-baseline justify-between">
+        <div>
+          <a href="#" class="qlink font-semibold text-base" style="color:var(--ink)">Biosec preprint moratorium · current state</a>
+          <div class="mono text-xs mt-1" style="color:var(--muted)">desk: biosec · last reviewed: 2026-05-25 · L. Vega</div>
+        </div>
+        <div class="mono text-xs" style="color:var(--muted)">389 reads</div>
+      </li>
+    </ul>
+    <a href="#" class="mt-5 inline-block mono text-sm qlink">→ Browse all 1,247 topics</a>
+  </div>
+
+  <aside>
+    <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Recently updated</div>
+    <ul class="mt-3 space-y-3 text-sm">
+      <li><a href="#" class="qlink font-semibold" style="color:var(--ink)">Quantum sensing → procurement signal</a><div class="mono text-xs" style="color:var(--muted)">updated 2h ago by A. Patel</div></li>
+      <li><a href="#" class="qlink font-semibold" style="color:var(--ink)">EU AI Act compromise note</a><div class="mono text-xs" style="color:var(--muted)">updated 5h ago by M. Kim</div></li>
+      <li><a href="#" class="qlink font-semibold" style="color:var(--ink)">Biosec preprint guidance</a><div class="mono text-xs" style="color:var(--muted)">updated 1d ago by L. Vega</div></li>
+      <li><a href="#" class="qlink font-semibold" style="color:var(--ink)">Rare-earth concentration map</a><div class="mono text-xs" style="color:var(--muted)">updated 2d ago by J. Okafor</div></li>
+      <li><a href="#" class="qlink font-semibold" style="color:var(--ink)">CHIPS-Act subgrant timing</a><div class="mono text-xs" style="color:var(--muted)">updated 3d ago by K. Ito</div></li>
+    </ul>
+
+    <div class="mt-8 mono text-xs uppercase tracking-wider" style="color:var(--muted)">Contributor stats</div>
+    <div class="mt-3 p-4 rounded border rule" style="background:var(--panel)">
+      <div class="mono text-3xl font-semibold">312</div>
+      <div class="mono text-xs mt-1" style="color:var(--muted)">working operators contributing</div>
+      <ul class="mt-3 space-y-1 mono text-xs" style="color:var(--muted)">
+        <li class="flex justify-between"><span>topics published</span><span>1,247</span></li>
+        <li class="flex justify-between"><span>topics in review</span><span>47</span></li>
+        <li class="flex justify-between"><span>topics in draft</span><span>89</span></li>
+        <li class="flex justify-between"><span>sources verified (90d)</span><span>2,398</span></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-t rule">
+  <div class="mono text-xs uppercase tracking-wider mb-4" style="color:var(--muted)">Desks · twenty</div>
+  <div class="border rule rounded overflow-hidden" style="background:var(--panel)">
+    <table class="lt w-full">
+      <thead><tr><th>Desk</th><th>Topics</th><th>Contributors</th><th>Last update</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">defense</a></td><td class="mono">142</td><td class="mono">38</td><td class="mono text-xs" style="color:var(--muted)">2h ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">cyber</a></td><td class="mono">98</td><td class="mono">31</td><td class="mono text-xs" style="color:var(--muted)">5h ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">quantum</a></td><td class="mono">56</td><td class="mono">14</td><td class="mono text-xs" style="color:var(--muted)">2h ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">biosecurity</a></td><td class="mono">87</td><td class="mono">22</td><td class="mono text-xs" style="color:var(--muted)">1d ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">energy</a></td><td class="mono">104</td><td class="mono">27</td><td class="mono text-xs" style="color:var(--muted)">3d ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">materials</a></td><td class="mono">61</td><td class="mono">18</td><td class="mono text-xs" style="color:var(--muted)">4d ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">ai</a></td><td class="mono">73</td><td class="mono">29</td><td class="mono text-xs" style="color:var(--muted)">2d ago</td></tr>
+        <tr><td><a href="#" class="qlink font-semibold" style="color:var(--ink)">space</a></td><td class="mono">48</td><td class="mono">12</td><td class="mono text-xs" style="color:var(--muted)">6d ago</td></tr>
+        <tr><td colspan="4" class="text-center text-xs" style="color:var(--muted)"><a href="#" class="qlink">→ 12 more desks</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="py-12 border-t rule" style="background:var(--panel)">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+    <div class="md:col-span-2">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Membership</div>
+      <h2 class="text-2xl font-semibold tracking-tight mt-2">$24/mo · full reference + contribution access.</h2>
+      <p class="mt-2 text-sm" style="color:var(--muted)">Read every topic. Open new topics. Edit existing topics with peer review. Reach the contributors directly. Founding seats: 14 of 100 left.</p>
+    </div>
+    <a href="#" class="md:justify-self-end px-5 py-3 mono text-sm rounded text-center" style="background:var(--accent); color:white">Begin membership →</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>Bearing · D5 Field Manual · prototype 2026-05-27</div>
+    <div>Σ 44/50 · <a href="../index.html" class="qlink">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

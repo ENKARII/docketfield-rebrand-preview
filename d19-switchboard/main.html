@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Switchboard · D19 · Main (live floor)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --bg:#08090d; --panel:#0f1116; --panel-2:#161a22; --ink:#d4d8e0; --muted:#6c7280; --rule:#22262e; --accent:#33d3a8; --warm:#ff8a52; --hot:#ff4d6e; --info:#5aa8ff; --gold:#e3c34a; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--ink); font-size:13px; line-height:1.45; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:'IBM Plex Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:10px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; font-weight:500; }
+  a { color:var(--ink); text-decoration:none; }
+  a:hover { color:var(--accent); }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  .panel-2 { background:var(--panel-2); border:1px solid var(--rule); }
+  .accent { color:var(--accent); }
+  .warm { color:var(--warm); }
+  .hot { color:var(--hot); }
+  .info { color:var(--info); }
+  .gold { color:var(--gold); }
+  .pulse { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(51,211,168,.2); animation:pulse 1.4s infinite; }
+  .pulse.hot { background:var(--hot); box-shadow:0 0 0 3px rgba(255,77,110,.2); }
+  .pulse.warm { background:var(--warm); box-shadow:0 0 0 3px rgba(255,138,82,.2); }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(.85)} }
+  .desk-cell { padding:.55rem .75rem; border:1px solid var(--rule); background:var(--panel); transition:.1s; cursor:pointer; display:flex; align-items:center; justify-content:space-between; }
+  .desk-cell:hover { border-color:var(--accent); }
+  .desk-cell.hot { border-color:var(--hot); background:linear-gradient(90deg,rgba(255,77,110,.05),var(--panel)); }
+  .desk-cell.warm { border-color:var(--warm); background:linear-gradient(90deg,rgba(255,138,82,.05),var(--panel)); }
+  .desk-cell .nm { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; font-weight:600; }
+  .desk-cell .cnt { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--accent); }
+  .desk-cell.warm .cnt { color:var(--warm); }
+  .desk-cell.hot .cnt { color:var(--hot); }
+  .desk-cell.cold .cnt { color:var(--muted); }
+  .tick { font-family:'IBM Plex Mono',monospace; font-size:11px; padding:4px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:50px 50px 1fr; gap:8px; align-items:start; }
+  .marquee { background:var(--panel-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:8px 0; overflow:hidden; white-space:nowrap; }
+  .marquee-inner { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; animation:scroll 60s linear infinite; }
+  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .stat-big { font-family:'IBM Plex Mono',monospace; font-size:2.2rem; font-weight:600; line-height:1; }
+  .sparkline { display:inline-block; width:60px; height:18px; vertical-align:middle; }
+  .ava { width:18px; height:18px; border-radius:2px; display:inline-flex; align-items:center; justify-content:center; color:var(--bg); font-size:8px; font-weight:700; font-family:'IBM Plex Mono',monospace; }
+  .clock { font-family:'IBM Plex Mono',monospace; font-size:1.2rem; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-[1400px] mx-auto px-5 h-12 flex items-center justify-between">
+    <div class="flex items-center gap-5">
+      <a href="../index.html" class="mono text-xs">←</a>
+      <div class="mono text-base font-bold tracking-wider">⌬ SWITCHBOARD</div>
+      <span class="label">/ live floor · 20 desks · 312 contributors online</span>
+    </div>
+    <div class="flex items-center gap-5">
+      <span class="clock accent">14:02:47 UTC</span>
+      <span class="label">market open · 4h 28m left</span>
+      <button class="mono text-xs border rule px-2.5 py-1">⌕ JUMP</button>
+      <span class="mono text-xs ava" style="background:var(--accent)">YOU</span>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="accent">●</span> SAM AHMADI started a thread in QUANTUM · "loading dock evidence" · 47 reactions in 8m &nbsp;&nbsp;&nbsp;
+    <span class="warm">●</span> ALEX PATEL replying live · drafting v2 of brief #024 &nbsp;&nbsp;&nbsp;
+    <span class="hot">●</span> JESS ODUYA flagged ITAR comment window · closing in 21 days &nbsp;&nbsp;&nbsp;
+    <span class="info">●</span> MARGINS · 14 readers in DOE Sensing v1.3 right now &nbsp;&nbsp;&nbsp;
+    <span class="accent">●</span> ROSA TORRES drafted answer for QUANTUM #4192 · +12 votes &nbsp;&nbsp;&nbsp;
+    <span class="gold">●</span> CONVENING TONIGHT 7:30 ET · "Sensing Turn" Q&amp;A · 318 RSVP &nbsp;&nbsp;&nbsp;
+    <span class="warm">●</span> 11 new contributors joined this week · welcome from a HS principal, a longshoreman, a poker player &nbsp;&nbsp;&nbsp;
+    <span class="accent">●</span> SAM AHMADI started a thread in QUANTUM · "loading dock evidence" · 47 reactions in 8m &nbsp;&nbsp;&nbsp;
+    <span class="warm">●</span> ALEX PATEL replying live · drafting v2 of brief #024 &nbsp;&nbsp;&nbsp;
+    <span class="hot">●</span> JESS ODUYA flagged ITAR comment window · closing in 21 days &nbsp;&nbsp;&nbsp;
+    <span class="info">●</span> MARGINS · 14 readers in DOE Sensing v1.3 right now &nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<main class="max-w-[1400px] mx-auto px-5 py-4 grid grid-cols-12 gap-4">
+
+  <section class="col-span-12 grid grid-cols-4 gap-3">
+    <div class="panel p-3"><div class="label">CONTRIBUTORS ONLINE</div><div class="stat-big accent mt-1">312</div><div class="label mt-1">▲ 28 vs 1h ago</div></div>
+    <div class="panel p-3"><div class="label">ACTIVE THREADS</div><div class="stat-big mt-1">47</div><div class="label mt-1">▲ 6 vs 1h ago</div></div>
+    <div class="panel p-3"><div class="label">REACTS / MIN</div><div class="stat-big warm mt-1">128</div><div class="label mt-1">▲ 41 vs 1h ago · trend</div></div>
+    <div class="panel p-3"><div class="label">NEW VOICES TODAY</div><div class="stat-big gold mt-1">8</div><div class="label mt-1">across 6 desks</div></div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-7 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="label">— THE FLOOR · 20 DESKS · LIVE</div>
+      <div class="flex items-center gap-4 label">
+        <span><span class="pulse"></span> idle &lt;5/hr</span>
+        <span><span class="pulse warm"></span> warm 5-30/hr</span>
+        <span><span class="pulse hot"></span> hot &gt;30/hr</span>
+      </div>
+    </div>
+    <div class="p-3 grid grid-cols-4 gap-1.5">
+      <div class="desk-cell hot"><span class="nm">▦ QUANTUM</span><span class="cnt">47</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ CYBER</span><span class="cnt">22</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ BIOSEC</span><span class="cnt">18</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ DEFENSE</span><span class="cnt">31</span></div>
+      <div class="desk-cell"><span class="nm">▦ ENERGY</span><span class="cnt">11</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ AI</span><span class="cnt">28</span></div>
+      <div class="desk-cell"><span class="nm">▦ SPACE</span><span class="cnt">7</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ MATERIALS</span><span class="cnt">14</span></div>
+      <div class="desk-cell cold"><span class="nm">▦ PHARMA</span><span class="cnt">3</span></div>
+      <div class="desk-cell"><span class="nm">▦ MANUFAC.</span><span class="cnt">9</span></div>
+      <div class="desk-cell cold"><span class="nm">▦ TELECOM</span><span class="cnt">4</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ SUPPLY</span><span class="cnt">17</span></div>
+      <div class="desk-cell"><span class="nm">▦ TRANSPORT</span><span class="cnt">6</span></div>
+      <div class="desk-cell"><span class="nm">▦ PUB. HEALTH</span><span class="cnt">8</span></div>
+      <div class="desk-cell cold"><span class="nm">▦ NUCLEAR</span><span class="cnt">2</span></div>
+      <div class="desk-cell warm"><span class="nm">▦ GEOPOL</span><span class="cnt">19</span></div>
+      <div class="desk-cell"><span class="nm">▦ INTEL</span><span class="cnt">11</span></div>
+      <div class="desk-cell"><span class="nm">▦ AUTONOMY</span><span class="cnt">9</span></div>
+      <div class="desk-cell cold"><span class="nm">▦ SYNBIO</span><span class="cnt">5</span></div>
+      <div class="desk-cell"><span class="nm">▦ SENSORS</span><span class="cnt">8</span></div>
+    </div>
+    <div class="p-3 border-t rule">
+      <div class="label mb-2">— HOT THREADS THIS HOUR</div>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-baseline gap-3"><span class="mono text-xs accent">▦ QUANTUM</span><a href="./backend.html" class="flex-1">"loading dock evidence at Brookhaven — procurement signal 6mo early?" — SA</a><span class="mono text-xs warm">47r · 23↳</span></li>
+        <li class="flex items-baseline gap-3"><span class="mono text-xs info">▦ DEFENSE</span><a href="#" class="flex-1">"ITAR comment window closes Jun 17 — university counsel asleep" — JO</a><span class="mono text-xs warm">31r · 14↳</span></li>
+        <li class="flex items-baseline gap-3"><span class="mono text-xs info">▦ AI</span><a href="#" class="flex-1">"EU Act Article 6 narrowed not widened — press got it wrong" — MK</a><span class="mono text-xs warm">28r · 19↳</span></li>
+        <li class="flex items-baseline gap-3"><span class="mono text-xs accent">▦ MATERIALS</span><a href="#" class="flex-1">"rare-earth single-point exposure when you re-cut by final-stage" — JO</a><span class="mono text-xs">22r · 11↳</span></li>
+        <li class="flex items-baseline gap-3"><span class="mono text-xs accent">▦ GEOPOL</span><a href="#" class="flex-1">"sanctions through a freight-forwarder's eyes" — open Q&amp;A</a><span class="mono text-xs">19r · 7↳</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-5 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="label">— THE WIRE · LIVE TICKER</div>
+      <span class="label">last 30 min · auto-update</span>
+    </div>
+    <div class="px-3 py-2" style="max-height:520px; overflow-y:auto">
+      <div class="tick"><span class="mono accent">14:02</span><span class="mono">QUAN</span><span><strong>SAM AHMADI</strong> · started thread · "loading dock evidence" · <span class="accent">47r · 23↳</span></span></div>
+      <div class="tick"><span class="mono">14:01</span><span class="mono">QUAN</span><span><strong>ALEX PATEL</strong> · replying live to SA · "going into v2 with attribution"</span></div>
+      <div class="tick"><span class="mono">14:00</span><span class="mono">DEFE</span><span><strong>JESS ODUYA</strong> · pinned · "ITAR comment window closes <span class="hot">Jun 17 ⏱</span>"</span></div>
+      <div class="tick"><span class="mono">13:58</span><span class="mono">MARG</span><span><strong>14 readers</strong> · in DOE Sensing v1.3 § 3 · 4 new annotations in 12m</span></div>
+      <div class="tick"><span class="mono">13:55</span><span class="mono">CYBE</span><span><strong>MAYA K.</strong> · accepted answer in PILE #4188 · +15 rep</span></div>
+      <div class="tick"><span class="mono">13:54</span><span class="mono">BIOS</span><span><strong>DIEGO T.</strong> · asked question · "how do I explain GoF for HS class?"</span></div>
+      <div class="tick"><span class="mono">13:53</span><span class="mono">QUAN</span><span><strong>RACHEL M.</strong> · confirmed SA signal · "+2 Janis service contracts at BNL"</span></div>
+      <div class="tick"><span class="mono">13:50</span><span class="mono">MATE</span><span><strong>JAMAL O.</strong> · published board · "rare-earth single-point" · 12 cards</span></div>
+      <div class="tick"><span class="mono">13:49</span><span class="mono">+++</span><span><strong>NEW VOICE</strong> · @rosa.t · federal-grants accountant · welcomed by 9</span></div>
+      <div class="tick"><span class="mono">13:47</span><span class="mono">CINE</span><span><strong>EPISODE #024</strong> · scheduled tonight 7:30 ET · 318 RSVP'd</span></div>
+      <div class="tick"><span class="mono">13:45</span><span class="mono">DISP</span><span><strong>SAM AHMADI</strong> · dispatch sent · "From the Brookhaven loading dock" · 1,247 reads</span></div>
+      <div class="tick"><span class="mono">13:42</span><span class="mono">STAK</span><span><strong>STACK</strong> · /quantum/sensing/DOE-1.4B · 41 layers · +1 by @jess.o</span></div>
+      <div class="tick"><span class="mono">13:40</span><span class="mono">PILE</span><span><strong>QUESTION #4192</strong> · "would DOE Q4-26 procurement signal arrive?" · bounty +150</span></div>
+      <div class="tick"><span class="mono">13:38</span><span class="mono">GEOP</span><span><strong>TOMÁS L.</strong> · started thread · "RFI volume vs RFP — what to read for"</span></div>
+      <div class="tick"><span class="mono">13:35</span><span class="mono">DEFE</span><span><strong>S. CHEN</strong> · convening Jun 3 · 14 RSVP confirmed · venue locked</span></div>
+      <div class="tick"><span class="mono">13:32</span><span class="mono">ENER</span><span><strong>WES T.</strong> · added card to "ERCOT hr-14" board · screenshot evidence</span></div>
+      <div class="tick"><span class="mono">13:30</span><span class="mono">LOBB</span><span>+ 23 reacts to SA's thread in 8 minutes · pace accelerating</span></div>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-7 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="label">— WHO'S TALKING TO WHO · LAST HOUR</div>
+      <span class="label">cross-desk conversation graph · live</span>
+    </div>
+    <div class="p-4">
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <div class="text-center">
+          <div class="ava mx-auto" style="background:var(--accent); width:32px; height:32px; font-size:11px">SA</div>
+          <div class="mono text-xs mt-1">Sam · Quantum</div>
+          <div class="label">freight</div>
+        </div>
+        <div class="text-center">
+          <div class="ava mx-auto" style="background:var(--gold); width:32px; height:32px; font-size:11px">AP</div>
+          <div class="mono text-xs mt-1">Alex · Quantum</div>
+          <div class="label">Brookhaven (off-duty)</div>
+        </div>
+        <div class="text-center">
+          <div class="ava mx-auto" style="background:var(--info); width:32px; height:32px; font-size:11px">RT</div>
+          <div class="mono text-xs mt-1">Rosa · Defense</div>
+          <div class="label">federal-grants acct.</div>
+        </div>
+      </div>
+      <div class="mono text-xs p-3 panel-2 rounded">
+        <div>SA &nbsp;&nbsp;━━━━━━━━━━&gt; AP  <span class="accent">14:02 · "dock evidence"</span></div>
+        <div>AP &nbsp;&nbsp;━━━&gt; SA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="accent">14:01 · "going into v2"</span></div>
+        <div>RT &nbsp;&nbsp;━━━&gt; SA &nbsp;━&gt; AP <span class="info">14:00 · "set-aside signal"</span></div>
+        <div>JO &nbsp;&nbsp;━━━&gt; AP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="info">13:58 · "ITAR matters now"</span></div>
+        <div>RM &nbsp;━━━&gt; SA &nbsp;━&gt; AP <span class="info">13:53 · "service contracts confirm"</span></div>
+        <div>MK &nbsp;━━━&gt; JO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="warm">13:48 · "comp. pipeline question"</span></div>
+        <div>DT &nbsp;&nbsp;━━━&gt; LV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="warm">13:45 · "teacher Q answered"</span></div>
+        <div class="label mt-2">+ 41 more cross-desk pairings active right now</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-5 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="label">— ON THE CALENDAR · NEXT 14 DAYS</div>
+      <span class="label">all UTC</span>
+    </div>
+    <ul class="px-3 py-2">
+      <li class="border-b rule py-2 flex items-baseline gap-3">
+        <span class="mono accent">TONIGHT 23:30</span>
+        <span>Cinema #024 Q&amp;A · "Sensing Turn" · live · open to anyone <span class="label">· 318 RSVP</span></span>
+      </li>
+      <li class="border-b rule py-2 flex items-baseline gap-3">
+        <span class="mono">FRI 09:00</span>
+        <span>Almanac No. 25 ships · pitch window closes WED 18:00</span>
+      </li>
+      <li class="border-b rule py-2 flex items-baseline gap-3">
+        <span class="mono info">JUN 03 23:00</span>
+        <span>DC Quantum dinner · off-the-record · invite-only · 14 confirmed</span>
+      </li>
+      <li class="border-b rule py-2 flex items-baseline gap-3">
+        <span class="mono info">JUN 12</span>
+        <span>Brief #024 v2 ships · co-bylined SA + AP + RT</span>
+      </li>
+      <li class="border-b rule py-2 flex items-baseline gap-3">
+        <span class="mono hot">JUN 17 23:59 ⏱</span>
+        <span>ITAR comment window closes · 21d</span>
+      </li>
+      <li class="py-2 flex items-baseline gap-3">
+        <span class="mono">JUL 08</span>
+        <span>ITAR counsel briefing convening · Carnegie · RSVP closes Jun 30</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="border-t rule py-3 mt-4">
+  <div class="max-w-[1400px] mx-auto px-5 flex justify-between label">
+    <div>⌬ SWITCHBOARD · D19 · prototype 2026-05-27</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

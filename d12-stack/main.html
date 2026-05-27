@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Stack · D12 · Main (a living page)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fafafa; --card:#ffffff; --ink:#1a1a1a; --muted:#6b6b6b; --rule:#e8e8e6; --hl:#fff3a8; --accent:#2563eb; --sage:#74a892; --hover:#f4f4f2; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.65; }
+  .serif { font-family:'Newsreader',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .qlink { color:var(--ink); border-bottom:1px solid var(--rule); }
+  .qlink:hover { border-bottom-color:var(--accent); }
+  .hl { background:var(--hl); padding:0 2px; }
+  .live { display:inline-flex; align-items:center; gap:.35rem; font-size:12px; color:var(--sage); font-weight:500; }
+  .live::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--sage); animation:pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+  .editor-bar { background:var(--card); border:1px solid var(--rule); border-radius:8px; padding:.5rem .65rem; }
+  .block { padding:.85rem 1rem; border-radius:8px; transition:background .12s; position:relative; }
+  .block:hover { background:var(--hover); }
+  .block::before { content:"≡"; position:absolute; left:-1.4rem; top:1rem; font-size:14px; color:var(--rule); opacity:0; transition:.1s; cursor:grab; }
+  .block:hover::before { opacity:1; color:var(--muted); }
+  .live-cursor { position:absolute; right:.5rem; top:.5rem; display:inline-flex; align-items:center; gap:.3rem; font-size:10px; padding:1px 6px; border-radius:99px; background:#dbeafe; color:#1e40af; font-family:'JetBrains Mono',monospace; }
+  .live-cursor.sage { background:#dcf0e7; color:#2e6b53; }
+  .live-cursor.warm { background:#fde7d6; color:#9a5418; }
+  .slash { background:#f3f3f1; border:1px solid var(--rule); border-radius:4px; padding:1px 5px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); }
+  .layer-log { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); }
+  .stack-tree { font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.85; }
+  .stack-tree a { color:var(--ink); border-bottom:1px dotted var(--rule); }
+  .stack-tree a:hover { border-bottom-style:solid; border-bottom-color:var(--accent); color:var(--accent); }
+  .branch::before { content:"└─ "; color:var(--rule); }
+</style>
+</head>
+<body>
+
+<header class="border-b rule sticky top-0 z-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="font-bold text-base">The Stack</div>
+      <span class="mono text-xs" style="color:var(--muted)">/ quantum / sensing / DOE-1.4B-program</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="live">4 editing now</span>
+      <button class="mono text-xs border rule px-2.5 py-1 rounded">⌘K open</button>
+      <button class="mono text-xs px-2.5 py-1 rounded text-white" style="background:var(--accent)">+ add to stack</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-5 grid grid-cols-1 lg:grid-cols-[200px_1fr_240px] gap-6">
+
+  <aside class="text-sm">
+    <div class="label mb-2 mono">— browse the stack</div>
+    <div class="stack-tree">
+      <div>quantum/</div>
+      <div class="ml-3 branch"><a href="#">sensing/</a></div>
+      <div class="ml-6 branch" style="color:var(--accent); font-weight:600">DOE-1.4B-program</div>
+      <div class="ml-6 branch"><a href="#">four-labs</a></div>
+      <div class="ml-6 branch"><a href="#">procurement-signal</a></div>
+      <div class="ml-3 branch"><a href="#">computing/</a></div>
+      <div class="ml-3 branch"><a href="#">simulation/</a></div>
+      <div>cyber/</div>
+      <div class="ml-3 branch"><a href="#">eu-ai-act/</a></div>
+      <div class="ml-3 branch"><a href="#">model-risk/</a></div>
+      <div>biosec/</div>
+      <div class="ml-3 branch"><a href="#">preprint-norms/</a></div>
+      <div>defense/</div>
+      <div class="ml-3 branch"><a href="#">itar-rewrite/</a></div>
+      <div class="ml-3 branch"><a href="#">dib-vendor/</a></div>
+      <div class="mt-1" style="color:var(--muted)">+ 16 other domains</div>
+    </div>
+  </aside>
+
+  <article>
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs px-2 py-0.5 rounded bg-blue-50 text-blue-700">QUANTUM</span>
+      <span class="mono text-xs px-2 py-0.5 rounded bg-yellow-50 text-yellow-800">LIVE PAGE · 41 layers · 14 contributors</span>
+      <span class="mono text-xs" style="color:var(--muted)">last edit 12s ago by @sam.a</span>
+    </div>
+
+    <h1 class="serif text-5xl leading-tight font-medium tracking-tight">The DOE quantum-sensing program ($1.4&nbsp;B)</h1>
+    <p class="serif text-xl mt-3" style="color:var(--muted)">A living page. Anyone with something to add can add. Attribution is the log.</p>
+
+    <div class="mt-7 space-y-2">
+
+      <div class="block">
+        <p>The <span class="hl">DOE quantum-sensing program</span> is a $1.4&nbsp;billion appropriation from the U.S. Department of Energy, allocated over fiscal years 2024–2027, directed at quantum-enabled sensing technologies with defense-adjacent applications.</p>
+      </div>
+
+      <div class="block">
+        <p>It is currently the largest single U.S. federal allocation to a quantum sub-field; see <a href="#">CHIPS-Act framework</a> for comparable scale in semiconductors.</p>
+      </div>
+
+      <h2 class="serif text-2xl font-semibold mt-7 pl-1">What we know about the four labs</h2>
+
+      <div class="block">
+        <span class="live-cursor sage">@alex.p · editing</span>
+        <ul class="list-disc list-inside space-y-1">
+          <li><a href="#">Brookhaven National Lab</a> — atom-trap sensing testbed. <span class="hl">As of May 2026, hiring up on the loading dock, cryo equipment arriving</span> (added by <a href="#">@sam.a</a>, attribution verified by <a href="#">@rachel.m</a>).</li>
+          <li><a href="#">Argonne National Lab</a> — solid-state nitrogen-vacancy program.</li>
+          <li><a href="#">Oak Ridge National Lab</a> — cryo-magnetometer prototype facility.</li>
+          <li><a href="#">Lawrence Berkeley National Lab</a> — quantum gravimetry collaboration with USGS.</li>
+        </ul>
+      </div>
+
+      <h2 class="serif text-2xl font-semibold mt-7 pl-1">Procurement signal — what to watch</h2>
+
+      <div class="block">
+        <p>As of <a href="#">2026-05-22</a>, no DOE quantum-sensing procurement contract above $5M has been let to a non-lab vendor. Three known pending solicitations are tracked to <a href="#">Q4-2026 / Q1-2027</a>.</p>
+      </div>
+
+      <div class="block" style="background:#fef9e7; border:1px solid #f7e6a8">
+        <span class="live-cursor warm">@jess.o · just added</span>
+        <p class="font-semibold mb-1">⚡ Counter-signal (added 14 min ago)</p>
+        <p>The <span class="hl">cryo-equipment delivery pattern</span> at Brookhaven (Janis + Bluefors mix, March 2026 onward) <em>may</em> mean the procurement timeline is 6 months earlier than this page assumes. See <a href="#">/lobby/quantum/brookhaven-dock-signal</a>. Not yet load-bearing — needs corroboration from a second lab.</p>
+      </div>
+
+      <h2 class="serif text-2xl font-semibold mt-7 pl-1">Standards-body fight</h2>
+
+      <div class="block">
+        <p>The binding constraint is not science risk — it is the <a href="#">IEEE-1xx quantum-sensing measurement standard</a> negotiation, which has been deadlocked since Oct 2025. See <a href="#">/quantum/sensing/standards-body</a> for the live deadlock log.</p>
+      </div>
+
+      <div class="block opacity-60 italic">
+        <p class="text-sm">[ stub — needs someone with metrology or standards-body experience to draft. Reply in the discussion thread or just claim it. ]</p>
+      </div>
+
+      <h2 class="serif text-2xl font-semibold mt-7 pl-1">Open questions on this page</h2>
+
+      <div class="block">
+        <ul class="list-disc list-inside space-y-1">
+          <li>What does the procurement-vendor list look like once Q4-26 solicitations open? (@alex.p tracking)</li>
+          <li>Is the Brookhaven dock signal happening at any of the other three labs? (open — needs eyes)</li>
+          <li>Does the ITAR rewrite affect university-lab participation in DOE solicitations? (linked to <a href="#">/defense/itar-rewrite/univ-labs</a>)</li>
+        </ul>
+      </div>
+
+      <div class="editor-bar mt-7 flex items-center gap-3">
+        <span class="slash">/</span>
+        <span class="label">type "/" to add a block · "/source" to cite · "/question" to open · "/branch" to fork a sub-page</span>
+      </div>
+
+    </div>
+
+  </article>
+
+  <aside class="text-sm space-y-5">
+
+    <div>
+      <div class="label mono mb-2">— now editing</div>
+      <ul class="space-y-2">
+        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:#74a892"></span>@alex.p <span class="label">· "four labs" section</span></li>
+        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:#d97757"></span>@jess.o <span class="label">· counter-signal block</span></li>
+        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:#5c87a8"></span>@maya.k <span class="label">· cross-linking</span></li>
+        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:#caa44a"></span>you <span class="label">· reading</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="label mono mb-2">— this page's layer log</div>
+      <ul class="layer-log space-y-1.5">
+        <li>L41 · @sam.a · +1 evidence block · 12s ago</li>
+        <li>L40 · @jess.o · +counter-signal · 14m</li>
+        <li>L39 · @alex.p · cited @rachel.m · 18m</li>
+        <li>L38 · @rachel.m · +confirmation · 22m</li>
+        <li>L37 · @sam.a · first contribution · 2h</li>
+        <li>L36 · @alex.p · added "what we know" section · 4h</li>
+        <li>L35 · @maya.k · linked /defense/itar-rewrite · 1d</li>
+        <li>L34 · @diego.t · stub claim on standards · 1d</li>
+        <li style="color:var(--accent)">· · · 33 more layers, all the way to L01 ·</li>
+      </ul>
+    </div>
+
+    <div class="border-t rule pt-4">
+      <div class="label mono mb-2">— this page's neighbors</div>
+      <ul class="space-y-1.5">
+        <li><a href="#" class="qlink">four-labs</a></li>
+        <li><a href="#" class="qlink">procurement-signal</a></li>
+        <li><a href="#" class="qlink">/defense/itar-rewrite/univ-labs</a></li>
+        <li><a href="#" class="qlink">/lobby/quantum/brookhaven-dock</a></li>
+      </ul>
+    </div>
+
+    <div class="border-t rule pt-4">
+      <div class="label mono mb-2">— help build the stack</div>
+      <p class="text-sm leading-snug">$8/month. Read every page. Add to any page. Claim a stub. The reputation here is "layers added that stuck."</p>
+      <button class="mt-3 px-3.5 py-2 rounded text-sm font-semibold text-white" style="background:var(--accent)">add yourself →</button>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule mt-10 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Stack · D12 · prototype 2026-05-27</div>
+    <div><a href="../index.html" class="qlink">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

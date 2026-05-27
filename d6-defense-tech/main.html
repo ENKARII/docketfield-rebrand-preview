@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VECTOR · D6 Defense-Tech · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --ink:#0a0a0b; --bg:#0a0a0b; --paper:#f4f3ef; --rule:#222226; --muted:#74747c; --accent:#ff5722; --accent-2:#ff7a45; --grid:#161618; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--paper); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size:48px 48px;
+  }
+  .corner-tl::before,.corner-tr::before,.corner-bl::before,.corner-br::before {
+    content:""; position:absolute; width:12px; height:12px; border:2px solid var(--accent);
+  }
+  .corner-tl::before { top:0; left:0; border-right:0; border-bottom:0; }
+  .corner-tr::before { top:0; right:0; border-left:0; border-bottom:0; }
+  .corner-bl::before { bottom:0; left:0; border-right:0; border-top:0; }
+  .corner-br::before { bottom:0; right:0; border-left:0; border-top:0; }
+  .crosshair { position:relative; }
+  a.qlink { color:var(--paper); text-decoration:none; transition:color .1s; }
+  a.qlink:hover { color:var(--accent); }
+  .chip { display:inline-block; padding:2px 8px; border:1px solid var(--accent); color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
+  .chip-quiet { display:inline-block; padding:2px 8px; border:1px solid var(--rule); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+  .progress-bar { height:2px; background:var(--rule); position:relative; }
+  .progress-bar > div { height:100%; background:var(--accent); }
+  .ascii { color:var(--accent); font-family:'JetBrains Mono',monospace; }
+  .desk-cell { border:1px solid var(--rule); padding:.7rem 1rem; transition:.1s; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+  .desk-cell:hover { border-color:var(--accent); color:var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="flex items-baseline gap-2"><span class="accent text-xl mono">▦</span><span class="text-xl font-extrabold tracking-tight">VECTOR</span></div>
+      <span class="mono text-[10px] tracking-[.2em]" style="color:var(--muted)">// TWENTY DESKS // MAY-27 14:02 UTC</span>
+    </div>
+    <nav class="flex items-center gap-6 mono text-xs tracking-widest uppercase">
+      <a href="#" class="qlink">Briefs</a>
+      <a href="#" class="qlink">Desks</a>
+      <a href="#" class="qlink">Cells</a>
+      <a href="#" class="qlink">Signal</a>
+      <a href="#" class="px-3 py-1.5" style="background:var(--accent); color:var(--ink); font-weight:700">+ ACCESS</a>
+    </nav>
+  </div>
+</header>
+
+<section class="relative grid-bg border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    <div class="crosshair corner-tl corner-tr corner-bl corner-br relative p-8 border rule" style="background:rgba(10,10,11,.92)">
+      <div class="flex items-center gap-3">
+        <span class="chip">DESK 04 // QUANTUM</span>
+        <span class="chip-quiet">BRIEF #024 // MAY-27</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mt-6 leading-[.95]">
+        THE&nbsp;SENSING<br/>TURN.
+      </h1>
+      <p class="mono text-base mt-6 max-w-2xl" style="color:var(--paper); opacity:.85">
+        <span class="accent">DOE</span> → <span class="accent">$1.4B</span>. THREE YEARS OUT. THE FOUR LABS STILL HIRING. THE PROCUREMENT SIGNAL NOT YET ARRIVED. <span class="accent">WHAT BREAKS FIRST.</span>
+      </p>
+      <div class="mt-8 flex items-center gap-5">
+        <a href="#" class="px-5 py-3 mono text-xs tracking-widest uppercase font-bold" style="background:var(--accent); color:var(--ink)">► OPEN BRIEF #024</a>
+        <div class="mono text-xs tracking-widest uppercase" style="color:var(--muted)">A. PATEL · 14 MIN · MEMBERS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="mono text-[11px] tracking-[.22em] mb-6" style="color:var(--muted)">// ACTIVE BRIEFS // 12</div>
+  <table class="w-full">
+    <thead>
+      <tr class="mono text-[10px] tracking-[.16em] uppercase border-b rule" style="color:var(--muted)">
+        <th class="text-left py-3 pr-4">CODE</th>
+        <th class="text-left py-3 pr-4">DESK</th>
+        <th class="text-left py-3 pr-4">TITLE</th>
+        <th class="text-left py-3 pr-4">AUTHOR</th>
+        <th class="text-left py-3 pr-4">PROGRESS</th>
+        <th class="text-right py-3">EMBARGO</th>
+      </tr>
+    </thead>
+    <tbody class="text-sm">
+      <tr class="border-b" style="border-color:var(--grid)">
+        <td class="py-3 pr-4 mono accent">#024</td><td class="py-3 pr-4 mono uppercase tracking-widest text-xs" style="color:var(--muted)">Quantum</td><td class="py-3 pr-4 font-semibold uppercase tracking-tight">The Sensing Turn</td><td class="py-3 pr-4 mono uppercase text-xs" style="color:var(--muted)">A. Patel</td><td class="py-3 pr-4"><div class="progress-bar" style="max-width:160px"><div style="width:67%"></div></div></td><td class="py-3 mono text-xs text-right">MON 27 09:00</td>
+      </tr>
+      <tr class="border-b" style="border-color:var(--grid)">
+        <td class="py-3 pr-4 mono accent">#023</td><td class="py-3 pr-4 mono uppercase tracking-widest text-xs" style="color:var(--muted)">Cyber</td><td class="py-3 pr-4 font-semibold uppercase tracking-tight">EU AI Act, Annotated</td><td class="py-3 pr-4 mono uppercase text-xs" style="color:var(--muted)">M. Kim</td><td class="py-3 pr-4"><div class="progress-bar" style="max-width:160px"><div style="width:34%"></div></div></td><td class="py-3 mono text-xs text-right">WED 29 09:00</td>
+      </tr>
+      <tr class="border-b" style="border-color:var(--grid)">
+        <td class="py-3 pr-4 mono accent">#022</td><td class="py-3 pr-4 mono uppercase tracking-widest text-xs" style="color:var(--muted)">Bio</td><td class="py-3 pr-4 font-semibold uppercase tracking-tight">Preprint Norms Breaking</td><td class="py-3 pr-4 mono uppercase text-xs" style="color:var(--muted)">L. Vega</td><td class="py-3 pr-4"><div class="progress-bar" style="max-width:160px"><div style="width:89%"></div></div></td><td class="py-3 mono text-xs text-right">FRI 31 09:00</td>
+      </tr>
+      <tr class="border-b" style="border-color:var(--grid)">
+        <td class="py-3 pr-4 mono accent">#021</td><td class="py-3 pr-4 mono uppercase tracking-widest text-xs" style="color:var(--muted)">Defense</td><td class="py-3 pr-4 font-semibold uppercase tracking-tight">ITAR For University Labs</td><td class="py-3 pr-4 mono uppercase text-xs" style="color:var(--muted)">S. Chen</td><td class="py-3 pr-4"><div class="progress-bar" style="max-width:160px"><div style="width:22%"></div></div></td><td class="py-3 mono text-xs text-right">— TBD</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <div>
+    <div class="mono text-[11px] tracking-[.22em] mb-4" style="color:var(--muted)">// OUTPUT // THIS WEEK</div>
+    <div class="space-y-4">
+      <div class="flex items-baseline gap-4"><span class="accent text-5xl font-extrabold tracking-tighter">12</span><span class="mono text-xs uppercase tracking-widest" style="color:var(--muted)">SIGNAL DROPS</span></div>
+      <div class="flex items-baseline gap-4"><span class="accent text-5xl font-extrabold tracking-tighter">4</span><span class="mono text-xs uppercase tracking-widest" style="color:var(--muted)">BRIEFS PUBLISHED</span></div>
+      <div class="flex items-baseline gap-4"><span class="accent text-5xl font-extrabold tracking-tighter">2</span><span class="mono text-xs uppercase tracking-widest" style="color:var(--muted)">CELLS ACTIVATED</span></div>
+    </div>
+  </div>
+  <div class="lg:col-span-2">
+    <div class="mono text-[11px] tracking-[.22em] mb-4" style="color:var(--muted)">// CELL ROSTER // ACTIVE</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border rule p-4">
+        <div class="chip">CELL // QUANTUM</div>
+        <h3 class="text-lg font-extrabold tracking-tight mt-3 uppercase">Sensing Standards</h3>
+        <div class="mono text-[10px] mt-2 tracking-widest" style="color:var(--muted)">14 OPERATORS · CHAIR A. PATEL</div>
+        <div class="progress-bar mt-3"><div style="width:67%"></div></div>
+        <div class="mono text-[10px] mt-1 tracking-widest accent">BRIEF #024 · JUN-12</div>
+      </div>
+      <div class="border rule p-4">
+        <div class="chip">CELL // BIO</div>
+        <h3 class="text-lg font-extrabold tracking-tight mt-3 uppercase">Preprint Norms</h3>
+        <div class="mono text-[10px] mt-2 tracking-widest" style="color:var(--muted)">9 OPERATORS · CHAIR L. VEGA</div>
+        <div class="progress-bar mt-3"><div style="width:42%"></div></div>
+        <div class="mono text-[10px] mt-1 tracking-widest accent">PAPER · Q3</div>
+      </div>
+      <div class="border rule p-4">
+        <div class="chip">CELL // DEFENSE</div>
+        <h3 class="text-lg font-extrabold tracking-tight mt-3 uppercase">ITAR Reform</h3>
+        <div class="mono text-[10px] mt-2 tracking-widest" style="color:var(--muted)">6 OPERATORS · CHAIR S. CHEN</div>
+        <div class="progress-bar mt-3"><div style="width:23%"></div></div>
+        <div class="mono text-[10px] mt-1 tracking-widest accent">MEMO #018 · JUL-01</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="mono text-[11px] tracking-[.22em] mb-6" style="color:var(--muted)">// DESKS // 20 LIVE</div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+    <a href="#" class="desk-cell qlink">▦ 01 DEFENSE</a>
+    <a href="#" class="desk-cell qlink">▦ 02 CYBER</a>
+    <a href="#" class="desk-cell qlink">▦ 03 BIO</a>
+    <a href="#" class="desk-cell qlink">▦ 04 QUANTUM</a>
+    <a href="#" class="desk-cell qlink">▦ 05 ENERGY</a>
+    <a href="#" class="desk-cell qlink">▦ 06 AI</a>
+    <a href="#" class="desk-cell qlink">▦ 07 SPACE</a>
+    <a href="#" class="desk-cell qlink">▦ 08 MATERIALS</a>
+    <a href="#" class="desk-cell qlink">▦ 09 PHARMA</a>
+    <a href="#" class="desk-cell qlink">▦ 10 MANUF.</a>
+    <a href="#" class="desk-cell qlink">▦ 11 TELECOM</a>
+    <a href="#" class="desk-cell qlink">▦ 12 SUPPLY</a>
+    <a href="#" class="desk-cell qlink">▦ 13 TRANSPORT</a>
+    <a href="#" class="desk-cell qlink">▦ 14 PUB. HEALTH</a>
+    <a href="#" class="desk-cell qlink">▦ 15 NUCLEAR</a>
+    <a href="#" class="desk-cell qlink">▦ 16 GEOPOL</a>
+    <a href="#" class="desk-cell qlink">▦ 17 INTEL</a>
+    <a href="#" class="desk-cell qlink">▦ 18 AUTONOMY</a>
+    <a href="#" class="desk-cell qlink">▦ 19 SYNBIO</a>
+    <a href="#" class="desk-cell qlink">▦ 20 SENSORS</a>
+  </div>
+</section>
+
+<section class="py-12 border-b rule grid-bg">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+    <div class="md:col-span-2">
+      <div class="chip">// ACCESS // FOUNDING</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mt-4">14 OF 100 FOUNDING SEATS REMAIN.</h2>
+      <p class="mono text-sm mt-4 max-w-xl tracking-wide" style="color:var(--paper); opacity:.85">$24/MO · ALL BRIEFS · ALL DESKS · ALL CELLS · OFF-THE-RECORD CONVENINGS</p>
+    </div>
+    <a href="#" class="md:justify-self-end px-6 py-4 mono text-sm tracking-widest uppercase font-bold inline-block" style="background:var(--accent); color:var(--ink)">► CLAIM SEAT</a>
+  </div>
+</section>
+
+<footer class="py-6 border-t rule">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>▦ VECTOR · D6 DEFENSE-TECH · PROTOTYPE 2026-05-27</div>
+    <div>Σ 44/50 · <a href="../index.html" class="accent">SCORECARD</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

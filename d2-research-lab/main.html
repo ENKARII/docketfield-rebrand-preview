@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Concord · D2 Research Lab · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --ink:#0a0a0b; --muted:#5a5a60; --rule:#e5e5e0; --accent:#1b2bb8; --shelf:#f4f2ed; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.55; }
+  .display { font-family:'Crimson Pro',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  a.qlink { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:1px; }
+  a.qlink:hover { border-bottom-color:var(--accent); color:var(--accent); }
+  .accent { color:var(--accent); }
+  .book { aspect-ratio:2/3; background:linear-gradient(135deg,#1b2bb8 0%,#0e1864 100%); position:relative; display:flex; flex-direction:column; justify-content:space-between; padding:1.25rem; color:white; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+  .book.book-2 { background:linear-gradient(135deg,#6f1e2a 0%,#3a0f17 100%); }
+  .book.book-3 { background:linear-gradient(135deg,#2f5d3a 0%,#143821 100%); }
+  .book.book-4 { background:linear-gradient(135deg,#caa44a 0%,#7b5e22 100%); color:#1a1a1a; }
+  .book .num { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.15em; opacity:.85; }
+  .book .ttl { font-family:'Crimson Pro',Georgia,serif; font-size:1.35rem; line-height:1.1; font-weight:600; }
+  .book .meta { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; opacity:.8; text-transform:uppercase; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="text-xl font-semibold tracking-tight">Concord</div>
+      <span class="label" style="color:var(--muted)">Press · Twenty fields</span>
+    </div>
+    <nav class="flex items-baseline gap-6 text-sm">
+      <a href="#" class="qlink">New releases</a>
+      <a href="#" class="qlink">Fields</a>
+      <a href="#" class="qlink">Research underway</a>
+      <a href="#" class="qlink">About</a>
+      <a href="#" class="px-3 py-1.5 bg-black text-white text-xs mono uppercase tracking-wider hover:opacity-90">Membership</a>
+    </nav>
+  </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-5 gap-12 border-b rule">
+  <div class="lg:col-span-3">
+    <div class="label accent">Now reading · Issue #024 · Quantum field</div>
+    <h1 class="display text-5xl md:text-6xl font-semibold leading-[1.05] mt-4">The Sensing Turn</h1>
+    <p class="display text-2xl mt-3 italic" style="color:var(--muted)">The DOE's $1.4&nbsp;billion bet, three years on</p>
+    <p class="mt-6 text-base max-w-xl">Concord publishes long-form research from working experts across twenty fields. Each issue is sourced, peer-reviewed, dated, and indexed. This is issue #024 — the lead from the Quantum field.</p>
+    <div class="mt-7 flex items-center gap-5 text-sm">
+      <a href="#" class="px-4 py-2 bg-black text-white mono text-xs uppercase tracking-wider">Read issue #024</a>
+      <span class="mono text-xs" style="color:var(--muted)">By A. Patel · 14 min · 12 cites · Members</span>
+    </div>
+  </div>
+  <div class="lg:col-span-2 flex items-center justify-center">
+    <div class="book max-w-[220px] w-full">
+      <div>
+        <div class="num">CONCORD · ISSUE #024</div>
+        <div class="ttl mt-3">The Sensing<br/>Turn</div>
+      </div>
+      <div>
+        <div class="meta">QUANTUM FIELD</div>
+        <div class="meta mt-1">A. PATEL · MAY 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-16 border-b rule">
+  <div class="flex items-baseline justify-between mb-8">
+    <div>
+      <div class="label accent">New releases · This month</div>
+      <h2 class="display text-3xl font-semibold mt-2">Four issues, May 2026</h2>
+    </div>
+    <a href="#" class="qlink text-sm">All releases →</a>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div>
+      <div class="book book-2"><div><div class="num">#024</div><div class="ttl mt-3">The Sensing Turn</div></div><div><div class="meta">QUANTUM</div></div></div>
+      <div class="mt-3"><div class="display text-lg font-semibold leading-snug">The Sensing Turn</div><div class="mono text-xs mt-1" style="color:var(--muted)">Quantum · A. Patel · 14 min</div></div>
+    </div>
+    <div>
+      <div class="book"><div><div class="num">#023</div><div class="ttl mt-3">The AI Act, Annotated</div></div><div><div class="meta">CYBER</div></div></div>
+      <div class="mt-3"><div class="display text-lg font-semibold leading-snug">The AI Act, annotated</div><div class="mono text-xs mt-1" style="color:var(--muted)">Cyber · M. Kim · 9 min</div></div>
+    </div>
+    <div>
+      <div class="book book-3"><div><div class="num">#022</div><div class="ttl mt-3">Preprint Norms in Biosec</div></div><div><div class="meta">BIOSEC</div></div></div>
+      <div class="mt-3"><div class="display text-lg font-semibold leading-snug">Preprint norms in biosec</div><div class="mono text-xs mt-1" style="color:var(--muted)">Biosec · L. Vega · 11 min</div></div>
+    </div>
+    <div>
+      <div class="book book-4"><div><div class="num">#021</div><div class="ttl mt-3">ITAR for Univ. Labs</div></div><div><div class="meta">DEFENSE</div></div></div>
+      <div class="mt-3"><div class="display text-lg font-semibold leading-snug">ITAR for university labs</div><div class="mono text-xs mt-1" style="color:var(--muted)">Defense · S. Chen · 8 min</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-16 border-b rule grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <div>
+    <div class="label accent">Research underway</div>
+    <h2 class="display text-3xl font-semibold mt-2">Three working groups</h2>
+    <p class="mt-3 text-sm" style="color:var(--muted)">Each working group is a small chartered team that publishes one paper, one note, or one decision memo. Chairs are named; sources are public; outputs are dated.</p>
+  </div>
+  <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="border-l-2 pl-4" style="border-color:var(--accent)">
+      <div class="mono text-xs" style="color:var(--muted)">Chartered Apr 22</div>
+      <div class="display text-xl font-semibold mt-1">Quantum Sensing Standards</div>
+      <div class="text-xs mt-2" style="color:var(--muted)">A. Patel, chair · 14 members</div>
+      <div class="mono text-xs mt-3"><span class="accent">→ issue #024 in June</span></div>
+    </div>
+    <div class="border-l-2 pl-4" style="border-color:var(--accent)">
+      <div class="mono text-xs" style="color:var(--muted)">Chartered May 4</div>
+      <div class="display text-xl font-semibold mt-1">Biosecurity Preprint Norms</div>
+      <div class="text-xs mt-2" style="color:var(--muted)">L. Vega, chair · 9 members</div>
+      <div class="mono text-xs mt-3"><span class="accent">→ paper Q3</span></div>
+    </div>
+    <div class="border-l-2 pl-4" style="border-color:var(--accent)">
+      <div class="mono text-xs" style="color:var(--muted)">Chartered Mar 11</div>
+      <div class="display text-xl font-semibold mt-1">ITAR Reform Framework</div>
+      <div class="text-xs mt-2" style="color:var(--muted)">S. Chen, chair · 6 members</div>
+      <div class="mono text-xs mt-3"><span class="accent">→ memo #018 in July</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-16 border-b rule">
+  <div class="flex items-baseline justify-between mb-6">
+    <div>
+      <div class="label accent">Fields</div>
+      <h2 class="display text-3xl font-semibold mt-2">Twenty fields, one press</h2>
+    </div>
+    <a href="#" class="qlink text-sm">All twenty →</a>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-1.5 text-base">
+    <a href="#" class="qlink py-1">Defense</a><a href="#" class="qlink py-1">Cyber</a><a href="#" class="qlink py-1">Quantum</a><a href="#" class="qlink py-1">Biosecurity</a><a href="#" class="qlink py-1">Energy</a>
+    <a href="#" class="qlink py-1">AI</a><a href="#" class="qlink py-1">Space</a><a href="#" class="qlink py-1">Materials</a><a href="#" class="qlink py-1">Pharma</a><a href="#" class="qlink py-1">Manufacturing</a>
+    <a href="#" class="qlink py-1">Telecom</a><a href="#" class="qlink py-1">Supply Chain</a><a href="#" class="qlink py-1">Transportation</a><a href="#" class="qlink py-1">Public Health</a><a href="#" class="qlink py-1">Nuclear</a>
+    <a href="#" class="qlink py-1">Geopolitics</a><a href="#" class="qlink py-1">Intelligence</a><a href="#" class="qlink py-1">Autonomy</a><a href="#" class="qlink py-1">Synthetic Bio</a><a href="#" class="qlink py-1">Sensors</a>
+  </div>
+</section>
+
+<section class="py-16" style="background:var(--shelf)">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-baseline">
+    <div class="md:col-span-2">
+      <div class="label accent">Membership · The press</div>
+      <h2 class="display text-3xl font-semibold mt-2">$24 / month. Every issue. Every working group. Every source.</h2>
+      <p class="mt-4 text-base max-w-xl" style="color:var(--muted)">Membership funds editorial independence. Sponsors fund fields but never shape issues. Founding seats are limited to 100; fourteen remain.</p>
+    </div>
+    <a href="#" class="px-5 py-3 bg-black text-white mono text-xs uppercase tracking-wider inline-block text-center">Begin membership</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>CONCORD · D2 Research Lab · prototype 2026-05-27</div>
+    <div>Σ 46/50 · <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

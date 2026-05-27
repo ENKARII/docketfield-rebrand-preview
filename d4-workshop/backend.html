@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Workshop · D4 · Bench (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fcf9f3; --card:#fffbf2; --ink:#1c1a18; --muted:#6e6557; --rule:#e8dfcb; --accent:#c9491f; --accent-soft:#fde7dd; --sage:#7b956c; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; }
+  .serif { font-family:'Fraunces',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; font-weight:600; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; }
+  .accent { color:var(--accent); }
+  .card { background:var(--card); border:1px solid var(--rule); border-radius:10px; }
+  .pill-accent { background:var(--accent-soft); color:var(--accent); padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; display:inline-block; }
+  .pill-sage { background:#e6ede1; color:#3c5333; padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; display:inline-block; }
+  .pill-quiet { background:#eee9dc; color:#6e6557; padding:2px 9px; border-radius:99px; font-size:11px; font-weight:600; display:inline-block; }
+  a.qlink { color:var(--ink); text-decoration:underline; text-decoration-color:var(--rule); text-decoration-thickness:2px; text-underline-offset:3px; }
+  a.qlink:hover { text-decoration-color:var(--accent); color:var(--accent); }
+  .avatar { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#c9491f,#7b956c); display:inline-flex; align-items:center; justify-content:center; color:white; font-weight:600; font-size:12px; }
+  .bar { height:6px; background:var(--rule); border-radius:99px; overflow:hidden; }
+  .bar > div { height:100%; background:var(--accent); border-radius:99px; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="serif text-2xl font-semibold tracking-tight">Workshop</div>
+      <span class="label">Your bench</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="./main.html" class="qlink text-sm">View public</a>
+      <div class="flex items-center gap-2"><span class="avatar">AP</span><span class="text-sm font-semibold">A. Patel</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 xl:grid-cols-4 gap-6">
+
+  <section class="xl:col-span-3 space-y-6">
+
+    <div class="card p-6">
+      <div class="flex items-baseline justify-between">
+        <div>
+          <div class="label accent">Welcome back, A.</div>
+          <h1 class="serif text-3xl font-semibold tracking-tight mt-1">Here's what's on your bench.</h1>
+        </div>
+        <a href="#" class="px-4 py-2 text-white text-sm font-semibold rounded" style="background:var(--accent)">+ Start something</a>
+      </div>
+      <div class="mt-5 grid grid-cols-4 gap-4">
+        <div><div class="label">Your crews</div><div class="serif text-3xl font-semibold mt-1">3</div></div>
+        <div><div class="label">Drafts</div><div class="serif text-3xl font-semibold mt-1">4</div></div>
+        <div><div class="label">Open questions</div><div class="serif text-3xl font-semibold mt-1">2</div></div>
+        <div><div class="label">This month</div><div class="serif text-3xl font-semibold mt-1">17</div><div class="mono text-xs" style="color:var(--muted)">contributions</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="px-6 py-4 border-b rule flex items-baseline justify-between">
+        <div><div class="label accent">Your crews</div><h2 class="serif text-xl font-semibold mt-1">Three crews, three roles</h2></div>
+      </div>
+      <ul class="divide-y" style="border-color:var(--rule)">
+        <li class="p-5 flex items-center gap-5">
+          <span class="avatar">QS</span>
+          <div class="flex-1">
+            <div class="font-semibold">Quantum Sensing</div>
+            <div class="mono text-xs mt-0.5" style="color:var(--muted)">14 in the crew · brief #024 in June · 67%</div>
+            <div class="bar mt-2" style="max-width:280px"><div style="width:67%"></div></div>
+          </div>
+          <span class="pill-accent">you chair</span>
+          <a href="#" class="qlink text-sm">Open →</a>
+        </li>
+        <li class="p-5 flex items-center gap-5">
+          <span class="avatar" style="background:linear-gradient(135deg,#7b956c,#3a5c2e)">BN</span>
+          <div class="flex-1">
+            <div class="font-semibold">Biosec Preprint Norms</div>
+            <div class="mono text-xs mt-0.5" style="color:var(--muted)">9 in the crew · paper Q3 · 42%</div>
+            <div class="bar mt-2" style="max-width:280px"><div style="width:42%"></div></div>
+          </div>
+          <span class="pill-sage">you contribute</span>
+          <a href="#" class="qlink text-sm">Open →</a>
+        </li>
+        <li class="p-5 flex items-center gap-5">
+          <span class="avatar" style="background:linear-gradient(135deg,#a07a2c,#5c4317)">IR</span>
+          <div class="flex-1">
+            <div class="font-semibold">ITAR Reform Framework</div>
+            <div class="mono text-xs mt-0.5" style="color:var(--muted)">6 in the crew · memo #018 in July · 23%</div>
+            <div class="bar mt-2" style="max-width:280px"><div style="width:23%"></div></div>
+          </div>
+          <span class="pill-quiet">you review</span>
+          <a href="#" class="qlink text-sm">Open →</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card">
+        <div class="px-5 py-4 border-b rule"><div class="label accent">Your drafts</div><h3 class="serif text-lg font-semibold mt-1">Four in progress</h3></div>
+        <ul class="px-5 py-4 space-y-3 text-sm">
+          <li class="flex items-baseline justify-between"><div><div class="font-semibold">Sensing Turn brief</div><div class="mono text-xs" style="color:var(--muted)">Quantum · 67%</div></div><a href="#" class="qlink text-xs">edit</a></li>
+          <li class="flex items-baseline justify-between"><div><div class="font-semibold">A note on Brookhaven</div><div class="mono text-xs" style="color:var(--muted)">Quantum · take · 80%</div></div><a href="#" class="qlink text-xs">edit</a></li>
+          <li class="flex items-baseline justify-between"><div><div class="font-semibold">Standards-body log</div><div class="mono text-xs" style="color:var(--muted)">Quantum · memo · 23%</div></div><a href="#" class="qlink text-xs">edit</a></li>
+          <li class="flex items-baseline justify-between"><div><div class="font-semibold">EU lab capacity audit</div><div class="mono text-xs" style="color:var(--muted)">Quantum · brief · 12%</div></div><a href="#" class="qlink text-xs">edit</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="px-5 py-4 border-b rule"><div class="label accent">Your questions</div><h3 class="serif text-lg font-semibold mt-1">Two open</h3></div>
+        <ul class="px-5 py-4 space-y-3">
+          <li><div class="serif text-base font-medium leading-snug">"Will DOE hit procurement before Q4?"</div><div class="mono text-xs mt-1" style="color:var(--muted)">7 takes · 2d ago</div></li>
+          <li><div class="serif text-base font-medium leading-snug">"How are folks thinking about lab-capacity in the EU?"</div><div class="mono text-xs mt-1" style="color:var(--muted)">3 takes · 5d ago</div></li>
+        </ul>
+        <a href="#" class="px-5 pb-4 inline-block qlink text-sm">+ Open another question</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="px-6 py-4 border-b rule"><div class="label accent">Recent activity</div><h3 class="serif text-lg font-semibold mt-1">Across all your crews</h3></div>
+      <ul class="divide-y text-sm" style="border-color:var(--rule)">
+        <li class="px-6 py-3 flex items-baseline gap-4"><span class="mono text-xs" style="color:var(--muted)">2h ago</span><span class="flex-1">M. Suzuki added a citation to <span class="font-semibold">Sensing Turn brief</span></span></li>
+        <li class="px-6 py-3 flex items-baseline gap-4"><span class="mono text-xs" style="color:var(--muted)">5h ago</span><span class="flex-1">W. Aoki left a take on your question about procurement</span></li>
+        <li class="px-6 py-3 flex items-baseline gap-4"><span class="mono text-xs" style="color:var(--muted)">1d ago</span><span class="flex-1">L. Vega invited you to review <span class="font-semibold">biosec preprint paper</span></span></li>
+        <li class="px-6 py-3 flex items-baseline gap-4"><span class="mono text-xs" style="color:var(--muted)">2d ago</span><span class="flex-1">K. Ito shipped <span class="font-semibold">standards-body log</span> draft v3</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="card p-5">
+      <div class="label accent">Your ledger · this month</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Takes contributed</span><span class="mono font-bold">4</span></li>
+        <li class="flex justify-between"><span>Briefs in flight</span><span class="mono font-bold">1</span></li>
+        <li class="flex justify-between"><span>Reviews</span><span class="mono font-bold">12</span></li>
+        <li class="flex justify-between"><span>Crew hours</span><span class="mono font-bold">11</span></li>
+      </ul>
+    </div>
+
+    <div class="card p-5">
+      <div class="label accent">Convening · Jun 3</div>
+      <div class="serif text-lg font-semibold mt-2">Quantum dinner · DC</div>
+      <p class="text-sm mt-2" style="color:var(--muted)">You're moderating. 14 RSVP'd. Off-the-record. Venue confirmed at the Cosmos.</p>
+      <a href="#" class="mt-3 inline-block qlink text-sm">Open run-of-show →</a>
+    </div>
+
+    <div class="card p-5">
+      <div class="label accent">Crews you might like</div>
+      <ul class="mt-3 space-y-3 text-sm">
+        <li><div class="font-semibold">Materials · rare-earth</div><div class="mono text-xs" style="color:var(--muted)">7 in the crew · open</div></li>
+        <li><div class="font-semibold">Energy · grid hardening</div><div class="mono text-xs" style="color:var(--muted)">11 in the crew · open</div></li>
+      </ul>
+      <a href="#" class="mt-3 inline-block qlink text-sm">All open crews →</a>
+    </div>
+
+    <div class="card p-5" style="background:var(--accent-soft)">
+      <div class="label" style="color:var(--accent)">Membership</div>
+      <div class="serif text-base mt-2">You're founding member <strong>#7</strong>.</div>
+      <p class="text-xs mt-2" style="color:var(--muted)">Founding seats limited to 100 · 14 remaining for the year.</p>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>Workshop · D4 · Bench · backend prototype</div>
+    <div>Σ 44/50 · <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

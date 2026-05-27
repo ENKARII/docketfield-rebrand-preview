@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Open Desk · D20 · A contributor's profile (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fcfaf5; --card:#ffffff; --ink:#1a1d22; --muted:#5e6470; --rule:#dcdfd8; --accent:#2d5e3e; --hl:#eaf3ec; --add:#fcefdb; --sec:#f4ecf2; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.55; }
+  .serif { font-family:'Spectral',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.04em; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .qlink { color:var(--ink); border-bottom:1px solid var(--rule); }
+  .qlink:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  .panel { background:var(--card); border:1px solid var(--rule); }
+  .pill { display:inline-block; padding:1px 8px; background:var(--hl); color:var(--accent); border-radius:99px; font-size:11px; font-family:'JetBrains Mono',monospace; font-weight:500; }
+  .pill.add { background:var(--add); color:#7a5418; }
+  .pill.sec { background:var(--sec); color:#7a2a5a; }
+  .pill.q { background:#dce5f4; color:#2a4a7e; }
+  .ava-xl { width:120px; height:120px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:46px; font-weight:600; background:linear-gradient(135deg,#c25a1f,#7a2a14); }
+  .ava { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
+  .stat-big { font-family:'Spectral',serif; font-size:2.4rem; font-weight:600; line-height:1; }
+  .contrib-row { display:grid; grid-template-columns:80px 120px 1fr 90px; gap:12px; padding:.6rem .85rem; border-bottom:1px solid var(--rule); font-size:13px; align-items:start; }
+  .contrib-row:hover { background:#f5f9f4; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-2xl tracking-tight font-semibold">Open Desk</div>
+      <a href="./main.html" class="qlink text-sm">← Quantum desk</a>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <button class="px-3 py-1.5 border rule rounded text-xs font-semibold">+ Follow</button>
+      <button class="px-3 py-1.5 text-xs font-semibold rounded text-white" style="background:var(--accent)">DM Sam</button>
+    </div>
+  </div>
+</header>
+
+<section class="border-b rule" style="background:#f4f7f3">
+  <div class="max-w-6xl mx-auto px-6 py-9 grid grid-cols-[120px_1fr_auto] gap-7 items-start">
+    <div class="ava-xl">SA</div>
+    <div>
+      <div class="flex items-baseline gap-3 flex-wrap">
+        <h1 class="serif text-4xl font-semibold tracking-tight">Sam Ahmadi</h1>
+        <span class="mono text-xs" style="color:var(--muted)">@sam.a</span>
+        <span class="pill">contributor since 2024</span>
+        <span class="pill add">new this week to Quantum</span>
+      </div>
+      <p class="serif italic text-lg mt-2" style="color:var(--muted)">"Truck driver, route-13 logistics, eastern seaboard. Twelve years on this route. I write about what shows up on loading docks at federal labs. Not a quantum guy. Always happy to be corrected."</p>
+      <div class="mt-4 flex items-center gap-2 flex-wrap text-xs">
+        <span class="label mono">primary fields:</span>
+        <span class="pill">▦ Quantum</span>
+        <span class="pill q">▦ Defense</span>
+        <span class="pill q">▦ Supply Chain</span>
+        <span class="pill q">▦ Energy</span>
+        <span class="pill sec">▦ Materials · occasional</span>
+      </div>
+    </div>
+    <div class="text-right">
+      <div class="serif text-3xl font-semibold accent">847</div>
+      <div class="label mono">reputation across the network</div>
+      <div class="serif text-xl mt-3">412</div>
+      <div class="label mono">other contributors followed Sam this week</div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-7 border-b rule grid grid-cols-6 gap-4">
+  <div class="panel p-4"><div class="label mono">APPENDS</div><div class="stat-big mt-1">47</div><div class="label mt-1">on 6 desks</div></div>
+  <div class="panel p-4"><div class="label mono">DISPATCHES</div><div class="stat-big mt-1">12</div><div class="label mt-1">12,847 reads lifetime</div></div>
+  <div class="panel p-4"><div class="label mono">STACK LAYERS</div><div class="stat-big mt-1">28</div><div class="label mt-1">on 9 pages</div></div>
+  <div class="panel p-4"><div class="label mono">PILE ANSWERS</div><div class="stat-big mt-1">6</div><div class="label mt-1">3 accepted ✓</div></div>
+  <div class="panel p-4"><div class="label mono">BOARD CARDS</div><div class="stat-big mt-1">14</div><div class="label mt-1">curator of "Sensing in the wild"</div></div>
+  <div class="panel p-4"><div class="label mono">MARGINS ANN.</div><div class="stat-big mt-1">8</div><div class="label mt-1">on 3 sources</div></div>
+</section>
+
+<main class="max-w-6xl mx-auto px-6 py-7 grid grid-cols-[1fr_280px] gap-7">
+
+  <section>
+    <div class="flex items-baseline justify-between mb-3">
+      <h2 class="serif text-2xl font-semibold">Sam's contributions, across the network</h2>
+      <div class="flex items-center gap-2 text-xs">
+        <span class="label mono mr-1">filter:</span>
+        <button class="px-2.5 py-1 border rule rounded" style="background:var(--accent); color:white; border-color:var(--accent)">all</button>
+        <button class="px-2.5 py-1 border rule rounded">appends</button>
+        <button class="px-2.5 py-1 border rule rounded">dispatches</button>
+        <button class="px-2.5 py-1 border rule rounded">cinema</button>
+      </div>
+    </div>
+
+    <div class="panel">
+
+      <div class="contrib-row" style="background:#fff7e8">
+        <span class="pill add">+ APPEND</span>
+        <span class="mono text-xs" style="color:var(--muted)">12s ago</span>
+        <div>
+          <strong>Quantum desk</strong> · evidence block on procurement-signal section.
+          <p class="text-xs mt-1" style="color:var(--muted)">"Loading-dock equipment cadence at Brookhaven changed in mix + frequency since March; cryo crates marked Janis Research + Bluefors arriving 3/week; doesn't match the published procurement plan."</p>
+        </div>
+        <a href="#" class="text-xs">see live →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill">DISPATCH</span>
+        <span class="mono text-xs" style="color:var(--muted)">9:18 AM today</span>
+        <div>
+          <strong>"From the Brookhaven loading dock"</strong> · 8 min · Quantum.
+          <p class="text-xs mt-1" style="color:var(--muted)">1,247 reads · 23 replies · 47 saves · cited by 3 other dispatches today</p>
+        </div>
+        <a href="#" class="text-xs">read →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill q">LOBBY</span>
+        <span class="mono text-xs" style="color:var(--muted)">2h ago</span>
+        <div>
+          <strong>Lobby thread</strong> in Quantum · "loading dock evidence."
+          <p class="text-xs mt-1" style="color:var(--muted)">47 "changed-my-mind" · 23 replies · pinned by 8 contributors</p>
+        </div>
+        <a href="#" class="text-xs">open →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill">BOARD</span>
+        <span class="mono text-xs" style="color:var(--muted)">2h ago</span>
+        <div>
+          <strong>Card on "Sensing in the wild"</strong> · evidence card (photo + caption).
+          <p class="text-xs mt-1" style="color:var(--muted)">47 saves · cross-referenced from Stack and Margins</p>
+        </div>
+        <a href="#" class="text-xs">card →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill q">PILE</span>
+        <span class="mono text-xs" style="color:var(--muted)">1h ago</span>
+        <div>
+          <strong>Accepted answer ✓</strong> on Pile #4192 — "Will DOE Q4-26 procurement signal arrive?"
+          <p class="text-xs mt-1" style="color:var(--muted)">+15 rep accepted + 150 rep bounty · 38 votes · the answer that cracked the question</p>
+        </div>
+        <a href="#" class="text-xs">view →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill sec">CINEMA</span>
+        <span class="mono text-xs" style="color:var(--muted)">tonight 7:30 ET</span>
+        <div>
+          <strong>Guest on Episode #024</strong> · "Sensing Turn" conversation w/ Alex Patel + Rosa Torres.
+          <p class="text-xs mt-1" style="color:var(--muted)">moderated by Mara Chen · 318 RSVP'd so far</p>
+        </div>
+        <a href="#" class="text-xs">RSVP →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill add">+ APPEND</span>
+        <span class="mono text-xs" style="color:var(--muted)">last Tues</span>
+        <div>
+          <strong>Defense desk</strong> · added context block on DIB vendor freight markings.
+          <p class="text-xs mt-1" style="color:var(--muted)">3 follow-up appends from defense-side contributors</p>
+        </div>
+        <a href="#" class="text-xs">see live →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill">DISPATCH</span>
+        <span class="mono text-xs" style="color:var(--muted)">last Fri</span>
+        <div>
+          <strong>"Why I started looking at lab loading docks in the first place"</strong> · 5 min.
+          <p class="text-xs mt-1" style="color:var(--muted)">412 reads · the backstory dispatch</p>
+        </div>
+        <a href="#" class="text-xs">read →</a>
+      </div>
+
+      <div class="contrib-row">
+        <span class="pill">MARGINS</span>
+        <span class="mono text-xs" style="color:var(--muted)">a week ago</span>
+        <div>
+          <strong>Annotation</strong> on DOE-SC ASCR v1.3 · §2(a) Brookhaven — first annotation in Margins by Sam.
+          <p class="text-xs mt-1" style="color:var(--muted)">47 thanks · 9 sub-annotations · most-thanked annotation on that source</p>
+        </div>
+        <a href="#" class="text-xs">read →</a>
+      </div>
+
+      <div class="contrib-row" style="opacity:.8">
+        <span class="label mono">+ 38 more</span>
+        <span class="mono text-xs" style="color:var(--muted)">over 2 years</span>
+        <div class="serif italic" style="color:var(--muted)">…appends to Supply Chain, Energy, and Materials desks · 8 prior dispatches · 22 lobby threads · 28 stack layers</div>
+        <a href="#" class="text-xs">all →</a>
+      </div>
+
+    </div>
+
+    <section class="mt-9">
+      <h2 class="serif text-2xl font-semibold mb-3">What other contributors say about Sam's contributions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="panel p-4">
+          <p class="serif italic">"Sam is the ground-truth I keep missing from where I sit. Whatever shows up on the dock, Sam sees it three months before the brief does. Going into the v2 with co-byline."</p>
+          <div class="mt-3 flex items-center gap-2 text-xs"><span class="ava" style="background:#a07a2c">AP</span><span>@alex.p · researcher · 12,847 rep</span></div>
+        </div>
+        <div class="panel p-4">
+          <p class="serif italic">"This is the cleanest example I've seen on the network of why the credential gate is wrong. A truck driver moved my procurement-timeline assumption by six months."</p>
+          <div class="mt-3 flex items-center gap-2 text-xs"><span class="ava" style="background:#5c87a8">MK</span><span>@maya.k · compliance · 4,218 rep</span></div>
+        </div>
+        <div class="panel p-4">
+          <p class="serif italic">"Confirming Sam's signal from a different angle. My route-sheet sees what his eyes see, in different data. The network worked because we found each other through this thread."</p>
+          <div class="mt-3 flex items-center gap-2 text-xs"><span class="ava" style="background:#7b9070">RM</span><span>@rachel.m · service tech · 1,247 rep</span></div>
+        </div>
+        <div class="panel p-4">
+          <p class="serif italic">"I'm using Sam's thread as my real-world example next semester to teach AP physics how a credible federal-program signal actually looks in practice."</p>
+          <div class="mt-3 flex items-center gap-2 text-xs"><span class="ava" style="background:#5e6470">DT</span><span>@diego.t · HS teacher · 218 rep · new voice</span></div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-4">
+      <div class="label mono mb-2">— Sam's working pattern</div>
+      <ul class="text-sm space-y-1.5">
+        <li>· Most active Tues + Fri (off-duty days)</li>
+        <li>· Average append: 2-3/week</li>
+        <li>· Average dispatch: 1/month</li>
+        <li>· Cross-desk traffic: high (Supply ↔ Quantum)</li>
+      </ul>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label mono mb-2">— who follows Sam</div>
+      <p class="text-sm leading-snug">412 contributors. Notable: 9 DOE program managers (declared interest), 14 fellow truck drivers, 4 university quantum-lab admins, 2 New York Times reporters (declared), 1 senator's staff (declared), 1 hedge-fund analyst (declared).</p>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label mono mb-2">— reputation breakdown</div>
+      <ul class="text-sm space-y-1.5">
+        <li class="flex justify-between"><span>From appends</span><span class="mono">412 rep</span></li>
+        <li class="flex justify-between"><span>From dispatches</span><span class="mono">218 rep</span></li>
+        <li class="flex justify-between"><span>From Pile answers ✓</span><span class="mono">165 rep</span></li>
+        <li class="flex justify-between"><span>From Margins ann.</span><span class="mono">52 rep</span></li>
+        <li class="border-t rule pt-1.5 mt-1.5 flex justify-between"><strong>total</strong><strong class="mono">847</strong></li>
+      </ul>
+      <p class="text-xs mt-3" style="color:var(--muted)">Reputation buys nothing on this network — it just signals what others found useful from Sam.</p>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label mono mb-2">— Sam doesn't list:</div>
+      <ul class="text-sm space-y-1.5" style="color:var(--muted)">
+        <li>· any academic credential</li>
+        <li>· any professional title</li>
+        <li>· employer / institution</li>
+        <li>· LinkedIn or any "off-platform reputation"</li>
+      </ul>
+      <p class="text-xs mt-2" style="color:var(--muted)">By design. Reputation here is built from inside the network only.</p>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between label mono">
+    <div>Open Desk · D20 · contributor profile · backend prototype</div>
+    <div><a href="../index.html">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

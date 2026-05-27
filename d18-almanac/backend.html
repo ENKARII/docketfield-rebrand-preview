@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Almanac · D18 · The archive (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f4ecd8; --doc:#faf3df; --ink:#1f1a14; --muted:#695e4c; --rule:#b3a584; --accent:#4a1a18; --gold:#8a6a1a; }
+  body { font-family:'DM Serif Text',Georgia,serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.65; }
+  .sans { font-family:'Inter',system-ui,sans-serif; }
+  .display { font-family:'DM Serif Display',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; font-family:'Inter',sans-serif; font-weight:500; }
+  a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule); }
+  a:hover { border-bottom-color:var(--accent); }
+  .rule-deco { background-image:repeating-linear-gradient(90deg,var(--ink) 0,var(--ink) 6px,transparent 6px,transparent 11px); height:2px; }
+  .ornament { text-align:center; color:var(--gold); font-size:1.4rem; line-height:1; letter-spacing:.5em; margin:1.2rem 0; }
+  .small-caps { font-variant:small-caps; letter-spacing:.16em; }
+  .issue-tile { border:1px solid var(--ink); background:var(--doc); padding:1.3rem; transition:.12s; }
+  .issue-tile:hover { background:#fbf6e6; }
+  .issue-tile.now { border-width:3px; border-style:double; }
+  .ill { background:linear-gradient(135deg,#b3a584,#695e4c); aspect-ratio:3/2; color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; border:1px solid var(--ink); margin-bottom:.85rem; }
+  .ill.q { background:linear-gradient(135deg,#4a3a14,#1f1a08); }
+  .ill.c { background:linear-gradient(135deg,#5c3e3a,#1f1414); }
+  .ill.b { background:linear-gradient(135deg,#4a5c3a,#142014); }
+  .ill.d { background:linear-gradient(135deg,#5c4a14,#241808); }
+  .ill.m { background:linear-gradient(135deg,#5c2a14,#240e08); }
+  .ill.e { background:linear-gradient(135deg,#3a4a5c,#0e1424); }
+</style>
+</head>
+<body>
+
+<header class="bg-[var(--paper)] sticky top-0 z-10">
+  <div class="max-w-6xl mx-auto px-6 py-3 sans flex items-center justify-between text-sm">
+    <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+    <div class="flex items-baseline gap-4">
+      <a href="./main.html" style="border-bottom:0; color:var(--accent)">← this fortnight's issue</a>
+      <span class="label">The Almanac archive</span>
+    </div>
+  </div>
+  <div class="rule-deco"></div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-9">
+
+  <section class="text-center">
+    <div class="label">— ESTABLISHED 2024 · 24 ISSUES SHIPPED · 312 CONTRIBUTORS —</div>
+    <h1 class="display text-6xl leading-none mt-3 tracking-tight" style="color:var(--accent)">The Archive</h1>
+    <p class="display italic text-xl mt-4 max-w-2xl mx-auto" style="color:var(--ink)">Every fortnight, since the founding. Browse by issue, by season, by desk, or by contributor.</p>
+  </section>
+
+  <div class="ornament">❦ &nbsp; ❦ &nbsp; ❦</div>
+
+  <section class="sans flex items-center justify-center gap-4 text-sm border-y rule py-3 my-7">
+    <span class="label">view:</span>
+    <button class="px-3 py-1 border rule" style="background:var(--ink); color:var(--paper); border-color:var(--ink)">by fortnight</button>
+    <button class="px-3 py-1 border rule">by season</button>
+    <button class="px-3 py-1 border rule">by desk</button>
+    <button class="px-3 py-1 border rule">by contributor</button>
+    <span class="ml-4 label">total:</span>
+    <span class="mono text-xs">24 issues · 87 lead essays · 312 dispatches · 41 protocols · 18 contributors of-the-fortnight</span>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+    <div class="issue-tile now">
+      <div class="ill q">[ ill. · loading dock no. 7 ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 24 · this fortnight · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--accent)">The Sensing Turn</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Alex Patel + Sam Ahmadi. Dispatches from Cyber, Biosec, Defense, Materials. 4 protocols.</p>
+      <div class="label mt-3">Wed · 27 May · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill c">[ ill. · brussels trilogue room ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 23 · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">Article Six, Re-Read</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Maya Khurana. The EU AI Act trilogue, opposite the regional-bank compliance pipeline.</p>
+      <div class="label mt-3">Wed · 13 May · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill b">[ ill. · petri dish, hand-shaded ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 22 · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">The Moratorium That Wasn't</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Liana Vega + Diego Torres. Biosec preprint norms, and a high-school teacher's question.</p>
+      <div class="label mt-3">Wed · 29 Apr · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill d">[ ill. · ITAR clause 4(b) ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 21 · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">What Nap-Time Found</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Jess Oduya. The ITAR rewrite from inside an ex-Treasury reading week.</p>
+      <div class="label mt-3">Wed · 15 Apr · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill m">[ ill. · refined ingot ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 20 · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">Single-Point</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Jamal Okafor. Rare-earth concentration, re-cut by who pours the metal.</p>
+      <div class="label mt-3">Wed · 1 Apr · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill e">[ ill. · grid substation ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 19 · Spring 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">ERCOT, Hour Fourteen</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Wes Trent (battery operator). The auction anomaly the papers missed.</p>
+      <div class="label mt-3">Wed · 18 Mar · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill q">[ ill. · sanctions ledger ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 18 · Winter 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">Through a Forwarder's Eyes</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by a working freight-forwarder. Sanctions, told from the bottom of the document chain.</p>
+      <div class="label mt-3">Wed · 4 Mar · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill c">[ ill. · weather chart ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 17 · Winter 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">The Annual Almanac of Open Questions</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">A special issue. 47 questions worth carrying through 2026, gathered from across the twenty desks.</p>
+      <div class="label mt-3">Wed · 18 Feb · 2026</div>
+    </div>
+
+    <div class="issue-tile">
+      <div class="ill b">[ ill. · barometer ]</div>
+      <div class="small-caps text-xs" style="color:var(--gold)">No. 16 · Winter 2026</div>
+      <h3 class="display text-2xl leading-tight mt-2" style="color:var(--ink)">CHIPS Subgrants, in the Cab</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">Lead by Sam Ahmadi. CHIPS-Act subgrant freight, told from a long-haul cab.</p>
+      <div class="label mt-3">Wed · 4 Feb · 2026</div>
+    </div>
+
+  </section>
+
+  <div class="text-center mt-8">
+    <a href="#" class="display italic text-xl" style="color:var(--accent)">↓ 15 more issues, all the way back to No. 1 (April 2024)</a>
+  </div>
+
+  <div class="ornament">⁂</div>
+
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-9">
+
+    <div class="border-2 border-double rule p-6" style="background:var(--doc)">
+      <div class="label" style="color:var(--accent)">— contributors of-the-fortnight, all time</div>
+      <ul class="mt-3 space-y-2 sans text-sm">
+        <li>· <a href="#">Sam Ahmadi</a> <span class="label">· No. 24, No. 16, No. 11 · truck driver, route-13</span></li>
+        <li>· <a href="#">Maya Khurana</a> <span class="label">· No. 23 · regional-bank compliance officer</span></li>
+        <li>· <a href="#">Liana Vega + Diego Torres</a> <span class="label">· No. 22 · biosec + high-school teacher</span></li>
+        <li>· <a href="#">Jess Oduya</a> <span class="label">· No. 21, No. 7 · ex-Treasury, at-home parent</span></li>
+        <li>· <a href="#">Jamal Okafor</a> <span class="label">· No. 20 · mining-equipment salesperson</span></li>
+        <li>· <a href="#">Wes Trent</a> <span class="label">· No. 19 · battery storage operator</span></li>
+        <li>· <a href="#">Rosa Torres</a> <span class="label">· No. 13 · federal-grants accountant</span></li>
+        <li>· <a href="#">Rachel Moss</a> <span class="label">· No. 10 · cryo-equipment service tech</span></li>
+        <li class="label">+ 10 more · across 22 different working lives</li>
+      </ul>
+    </div>
+
+    <div class="border-2 border-double rule p-6" style="background:var(--doc)">
+      <div class="label" style="color:var(--accent)">— pitch the Almanac</div>
+      <p class="mt-3 text-sm sans leading-relaxed">Anyone can pitch a lead essay, a dispatch, a protocol, or a Things-to-Watch entry. We open pitches every Wednesday for the issue that ships two weeks later. The editors are looking for what only you can see — from where you sit — that the rest of us would have missed.</p>
+      <p class="mt-3 text-sm sans leading-relaxed" style="color:var(--muted)">No credentials required. We expect carefulness, not credentials. Pitches are read by two editors and one contributor from a different field; acceptance is judged on what you noticed, not on who else has said it.</p>
+      <a href="#" class="inline-block mt-4 px-4 py-2 small-caps text-sm" style="background:var(--ink); color:var(--paper); border:0">pitch a piece →</a>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="bg-[var(--paper)] py-5 mt-7">
+  <div class="rule-deco"></div>
+  <div class="max-w-6xl mx-auto px-6 flex justify-between mt-3 label sans">
+    <div>The Almanac · D18 · archive · backend prototype</div>
+    <div><a href="../index.html">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Switchboard · D19 · One desk's live floor (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --bg:#08090d; --panel:#0f1116; --panel-2:#161a22; --ink:#d4d8e0; --muted:#6c7280; --rule:#22262e; --accent:#33d3a8; --warm:#ff8a52; --hot:#ff4d6e; --info:#5aa8ff; --gold:#e3c34a; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--ink); font-size:13px; line-height:1.45; }
+  .mono { font-family:'IBM Plex Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:10px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace; font-weight:500; }
+  a { color:var(--ink); text-decoration:none; }
+  a:hover { color:var(--accent); }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  .panel-2 { background:var(--panel-2); border:1px solid var(--rule); }
+  .accent { color:var(--accent); }
+  .warm { color:var(--warm); }
+  .hot { color:var(--hot); }
+  .info { color:var(--info); }
+  .gold { color:var(--gold); }
+  .pulse { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(51,211,168,.2); animation:pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .stat-big { font-family:'IBM Plex Mono',monospace; font-size:1.9rem; font-weight:600; line-height:1; }
+  .ava { width:22px; height:22px; border-radius:2px; display:inline-flex; align-items:center; justify-content:center; color:var(--bg); font-size:9px; font-weight:700; font-family:'IBM Plex Mono',monospace; }
+  .tick { font-family:'IBM Plex Mono',monospace; font-size:11px; padding:5px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:54px 1fr; gap:8px; align-items:start; }
+  .clock { font-family:'IBM Plex Mono',monospace; font-size:1.1rem; font-weight:600; }
+  .react-bar { height:2px; background:var(--rule); position:relative; }
+  .react-bar > div { height:100%; background:var(--accent); }
+  .seg { padding:6px 10px; border:1px solid var(--rule); border-radius:2px; }
+  .seg.on { background:var(--accent); color:var(--bg); border-color:var(--accent); font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-[1400px] mx-auto px-5 h-12 flex items-center justify-between">
+    <div class="flex items-center gap-5">
+      <a href="../index.html" class="mono text-xs">←</a>
+      <div class="mono text-base font-bold tracking-wider">⌬ SWITCHBOARD</div>
+      <a href="./main.html" class="mono text-xs accent">← floor</a>
+      <span class="label">/ desk · QUANTUM (▦04) · LIVE</span>
+    </div>
+    <div class="flex items-center gap-5">
+      <span class="clock accent">14:02:47 UTC</span>
+      <button class="mono text-xs border rule px-2.5 py-1">⌕ JUMP</button>
+      <span class="mono text-xs ava" style="background:var(--accent)">YOU</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-[1400px] mx-auto px-5 py-4 grid grid-cols-12 gap-4">
+
+  <section class="col-span-12 grid grid-cols-6 gap-3">
+    <div class="panel p-3"><div class="label">CONTRIB. ON DESK</div><div class="stat-big accent mt-1">47</div><div class="label mt-1">▲ 12 this hour</div></div>
+    <div class="panel p-3"><div class="label">ACTIVE THREADS</div><div class="stat-big mt-1">14</div><div class="label mt-1">▲ 3 this hour</div></div>
+    <div class="panel p-3"><div class="label">REACTS / MIN</div><div class="stat-big warm mt-1">42</div><div class="label mt-1">peak today</div></div>
+    <div class="panel p-3"><div class="label">PILE Q's OPEN</div><div class="stat-big mt-1">8</div><div class="label mt-1">2 bountied</div></div>
+    <div class="panel p-3"><div class="label">STACK LAYERS / 24H</div><div class="stat-big info mt-1">19</div><div class="label mt-1">on 4 pages</div></div>
+    <div class="panel p-3"><div class="label">BRIEFS IN FLIGHT</div><div class="stat-big gold mt-1">3</div><div class="label mt-1">#024 v2 due Jun 12</div></div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-8 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="label">— QUANTUM DESK · THE STORY ARC OF THE WEEK</span>
+        <span class="pulse"></span> <span class="mono text-xs accent">live</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs mono">
+        <button class="seg on">narrative</button>
+        <button class="seg">raw ticker</button>
+        <button class="seg">graph</button>
+      </div>
+    </div>
+    <div class="p-4 space-y-4">
+
+      <div>
+        <div class="mono text-xs accent">14:02 · NOW</div>
+        <div class="mt-1 text-base"><strong>Sam Ahmadi's</strong> thread is converting an off-the-record loading-dock observation into the operative procurement-signal narrative of the week. Reactions accelerating: <span class="warm">+23 in last 8m</span>. <strong>Alex Patel</strong> committing v2 of brief #024 with attribution. <strong>Rosa Torres</strong> arriving with set-aside data that confirms.</div>
+      </div>
+
+      <div class="border-l-2 border-[color:var(--rule)] pl-4 space-y-3">
+        <div>
+          <div class="mono text-xs">13:53 · 9 MIN AGO</div>
+          <div class="text-sm"><strong>Rachel Moss</strong> (cryo-equipment service tech) corroborates from a second angle: "+2 Janis service contracts at BNL in March." Two-leg corroboration on the central signal.</div>
+        </div>
+        <div>
+          <div class="mono text-xs">13:45 · 17 MIN AGO</div>
+          <div class="text-sm"><strong>Sam Ahmadi</strong> publishes Dispatch from the truck. 1,247 reads in &lt;1h. Cross-desk reaction in DEFENSE + SUPPLY.</div>
+        </div>
+        <div>
+          <div class="mono text-xs">12:18 · 1h 44m AGO</div>
+          <div class="text-sm"><strong>Sam Ahmadi</strong> posts to LOBBY · "loading dock evidence." Cold open from a contributor with no quantum credentials.</div>
+        </div>
+        <div>
+          <div class="mono text-xs">09:18 · 4h 44m AGO</div>
+          <div class="text-sm">Quiet morning. 3 reads on Brief #024 v1. Standard cadence.</div>
+        </div>
+      </div>
+
+      <div class="border-t rule pt-3 mt-3">
+        <div class="label mb-2">— NEXT EXPECTED INFLECTIONS</div>
+        <ul class="text-sm space-y-1.5">
+          <li><span class="mono text-xs warm">15:00–17:00 ET</span> · convening RSVPs likely accelerate as east-coast workday closes</li>
+          <li><span class="mono text-xs warm">19:30 ET</span> · Cinema #024 Q&amp;A live — Sam, Alex, Rosa joining</li>
+          <li><span class="mono text-xs info">tomorrow AM</span> · DEFENSE desk likely picks up the ITAR cross-implication</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-4 panel">
+    <div class="border-b rule p-3 flex items-center justify-between">
+      <div class="label">— CONTRIBUTORS ON THIS DESK NOW</div>
+      <span class="mono text-xs accent">47</span>
+    </div>
+    <div class="p-3 grid grid-cols-2 gap-2 text-xs mono" style="max-height:300px; overflow-y:auto">
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--hot)">SA</span>Sam A. <span class="label">freight</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--gold)">AP</span>Alex P. <span class="label">researcher</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--info)">RT</span>Rosa T. <span class="label">acct.</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--accent)">RM</span>Rachel M. <span class="label">service</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--warm)">WA</span>W. Aoki <span class="label">researcher</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--info)">KI</span>K. Ito <span class="label">standards</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--accent)">MS</span>M. Suzuki <span class="label">researcher</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--info)">JP</span>J. Park <span class="label">ops</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--accent)">DT</span>Diego T. <span class="label">teacher</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--warm)">JO</span>Jess O. <span class="label">ex-treas.</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--info)">TL</span>Tomás L. <span class="label">ex-CO</span></div>
+      <div class="flex items-center gap-2"><span class="ava" style="background:var(--accent)">EL</span>Eli L. <span class="label">grad stu.</span></div>
+      <div class="label col-span-2 mt-1">+ 35 more · join the desk to see avatars</div>
+    </div>
+    <div class="border-t rule p-3">
+      <div class="label mb-2">— WHO'S NEW THIS WEEK ON QUANTUM</div>
+      <div class="text-xs">
+        <strong>Sam Ahmadi</strong> (truck driver, 2nd visit) · <strong>Wes Trent</strong> (battery operator, cross-from energy) · <strong>Maya Khurana</strong> (compliance, cross-from cyber) · <strong>Diego Torres</strong> (HS teacher, cross-from biosec)
+      </div>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-7 panel">
+    <div class="border-b rule p-3 label">— ACTIVE THREADS · QUANTUM DESK · LIVE</div>
+    <div class="px-3 py-2">
+      <div class="py-2 border-b rule">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="font-semibold">"loading dock evidence at Brookhaven — procurement signal 6mo early?"</a>
+          <span class="mono text-xs warm">47r · 23↳ · pace ▲</span>
+        </div>
+        <div class="react-bar mt-2"><div style="width:94%"></div></div>
+        <div class="mono text-xs label mt-1">SAM A. · started 1h 44m ago · pinned by 8</div>
+      </div>
+      <div class="py-2 border-b rule">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="font-semibold">"would DOE Q4-26 procurement signal actually arrive?" (PILE #4192)</a>
+          <span class="mono text-xs warm">47v · 7a · +150 bounty</span>
+        </div>
+        <div class="react-bar mt-2"><div style="width:78%"></div></div>
+        <div class="mono text-xs label mt-1">ALEX P. · asked 2h ago · accepted answer SA</div>
+      </div>
+      <div class="py-2 border-b rule">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="font-semibold">"is the Janis/Bluefors mix shift just supply chain or also science-stage?"</a>
+          <span class="mono text-xs">14r · 6↳</span>
+        </div>
+        <div class="react-bar mt-2"><div style="width:42%; background:var(--info)"></div></div>
+        <div class="mono text-xs label mt-1">DIEGO T. · asked 1h ago · outsider Q · 6 answers in</div>
+      </div>
+      <div class="py-2 border-b rule">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="font-semibold">"Argonne is doing more than the FOIA plan admits"</a>
+          <span class="mono text-xs">11r · 2↳</span>
+        </div>
+        <div class="react-bar mt-2"><div style="width:38%; background:var(--info)"></div></div>
+        <div class="mono text-xs label mt-1">RACHEL M. · 38m ago · cross-corroborating Sam</div>
+      </div>
+      <div class="py-2 border-b rule">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="font-semibold">"IEEE-1xx standards body just leaked their Phase-1 framework"</a>
+          <span class="mono text-xs">9r · 4↳</span>
+        </div>
+        <div class="react-bar mt-2"><div style="width:31%; background:var(--info)"></div></div>
+        <div class="mono text-xs label mt-1">K. ITO · 2h ago · sources in OneDrive link (req. access)</div>
+      </div>
+      <div class="py-2">
+        <div class="flex items-baseline justify-between">
+          <a href="#" class="label">+ 9 more threads</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-span-12 lg:col-span-5 panel">
+    <div class="border-b rule p-3 label">— THE WIRE · QUANTUM ONLY · LAST 30 MIN</div>
+    <div class="px-3 py-2" style="max-height:420px; overflow-y:auto">
+      <div class="tick"><span class="mono accent">14:02</span><span><strong>SA</strong> · started thread · "loading dock evidence" · <span class="accent">47r · 23↳</span></span></div>
+      <div class="tick"><span class="mono">14:01</span><span><strong>AP</strong> · replied live "going into v2 with attribution"</span></div>
+      <div class="tick"><span class="mono">13:58</span><span><strong>MARGINS</strong> · 14 readers in DOE Sensing v1.3 · +4 annotations</span></div>
+      <div class="tick"><span class="mono">13:53</span><span><strong>RM</strong> · confirmed SA · "+2 Janis service contracts at BNL"</span></div>
+      <div class="tick"><span class="mono">13:50</span><span><strong>RT</strong> · cross-from Defense · "set-aside signal precedes by 90d"</span></div>
+      <div class="tick"><span class="mono">13:45</span><span><strong>SA</strong> · Dispatch sent · 1,247 reads in 17m</span></div>
+      <div class="tick"><span class="mono">13:42</span><span><strong>STACK</strong> · /quantum/sensing/DOE-1.4B · L41 · +1 by SA</span></div>
+      <div class="tick"><span class="mono">13:40</span><span><strong>PILE</strong> · Q #4192 opened · bounty +150 · 7 answers in 1h</span></div>
+      <div class="tick"><span class="mono">13:38</span><span><strong>WA</strong> · cross-checking on JC's behalf · "EU lab capacity audit"</span></div>
+      <div class="tick"><span class="mono">13:32</span><span><strong>BOARD</strong> · "Quantum sensing in the wild" · +3 cards · WT</span></div>
+      <div class="tick"><span class="mono">13:30</span><span><strong>LOBBY</strong> · +23 reacts to SA's thread in 8m</span></div>
+      <div class="tick"><span class="mono">13:25</span><span><strong>DT</strong> · outsider Q · "Janis vs Bluefors meaning?"</span></div>
+      <div class="tick"><span class="mono">13:22</span><span><strong>+ NEW</strong> · @wes.t joined Quantum desk · welcomed</span></div>
+      <div class="tick"><span class="mono">13:18</span><span><strong>CINE</strong> · #024 Q&amp;A · SA + AP + RT confirmed for 19:30</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t rule py-3 mt-4">
+  <div class="max-w-[1400px] mx-auto px-5 flex justify-between label">
+    <div>⌬ SWITCHBOARD · D19 · single-desk floor · backend prototype</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

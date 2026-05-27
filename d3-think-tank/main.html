@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vantage · D3 Modern Think Tank · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fafaf7; --ink:#0f1e3f; --muted:#5b6378; --rule:#d8dde6; --accent:#0f1e3f; --gold:#b68b3e; --soft:#eef1f7; }
+  * { font-variant-numeric:tabular-nums; }
+  body { font-family:'Manrope',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.55; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+  .accent { color:var(--accent); }
+  .gold { color:var(--gold); }
+  .gold-bg { background:var(--gold); }
+  a.qlink { color:var(--ink); text-decoration:none; border-bottom:1px solid transparent; transition:.1s; font-weight:500; }
+  a.qlink:hover { border-bottom-color:var(--gold); color:var(--gold); }
+  .chip { display:inline-flex; align-items:center; gap:.4rem; padding:3px 10px; border-radius:99px; font-size:11px; font-weight:600; background:var(--soft); color:var(--accent); }
+  .chip-gold { background:#f6ecd6; color:#705216; }
+  .bar { height:6px; background:var(--rule); border-radius:99px; overflow:hidden; }
+  .bar > div { height:100%; background:var(--gold); }
+</style>
+</head>
+<body>
+
+<header style="background:var(--ink)" class="text-white">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs opacity-70">← all directions</a>
+      <div class="text-2xl font-extrabold tracking-tight">VANTAGE</div>
+      <span class="mono text-[10px] tracking-widest opacity-70">RESEARCH · TWENTY DESKS</span>
+    </div>
+    <nav class="flex items-baseline gap-6 text-sm font-medium">
+      <a href="#" class="opacity-80 hover:opacity-100">Programs</a>
+      <a href="#" class="opacity-80 hover:opacity-100">Briefs</a>
+      <a href="#" class="opacity-80 hover:opacity-100">Commentary</a>
+      <a href="#" class="opacity-80 hover:opacity-100">Convenings</a>
+      <a href="#" class="opacity-80 hover:opacity-100">About</a>
+      <a href="#" class="px-3 py-1.5 gold-bg text-[color:var(--ink)] mono text-xs font-bold uppercase tracking-wider">Membership</a>
+    </nav>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 py-14 border-b rule">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-2">
+      <div class="chip chip-gold">QUANTUM PROGRAM · LEAD BRIEF · MAY 27, 2026</div>
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mt-5 leading-[1.04]">On the state of quantum sensing.</h1>
+      <p class="text-xl mt-4 max-w-2xl" style="color:var(--muted)">The Department of Energy's $1.4&nbsp;billion bet, three years on — what the next twelve months tell us about defense-adjacent investment posture.</p>
+      <div class="mt-7 flex items-center gap-5">
+        <a href="#" class="px-5 py-2.5 text-white text-sm font-semibold inline-block" style="background:var(--ink)">Read the brief</a>
+        <span class="mono text-xs" style="color:var(--muted)">A. Patel · 14 min · Members</span>
+      </div>
+    </div>
+    <div class="border-l rule pl-8">
+      <div class="label gold">By the numbers</div>
+      <ul class="mt-4 space-y-5">
+        <li><div class="text-4xl font-extrabold tracking-tight">$1.4B</div><div class="text-sm mt-1" style="color:var(--muted)">DOE sensing-program allocation</div></li>
+        <li><div class="text-4xl font-extrabold tracking-tight">4</div><div class="text-sm mt-1" style="color:var(--muted)">labs holding 78% of the funding</div></li>
+        <li><div class="text-4xl font-extrabold tracking-tight">Q4-26</div><div class="text-sm mt-1" style="color:var(--muted)">earliest credible procurement signal</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-14 border-b rule">
+  <div class="flex items-baseline justify-between mb-7">
+    <div>
+      <div class="label gold">Programs at a glance</div>
+      <h2 class="text-3xl font-extrabold tracking-tight mt-2">Twelve active programs</h2>
+    </div>
+    <a href="#" class="qlink text-sm">All programs →</a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="border rule p-5 bg-white">
+      <div class="flex items-baseline justify-between"><div class="text-xs mono" style="color:var(--muted)">PROGRAM</div><div class="chip">ACTIVE</div></div>
+      <h3 class="text-xl font-bold mt-2">Quantum Sensing Standards</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">A. Patel, chair · 14 fellows · brief #024 in June</p>
+      <div class="mt-4"><div class="bar"><div style="width:67%"></div></div><div class="mono text-xs mt-2" style="color:var(--muted)">67% · 4 workstreams · 2 briefs queued</div></div>
+    </div>
+    <div class="border rule p-5 bg-white">
+      <div class="flex items-baseline justify-between"><div class="text-xs mono" style="color:var(--muted)">PROGRAM</div><div class="chip">ACTIVE</div></div>
+      <h3 class="text-xl font-bold mt-2">Biosecurity Preprint Norms</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">L. Vega, chair · 9 fellows · paper Q3</p>
+      <div class="mt-4"><div class="bar"><div style="width:42%"></div></div><div class="mono text-xs mt-2" style="color:var(--muted)">42% · 6 workstreams · 1 brief queued</div></div>
+    </div>
+    <div class="border rule p-5 bg-white">
+      <div class="flex items-baseline justify-between"><div class="text-xs mono" style="color:var(--muted)">PROGRAM</div><div class="chip">ACTIVE</div></div>
+      <h3 class="text-xl font-bold mt-2">ITAR Reform Framework</h3>
+      <p class="text-sm mt-2" style="color:var(--muted)">S. Chen, chair · 6 fellows · memo #018 in July</p>
+      <div class="mt-4"><div class="bar"><div style="width:23%"></div></div><div class="mono text-xs mt-2" style="color:var(--muted)">23% · 3 workstreams · 0 briefs queued</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-14 border-b rule grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <div>
+    <div class="label gold">Recent commentary</div>
+    <h2 class="text-3xl font-extrabold tracking-tight mt-2">From this week's desks</h2>
+    <ul class="mt-6 divide-y" style="border-color:var(--rule)">
+      <li class="py-4">
+        <a href="#" class="qlink"><div class="text-lg font-bold leading-snug">"The EU AI Act compromise" — what the trilogue text actually says</div></a>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">Cyber desk · M. Kim · 9 min</div>
+      </li>
+      <li class="py-4">
+        <a href="#" class="qlink"><div class="text-lg font-bold leading-snug">The biosec preprint norm is breaking, and nobody wants to say so</div></a>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">Biosec desk · L. Vega · 11 min</div>
+      </li>
+      <li class="py-4">
+        <a href="#" class="qlink"><div class="text-lg font-bold leading-snug">ITAR reform: what the new draft does for university quantum labs</div></a>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">Defense desk · S. Chen · 8 min</div>
+      </li>
+      <li class="py-4">
+        <a href="#" class="qlink"><div class="text-lg font-bold leading-snug">Rare-earth concentration risk: an underrated single-point failure</div></a>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">Materials desk · J. Okafor · 12 min</div>
+      </li>
+    </ul>
+  </div>
+  <div class="border-l rule pl-12">
+    <div class="label gold">Upcoming convenings</div>
+    <h2 class="text-3xl font-extrabold tracking-tight mt-2">Three on the calendar</h2>
+    <ul class="mt-6 space-y-6">
+      <li>
+        <div class="flex items-baseline justify-between"><div class="mono text-xs gold tracking-widest">JUN 03 · DC · DINNER</div><div class="chip">INVITE-ONLY</div></div>
+        <div class="text-xl font-bold mt-1">Quantum Sensing — procurement off-the-record</div>
+        <div class="text-sm mt-1" style="color:var(--muted)">A. Patel moderates · 14 RSVP</div>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><div class="mono text-xs gold tracking-widest">JUN 17 · VIRTUAL · ROUNDTABLE</div><div class="chip">MEMBERS</div></div>
+        <div class="text-xl font-bold mt-1">Biosecurity standards · annual review</div>
+        <div class="text-sm mt-1" style="color:var(--muted)">L. Vega chairs · 38 RSVP</div>
+      </li>
+      <li>
+        <div class="flex items-baseline justify-between"><div class="mono text-xs gold tracking-widest">JUL 08 · DC · ROUNDTABLE</div><div class="chip">INVITE-ONLY</div></div>
+        <div class="text-xl font-bold mt-1">ITAR reform · counsel briefing</div>
+        <div class="text-sm mt-1" style="color:var(--muted)">S. Chen chairs · 11 RSVP</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-14 border-b rule">
+  <div class="flex items-baseline justify-between mb-6">
+    <div><div class="label gold">Desks</div><h2 class="text-3xl font-extrabold tracking-tight mt-2">Twenty desks</h2></div>
+    <a href="#" class="qlink text-sm">All twenty →</a>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Defense</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Cyber</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Quantum</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Biosecurity</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Energy</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">AI</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Space</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Materials</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Pharma</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Manufacturing</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Telecom</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Supply Chain</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Transportation</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Public Health</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Nuclear</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Geopolitics</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Intelligence</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Autonomy</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Synthetic Bio</a>
+    <a href="#" class="border rule p-3 bg-white text-sm font-semibold hover:border-[color:var(--gold)]">Sensors</a>
+  </div>
+</section>
+
+<footer class="py-8" style="background:var(--ink); color:white">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono opacity-80">
+    <div>VANTAGE · D3 Modern Think Tank · prototype 2026-05-27</div>
+    <div>Σ 46/50 · <a href="../index.html" class="underline" style="color:var(--gold)">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Lobby · D11 · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:wght@400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f6f1ea; --card:#fffaf0; --ink:#1f1a18; --muted:#6a5f57; --rule:#e5d8c6; --warm:#d97757; --cool:#5c87a8; --sage:#7b9070; --pink:#e8b4b8; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14.5px; line-height:1.55; }
+  .serif { font-family:'Instrument Serif',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; letter-spacing:.04em; color:var(--muted); font-weight:500; }
+  a { color:inherit; text-decoration:none; }
+  a.qlink { border-bottom:1px solid var(--rule); }
+  a.qlink:hover { border-bottom-color:var(--warm); color:var(--warm); }
+  .room-pill { display:inline-flex; align-items:center; gap:.4rem; padding:5px 12px; background:var(--card); border:1px solid var(--rule); border-radius:99px; font-size:13px; font-weight:500; transition:.15s; cursor:pointer; }
+  .room-pill:hover { border-color:var(--warm); background:#fff5e8; }
+  .room-pill .dot { width:7px; height:7px; border-radius:50%; background:var(--sage); }
+  .room-pill .dot.q { background:var(--warm); }
+  .avatar { width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-weight:600; font-size:12px; font-family:'Inter',sans-serif; flex-shrink:0; }
+  .a-1 { background:linear-gradient(135deg,#d97757,#a04030); }
+  .a-2 { background:linear-gradient(135deg,#5c87a8,#2c4d6e); }
+  .a-3 { background:linear-gradient(135deg,#7b9070,#3a5530); }
+  .a-4 { background:linear-gradient(135deg,#caa44a,#7b5e22); }
+  .a-5 { background:linear-gradient(135deg,#a86a8a,#5c2a4a); }
+  .a-6 { background:linear-gradient(135deg,#6a5f57,#3a2f27); }
+  .a-7 { background:linear-gradient(135deg,#3a8a8a,#1a4040); }
+  .bubble { background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1rem 1.15rem; transition:.12s; }
+  .bubble:hover { border-color:#d9c5ab; }
+  .react { display:inline-flex; align-items:center; gap:.35rem; padding:3px 9px; background:#fff5e8; border:1px solid #e8d5b8; border-radius:99px; font-size:12px; color:#7a5224; font-weight:500; }
+  .react.count { color:var(--warm); }
+  .react .emoji { font-size:13px; line-height:1; }
+  .signature { font-style:italic; color:var(--muted); font-size:12.5px; }
+  .badge-mind { background:linear-gradient(90deg,#fff5e8,#fde8d6); color:#7a5224; padding:1px 8px; border-radius:99px; font-size:11px; font-weight:500; border:1px solid #e8d5b8; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule sticky top-0 z-10" style="background:rgba(246,241,234,.92); backdrop-filter:blur(8px)">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-3xl leading-none">The Lobby</div>
+      <span class="label hidden md:inline">an open intellectual lounge · 312 in the room</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="px-3 py-1.5 text-sm border rule rounded-full font-medium hover:bg-white">+ Start a thread</button>
+      <span class="avatar a-1" title="you">YOU</span>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-6 pt-7 pb-4">
+  <div class="flex items-center gap-2 flex-wrap">
+    <span class="label mr-2">Active rooms ·</span>
+    <span class="room-pill"><span class="dot q"></span>Quantum · 14 live</span>
+    <span class="room-pill"><span class="dot q"></span>Cyber · 9 live</span>
+    <span class="room-pill"><span class="dot"></span>Biosec · 4 quiet</span>
+    <span class="room-pill"><span class="dot"></span>Defense · 7 quiet</span>
+    <span class="room-pill"><span class="dot"></span>Energy</span>
+    <span class="room-pill"><span class="dot"></span>Materials</span>
+    <span class="room-pill"><span class="dot"></span>Space</span>
+    <span class="room-pill"><span class="dot"></span>AI</span>
+    <span class="room-pill" style="color:var(--muted)">+ 12 more →</span>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-7">
+
+  <section class="space-y-5">
+
+    <div class="bubble">
+      <div class="flex items-baseline gap-3 mb-2">
+        <span class="avatar a-1">SA</span>
+        <div>
+          <div class="font-semibold">Sam A. <span class="label font-normal">· truck driver, route-13 logistics · 47 minds shifted</span></div>
+          <div class="label mono">in Quantum · pinned · 2h</div>
+        </div>
+      </div>
+      <p>"I drive freight from Brookhaven Lab three times a week. The hiring on the loading dock is up — they're shipping in cryo gear that's not in the FY24 plan. Probably means the program is real, but the procurement signal A. Patel is watching might be six months earlier than the brief says. Just what I'm seeing from the truck."</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="react count"><span class="emoji">💡</span> 47</span>
+        <span class="react"><span class="emoji">🤔</span> 12</span>
+        <span class="react"><span class="emoji">📌</span> 8</span>
+        <span class="label ml-3">23 replies · last 14m</span>
+      </div>
+    </div>
+
+    <div class="bubble">
+      <div class="flex items-baseline gap-3 mb-2">
+        <span class="avatar a-2">MK</span>
+        <div>
+          <div class="font-semibold">Maya K. <span class="label font-normal">· compliance officer, regional bank · 113 minds shifted</span></div>
+          <div class="label mono">in Cyber · 4h</div>
+        </div>
+      </div>
+      <p>"Hot take from a non-cyber person: the EU AI Act Article-6 narrowing is going to break our model-risk pipelines before it breaks any AI lab. We have to reclassify everything by Q3 and we are not ready. Curious if anyone else in financial services is feeling this."</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="react count"><span class="emoji">💡</span> 38</span>
+        <span class="react"><span class="emoji">🙋</span> 19 "yes, same"</span>
+        <span class="react"><span class="emoji">🔥</span> 6</span>
+        <span class="label ml-3">31 replies · last 22m</span>
+      </div>
+    </div>
+
+    <div class="bubble">
+      <div class="flex items-baseline gap-3 mb-2">
+        <span class="avatar a-3">DT</span>
+        <div>
+          <div class="font-semibold">Diego T. <span class="label font-normal">· high school chem teacher · 12 minds shifted · new voice</span></div>
+          <div class="label mono">in Biosec · 6h</div>
+        </div>
+      </div>
+      <p>"Outsider question: my students keep asking me to explain "gain-of-function." The newspaper definitions all feel either too narrow or too scary. Is there a one-paragraph explanation a biosec person would actually sign off on? Genuinely trying to teach this well to seventeen-year-olds."</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="react count"><span class="emoji">🙏</span> 28 "good question"</span>
+        <span class="react"><span class="emoji">📝</span> 11 "drafting an answer"</span>
+        <span class="label ml-3">9 replies · last 1h</span>
+      </div>
+    </div>
+
+    <div class="bubble">
+      <div class="flex items-baseline gap-3 mb-2">
+        <span class="avatar a-4">AP</span>
+        <div>
+          <div class="font-semibold">Alex P. <span class="label font-normal">· quantum researcher, Brookhaven (off-duty) · 891 minds shifted</span></div>
+          <div class="label mono">in Quantum · replying to Sam A. · 1h</div>
+        </div>
+      </div>
+      <p>"Sam — that's exactly the kind of ground-truth signal I keep missing from my desk. The dock-level hiring is something I literally cannot see from where I sit. Asking the loading-dock crew is going in the v2 of the brief, with attribution. Thank you."</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="react count"><span class="emoji">💡</span> 22</span>
+        <span class="react"><span class="emoji">❤️</span> 31</span>
+        <span class="label ml-3">4 replies</span>
+      </div>
+    </div>
+
+    <div class="bubble">
+      <div class="flex items-baseline gap-3 mb-2">
+        <span class="avatar a-5">JO</span>
+        <div>
+          <div class="font-semibold">Jess O. <span class="label font-normal">· stay-at-home parent, former Treasury analyst · 204 minds shifted</span></div>
+          <div class="label mono">in Defense · 8h</div>
+        </div>
+      </div>
+      <p>"I've been reading the ITAR rewrite during nap-time for two weeks. Three things nobody seems to have flagged: (1) the foundational-research carve-out got tightened in clause 4(b) not clause 5 like the press coverage said, (2) there's a 90-day comment window that closes June 17, (3) university counsel offices have not noticed yet. Should I write this up properly or is someone already on it?"</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="react count"><span class="emoji">💡</span> 56</span>
+        <span class="react"><span class="emoji">🙋</span> 14 "please write it up"</span>
+        <span class="react"><span class="emoji">⚡</span> 9 "urgent"</span>
+        <span class="label ml-3">18 replies · last 12m</span>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="bubble" style="background:linear-gradient(135deg,#fff5e8,#fde8d6); border-color:#e8d5b8">
+      <div class="serif text-xl leading-tight">"This room is yours."</div>
+      <p class="signature mt-2">Anyone with something to add belongs here, whether or not the field is on your business card. Reputation here is the number of people you've genuinely caused to change their mind.</p>
+      <a href="#" class="mt-3 inline-block text-sm font-semibold qlink">Read the lobby rules →</a>
+    </div>
+
+    <div>
+      <div class="label mb-2 mono">— most-shifting threads, last 7 days</div>
+      <ul class="space-y-3">
+        <li class="text-sm">
+          <a href="#" class="qlink font-semibold">"Why DOE's $1.4B is being measured wrong"</a>
+          <div class="label mt-0.5">Quantum · started by a former DOE comms officer · 84 💡</div>
+        </li>
+        <li class="text-sm">
+          <a href="#" class="qlink font-semibold">"A 17-year-old who's been at a biosec lab for the summer asks…"</a>
+          <div class="label mt-0.5">Biosec · started by a high schooler · 79 💡</div>
+        </li>
+        <li class="text-sm">
+          <a href="#" class="qlink font-semibold">"The rare-earth single-point thing nobody's saying out loud"</a>
+          <div class="label mt-0.5">Materials · started by a mining-equipment salesperson · 71 💡</div>
+        </li>
+        <li class="text-sm">
+          <a href="#" class="qlink font-semibold">"Your CHIPS-Act subgrant timing is wrong, here's why"</a>
+          <div class="label mt-0.5">Defense · started by a county clerk · 68 💡</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-t rule pt-4">
+      <div class="label mb-2 mono">— new voices this week</div>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge-mind">+ a school principal</span>
+        <span class="badge-mind">+ a longshoreman</span>
+        <span class="badge-mind">+ a nurse practitioner</span>
+        <span class="badge-mind">+ a retired diplomat</span>
+        <span class="badge-mind">+ a Etsy seller</span>
+        <span class="badge-mind">+ a poker player</span>
+        <span class="badge-mind">+ a city planner</span>
+        <span class="badge-mind">+ 14 more</span>
+      </div>
+    </div>
+
+    <div class="border-t rule pt-4">
+      <div class="label mb-2 mono">— join the lobby</div>
+      <p class="text-sm leading-snug">$8/month. Read everything. Post anywhere. No credential check — your contributions earn your reputation here, not your CV.</p>
+      <button class="mt-3 px-4 py-2 rounded-full text-sm font-semibold text-white" style="background:var(--warm)">Pull up a chair →</button>
+    </div>
+  </aside>
+</main>
+
+<footer class="border-t rule mt-10 py-5">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between label mono">
+    <div>The Lobby · D11 · prototype 2026-05-27</div>
+    <div><a href="../index.html" class="qlink">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

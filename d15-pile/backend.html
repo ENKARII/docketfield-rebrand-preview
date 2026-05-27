@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Pile · D15 · A single question (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f8f8f4; --card:#ffffff; --ink:#1a1a1a; --muted:#5d6068; --rule:#dcdfd7; --accent:#16846b; --warm:#c25a1f; --gold:#c89b1c; --accepted:#fffaeb; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.6; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); }
+  a { color:inherit; text-decoration:none; }
+  .qlink { color:var(--accent); }
+  .qlink:hover { text-decoration:underline; }
+  .tag { display:inline-flex; padding:1px 7px; background:#e6f4ef; color:var(--accent); border-radius:3px; font-size:11px; font-family:'JetBrains Mono',monospace; font-weight:500; }
+  .vote { width:42px; text-align:center; }
+  .vote button { width:32px; height:32px; border:1px solid var(--rule); background:var(--card); border-radius:6px; cursor:pointer; font-size:14px; font-weight:600; }
+  .vote .count { font-size:1.5rem; font-weight:700; padding:.4rem 0; line-height:1; }
+  .accept-mark { width:32px; height:32px; border:none; background:transparent; cursor:pointer; font-size:28px; color:#cdd2c5; line-height:1; }
+  .accept-mark.on { color:var(--accent); }
+  .ava { width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:11px; font-weight:600; flex-shrink:0; }
+  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}.a7{background:#2a6e7e}
+  .reputation { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); font-weight:700; }
+  .badge { display:inline-flex; align-items:center; gap:.25rem; padding:1px 6px; border-radius:99px; background:#f5ecd9; color:#7a5418; font-size:10px; font-family:'JetBrains Mono',monospace; font-weight:600; }
+  .badge.gold { background:#fbecc5; color:#6b4815; }
+  .badge.silver { background:#e0e3da; color:#525847; }
+  .answer { background:var(--card); border:1px solid var(--rule); padding:1.2rem 1.4rem; display:grid; grid-template-columns:60px 1fr; gap:1rem; }
+  .answer.accepted { background:var(--accepted); border-color:#f0d877; }
+  .accepted-banner { background:#fbecc5; color:#6b4815; padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; border-radius:4px; display:inline-block; }
+  .comment { font-size:13px; color:#3a3d44; padding:6px 0; border-top:1px solid #f0f2e9; }
+  .ask-bounty { background:#fffaeb; border:1px solid #f0d877; padding:6px 12px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#7a5418; }
+</style>
+</head>
+<body>
+
+<header style="background:var(--ink); color:white">
+  <div class="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs opacity-70">←</a>
+      <div class="font-bold text-base tracking-tight">The Pile</div>
+      <a href="./main.html" class="mono text-xs opacity-70" style="color:white">/ all questions</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="ask-bounty">⏱ bounty +150 rep · closes in 5 days</span>
+      <button class="bg-white text-black px-3 py-1.5 rounded text-xs font-semibold">+ Add an answer</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 py-7 space-y-7">
+
+  <section>
+    <h1 class="text-2xl font-semibold tracking-tight leading-snug">Will DOE's $1.4&nbsp;B quantum-sensing program produce a procurement signal before Q4 2026?</h1>
+    <div class="mt-3 flex items-center gap-4 text-sm" style="color:var(--muted)">
+      <span class="mono">asked 2h ago · viewed 1,247 times · modified just now</span>
+      <span class="flex items-center gap-2">
+        <span class="ava a4">AP</span>
+        <span>Alex Patel</span>
+        <span class="reputation">12,847</span>
+        <span class="badge gold">⊙ top 1%</span>
+      </span>
+    </div>
+
+    <div class="mt-5 grid grid-cols-[60px_1fr] gap-4 items-start">
+      <div class="vote">
+        <button>▲</button>
+        <div class="count">47</div>
+        <button>▼</button>
+        <div class="label mt-2 mono">save</div>
+        <button class="text-xs">★</button>
+      </div>
+      <div>
+        <p>Three years out from the DOE quantum-sensing program ($1.4&nbsp;B FY24-27), no contract above $5M has been let to a non-lab vendor. Four labs hold 78% of obligations.</p>
+        <p>What signals would you trust as "the program is real" vs. "the program is rebadged science funding"? Looking for <strong>procurement-side</strong> evidence specifically, not lab-side science output.</p>
+        <p>I've already considered:</p>
+        <ul class="list-disc list-inside space-y-1 mt-1">
+          <li>Hiring on lab loading-docks (Sam Ahmadi flagged this for Brookhaven today)</li>
+          <li>Cryo-equipment service-contract growth (Rachel Moss confirms from a different angle)</li>
+          <li>Standards-body cadence (deadlocked since Oct 2025 — bearish signal)</li>
+          <li>Pending solicitations: 3 known, Q4-26 / Q1-27 timing</li>
+        </ul>
+        <p>What am I missing? Especially interested in <strong>procurement-clerks, contracting officers, defense-industrial-base vendors, freight visibility, even unrelated supply-chain signals</strong> that might say something.</p>
+
+        <div class="mt-4 flex items-center gap-2 flex-wrap">
+          <span class="tag">quantum</span>
+          <span class="tag" style="background:#f5ecd9; color:#7a5418">procurement</span>
+          <span class="tag" style="background:#f5f1d9; color:#7a5e14">policy</span>
+          <span class="tag" style="background:#f5f1d9; color:#7a5e14">DOE</span>
+          <span class="tag" style="background:#fffaeb; color:#7a5418">bounty +150</span>
+        </div>
+
+        <div class="mt-4 pt-3 border-t rule">
+          <div class="comment">↳ <em>Procurement officer here — can probably say something about CO behavior patterns. Drafting an answer.</em> — Tomás L. · 1h ago</div>
+          <div class="comment">↳ <em>The Sam Ahmadi thread from this morning is going to be a load-bearing piece of any real answer here.</em> — Maya K. · 45m ago</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="flex items-center gap-4 mt-6">
+    <h2 class="text-xl font-semibold">7 answers</h2>
+    <span class="label">sorted by votes · ↻ chronological</span>
+  </div>
+
+  <div class="answer accepted">
+    <div class="vote">
+      <button>▲</button>
+      <div class="count" style="color:var(--accent)">38</div>
+      <button>▼</button>
+      <button class="accept-mark on" title="accepted">✓</button>
+    </div>
+    <div>
+      <span class="accepted-banner">✓ ACCEPTED ANSWER · by asker · awarded +15 rep + 150 bounty</span>
+      <div class="mt-3 flex items-baseline gap-3">
+        <span class="ava a1">SA</span>
+        <div>
+          <strong>Sam Ahmadi</strong> <span class="reputation">412</span> <span class="badge silver">new voice · 2 yrs in The Pile</span>
+          <div class="label mono">answered 1h ago · cited 23 times in this thread</div>
+        </div>
+      </div>
+      <p class="mt-3">Procurement signal from where I sit (freight, Brookhaven route): the dock-level hiring + new cryo crate markings (Janis + Bluefors mix, not last year's mix) is the leading indicator nobody is reading. Service-tech route-sheets (see <a href="#" class="qlink">@rachel.m's answer below</a>) confirm at a second lab.</p>
+      <p class="mt-2">What to watch in the next 90 days:</p>
+      <ul class="list-disc list-inside mt-1 space-y-1">
+        <li>Loading-dock job postings at Argonne, Oak Ridge, LBL — same JD pattern as Brookhaven from March-May 2026</li>
+        <li>Janis Research + Bluefors press releases on new institutional orders (these are public)</li>
+        <li>FedBizOpps for cryo-related solicitations Q3-26 (Sam doesn't watch these, but you should)</li>
+      </ul>
+      <p class="mt-2"><em>I'm a truck driver. I don't know quantum sensing. I know what shows up on the dock and when. The dock said "go" three months ago.</em></p>
+      <div class="mt-4 pt-3 border-t" style="border-color:#f0d877">
+        <div class="comment">↳ <em>This answer is going into the v2 of my brief with full attribution. Sam, would you co-author the procurement-signals section?</em> — Alex P. · 47m</div>
+        <div class="comment">↳ <em>Yes if you want. Will need help with the formal write-up.</em> — Sam A. · 32m</div>
+        <div class="comment">↳ <em>This is the cleanest example I've seen on this site of "the right answer came from outside the field."</em> — Maya K. · 28m</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer">
+    <div class="vote">
+      <button>▲</button>
+      <div class="count">22</div>
+      <button>▼</button>
+      <button class="accept-mark">✓</button>
+    </div>
+    <div>
+      <div class="flex items-baseline gap-3">
+        <span class="ava a2">RM</span>
+        <div>
+          <strong>Rachel Moss</strong> <span class="reputation">1,247</span> <span class="badge silver">field service · 4 yrs in The Pile</span>
+          <div class="label mono">answered 53m ago</div>
+        </div>
+      </div>
+      <p class="mt-3">Service-side confirmation of Sam's signal. I service Janis dilution refrigerators across the eastern seaboard. <strong>Brookhaven added two new service contracts in March 2026</strong> — that is not normal cadence for them. Oak Ridge added one in February. Argonne added one in April. LBL: nothing new yet but they're still under their old contract terms which expire August.</p>
+      <p class="mt-2">For your "is this real" test: the service contracts are a faster signal than procurement contracts because they're operational, not capital. Capital procurement always lags by 6-12 months.</p>
+    </div>
+  </div>
+
+  <div class="answer">
+    <div class="vote">
+      <button>▲</button>
+      <div class="count">14</div>
+      <button>▼</button>
+      <button class="accept-mark">✓</button>
+    </div>
+    <div>
+      <div class="flex items-baseline gap-3">
+        <span class="ava a7">TL</span>
+        <div>
+          <strong>Tomás Lima</strong> <span class="reputation">3,141</span> <span class="badge silver">former contracting officer · 1 yr in The Pile</span>
+          <div class="label mono">answered 38m ago</div>
+        </div>
+      </div>
+      <p class="mt-3">Contracting-officer perspective: the signal you should watch is <strong>RFI volume</strong>, not RFP volume. A program with real procurement intent issues 3-8 Requests for Information per quarter in the year before contracts open. RFIs don't bind anyone, but they leak intent to the market.</p>
+      <p class="mt-2">DOE quantum-sensing RFI count, Q1 2026: <strong>4</strong>. Q4 2025: <strong>1</strong>. Q3 2025: <strong>0</strong>. The slope inflected this quarter.</p>
+      <p class="mt-2">Combine Tomás's RFI signal + Sam's dock signal + Rachel's service-contract signal and you have a three-leg stool. Three signals from three angles, all turning positive in the same 90-day window. That's not coincidence in my experience.</p>
+    </div>
+  </div>
+
+  <div class="answer">
+    <div class="vote">
+      <button>▲</button>
+      <div class="count">9</div>
+      <button>▼</button>
+      <button class="accept-mark">✓</button>
+    </div>
+    <div>
+      <div class="flex items-baseline gap-3">
+        <span class="ava a5">JO</span>
+        <div>
+          <strong>Jess Oduya</strong> <span class="reputation">5,224</span> <span class="badge gold">⊙ top 5%</span>
+          <div class="label mono">answered 22m ago</div>
+        </div>
+      </div>
+      <p class="mt-3">A bearish counter-signal worth weighting against the above: the <a href="#" class="qlink">ITAR rewrite Clause 4(b)</a> tightens foundational-research carve-outs in a way that makes university-lab participation in defense-adjacent quantum work substantially harder. If the program is real, this either (a) doesn't matter because primes will absorb the work, or (b) really matters and the procurement signal stalls while DDTC rules on edge cases.</p>
+      <p class="mt-2">The 90-day comment window closes <strong>June 17, 2026</strong>. University counsel offices haven't engaged yet (I checked 6 of them). If they engage, the signal could slip.</p>
+    </div>
+  </div>
+
+  <div class="answer">
+    <div class="vote">
+      <button>▲</button>
+      <div class="count">3</div>
+      <button>▼</button>
+      <button class="accept-mark">✓</button>
+    </div>
+    <div>
+      <div class="flex items-baseline gap-3">
+        <span class="ava a3">DT</span>
+        <div>
+          <strong>Diego Torres</strong> <span class="reputation">218</span> <span class="badge silver">new voice · 3 mo in The Pile</span>
+          <div class="label mono">answered 15m ago</div>
+        </div>
+      </div>
+      <p class="mt-3">Outsider question disguised as an answer: <em>is the threshold "$5M to a non-lab vendor" the right one, or is there a smaller threshold (under $500K, e.g.) that catches earlier intent</em>? Asking because my partner is a federal-grants accountant and she says the early-stage signals show up at the &lt;$250K small-business-set-aside level, not the headline RFP level. Possibly worth re-running the question with that threshold.</p>
+    </div>
+  </div>
+
+  <div class="text-center py-4 border-t rule">
+    <a href="#" class="qlink font-semibold text-sm">+ 2 more answers (lower-voted but worth reading)</a>
+  </div>
+
+  <section class="bg-white border rule rounded p-5">
+    <h3 class="font-semibold text-base mb-2">Your answer</h3>
+    <p class="text-sm" style="color:var(--muted)">Anyone with something to add can answer. You don't need a PhD. You need to be useful. Reputation is built one accepted answer at a time.</p>
+    <textarea class="w-full mt-3 border rule p-3 text-sm" rows="4" placeholder="What can you add? Cite if you have a source; describe your angle of view if you don't."></textarea>
+    <div class="mt-3 flex items-center justify-between">
+      <div class="label mono">↩ markdown supported · code in `backticks` · cite [like this](url)</div>
+      <button class="px-4 py-2 text-white text-sm font-semibold rounded" style="background:var(--accent)">post answer</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t rule mt-10 py-5">
+  <div class="max-w-5xl mx-auto px-6 flex justify-between label mono">
+    <div>The Pile · D15 · single-question view · backend prototype</div>
+    <div><a href="../index.html" class="qlink">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

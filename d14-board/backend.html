@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Boards · D14 · One board open (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Crimson+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f3efe6; --ink:#1c1c1c; --muted:#6b6258; --rule:#d2c9b8; --accent:#6f1e2a; --paper-light:#f9f6ee; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.5; }
+  .serif { font-family:'Crimson Pro',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.04em; }
+  a { color:inherit; text-decoration:none; }
+  a.qlink { border-bottom:1px solid var(--rule); }
+  a.qlink:hover { border-bottom-color:var(--accent); color:var(--accent); }
+  .card { background:white; border:1px solid var(--rule); padding:.9rem 1rem; transition:.12s; display:flex; flex-direction:column; gap:.5rem; }
+  .card:hover { border-color:#b8aa90; }
+  .card.dark { background:#1a1a1a; color:#d8c9a8; }
+  .card.warm { background:#fde7d6; }
+  .card.green { background:#d8e5d2; }
+  .card.gold { background:#f0e4c0; }
+  .card.purple { background:#e2d6e8; }
+  .card.deep { background:#3b0f1f; color:white; }
+  .img-stub { aspect-ratio:4/3; background:linear-gradient(135deg,#caa44a,#7a5e22); display:flex; align-items:center; justify-content:center; color:white; font-size:11px; font-family:'JetBrains Mono',monospace; }
+  .img-stub.blue { background:linear-gradient(135deg,#5c87a8,#2c4d6e); }
+  .img-stub.red { background:linear-gradient(135deg,#c44d2b,#7a2a14); }
+  .img-stub.green { background:linear-gradient(135deg,#7b9070,#3a5530); }
+  .ava { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
+  .a1{background:#c44d2b}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+  .quote { font-family:'Crimson Pro',serif; font-style:italic; font-size:1.05rem; line-height:1.35; }
+  .pdf-card { font-family:'JetBrains Mono',monospace; font-size:11px; padding:1rem; border-left:3px solid var(--accent); }
+  .card-meta { font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; display:flex; align-items:center; gap:.4rem; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule bg-white">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-4">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <a href="./main.html" class="qlink text-sm">← all boards</a>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <button class="border rule px-3 py-1.5 text-xs">⭐ follow</button>
+      <button class="border rule px-3 py-1.5 text-xs">↗ share</button>
+      <button class="px-3 py-1.5 text-white text-xs font-semibold" style="background:var(--accent)">+ Collect a card</button>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 pt-9 pb-6 border-b rule">
+  <h1 class="serif text-5xl font-semibold tracking-tight leading-[1.05]">Quantum sensing in the wild</h1>
+  <p class="serif italic text-xl mt-3" style="color:var(--muted)">Evidence about the DOE program from people who see it on the ground — truck drivers, equipment service techs, program officers off-the-clock, anyone with a view we wouldn't have.</p>
+  <div class="mt-5 flex items-center gap-6 flex-wrap text-sm">
+    <span class="flex items-center gap-2">
+      <span class="ava a1">SA</span> <strong>Sam Ahmadi</strong> <span class="label">started this board · May 19</span>
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="ava a4">AP</span><span class="ava a2">RM</span><span class="ava a5">JO</span><span class="ava a3">DT</span><span class="ava a6">+8</span>
+      <span class="label">12 contributors</span>
+    </span>
+    <span class="label mono">47 cards · last collected 12m ago by @maya.k</span>
+    <span class="label mono">328 followers · 1,247 board-visits this week</span>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-7" style="column-count:4; column-gap:1rem;">
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="img-stub red">[ photo · brookhaven loading dock · march 2026 ]</div>
+    <div class="quote">"The boxes were marked Janis Research and Bluefors — that's a different mix than they ran last year."</div>
+    <div class="card-meta"><span class="ava a1">SA</span>Sam · May 19 · 47 saves</div>
+  </div>
+
+  <div class="card warm pdf-card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="mono text-xs">SOURCE</div>
+    <div class="serif text-base font-medium leading-snug mt-1">FY2024 Energy &amp; Water Appropriation · Pub. L. 118–42 (excerpt: § 304(b), quantum-sensing)</div>
+    <div class="mono text-[10px] mt-2" style="color:var(--muted)">energy.gov · 31pp · captured 2024-04-12</div>
+    <div class="card-meta mt-1"><span class="ava a4">AP</span>Alex · added May 14</div>
+  </div>
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"I service Janis dilution refrigerators across the eastern seaboard. Brookhaven added two new service contracts in March — that's not normal cadence."</div>
+    <div class="card-meta mt-1"><span class="ava a2">RM</span>Rachel · May 22 · 31 saves</div>
+  </div>
+
+  <div class="card gold" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="img-stub" style="background:linear-gradient(135deg,#a07a2c,#5c4317)">[ napkin · hand-drawn map of 4 labs ]</div>
+    <div class="serif italic text-sm mt-2">A four-lab map. Hand-drawn from a napkin at Joe's Diner, NY, on a Tuesday.</div>
+    <div class="card-meta"><span class="ava a1">SA</span>Sam · May 21 · 28 saves</div>
+  </div>
+
+  <div class="card deep" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="mono text-xs" style="opacity:.7">VIDEO · 6:42</div>
+    <div class="img-stub" style="background:linear-gradient(135deg,#7a2a14,#3b0f1f)">[ ▶ play · walkthrough of Janis crate markings ]</div>
+    <div class="quote" style="font-size:.95rem">"This is what a Janis crate looks like vs a commercial supplier crate. Three things I look for."</div>
+    <div class="card-meta" style="color:#d8c9a8"><span class="ava a2">RM</span>Rachel · May 24 · 14 saves</div>
+  </div>
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"From the truck: hiring on the loading dock is up. Probably means the procurement signal A. Patel is watching might be six months earlier than the brief says."</div>
+    <div class="card-meta"><span class="ava a1">SA</span>Sam · May 27 (today) · 47 saves <span style="color:var(--accent); font-weight:600">· FEATURED on the lobby</span></div>
+  </div>
+
+  <div class="card green pdf-card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="mono text-xs">DATA</div>
+    <div class="serif text-base font-medium leading-snug mt-1">DOE-SC ASCR program plan · "Quantum Sensing Initiative" v1.3</div>
+    <div class="mono text-[10px] mt-2" style="color:var(--muted)">DOE intranet leak via FOIA · 14pp · captured 2024-09-30</div>
+    <div class="card-meta mt-1"><span class="ava a4">AP</span>Alex · added Apr 30</div>
+  </div>
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="img-stub blue">[ chart · cryo-equipment service contracts, 2022-2026 ]</div>
+    <div class="serif italic text-sm">"The cadence is the thing. Service contracts grew 3x in 6 months."</div>
+    <div class="card-meta"><span class="ava a2">RM</span>Rachel · May 26 · 22 saves</div>
+  </div>
+
+  <div class="card warm" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"Outsider question: does the Janis/Bluefors mix change matter for the science, or just for the supply chain?"</div>
+    <div class="card-meta"><span class="ava a3">DT</span>Diego · May 25 · 7 answers ↓</div>
+    <div class="mt-2 text-xs" style="color:var(--muted)">↳ Alex: "Yes, both. The mix tells you what stage of the testbed they're scaling. New thread on that."</div>
+  </div>
+
+  <div class="card purple" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="img-stub" style="background:linear-gradient(135deg,#8a3a5f,#3a142e)">[ screenshot · DOE.gov hiring page ]</div>
+    <div class="serif italic text-sm">"DOE national-lab postings in sensing-adjacent JD's, March 2026 vs March 2025."</div>
+    <div class="card-meta"><span class="ava a5">JO</span>Jess · May 27 · 11 saves</div>
+  </div>
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"If true: ITAR comment window closing June 17 just got time-sensitive."</div>
+    <div class="card-meta"><span class="ava a5">JO</span>Jess · today · 9 saves · linked to: <a href="#" class="qlink">ITAR rewrite board</a></div>
+  </div>
+
+  <div class="card" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"Could anyone with an Argonne, Oak Ridge, or LBL view post here too? Single-lab evidence is fragile."</div>
+    <div class="card-meta"><span class="ava a4">AP</span>Alex · May 23 · open ask</div>
+  </div>
+
+  <div class="card warm" style="break-inside:avoid; margin-bottom:1rem">
+    <div class="quote">"+ collect to this board with /add"</div>
+    <div class="card-meta">empty card · you · add now</div>
+  </div>
+
+</main>
+
+<section class="max-w-7xl mx-auto px-6 py-7 border-t rule grid grid-cols-1 lg:grid-cols-2 gap-7">
+  <div>
+    <div class="label mono mb-2">— this board's grammar</div>
+    <ul class="text-sm space-y-1 leading-relaxed">
+      <li>· cards are short. a quote, a photo, a chart, a PDF — never an essay.</li>
+      <li>· any contributor can add a card; the curator (Sam) can pin or reorder.</li>
+      <li>· cards link to other cards and to other boards. boards form a graph.</li>
+      <li>· a board with too many cards forks into sub-boards. this board has 1 fork so far: <a href="#" class="qlink">"Quantum cryo-equipment supply chain"</a>.</li>
+    </ul>
+  </div>
+  <div>
+    <div class="label mono mb-2">— who's following this board</div>
+    <p class="text-sm">328 followers, including: 9 DOE program managers (declared), 14 university quantum-lab admins, 4 hedge-fund analysts (declared), 2 New York Times reporters (declared), 1 senator's staff (declared), and 297 curious contributors across 22 fields.</p>
+    <p class="text-sm mt-3" style="color:var(--muted)">Followers see new cards in their daily digest. Anyone can follow — following is free; collecting requires membership.</p>
+  </div>
+</section>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Boards · D14 · single-board view · backend prototype</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Workshop · D4 · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fcf9f3; --card:#fffbf2; --ink:#1c1a18; --muted:#6e6557; --rule:#e8dfcb; --accent:#c9491f; --accent-soft:#fde7dd; --sage:#7b956c; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.6; }
+  .serif { font-family:'Fraunces',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .label { font-size:11px; font-weight:600; letter-spacing:.06em; color:var(--muted); }
+  a.qlink { color:var(--ink); text-decoration:underline; text-decoration-color:var(--rule); text-decoration-thickness:2px; text-underline-offset:3px; transition:.1s; }
+  a.qlink:hover { text-decoration-color:var(--accent); color:var(--accent); }
+  .pill-accent { background:var(--accent-soft); color:var(--accent); padding:3px 10px; border-radius:99px; font-size:12px; font-weight:600; display:inline-block; }
+  .btn { display:inline-block; padding:.7rem 1.2rem; border-radius:.4rem; font-weight:600; transition:transform .12s; }
+  .btn:hover { transform:translateY(-1px); }
+  .btn-accent { background:var(--accent); color:white; }
+  .btn-ghost { border:2px solid var(--ink); color:var(--ink); }
+  .card { background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:1.5rem; }
+  .card:hover { border-color:var(--accent); transform:translateY(-2px); transition:.15s; }
+  .avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#c9491f,#7b956c); display:inline-flex; align-items:center; justify-content:center; color:white; font-weight:600; font-size:13px; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="serif text-3xl font-semibold tracking-tight">Workshop</div>
+    </div>
+    <nav class="flex items-baseline gap-7 text-sm">
+      <a href="#" class="qlink">What we're on</a>
+      <a href="#" class="qlink">Crews</a>
+      <a href="#" class="qlink">Takes</a>
+      <a href="#" class="qlink">Desks</a>
+      <a href="#" class="btn btn-accent text-sm">Join Workshop</a>
+    </nav>
+  </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-6 pt-16 pb-12 border-b rule">
+  <span class="pill-accent">Open · we're working on this</span>
+  <h1 class="serif text-5xl md:text-6xl font-semibold leading-[1.05] tracking-tight mt-5 max-w-3xl">We're trying to figure out what DOE's $1.4&nbsp;billion quantum bet actually <em class="font-medium" style="color:var(--accent)">does</em>.</h1>
+  <p class="mt-5 text-xl max-w-2xl" style="color:var(--muted)">Three years out, the procurement signal hasn't arrived. The four labs that matter are still hiring. A crew of fourteen is mapping where the next twelve months turn — and we'd like a few more voices in the room.</p>
+  <div class="mt-7 flex flex-wrap items-center gap-4">
+    <a href="#" class="btn btn-accent">Read what we've got →</a>
+    <a href="#" class="btn btn-ghost">Join the crew</a>
+    <span class="mono text-xs" style="color:var(--muted)">led by A. Patel · 14 in the crew · brief shipping June</span>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-14 border-b rule">
+  <div class="flex items-baseline justify-between mb-7">
+    <h2 class="serif text-3xl font-semibold tracking-tight">What we're working on</h2>
+    <a href="#" class="qlink text-sm">All crews →</a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="card">
+      <div class="flex items-center gap-3">
+        <span class="avatar">QS</span>
+        <div><div class="font-semibold">Quantum Sensing</div><div class="mono text-xs" style="color:var(--muted)">14 in the crew</div></div>
+      </div>
+      <p class="serif text-xl mt-4 leading-snug">Where DOE's $1.4&nbsp;B bet shows up in actual procurement</p>
+      <p class="text-sm mt-2" style="color:var(--muted)">A. Patel leads. Brief drops June 12.</p>
+      <div class="mt-4 flex items-center justify-between">
+        <span class="pill-accent">Open</span>
+        <a href="#" class="qlink text-sm">Join →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex items-center gap-3">
+        <span class="avatar" style="background:linear-gradient(135deg,#7b956c,#3a5c2e)">BN</span>
+        <div><div class="font-semibold">Biosec Preprint Norms</div><div class="mono text-xs" style="color:var(--muted)">9 in the crew</div></div>
+      </div>
+      <p class="serif text-xl mt-4 leading-snug">What happens when the informal moratorium stops working</p>
+      <p class="text-sm mt-2" style="color:var(--muted)">L. Vega leads. Paper Q3.</p>
+      <div class="mt-4 flex items-center justify-between">
+        <span class="pill-accent">Open</span>
+        <a href="#" class="qlink text-sm">Join →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex items-center gap-3">
+        <span class="avatar" style="background:linear-gradient(135deg,#a07a2c,#5c4317)">IR</span>
+        <div><div class="font-semibold">ITAR Reform Framework</div><div class="mono text-xs" style="color:var(--muted)">6 in the crew</div></div>
+      </div>
+      <p class="serif text-xl mt-4 leading-snug">What the rewrite actually does to university quantum labs</p>
+      <p class="text-sm mt-2" style="color:var(--muted)">S. Chen leads. Memo July 1.</p>
+      <div class="mt-4 flex items-center justify-between">
+        <span class="pill-accent">Open</span>
+        <a href="#" class="qlink text-sm">Join →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-14 border-b rule grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <div>
+    <h2 class="serif text-3xl font-semibold tracking-tight">Open questions</h2>
+    <p class="text-sm mt-2" style="color:var(--muted)">Questions members opened this week. The good ones become crews.</p>
+    <ul class="mt-6 space-y-5">
+      <li>
+        <a href="#" class="qlink serif text-xl leading-snug font-medium">"Will DOE actually hit a procurement signal before Q4?"</a>
+        <div class="mono text-xs mt-2" style="color:var(--muted)">A. Patel · Quantum · 7 takes · 2d ago</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-xl leading-snug font-medium">"What does the EU AI Act trilogue text actually narrow?"</a>
+        <div class="mono text-xs mt-2" style="color:var(--muted)">M. Kim · Cyber · 11 takes · 1d ago</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-xl leading-snug font-medium">"Has anyone surveyed the post-2024 preprint compliance rate?"</a>
+        <div class="mono text-xs mt-2" style="color:var(--muted)">L. Vega · Biosec · 4 takes · 4h ago</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-xl leading-snug font-medium">"Rare-earth concentration — what's the actual single-point exposure?"</a>
+        <div class="mono text-xs mt-2" style="color:var(--muted)">J. Okafor · Materials · 8 takes · 3d ago</div>
+      </li>
+    </ul>
+  </div>
+  <div class="border-l rule pl-12">
+    <h2 class="serif text-3xl font-semibold tracking-tight">Recent takes</h2>
+    <p class="text-sm mt-2" style="color:var(--muted)">Short reads — what members are thinking out loud.</p>
+    <ul class="mt-6 space-y-5">
+      <li>
+        <div class="flex items-center gap-3"><span class="avatar" style="width:28px;height:28px;font-size:11px">AP</span><span class="font-semibold">A. Patel</span><span class="mono text-xs" style="color:var(--muted)">on Quantum · 2d ago</span></div>
+        <p class="serif text-lg mt-2 leading-snug">"Three things changed at Brookhaven this month that nobody's writing about."</p>
+      </li>
+      <li>
+        <div class="flex items-center gap-3"><span class="avatar" style="width:28px;height:28px;font-size:11px;background:linear-gradient(135deg,#7b956c,#3a5c2e)">MK</span><span class="font-semibold">M. Kim</span><span class="mono text-xs" style="color:var(--muted)">on EU AI Act · 1d ago</span></div>
+        <p class="serif text-lg mt-2 leading-snug">"Article 6's carve-outs got narrower, not wider — here's the diff."</p>
+      </li>
+      <li>
+        <div class="flex items-center gap-3"><span class="avatar" style="width:28px;height:28px;font-size:11px;background:linear-gradient(135deg,#a07a2c,#5c4317)">LV</span><span class="font-semibold">L. Vega</span><span class="mono text-xs" style="color:var(--muted)">on biosec · 4h ago</span></div>
+        <p class="serif text-lg mt-2 leading-snug">"If the journals don't act by July, the moratorium is already over."</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 py-14 border-b rule">
+  <h2 class="serif text-3xl font-semibold tracking-tight mb-6">Find your desk</h2>
+  <div class="flex flex-wrap gap-2">
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Defense</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Cyber</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Quantum</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Biosec</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Energy</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">AI</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Space</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Materials</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Pharma</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Manufacturing</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Telecom</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Supply Chain</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Transportation</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Public Health</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Nuclear</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Geopolitics</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Intelligence</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Autonomy</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Synthetic Bio</a>
+    <a href="#" class="px-4 py-2 rounded-full text-sm border-2 rule font-medium hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]">Sensors</a>
+  </div>
+</section>
+
+<section class="py-16" style="background:var(--accent-soft)">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+    <div class="md:col-span-2">
+      <span class="pill-accent">Members</span>
+      <h2 class="serif text-4xl font-semibold tracking-tight mt-3">Pull up a chair.</h2>
+      <p class="mt-3 max-w-xl leading-relaxed" style="color:var(--muted)">Workshop is $24/month. You get every brief, every working crew, every take, every convening — and a real voice in the room. Founding seats: 14 of 100 left.</p>
+    </div>
+    <a href="#" class="btn btn-accent text-center md:justify-self-end px-8 py-4 text-base">Join Workshop →</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>Workshop · D4 prototype · 2026-05-27</div>
+    <div>Σ 44/50 · <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

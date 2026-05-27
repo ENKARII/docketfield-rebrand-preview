@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Concord · D2 Research Lab · Studio (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#fafaf7; --ink:#0a0a0b; --muted:#5a5a60; --rule:#e5e5e0; --accent:#1b2bb8; --soft:#eef0fb; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; }
+  .display { font-family:'Crimson Pro',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .panel { background:var(--panel); border:1px solid var(--rule); border-radius:4px; }
+  .accent { color:var(--accent); }
+  .pill { display:inline-block; padding:2px 8px; font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; }
+  .pill-d { background:#eee; color:#444; }
+  .pill-r { background:#fcebd5; color:#7a4d11; }
+  .pill-p { background:var(--accent); color:white; }
+  .pill-e { background:#222; color:white; }
+  a.qlink { color:var(--ink); border-bottom:1px solid var(--rule); }
+  a.qlink:hover { border-bottom-color:var(--accent); color:var(--accent); }
+  table.lt th,table.lt td { padding:.65rem .85rem; border-bottom:1px solid var(--rule); text-align:left; }
+  table.lt th { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .progress { height:3px; background:var(--rule); border-radius:99px; overflow:hidden; }
+  .progress > div { height:100%; background:var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="text-xl font-semibold tracking-tight">Concord</div>
+      <span class="label">Studio</span>
+    </div>
+    <div class="flex items-baseline gap-5">
+      <a href="./main.html" class="qlink text-sm">View press →</a>
+      <span class="mono text-xs">A. Patel · Quantum field</span>
+    </div>
+  </div>
+</header>
+
+<div class="border-b rule" style="background:var(--panel)">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex items-center gap-6 text-sm">
+    <a href="#" class="qlink" style="border-bottom-color:var(--accent); color:var(--accent)">Drafts</a>
+    <a href="#" class="qlink" style="color:var(--muted)">Citations</a>
+    <a href="#" class="qlink" style="color:var(--muted)">Peer review</a>
+    <a href="#" class="qlink" style="color:var(--muted)">Embargo schedule</a>
+    <a href="#" class="qlink" style="color:var(--muted)">Working groups</a>
+    <a href="#" class="qlink" style="color:var(--muted)">Press settings</a>
+  </div>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 xl:grid-cols-4 gap-6">
+
+  <section class="xl:col-span-3 space-y-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="panel p-5"><div class="label">Drafts in flight</div><div class="display text-4xl font-semibold mt-2">4</div><div class="mono text-xs mt-1" style="color:var(--muted)">2 in review · 2 in draft</div></div>
+      <div class="panel p-5"><div class="label">Citations</div><div class="display text-4xl font-semibold mt-2">87</div><div class="mono text-xs mt-1" style="color:var(--muted)">5 flagged · 12 to verify</div></div>
+      <div class="panel p-5"><div class="label">Peer review</div><div class="display text-4xl font-semibold mt-2">2</div><div class="mono text-xs mt-1" style="color:var(--muted)">awaiting reviewer assignment</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule flex items-baseline justify-between">
+        <div>
+          <div class="label accent">Drafts in flight</div>
+          <h2 class="display text-xl font-semibold mt-1">Four issues in editorial</h2>
+        </div>
+        <a href="#" class="px-3 py-1.5 bg-black text-white mono text-xs uppercase tracking-wider">+ New issue</a>
+      </div>
+      <table class="lt w-full">
+        <thead><tr><th>Issue</th><th>Field</th><th>Author</th><th>Stage</th><th>Sources</th><th>Embargo</th></tr></thead>
+        <tbody class="text-sm">
+          <tr><td class="display"><span class="mono text-xs" style="color:var(--muted)">#024</span> The Sensing Turn</td><td>Quantum</td><td>A. Patel</td><td><span class="pill pill-r">REVIEW</span></td><td class="mono text-xs">12 · 1 flag</td><td class="mono text-xs">Mon May 27</td></tr>
+          <tr><td class="display"><span class="mono text-xs" style="color:var(--muted)">#023</span> The AI Act, annotated</td><td>Cyber</td><td>M. Kim</td><td><span class="pill pill-d">DRAFT</span></td><td class="mono text-xs">8 · 2 to verify</td><td class="mono text-xs">Wed May 29</td></tr>
+          <tr><td class="display"><span class="mono text-xs" style="color:var(--muted)">#022</span> Preprint norms in biosec</td><td>Biosec</td><td>L. Vega</td><td><span class="pill pill-e">EMBARGO</span></td><td class="mono text-xs">14 · clean</td><td class="mono text-xs">Fri May 31</td></tr>
+          <tr><td class="display"><span class="mono text-xs" style="color:var(--muted)">#021</span> ITAR for university labs</td><td>Defense</td><td>S. Chen</td><td><span class="pill pill-d">DRAFT</span></td><td class="mono text-xs">5 · 4 to verify</td><td class="mono text-xs">— TBD</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule"><div class="label accent">Issue #024 · The Sensing Turn</div><h3 class="display text-lg font-semibold mt-1">67% toward embargo</h3></div>
+        <div class="px-5 py-4">
+          <div class="progress"><div style="width:67%"></div></div>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li class="flex justify-between"><span>Manuscript</span><span class="mono text-xs">complete</span></li>
+            <li class="flex justify-between"><span>Source verification</span><span class="mono text-xs">12/12 (1 flag)</span></li>
+            <li class="flex justify-between"><span>Peer reviewer A</span><span class="mono text-xs">accepted (M. Suzuki)</span></li>
+            <li class="flex justify-between"><span>Peer reviewer B</span><span class="mono text-xs">pending (W. Aoki)</span></li>
+            <li class="flex justify-between"><span>Cover &amp; metadata</span><span class="mono text-xs">drafted</span></li>
+            <li class="flex justify-between"><span>Embargo lift</span><span class="mono text-xs">Mon May 27 · 09:00 ET</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule"><div class="label accent">Citation health · across drafts</div><h3 class="display text-lg font-semibold mt-1">87 sources · 92% verified</h3></div>
+        <div class="px-5 py-4">
+          <div class="grid grid-cols-3 gap-4">
+            <div><div class="display text-3xl font-semibold">80</div><div class="mono text-xs mt-1" style="color:var(--muted)">verified</div></div>
+            <div><div class="display text-3xl font-semibold" style="color:#b8841f">12</div><div class="mono text-xs mt-1" style="color:var(--muted)">to verify</div></div>
+            <div><div class="display text-3xl font-semibold" style="color:#a3402a">5</div><div class="mono text-xs mt-1" style="color:var(--muted)">flagged</div></div>
+          </div>
+          <a href="#" class="mt-5 inline-block qlink text-sm">Open citation queue →</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-5">
+      <div class="label accent">Embargo schedule</div>
+      <ul class="mt-3 space-y-3 text-sm">
+        <li class="flex justify-between"><span class="mono text-xs">May 27 · 09:00</span><span class="display">Issue #024</span></li>
+        <li class="flex justify-between"><span class="mono text-xs">May 29 · 09:00</span><span class="display">Issue #023</span></li>
+        <li class="flex justify-between"><span class="mono text-xs">May 31 · 09:00</span><span class="display">Issue #022</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label accent">Working group · Quantum Sensing</div>
+      <div class="text-sm mt-3 display"><strong>A. Patel</strong>, chair</div>
+      <div class="mono text-xs" style="color:var(--muted)">14 active · chartered Apr 22</div>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Issue #024</span><span class="mono text-xs">67%</span></li>
+        <li class="flex justify-between"><span>Memo #018</span><span class="mono text-xs">draft</span></li>
+        <li class="flex justify-between"><span>Convening Jun 3</span><span class="mono text-xs">DC · 14 RSVP</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label accent">Your output · last 30 days</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Issues</span><span class="mono">1</span></li>
+        <li class="flex justify-between"><span>Notes</span><span class="mono">4</span></li>
+        <li class="flex justify-between"><span>Peer reviews</span><span class="mono">2</span></li>
+        <li class="flex justify-between"><span>Working-group hours</span><span class="mono">11</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label accent">Quick actions</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#" class="qlink">→ Start new issue</a></li>
+        <li><a href="#" class="qlink">→ Add citation</a></li>
+        <li><a href="#" class="qlink">→ Request peer review</a></li>
+        <li><a href="#" class="qlink">→ Schedule embargo</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>Concord · D2 Research Lab · backend prototype</div>
+    <div>Σ 46/50 · <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

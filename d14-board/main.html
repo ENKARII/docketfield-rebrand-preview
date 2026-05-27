@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Boards · D14 · Main (grid of boards)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Crimson+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f3efe6; --ink:#1c1c1c; --muted:#6b6258; --rule:#d2c9b8; --accent:#6f1e2a; --paper-light:#f9f6ee; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.5; background-image:radial-gradient(circle at 20% 20%, rgba(0,0,0,.02) 0, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 0, transparent 60%); }
+  .serif { font-family:'Crimson Pro',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.04em; }
+  a { color:inherit; text-decoration:none; }
+  a:hover { color:var(--accent); }
+  .board { background:var(--paper-light); border:1px solid var(--rule); padding:1rem; transition:.15s; }
+  .board:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.05); border-color:#b8aa90; }
+  .board-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:.45rem; aspect-ratio:3/2; }
+  .card { background:white; border:1px solid var(--rule); overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; padding:.4rem; }
+  .card.tall { grid-row:span 2; }
+  .card.wide { grid-column:span 2; }
+  .card.text { background:#fffaf0; }
+  .card.dark { background:#1a1a1a; color:#d8c9a8; }
+  .card.warm { background:#fde7d6; color:#7a3a14; }
+  .card.green { background:#d8e5d2; color:#3a5530; }
+  .card.blue { background:#d4dfeb; color:#2c4d6e; }
+  .card.gold { background:#f0e4c0; color:#5c4317; }
+  .card.purple { background:#e2d6e8; color:#5a2a4a; }
+  .card-grad-1 { background:linear-gradient(135deg,#d4dfeb 0%,#5c87a8 100%); color:white; }
+  .card-grad-2 { background:linear-gradient(135deg,#f0e4c0 0%,#a07a2c 100%); color:white; }
+  .card-grad-3 { background:linear-gradient(135deg,#fde7d6 0%,#c44d2b 100%); color:white; }
+  .card-grad-4 { background:linear-gradient(135deg,#d8e5d2 0%,#3a5530 100%); color:white; }
+  .card-grad-5 { background:linear-gradient(135deg,#1a1a1a 0%,#444 100%); color:#fff; }
+  .card-grad-6 { background:linear-gradient(135deg,#3b0f1f 0%,#6f1e2a 100%); color:white; }
+  .quote { font-family:'Crimson Pro',serif; font-style:italic; font-size:11px; line-height:1.25; padding:.45rem; text-align:center; }
+  .pdf { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.06em; }
+  .img-stub { font-family:'JetBrains Mono',monospace; font-size:10px; opacity:.6; }
+  .ava { width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
+  .a1{background:#c44d2b}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+</style>
+</head>
+<body>
+
+<header class="border-b rule bg-white">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-4">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-2xl font-semibold tracking-tight">The Boards</div>
+      <span class="label mono">collected by 312 contributors across 20 fields</span>
+    </div>
+    <div class="flex items-center gap-4 text-sm">
+      <input type="text" placeholder="search boards…" class="border rule px-3 py-1.5 bg-white text-sm w-56" />
+      <button class="px-3 py-1.5 text-white text-xs font-semibold" style="background:var(--accent)">+ Start a board</button>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 pt-7 pb-4 flex items-baseline gap-4 flex-wrap text-sm border-b rule">
+  <span class="label mono mr-1">sort:</span>
+  <a href="#" class="serif italic font-medium" style="color:var(--accent)">recently active</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">most collected</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">new boards</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">followed contributors</a>
+  <span class="label mono mx-3">·</span>
+  <span class="label mono">field:</span>
+  <a href="#" class="serif italic" style="color:var(--muted)">all</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">quantum</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">cyber</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">biosec</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">defense</a>
+  <a href="#" class="serif italic" style="color:var(--muted)">+ 16 more</a>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+  <a href="./backend.html" class="board">
+    <div class="board-grid">
+      <div class="card card-grad-1">
+        <div class="img-stub">[ photo · brookhaven dock ]</div>
+      </div>
+      <div class="card text">
+        <div class="quote">"The boxes were marked Janis Research and Bluefors — a different mix than they ran last year."</div>
+      </div>
+      <div class="card pdf warm">
+        <div class="pdf">FY24-DOE<br/>energy.gov<br/>plan.pdf</div>
+      </div>
+      <div class="card wide gold">
+        <div class="quote">A four-lab map. Hand-drawn from a napkin at Joe's Diner, NY, on a Tuesday. Sam Ahmadi.</div>
+      </div>
+      <div class="card text">
+        <div class="quote">"Cryo gear arriving 6mo before any procurement signal in the public record." —RM</div>
+      </div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">Quantum sensing in the wild</h3>
+        <p class="label mt-0.5">evidence from people who see it on the ground</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">47 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a1">SA</span><span class="ava a4">AP</span><span class="ava a2">RM</span><span class="ava a5">JO</span>
+      <span class="label ml-1">+ 8 contributors</span>
+    </div>
+  </a>
+
+  <a href="#" class="board">
+    <div class="board-grid">
+      <div class="card tall card-grad-2">
+        <div class="img-stub">[ chart · EU AI Act timeline ]</div>
+      </div>
+      <div class="card text"><div class="quote">"Article 6 carve-outs narrowed. Article 5 widened. Press got this backwards."</div></div>
+      <div class="card pdf blue"><div class="pdf">EUR-LEX<br/>32024R...<br/>trilogue</div></div>
+      <div class="card text"><div class="quote">"A regional bank's compliance pipeline can't reclassify in 90 days."</div></div>
+      <div class="card warm"><div class="img-stub">[ screenshot · ECB letter ]</div></div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">The EU AI Act, what it really did</h3>
+        <p class="label mt-0.5">trilogue source + what isn't in the press</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">31 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a2">MK</span><span class="ava a4">AP</span><span class="ava a6">+</span>
+      <span class="label ml-1">+ 5 contributors</span>
+    </div>
+  </a>
+
+  <a href="#" class="board">
+    <div class="board-grid">
+      <div class="card card-grad-4"><div class="img-stub">[ photo · lab bench ]</div></div>
+      <div class="card text"><div class="quote">"How would you explain gain-of-function to a 17-year-old?"</div></div>
+      <div class="card pdf green"><div class="pdf">Nature<br/>editorial<br/>05-2026</div></div>
+      <div class="card wide card-grad-5"><div class="img-stub">[ archive · preprint server traffic ]</div></div>
+      <div class="card text"><div class="quote">"Informal moratorium loses force absent journal-side action." — L. Vega</div></div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">Biosec preprint norms — a primer</h3>
+        <p class="label mt-0.5">curated by a high-school teacher</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">22 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a3">DT</span><span class="ava a5">LV</span><span class="label ml-1">+ 3 contributors</span>
+    </div>
+  </a>
+
+  <a href="#" class="board">
+    <div class="board-grid">
+      <div class="card warm"><div class="quote">"ITAR rewrite, clause 4(b) — read this line three times."</div></div>
+      <div class="card card-grad-3"><div class="img-stub">[ scan · rule text marked-up ]</div></div>
+      <div class="card pdf gold"><div class="pdf">DDTC<br/>NPRM<br/>2026-FR</div></div>
+      <div class="card text"><div class="quote">"The 90-day comment window closes June 17."</div></div>
+      <div class="card wide blue"><div class="quote">"University counsel offices have not noticed yet — we should fix that." — J. Oduya</div></div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">ITAR rewrite, what got missed</h3>
+        <p class="label mt-0.5">an ex-Treasury parent in nap-time mode</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">18 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a5">JO</span><span class="ava a6">+</span><span class="label ml-1">+ 4 contributors</span>
+    </div>
+  </a>
+
+  <a href="#" class="board">
+    <div class="board-grid">
+      <div class="card tall card-grad-6"><div class="img-stub">[ map · rare-earth concentration ]</div></div>
+      <div class="card text"><div class="quote">"7 of 17 critical elements concentrate 65%+ into one jurisdiction."</div></div>
+      <div class="card pdf purple"><div class="pdf">USGS<br/>2026<br/>summary</div></div>
+      <div class="card text"><div class="quote">"The "diversified" sourcing graph everyone publishes is wrong."</div></div>
+      <div class="card warm"><div class="img-stub">[ chart · refining capacity ]</div></div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">Rare-earth single-point exposure</h3>
+        <p class="label mt-0.5">from inside a mining-equipment company</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">26 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a6">JO</span><span class="ava a2">+</span><span class="label ml-1">+ 6 contributors</span>
+    </div>
+  </a>
+
+  <a href="#" class="board">
+    <div class="board-grid">
+      <div class="card card-grad-1"><div class="img-stub">[ photo · grid substation ]</div></div>
+      <div class="card text"><div class="quote">"Texas summer 2026: the demand-response auction goes weird around hour 14."</div></div>
+      <div class="card pdf gold"><div class="pdf">ERCOT<br/>day-ahead<br/>05-26</div></div>
+      <div class="card wide green"><div class="img-stub">[ chart · auction price spread ]</div></div>
+      <div class="card text"><div class="quote">"Battery operators saw it first. Public papers didn't."</div></div>
+    </div>
+    <div class="mt-3 flex items-baseline justify-between">
+      <div>
+        <h3 class="serif text-xl font-semibold leading-snug">ERCOT auction anomaly · summer '26</h3>
+        <p class="label mt-0.5">a battery storage operator</p>
+      </div>
+      <span class="serif italic text-sm" style="color:var(--muted)">14 cards</span>
+    </div>
+    <div class="mt-2 flex items-center gap-1.5">
+      <span class="ava a4">WT</span><span class="label ml-1">+ 2 contributors</span>
+    </div>
+  </a>
+
+</main>
+
+<section class="max-w-7xl mx-auto px-6 py-9 border-t rule">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+    <div>
+      <div class="label mono mb-2">— how boards work</div>
+      <p class="text-sm leading-relaxed">A board is a small, curated collection of things on a topic. Cards can be quotes, PDFs, photos, charts, screenshots — anything that helps somebody else see what you're seeing. Anyone can start a board, anyone can collect to an existing board (with attribution), and the best boards get followed by people who want to know when new cards are added.</p>
+    </div>
+    <div>
+      <div class="label mono mb-2">— what's <em>not</em> here</div>
+      <ul class="text-sm space-y-1 leading-relaxed">
+        <li>· No "expert byline" requirement. Curators are who they are.</li>
+        <li>· No algorithm. Sort is by your choice, not ours.</li>
+        <li>· No "trending." Good boards stay good for a long time.</li>
+        <li>· No follower counts on profiles. Cards-collected counts.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="label mono mb-2">— join a board</div>
+      <p class="text-sm leading-relaxed">$7/month gets you collecting rights on any board, plus the ability to start your own. Curators don't get paid in money — they get the conversation that grows around the board, plus the satisfaction of seeing other people use what they curated.</p>
+      <button class="mt-3 px-4 py-2 text-white text-sm font-semibold" style="background:var(--accent)">collect with us →</button>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Boards · D14 · prototype 2026-05-27</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

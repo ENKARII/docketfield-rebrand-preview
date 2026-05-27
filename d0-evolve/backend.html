@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DocketField · D0 Evolve · Backend</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f6f1e8; --panel:#fdfaf3; --ink:#1a1612; --muted:#5c544a; --rule:#d9d0bf; --accent:#6f1e2a; }
+  body { font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink); }
+  .serif { font-family:'Source Serif 4',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .panel { background:var(--panel); border:1px solid var(--rule); border-radius:4px; }
+  .rule { border-color:var(--rule); }
+  .eyebrow { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  .accent { color:var(--accent); }
+  table.lt th, table.lt td { padding:.6rem .75rem; border-bottom:1px solid var(--rule); text-align:left; }
+  table.lt th { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  table.lt td { font-size:14px; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:99px; font-size:11px; letter-spacing:.06em; }
+  .pill-draft { background:#efe8d8; color:#5c544a; }
+  .pill-review { background:#e3d7c4; color:#3a3429; }
+  .pill-pub { background:var(--accent); color:white; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="text-sm mono" style="color:var(--muted)">← all directions</a>
+      <div class="serif text-xl font-semibold tracking-tight">DocketField · Editor's queue</div>
+    </div>
+    <div class="flex items-baseline gap-5 text-sm">
+      <a href="./main.html" class="qlink" style="color:var(--muted)">View public</a>
+      <span class="mono text-xs">A.PATEL · Quantum desk</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+  <section class="lg:col-span-2 space-y-8">
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule flex items-baseline justify-between">
+        <div>
+          <div class="eyebrow">Drafts</div>
+          <div class="serif text-lg font-semibold mt-1">In flight · 4</div>
+        </div>
+        <a href="#" class="text-sm qlink accent">+ New brief</a>
+      </div>
+      <table class="lt w-full">
+        <thead><tr><th>Title</th><th>Desk</th><th>Author</th><th>Status</th><th>Updated</th></tr></thead>
+        <tbody>
+          <tr><td class="serif">The DOE's $1.4B quantum-sensing bet</td><td>Quantum</td><td>A. Patel</td><td><span class="pill pill-review">REVIEW</span></td><td class="mono">2h ago</td></tr>
+          <tr><td class="serif">EU AI Act compromise — what it actually says</td><td>Cyber</td><td>M. Kim</td><td><span class="pill pill-draft">DRAFT</span></td><td class="mono">1d ago</td></tr>
+          <tr><td class="serif">The biosec preprint norm is breaking</td><td>Biosec</td><td>L. Vega</td><td><span class="pill pill-review">READY</span></td><td class="mono">3h ago</td></tr>
+          <tr><td class="serif">ITAR reform · what it does for univ. labs</td><td>Defense</td><td>S. Chen</td><td><span class="pill pill-draft">DRAFT</span></td><td class="mono">4d ago</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule">
+        <div class="eyebrow">Scheduled publishing</div>
+        <div class="serif text-lg font-semibold mt-1">Next three editions</div>
+      </div>
+      <ul class="px-5 py-4 space-y-3">
+        <li class="flex justify-between text-sm"><span class="mono">Mon May 27 · 09:00 ET</span><span class="serif">Quantum sensing brief #024</span><span class="pill pill-pub">SCHED</span></li>
+        <li class="flex justify-between text-sm"><span class="mono">Wed May 29 · 09:00 ET</span><span class="serif">EU AI Act compromise (Cyber)</span><span class="pill pill-pub">SCHED</span></li>
+        <li class="flex justify-between text-sm"><span class="mono">Fri May 31 · 09:00 ET</span><span class="serif">Biosec preprint norm (Biosec)</span><span class="pill pill-pub">SCHED</span></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule">
+        <div class="eyebrow">Working group · Quantum Sensing Standards</div>
+        <div class="serif text-lg font-semibold mt-1">Brief #024 · 67% complete</div>
+      </div>
+      <div class="px-5 py-4">
+        <div class="w-full h-2 rounded-full" style="background:var(--rule)"><div class="h-2 rounded-full" style="width:67%;background:var(--accent)"></div></div>
+        <div class="mt-4 grid grid-cols-3 gap-6 text-sm">
+          <div><div class="eyebrow">Chair</div><div class="serif mt-1">A. Patel</div></div>
+          <div><div class="eyebrow">Members</div><div class="serif mt-1">14 active</div></div>
+          <div><div class="eyebrow">Due</div><div class="serif mt-1">Jun 12</div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-6">
+
+    <div class="panel p-5">
+      <div class="eyebrow">Provenance health</div>
+      <div class="serif text-3xl font-semibold mt-2">92<span class="text-lg" style="color:var(--muted)">%</span></div>
+      <div class="text-sm mt-1" style="color:var(--muted)">sources verified across drafts</div>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Sources to verify</span><span class="mono">12</span></li>
+        <li class="flex justify-between"><span>Freshness flags</span><span class="mono">7</span></li>
+        <li class="flex justify-between"><span>Conflict disclosures</span><span class="mono">2</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="eyebrow">Your assignments</div>
+      <ul class="mt-3 space-y-3 serif text-sm">
+        <li><strong>Quantum brief #024</strong><div style="color:var(--muted)" class="text-xs mt-0.5">primary author · due Jun 12</div></li>
+        <li><strong>Cyber brief #023</strong><div style="color:var(--muted)" class="text-xs mt-0.5">peer reviewer · due May 29</div></li>
+        <li><strong>Quantum WG</strong><div style="color:var(--muted)" class="text-xs mt-0.5">chair · weekly call Thursday</div></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="eyebrow">This week's metrics</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Briefs published</span><span class="mono font-medium">4</span></li>
+        <li class="flex justify-between"><span>Takes contributed</span><span class="mono font-medium">12</span></li>
+        <li class="flex justify-between"><span>Working group hours</span><span class="mono font-medium">11</span></li>
+        <li class="flex justify-between"><span>Member reads</span><span class="mono font-medium">3,847</span></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>DocketField · D0 Evolve · Backend prototype</div>
+    <div>Σ 38/50 · See <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

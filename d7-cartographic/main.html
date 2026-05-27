@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Atlas · D7 Cartographic · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f7f2e8; --ink:#0f2a3e; --map:#ede4cf; --muted:#5b6478; --rule:#c9c0aa; --accent:#a04030; --water:#dde7e8; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.55; }
+  .serif { font-family:'Source Serif 4',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .coord { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  a.qlink { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule); }
+  a.qlink:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  .map-frame { background:var(--map); border:1px solid var(--rule); position:relative; aspect-ratio:5/3; overflow:hidden; }
+  .map-bg {
+    background-image:
+      radial-gradient(circle at 18% 38%, rgba(160,64,48,.06) 0, rgba(160,64,48,0) 14%),
+      radial-gradient(circle at 76% 64%, rgba(160,64,48,.05) 0, rgba(160,64,48,0) 18%),
+      linear-gradient(to right, rgba(15,42,62,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,42,62,.06) 1px, transparent 1px);
+    background-size: auto, auto, 56px 56px, 56px 56px;
+  }
+  .marker { position:absolute; transform:translate(-50%,-50%); display:flex; align-items:center; gap:.4rem; }
+  .marker .dot { width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--paper); box-shadow:0 0 0 1px var(--accent); }
+  .marker.muted .dot { background:transparent; border-color:var(--ink); box-shadow:0 0 0 1px var(--ink); }
+  .marker .lbl { font-family:'Source Serif 4',serif; font-size:13px; font-style:italic; background:rgba(247,242,232,.92); padding:1px 6px; border:1px solid var(--rule); }
+  .compass { position:absolute; top:14px; left:14px; width:60px; height:60px; border:1px solid var(--ink); border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--paper); }
+  .compass::before { content:"N"; position:absolute; top:4px; font-size:9px; font-family:'JetBrains Mono',monospace; }
+  .compass::after { content:"S"; position:absolute; bottom:4px; font-size:9px; font-family:'JetBrains Mono',monospace; }
+  .scale { position:absolute; bottom:14px; right:14px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  .frame-corner { position:absolute; width:18px; height:18px; border:2px solid var(--ink); }
+  .fc-tl { top:0; left:0; border-right:0; border-bottom:0; }
+  .fc-tr { top:0; right:0; border-left:0; border-bottom:0; }
+  .fc-bl { bottom:0; left:0; border-right:0; border-top:0; }
+  .fc-br { bottom:0; right:0; border-left:0; border-top:0; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="serif text-3xl font-semibold tracking-tight">Atlas</div>
+      <span class="coord">Twenty fields · mapped</span>
+    </div>
+    <nav class="flex items-baseline gap-7 text-sm">
+      <a href="#" class="qlink">Regions</a>
+      <a href="#" class="qlink">Field reports</a>
+      <a href="#" class="qlink">Surveys</a>
+      <a href="#" class="qlink">About</a>
+      <a href="#" class="px-3 py-1.5 text-sm" style="background:var(--accent); color:white">Membership</a>
+    </nav>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 pt-10 pb-14 border-b rule">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-2">
+      <div class="coord accent">SHEET 24 · QUANTUM REGION · MAY MMXXVI</div>
+      <h1 class="serif text-5xl md:text-6xl font-semibold leading-[1.04] mt-3">The Sensing Turn</h1>
+      <p class="serif italic text-xl mt-3" style="color:var(--muted)">A surveyor's read of the DOE's $1.4&nbsp;billion bet, mapped against the four labs that matter.</p>
+      <p class="mt-5 max-w-xl">Atlas maps deep-tech and national-security work as territory. Twenty regions, mapped to twenty fields. Each report carries coordinates, surveyor, citations, and date of survey.</p>
+      <div class="mt-7 flex items-center gap-5">
+        <a href="#" class="px-5 py-2.5 text-sm font-semibold" style="background:var(--ink); color:var(--paper)">Read report →</a>
+        <span class="coord">Surveyor A. Patel · 14 min · 12 cites · members</span>
+      </div>
+    </div>
+    <div class="border-l rule pl-8">
+      <div class="coord accent">Reading the map</div>
+      <ul class="mt-3 space-y-3 text-sm">
+        <li class="flex items-center gap-3"><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent)"></span><span>Active region · field report this week</span></li>
+        <li class="flex items-center gap-3"><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);background:transparent"></span><span>Mapped region · no current report</span></li>
+        <li class="flex items-center gap-3"><span class="serif italic">"Sensing"</span><span>Surveyed location · italic label</span></li>
+        <li class="flex items-center gap-3"><span class="coord">42°N 71°W</span><span>Coordinate · region anchor</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="coord mb-4">A general map of the twenty fields · scale 1:Σ · revised May MMXXVI</div>
+
+  <div class="map-frame map-bg">
+    <span class="frame-corner fc-tl"></span><span class="frame-corner fc-tr"></span>
+    <span class="frame-corner fc-bl"></span><span class="frame-corner fc-br"></span>
+
+    <div class="compass">
+      <div style="width:1px;height:32px;background:var(--ink);position:relative">
+        <div style="position:absolute;top:0;left:-3px;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-bottom:6px solid var(--accent)"></div>
+      </div>
+    </div>
+
+    <div class="marker" style="top:32%;left:18%"><div class="dot"></div><div class="lbl">Quantum</div></div>
+    <div class="marker" style="top:22%;left:48%"><div class="dot"></div><div class="lbl">Cyber</div></div>
+    <div class="marker" style="top:30%;left:78%"><div class="dot"></div><div class="lbl">Space</div></div>
+    <div class="marker" style="top:50%;left:34%"><div class="dot"></div><div class="lbl">Defense</div></div>
+    <div class="marker" style="top:52%;left:62%"><div class="dot"></div><div class="lbl">Energy</div></div>
+    <div class="marker muted" style="top:64%;left:12%"><div class="dot"></div><div class="lbl">Biosec</div></div>
+    <div class="marker muted" style="top:62%;left:48%"><div class="dot"></div><div class="lbl">AI</div></div>
+    <div class="marker muted" style="top:76%;left:32%"><div class="dot"></div><div class="lbl">Pharma</div></div>
+    <div class="marker muted" style="top:74%;left:70%"><div class="dot"></div><div class="lbl">Materials</div></div>
+    <div class="marker muted" style="top:42%;left:90%"><div class="dot"></div><div class="lbl">Telecom</div></div>
+    <div class="marker muted" style="top:84%;left:50%"><div class="dot"></div><div class="lbl">Public Health</div></div>
+    <div class="marker muted" style="top:18%;left:84%"><div class="dot"></div><div class="lbl">Geopolitics</div></div>
+    <div class="marker muted" style="top:40%;left:8%"><div class="dot"></div><div class="lbl">Nuclear</div></div>
+
+    <div class="scale">0 ━━━ 10 ━━━ 20 fields</div>
+  </div>
+
+  <div class="coord mt-4 text-right">Sheet 24 · surveyed for accuracy by 312 working operators</div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+  <div>
+    <div class="coord accent mb-3">From the field · this week</div>
+    <ul class="space-y-5">
+      <li>
+        <a href="#" class="qlink serif text-2xl leading-snug font-medium">The DOE's $1.4 B sensing bet, three years on</a>
+        <div class="coord mt-2">Quantum region · A. Patel · sheet 24 · 14 min</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-2xl leading-snug font-medium">The EU AI Act compromise — what the trilogue text actually narrows</a>
+        <div class="coord mt-2">Cyber region · M. Kim · sheet 23 · 9 min</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-2xl leading-snug font-medium">The biosec preprint moratorium is breaking</a>
+        <div class="coord mt-2">Biosec region · L. Vega · sheet 22 · 11 min</div>
+      </li>
+      <li>
+        <a href="#" class="qlink serif text-2xl leading-snug font-medium">ITAR reform — what the new draft does for university quantum labs</a>
+        <div class="coord mt-2">Defense region · S. Chen · sheet 21 · 8 min</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="border-l rule pl-10">
+    <div class="coord accent mb-3">Active surveys</div>
+    <ul class="space-y-6">
+      <li>
+        <div class="serif text-xl font-medium">Quantum Sensing Standards</div>
+        <div class="coord mt-1">Surveyor A. Patel · 14 contributors · sheet 24 in June</div>
+      </li>
+      <li>
+        <div class="serif text-xl font-medium">Biosec Preprint Norms</div>
+        <div class="coord mt-1">Surveyor L. Vega · 9 contributors · paper Q3</div>
+      </li>
+      <li>
+        <div class="serif text-xl font-medium">ITAR Reform Framework</div>
+        <div class="coord mt-1">Surveyor S. Chen · 6 contributors · memo July 1</div>
+      </li>
+    </ul>
+
+    <div class="mt-10 coord accent">Recently mapped</div>
+    <p class="serif italic mt-2" style="color:var(--muted)">Three regions added field reports this week · Quantum, Cyber, Biosec. Materials surveyors expanding to cover rare-earth concentration sub-region.</p>
+  </div>
+
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="coord mb-5">Index · all twenty regions</div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-3 serif text-lg">
+    <a href="#" class="qlink">Defense</a><a href="#" class="qlink">Cyber</a><a href="#" class="qlink">Quantum</a><a href="#" class="qlink">Biosecurity</a><a href="#" class="qlink">Energy</a>
+    <a href="#" class="qlink">AI</a><a href="#" class="qlink">Space</a><a href="#" class="qlink">Materials</a><a href="#" class="qlink">Pharma</a><a href="#" class="qlink">Manufacturing</a>
+    <a href="#" class="qlink">Telecom</a><a href="#" class="qlink">Supply Chain</a><a href="#" class="qlink">Transportation</a><a href="#" class="qlink">Public Health</a><a href="#" class="qlink">Nuclear</a>
+    <a href="#" class="qlink">Geopolitics</a><a href="#" class="qlink">Intelligence</a><a href="#" class="qlink">Autonomy</a><a href="#" class="qlink">Synthetic Bio</a><a href="#" class="qlink">Sensors</a>
+  </div>
+</section>
+
+<section class="py-12" style="background:var(--map)">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    <div class="md:col-span-2">
+      <div class="coord accent">Membership · surveyor's seat</div>
+      <h2 class="serif text-3xl font-semibold mt-2">$24 / month. Every region. Every survey. Every field report.</h2>
+      <p class="mt-3 max-w-xl" style="color:var(--muted)">Atlas funds its surveyors with member dues, not sponsor reach. Sponsors fund regions; surveyors map them. Founding seats: 14 of 100 left.</p>
+    </div>
+    <a href="#" class="md:justify-self-end px-5 py-3 text-sm font-semibold inline-block" style="background:var(--ink); color:var(--paper)">Take a seat →</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between coord">
+    <div>Atlas · D7 Cartographic · prototype 2026-05-27</div>
+    <div>Σ 41/50 · <a href="../index.html" class="qlink">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Codex · D9 Wiki / Reference · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#fafafa; --ink:#0a0a0b; --muted:#555a63; --rule:#e9eaee; --accent:#1f3da8; --highlight:#fff8d9; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:15px; line-height:1.65; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  a { color:var(--accent); text-decoration:underline; text-decoration-color:rgba(31,61,168,.25); text-underline-offset:3px; text-decoration-thickness:1.5px; }
+  a:hover { text-decoration-color:var(--accent); }
+  .crumb { color:var(--muted); }
+  .crumb a { color:var(--muted); text-decoration-color:rgba(85,90,99,.3); }
+  .tag { display:inline-block; padding:1px 8px; border-radius:4px; background:#eef1f9; color:var(--accent); font-size:11px; font-family:'JetBrains Mono',monospace; }
+  .stub { color:#a8420f; text-decoration-color:rgba(168,66,15,.3); }
+  .anchor { color:var(--muted); margin-left:.5rem; opacity:0; transition:.1s; }
+  h2:hover .anchor,h3:hover .anchor { opacity:1; }
+  .toc a { display:block; padding:2px 0; color:var(--muted); text-decoration:none; }
+  .toc a:hover { color:var(--accent); }
+  .toc a.cur { color:var(--accent); border-left:2px solid var(--accent); padding-left:.5rem; margin-left:-.5rem; font-weight:500; }
+  .footnote { color:var(--muted); font-size:13px; }
+  blockquote { border-left:3px solid var(--accent); padding-left:1rem; color:var(--muted); margin:1.2rem 0; font-style:italic; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule sticky top-0 bg-white z-10">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs no-underline" style="color:var(--muted)">←</a>
+      <div class="text-xl font-bold tracking-tight no-underline" style="color:var(--ink); text-decoration:none">Codex</div>
+      <span class="mono text-xs" style="color:var(--muted)">a living reference · 1,247 entries · last edit 14:02</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded border rule text-sm" style="background:var(--panel); min-width:260px">
+        <span class="mono text-xs" style="color:var(--muted)">⌘K</span>
+        <input type="text" placeholder="Search Codex…" class="flex-1 bg-transparent outline-none" />
+      </div>
+      <a href="#" class="px-3 py-1.5 text-sm rounded font-medium" style="background:var(--accent); color:white; text-decoration:none">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-[200px_1fr_220px] gap-10">
+
+  <aside>
+    <div class="mono text-xs uppercase tracking-wider mb-3" style="color:var(--muted)">On this page</div>
+    <nav class="toc text-sm">
+      <a href="#summary" class="cur">Summary</a>
+      <a href="#background">Background</a>
+      <a href="#doe-program">The DOE program</a>
+      <a href="#four-labs">The four labs</a>
+      <a href="#procurement">Procurement signal</a>
+      <a href="#standards">Standards body fight</a>
+      <a href="#related">Related entries</a>
+      <a href="#sources">Sources (12)</a>
+    </nav>
+
+    <div class="mono text-xs uppercase tracking-wider mt-8 mb-3" style="color:var(--muted)">Backlinks (47)</div>
+    <ul class="text-sm space-y-1">
+      <li><a href="#">CHIPS-Act framework</a></li>
+      <li><a href="#">ITAR controls</a></li>
+      <li><a href="#">DOE grant cycles</a></li>
+      <li><a href="#">Sensing program managers</a></li>
+      <li class="mono text-xs" style="color:var(--muted)">+ 43 more</li>
+    </ul>
+  </aside>
+
+  <article>
+    <div class="crumb mono text-xs">
+      <a href="#">Codex</a> / <a href="#">Quantum</a> / <a href="#">Sensing</a> / <strong style="color:var(--ink)">DOE 1.4B program</strong>
+    </div>
+
+    <div class="flex items-baseline gap-3 mt-4 flex-wrap">
+      <span class="tag">QUANTUM</span>
+      <span class="tag">DEFENSE-ADJACENT</span>
+      <span class="tag">PROGRAM</span>
+      <span class="tag">2026</span>
+    </div>
+
+    <h1 class="text-4xl font-bold tracking-tight mt-3 leading-tight">DOE quantum-sensing program ($1.4&nbsp;B, 2024–2027)</h1>
+
+    <p class="mt-3 mono text-xs" style="color:var(--muted)">
+      Entry #024 · Quantum desk · author <a href="#">A. Patel</a> + 3 contributors · last reviewed <strong>2026-05-22</strong> · 12 cited sources · 47 backlinks
+    </p>
+
+    <p class="mt-6">The <strong>DOE quantum-sensing program</strong> is a $1.4&nbsp;billion appropriation from the U.S. Department of Energy, allocated over fiscal years 2024–2027, directed at quantum-enabled sensing technologies with defense-adjacent applications. It is currently the largest single U.S. federal allocation to a quantum sub-field; see <a href="#">CHIPS-Act framework</a> for comparable scale in semiconductors.</p>
+
+    <h2 id="summary" class="text-2xl font-semibold mt-10 leading-snug">Summary <a href="#summary" class="anchor mono">#</a></h2>
+    <p class="mt-2">Authorized in late 2023 and funded in the FY2024 Energy &amp; Water appropriation, the program directs ≈78% of obligations through four DOE national labs (see <a href="#">§ Four labs</a>). As of <a href="#">2026-Q1</a>, no defense procurement signal has arrived; the earliest credible window is <a href="#">Q4 2026</a>.</p>
+
+    <blockquote>"Three years out from the largest single allocation to a defense-adjacent quantum field, the procurement signal has not arrived. The four labs that matter are still hiring." — <a href="#">A. Patel, brief #024, 2026-05-22</a></blockquote>
+
+    <h2 id="background" class="text-2xl font-semibold mt-10 leading-snug">Background <a href="#background" class="anchor mono">#</a></h2>
+    <p class="mt-2">Quantum sensing applies quantum-coherence-preserving measurement techniques to extract signals at the shot-noise floor. Defense-adjacent applications include magnetic anomaly detection (see <a href="#">MAD-Q</a>), inertial navigation in GPS-denied environments (see <a href="#">cold-atom inertial</a>), and gravimetric mapping (see <a href="#">quantum gravimetry</a>). See also <a class="stub" href="#">[stub] biological quantum sensing</a>.</p>
+
+    <h2 id="doe-program" class="text-2xl font-semibold mt-10 leading-snug">The DOE program <a href="#doe-program" class="anchor mono">#</a></h2>
+    <p class="mt-2">Funded in the <a href="#">FY2024 Energy &amp; Water appropriation</a>; reauthorized through FY2027 in a <a href="#">FY2025 amendment</a>. Program managers reside in <a href="#">DOE-SC ASCR</a> with cross-cuts to <a href="#">ARPA-E</a> and <a href="#">NNSA</a>.</p>
+
+    <h3 id="four-labs" class="text-xl font-semibold mt-7 leading-snug">The four labs <a href="#four-labs" class="anchor mono">#</a></h3>
+    <ul class="mt-2 list-disc list-inside space-y-1.5">
+      <li><a href="#">Brookhaven National Lab</a> — atom-trap sensing testbed (see <a href="#">A. Patel note · 2026-05-26</a>)</li>
+      <li><a href="#">Argonne National Lab</a> — solid-state nitrogen-vacancy program</li>
+      <li><a href="#">Oak Ridge National Lab</a> — cryo-magnetometer prototype facility</li>
+      <li><a href="#">Lawrence Berkeley National Lab</a> — quantum gravimetry collaboration with USGS</li>
+    </ul>
+
+    <h2 id="procurement" class="text-2xl font-semibold mt-10 leading-snug">Procurement signal <a href="#procurement" class="anchor mono">#</a></h2>
+    <p class="mt-2">As of <a href="#">2026-05-22</a>, no DOE quantum-sensing procurement contract above $5M has been let to a non-lab vendor. Three known pending solicitations (numbers withheld; see <a href="#">A. Patel, brief #024 § 4</a>) are tracked to <a href="#">Q4-2026 / Q1-2027</a>.</p>
+
+    <h2 id="related" class="text-2xl font-semibold mt-10 leading-snug">Related entries <a href="#related" class="anchor mono">#</a></h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+      <a href="#" class="block border rule p-4 rounded no-underline" style="color:var(--ink); background:var(--panel)">
+        <div class="font-semibold">CHIPS-Act framework</div>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">defense · funding · 38 backlinks</div>
+      </a>
+      <a href="#" class="block border rule p-4 rounded no-underline" style="color:var(--ink); background:var(--panel)">
+        <div class="font-semibold">ITAR controls</div>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">defense · regulatory · 31 backlinks</div>
+      </a>
+      <a href="#" class="block border rule p-4 rounded no-underline" style="color:var(--ink); background:var(--panel)">
+        <div class="font-semibold">DOE grant cycles</div>
+        <div class="mono text-xs mt-1" style="color:var(--muted)">energy · reference · 28 backlinks</div>
+      </a>
+    </div>
+
+    <h2 id="sources" class="text-2xl font-semibold mt-10 leading-snug">Sources (12) <a href="#sources" class="anchor mono">#</a></h2>
+    <ol class="mt-3 list-decimal list-inside text-sm space-y-1 footnote">
+      <li>FY2024 Energy &amp; Water appropriation, Pub. L. 118–42, captured <a href="#">2024-04-12</a>.</li>
+      <li>DOE-SC ASCR program plan, "Quantum Sensing Initiative," captured <a href="#">2024-09-30</a>.</li>
+      <li>FY2025 amendment, Pub. L. 118–303, captured <a href="#">2024-12-19</a>.</li>
+      <li>Patel, A. "Three years out." Codex brief #024, captured <a href="#">2026-05-22</a>.</li>
+      <li>Suzuki, M. "Brookhaven atom-trap testbed status." Memo #017, captured <a href="#">2026-04-04</a>.</li>
+      <li class="mono text-xs" style="color:var(--muted)">+ 7 more</li>
+    </ol>
+
+    <hr class="border-t rule my-10" />
+
+    <div class="mono text-xs" style="color:var(--muted)">
+      Cite this entry · Patel, A. (2026). "DOE quantum-sensing program ($1.4&nbsp;B, 2024–2027)." <em>Codex</em>. Retrieved 2026-05-27 from codex/quantum/sensing/doe-1-4b-program.
+    </div>
+  </article>
+
+  <aside>
+    <div class="mono text-xs uppercase tracking-wider mb-3" style="color:var(--muted)">Most-cited this week</div>
+    <ul class="text-sm space-y-2">
+      <li><a href="#">Quantum sensing program</a> · 47 cites</li>
+      <li><a href="#">ITAR controls</a> · 38 cites</li>
+      <li><a href="#">CHIPS-Act framework</a> · 31 cites</li>
+      <li><a href="#">DOE grant cycles</a> · 28 cites</li>
+      <li><a href="#">EU AI Act Article 6</a> · 24 cites</li>
+      <li><a href="#">Biosec preprint norms</a> · 19 cites</li>
+    </ul>
+
+    <div class="mono text-xs uppercase tracking-wider mt-8 mb-3" style="color:var(--muted)">Recently expanded</div>
+    <ul class="text-sm space-y-2">
+      <li><a href="#">Sensing program</a><div class="mono text-xs" style="color:var(--muted)">+421 words · 2h ago</div></li>
+      <li><a href="#">EU AI Act</a><div class="mono text-xs" style="color:var(--muted)">+187 words · 5h ago</div></li>
+      <li><a href="#">Biosec preprint</a><div class="mono text-xs" style="color:var(--muted)">+92 words · 1d ago</div></li>
+    </ul>
+
+    <div class="mono text-xs uppercase tracking-wider mt-8 mb-3" style="color:var(--muted)">Stubs needing authors</div>
+    <ul class="text-sm space-y-1.5">
+      <li><a href="#" class="stub">[stub] biological quantum sensing</a></li>
+      <li><a href="#" class="stub">[stub] cryo-magnetometer manufacturing</a></li>
+      <li><a href="#" class="stub">[stub] FY2027 reauth timing</a></li>
+    </ul>
+
+    <div class="mt-8 p-4 rounded border rule" style="background:var(--panel)">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Provenance</div>
+      <div class="mt-2 text-sm">12 sources · 12 verified ✓ · 0 flagged · 0 stale</div>
+      <a href="#" class="mt-2 inline-block text-sm">Open verification log →</a>
+    </div>
+  </aside>
+</main>
+
+<section class="py-12 border-t rule" style="background:var(--panel)">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    <div class="md:col-span-2">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Membership</div>
+      <h2 class="text-2xl font-bold tracking-tight mt-2">$24 / month · read, edit, contribute, peer-review.</h2>
+      <p class="mt-2 text-sm" style="color:var(--muted)">Codex is a living reference set across 20 desks. Members can read every entry, propose edits, claim stubs, and serve as peer reviewers. Founding seats: 14 of 100 left.</p>
+    </div>
+    <a href="#" class="md:justify-self-end px-5 py-3 rounded font-medium text-center no-underline" style="background:var(--accent); color:white">Begin membership →</a>
+  </div>
+</section>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>Codex · D9 Wiki / Reference · prototype 2026-05-27</div>
+    <div>Σ 45/50 · <a href="../index.html">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

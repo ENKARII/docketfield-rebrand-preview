@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Cinema · D16 · Watch page (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --bg:#0d0d10; --panel:#16161a; --paper:#f4f1e8; --ink:#f4f1e8; --muted:#8a8a93; --rule:#28282e; --accent:#e4683b; --gold:#caa44a; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .serif { font-family:'Fraunces',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.06em; }
+  a { color:var(--ink); text-decoration:none; }
+  a.qlink { color:var(--accent); }
+  a.qlink:hover { text-decoration:underline; }
+  .player { background:#000; aspect-ratio:16/9; position:relative; }
+  .player::before { content:""; position:absolute; inset:0; background:linear-gradient(135deg,#3a1a08,#080404); }
+  .player::after { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at 30% 40%, rgba(228,104,59,.25) 0, transparent 50%); }
+  .ctrls { position:absolute; bottom:0; left:0; right:0; padding:14px 16px; display:flex; align-items:center; gap:12px; background:linear-gradient(transparent, rgba(0,0,0,.7)); z-index:2; }
+  .ctrls button { background:transparent; border:0; color:white; cursor:pointer; font-size:14px; }
+  .scrub { flex:1; height:4px; background:rgba(255,255,255,.2); border-radius:2px; position:relative; }
+  .scrub .played { position:absolute; left:0; top:0; bottom:0; width:34%; background:var(--accent); border-radius:2px; }
+  .scrub .chap { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--gold); }
+  .timestamp-pill { position:absolute; top:-26px; font-family:'JetBrains Mono',monospace; font-size:10px; background:rgba(0,0,0,.9); color:white; padding:2px 6px; border-radius:2px; }
+  .ava { width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:10px; font-weight:600; flex-shrink:0; }
+  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+  .ts { font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:11px; cursor:pointer; }
+  .ts:hover { text-decoration:underline; }
+  .transcript-line { padding:.65rem 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 30px 1fr; gap:10px; align-items:start; }
+  .transcript-line:hover { background:rgba(228,104,59,.05); }
+  .chip { display:inline-block; padding:2px 8px; border:1px solid var(--gold); color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
+  .react-btn { display:inline-flex; align-items:center; gap:.35rem; padding:3px 9px; background:#1f1f25; border:1px solid var(--rule); border-radius:99px; font-size:11px; cursor:pointer; }
+  .react-btn:hover { border-color:var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-xl tracking-tight" style="color:var(--gold)">The Cinema</div>
+      <a href="./main.html" class="mono text-xs" style="color:var(--muted)">/ now playing</a>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <button class="border rule px-3 py-1 rounded text-xs">↗ share</button>
+      <button class="border rule px-3 py-1 rounded text-xs">↧ download brief</button>
+      <span class="ava a1">YOU</span>
+    </div>
+  </div>
+</header>
+
+<main class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-0 min-h-[calc(100vh-48px)]">
+
+  <section class="border-r rule">
+    <div class="player">
+      <div class="ctrls">
+        <button>▶</button>
+        <span class="mono text-xs" style="color:white">34:47 / 1:42:18</span>
+        <div class="scrub">
+          <div class="played"></div>
+          <div class="chap" style="left:12%"></div>
+          <div class="chap" style="left:28%"></div>
+          <div class="chap" style="left:47%"></div>
+          <div class="chap" style="left:64%"></div>
+          <div class="chap" style="left:81%"></div>
+          <span class="timestamp-pill" style="left:34%">"the dock spoke first"</span>
+        </div>
+        <button class="mono text-xs">1x</button>
+        <button>CC</button>
+        <button>⛶</button>
+      </div>
+    </div>
+
+    <div class="px-6 py-5">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="chip">EPISODE #024</span>
+        <span class="label mono">Quantum · 1:42:18 · published 6h ago · 3,127 watching now</span>
+      </div>
+      <h1 class="serif text-3xl font-medium mt-3 leading-snug tracking-tight">"A truck driver, a quantum physicist, and a federal-grants accountant"</h1>
+
+      <div class="mt-5 flex items-center gap-4 flex-wrap">
+        <span class="flex items-center gap-2"><span class="ava a1">SA</span><span><strong>Sam Ahmadi</strong><div class="label">freight, route-13</div></span></span>
+        <span class="flex items-center gap-2"><span class="ava a4">AP</span><span><strong>Alex Patel</strong><div class="label">Brookhaven, off-duty</div></span></span>
+        <span class="flex items-center gap-2"><span class="ava a6">RT</span><span><strong>Rosa Torres</strong><div class="label">federal-grants accountant</div></span></span>
+        <span class="flex items-center gap-2 ml-auto"><span class="ava a5">MC</span><span><strong>Mara Chen</strong><div class="label">moderator · Cinema editor</div></span></span>
+      </div>
+
+      <div class="mt-6 grid grid-cols-5 gap-1.5">
+        <button class="border rule p-2.5 text-left"><div class="mono text-[10px] label">00:00</div><div class="serif text-xs mt-1">Cold open</div></button>
+        <button class="border rule p-2.5 text-left"><div class="mono text-[10px] label">12:04</div><div class="serif text-xs mt-1">From the truck</div></button>
+        <button class="border rule p-2.5 text-left" style="border-color:var(--accent); background:rgba(228,104,59,.08)"><div class="mono text-[10px]" style="color:var(--accent)">28:47 · here</div><div class="serif text-xs mt-1">Cryo evidence</div></button>
+        <button class="border rule p-2.5 text-left"><div class="mono text-[10px] label">47:11</div><div class="serif text-xs mt-1">Set-asides</div></button>
+        <button class="border rule p-2.5 text-left"><div class="mono text-[10px] label">1:23:00</div><div class="serif text-xs mt-1">The Q&amp;A</div></button>
+      </div>
+
+      <div class="mt-7">
+        <div class="label mono mb-2">— what's on screen right now</div>
+        <div class="border rule p-4" style="background:var(--panel)">
+          <div class="label mono">[ chapter · cryo evidence · 28:47 → 47:11 ]</div>
+          <p class="serif mt-2 italic leading-snug">"The Janis crates have a green stripe; Bluefors crates are matte black. I started noticing the green stripes in February. Three a week. That doesn't happen unless somebody just signed a big PO."</p>
+          <div class="label mt-2">— Sam, 31:14</div>
+        </div>
+      </div>
+
+      <div class="mt-7">
+        <div class="label mono mb-3">— react in real-time (visible to other viewers)</div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button class="react-btn">💡 changed my mind · 47</button>
+          <button class="react-btn">🤔 thinking · 22</button>
+          <button class="react-btn">📌 chapter-worthy · 8</button>
+          <button class="react-btn">🙋 question · 4</button>
+          <button class="react-btn">↗ share this moment</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="flex flex-col">
+
+    <div class="flex items-center border-b rule">
+      <button class="px-4 py-3 text-sm font-semibold" style="border-bottom:2px solid var(--accent); color:var(--accent)">Transcript</button>
+      <button class="px-4 py-3 text-sm" style="color:var(--muted)">Companion brief</button>
+      <button class="px-4 py-3 text-sm" style="color:var(--muted)">Q&amp;A (47)</button>
+      <button class="px-4 py-3 text-sm" style="color:var(--muted)">Sources (12)</button>
+    </div>
+
+    <div class="px-5 py-4 overflow-y-auto" style="max-height:calc(100vh - 120px)">
+      <div class="transcript-line">
+        <span class="ts">12:04</span>
+        <span class="ava a1">SA</span>
+        <div>
+          <strong class="text-sm">Sam</strong>
+          <p class="text-sm mt-0.5">I drive freight from Brookhaven Lab three times a week. The hiring on the loading dock is up. The cryo gear coming in is a different mix than last year. I don't know quantum sensing, but I know what shows up on the dock —</p>
+        </div>
+      </div>
+      <div class="transcript-line">
+        <span class="ts">12:38</span>
+        <span class="ava a4">AP</span>
+        <div>
+          <strong class="text-sm">Alex</strong>
+          <p class="text-sm mt-0.5">— and what's showing up is the kind of equipment I would have ordered if I were six months out from a procurement test cycle. Which is exactly what I wouldn't have predicted from the brief I wrote.</p>
+        </div>
+      </div>
+      <div class="transcript-line">
+        <span class="ts">14:12</span>
+        <span class="ava a5">MC</span>
+        <div>
+          <strong class="text-sm" style="color:var(--gold)">Mara (mod)</strong>
+          <p class="text-sm mt-0.5">Rosa, you came at this from the accounting side. What does the federal money look like when a procurement signal is real vs. when it's vapor?</p>
+        </div>
+      </div>
+      <div class="transcript-line">
+        <span class="ts">14:31</span>
+        <span class="ava a6">RT</span>
+        <div>
+          <strong class="text-sm">Rosa</strong>
+          <p class="text-sm mt-0.5">The small-business set-asides leak first. Three months before a $5M contract opens, you'll see $80-200K SBIR awards going to specific vendor names. If those names cluster, the program is real. If they're scattered, somebody's just spending the budget down.</p>
+        </div>
+      </div>
+      <div class="transcript-line">
+        <span class="ts">15:48</span>
+        <span class="ava a4">AP</span>
+        <div>
+          <strong class="text-sm">Alex</strong>
+          <p class="text-sm mt-0.5">That's the leg of my brief I missed entirely. I was watching the wrong end of the funnel.</p>
+        </div>
+      </div>
+
+      <div class="transcript-line" style="background:rgba(228,104,59,.08)">
+        <span class="ts" style="color:var(--accent)">28:47 ●</span>
+        <span class="ava a1">SA</span>
+        <div>
+          <strong class="text-sm">Sam</strong>
+          <p class="text-sm mt-0.5">The Janis crates have a green stripe; Bluefors crates are matte black. I started noticing the green stripes in February. Three a week. That doesn't happen unless somebody just signed a big PO.</p>
+        </div>
+      </div>
+
+      <div class="transcript-line">
+        <span class="ts">31:18</span>
+        <span class="ava a4">AP</span>
+        <div>
+          <strong class="text-sm">Alex</strong>
+          <p class="text-sm mt-0.5">— and I'm sitting at a desk three buildings over and I had no idea. That's the thing about this whole platform. The ground-truth never reaches the people writing the briefs unless somebody makes it.</p>
+        </div>
+      </div>
+
+      <div class="transcript-line">
+        <span class="ts">34:22</span>
+        <span class="ava a6">RT</span>
+        <div>
+          <strong class="text-sm">Rosa</strong>
+          <p class="text-sm mt-0.5">I see that all the time in grants accounting. The actual signal is always in the boring rows of the spreadsheet, and nobody looks at the boring rows because the boring rows don't get bylines.</p>
+        </div>
+      </div>
+
+      <div class="transcript-line">
+        <span class="ts">35:51</span>
+        <span class="ava a5">MC</span>
+        <div>
+          <strong class="text-sm" style="color:var(--gold)">Mara (mod)</strong>
+          <p class="text-sm mt-0.5">Let's spend the next twelve minutes on the boring rows.</p>
+        </div>
+      </div>
+
+      <div class="text-center py-6">
+        <a href="#" class="qlink text-sm font-semibold">↓ 312 more transcript lines</a>
+      </div>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-4">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Cinema · D16 · watch page · backend prototype</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

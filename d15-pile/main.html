@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Pile · D15 · Main (question feed)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f8f8f4; --card:#ffffff; --ink:#1a1a1a; --muted:#5d6068; --rule:#dcdfd7; --accent:#16846b; --warm:#c25a1f; --gold:#c89b1c; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.5; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); }
+  a { color:inherit; text-decoration:none; }
+  .qlink { color:var(--accent); }
+  .qlink:hover { text-decoration:underline; }
+  .tag { display:inline-flex; align-items:center; padding:2px 8px; background:#e6f4ef; color:var(--accent); border-radius:3px; font-size:11px; font-family:'JetBrains Mono',monospace; font-weight:500; }
+  .tag.cyber { background:#e6ecf5; color:#1e4a8a; }
+  .tag.bio { background:#f5e8f0; color:#7a2a52; }
+  .tag.def { background:#f5ecd9; color:#7a5418; }
+  .tag.energy { background:#f5e6e2; color:#7a2a14; }
+  .tag.openish { background:#f5f1d9; color:#7a5e14; }
+  .row { background:var(--card); border:1px solid var(--rule); padding:1rem 1.2rem; display:grid; grid-template-columns:80px 1fr 110px; gap:1rem; align-items:start; transition:.1s; }
+  .row:hover { border-color:#b8bdaa; }
+  .stat-block { text-align:center; }
+  .stat { font-size:1.1rem; font-weight:700; line-height:1.1; }
+  .stat-lbl { font-size:10px; color:var(--muted); margin-top:1px; text-transform:uppercase; letter-spacing:.06em; }
+  .answered { color:var(--accent); }
+  .ava { width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
+  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+  .stripe { background:#f5ecd9; }
+  .topbar { background:var(--ink); color:white; }
+  .reputation { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); font-weight:700; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs opacity-70">←</a>
+      <div class="font-bold text-base tracking-tight">The Pile</div>
+      <span class="mono text-[10px] opacity-70">a question-answer commons · 1,247 questions · 312 contributors</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <input type="text" placeholder="search questions…" class="bg-white text-black px-2.5 py-1 rounded text-xs" style="width:240px" />
+      <button class="bg-white text-black px-3 py-1.5 rounded text-xs font-semibold">+ Ask a question</button>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 py-5 border-b rule grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-7">
+
+  <div>
+    <div class="flex items-baseline justify-between mb-3">
+      <h1 class="text-2xl font-semibold tracking-tight">1,247 questions, sorted by quality of answer</h1>
+      <div class="flex items-center gap-2 text-sm">
+        <button class="px-2.5 py-1 border rule rounded text-xs font-semibold" style="background:#e6f4ef; color:var(--accent)">Top</button>
+        <button class="px-2.5 py-1 border rule rounded text-xs">Newest</button>
+        <button class="px-2.5 py-1 border rule rounded text-xs">Unanswered</button>
+        <button class="px-2.5 py-1 border rule rounded text-xs">Open bounties</button>
+      </div>
+    </div>
+    <p class="text-sm" style="color:var(--muted)">Ask a question. Anyone — anyone with something to add — can answer. The community ranks the answers. The best floats to the top. Reputation here is built by being useful, not by being credentialed.</p>
+  </div>
+
+  <div>
+    <div class="label mono mb-2">— filter by field</div>
+    <div class="flex flex-wrap gap-1.5">
+      <a href="#" class="tag">quantum 142</a>
+      <a href="#" class="tag cyber">cyber 98</a>
+      <a href="#" class="tag bio">biosec 87</a>
+      <a href="#" class="tag def">defense 142</a>
+      <a href="#" class="tag energy">energy 104</a>
+      <a href="#" class="tag openish">+ 15 more</a>
+    </div>
+  </div>
+
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-5 space-y-3">
+
+  <div class="row">
+    <div class="space-y-2">
+      <div class="stat-block answered">
+        <div class="stat">47</div>
+        <div class="stat-lbl">votes</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat answered">7</div>
+        <div class="stat-lbl">answers ✓</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat">1247</div>
+        <div class="stat-lbl">reads</div>
+      </div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="./backend.html" class="qlink hover:underline" style="color:var(--ink)">Will DOE's $1.4B quantum-sensing program produce a procurement signal before Q4 2026?</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">Three years out, no contract above $5M has been let to a non-lab vendor. Four labs hold 78% of obligations. What signals would you trust as "the program is real" vs. "the program is rebadged science funding"? Looking for procurement-side evidence, not lab-side.</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag">quantum</span>
+        <span class="tag def">procurement</span>
+        <span class="tag openish">policy</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a4">AP</span><span>Alex Patel</span><span class="reputation">· 12,847</span><span class="label">· asked 2h ago</span></span>
+      </div>
+    </div>
+    <div class="stripe rounded p-2 text-center">
+      <div class="mono text-[10px]" style="color:#7a5418">BOUNTY</div>
+      <div class="mono font-bold text-sm">+150</div>
+      <div class="mono text-[10px]" style="color:#7a5418">rep · closes 5d</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="space-y-2">
+      <div class="stat-block answered"><div class="stat">38</div><div class="stat-lbl">votes</div></div>
+      <div class="stat-block"><div class="stat answered">5</div><div class="stat-lbl">answers ✓</div></div>
+      <div class="stat-block"><div class="stat">843</div><div class="stat-lbl">reads</div></div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="#" class="qlink hover:underline" style="color:var(--ink)">How do I explain "gain-of-function research" to high-school students without misleading them?</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">I teach chemistry. My students keep asking. Newspaper definitions feel either too narrow or too scary. Looking for a one-paragraph version a working biosec researcher would actually sign off on.</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag bio">biosec</span>
+        <span class="tag openish">pedagogy</span>
+        <span class="tag openish">definitions</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a3">DT</span><span>Diego Torres</span><span class="reputation">· 218</span><span class="label">· asked 6h ago · new contributor</span></span>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="row">
+    <div class="space-y-2">
+      <div class="stat-block answered"><div class="stat">31</div><div class="stat-lbl">votes</div></div>
+      <div class="stat-block"><div class="stat answered">4</div><div class="stat-lbl">answers ✓</div></div>
+      <div class="stat-block"><div class="stat">621</div><div class="stat-lbl">reads</div></div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="#" class="qlink hover:underline" style="color:var(--ink)">Does the EU AI Act trilogue text actually narrow Article-6 high-risk classifications, or did the press get it wrong?</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">I read the trilogue text twice. The press says Article-6 was widened. Reading the actual language, three carve-outs look narrower to me, one is widened. Asking other compliance / legal readers to check my read.</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag cyber">cyber</span>
+        <span class="tag cyber">regulation</span>
+        <span class="tag openish">EU</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a2">MK</span><span>Maya Khurana</span><span class="reputation">· 4,218</span><span class="label">· asked 1d ago</span></span>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="row" style="background:#fffaeb">
+    <div class="space-y-2">
+      <div class="stat-block"><div class="stat" style="color:var(--warm)">22</div><div class="stat-lbl">votes</div></div>
+      <div class="stat-block"><div class="stat" style="color:var(--gold)">0</div><div class="stat-lbl">answers</div></div>
+      <div class="stat-block"><div class="stat">412</div><div class="stat-lbl">reads</div></div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="#" class="qlink hover:underline" style="color:var(--ink)">What's the actual "single-point exposure" rate for rare-earth elements when you re-cut the data by who pours the final metal, not who refines it?</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">Public estimates use upstream-refining as final-stage. From inside a mining-equipment company, I think seven of seventeen elements concentrate 65%+ into one jurisdiction. Looking for someone with USGS or industry data to corroborate or refute.</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag energy">materials</span>
+        <span class="tag openish">supply-chain</span>
+        <span class="tag openish">data-source-wanted</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a6">JO</span><span>Jamal Okafor</span><span class="reputation">· 891</span><span class="label">· asked 3d ago · needs answer</span></span>
+      </div>
+    </div>
+    <div class="stripe rounded p-2 text-center">
+      <div class="mono text-[10px]" style="color:#7a5418">BOUNTY</div>
+      <div class="mono font-bold text-sm">+250</div>
+      <div class="mono text-[10px]" style="color:#7a5418">rep · open 2d</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="space-y-2">
+      <div class="stat-block answered"><div class="stat">28</div><div class="stat-lbl">votes</div></div>
+      <div class="stat-block"><div class="stat answered">3</div><div class="stat-lbl">answers ✓</div></div>
+      <div class="stat-block"><div class="stat">389</div><div class="stat-lbl">reads</div></div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="#" class="qlink hover:underline" style="color:var(--ink)">What does the ITAR rewrite Clause 4(b) do to university quantum labs in practice, not on paper?</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">Reading the NPRM text. The foundational-research carve-out got tightened in 4(b), not 5 as press said. Looking for any university counsel or research-compliance officer who can speak to real-world impact + comment-window timing.</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag def">defense</span>
+        <span class="tag def">ITAR</span>
+        <span class="tag openish">universities</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a5">JO</span><span>Jess Oduya</span><span class="reputation">· 5,224</span><span class="label">· asked 4d ago</span></span>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="row">
+    <div class="space-y-2">
+      <div class="stat-block"><div class="stat">17</div><div class="stat-lbl">votes</div></div>
+      <div class="stat-block answered"><div class="stat">11</div><div class="stat-lbl">answers ✓</div></div>
+      <div class="stat-block"><div class="stat">241</div><div class="stat-lbl">reads</div></div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg leading-snug"><a href="#" class="qlink hover:underline" style="color:var(--ink)">Outsider question: why are MAD-Q and gravimetry both lumped under "quantum sensing"? They feel like different problem-classes.</a></h3>
+      <p class="text-sm mt-1.5" style="color:var(--muted)">Genuinely just trying to understand the taxonomy. I'm a software person reading the brief and the two applications feel like different physics, different supply chains, different policy. Where does the umbrella term help and where does it hide things?</p>
+      <div class="mt-3 flex items-center gap-2 flex-wrap">
+        <span class="tag">quantum</span>
+        <span class="tag openish">taxonomy</span>
+        <span class="tag openish">beginner</span>
+        <span class="ml-auto flex items-center gap-1.5"><span class="ava a1">WT</span><span>Wesley T.</span><span class="reputation">· 142</span><span class="label">· asked 5d ago · welcome new contributor</span></span>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="text-center py-5 border-t rule mt-4">
+    <a href="#" class="qlink font-semibold text-sm">+ 1,241 more questions across 20 fields</a>
+  </div>
+
+</main>
+
+<section class="max-w-7xl mx-auto px-6 py-7 border-t rule grid grid-cols-1 lg:grid-cols-3 gap-7">
+  <div>
+    <div class="label mono mb-2">— how reputation works</div>
+    <p class="text-sm leading-relaxed">Every good question +5. Every accepted answer +15. Every up-voted answer +2. The Pile is the cheapest reputation in the world to start building if you have something to say — credentials and titles don't show on profiles by design. A high-school chemistry teacher and a Nobel laureate get the same up-vote weight.</p>
+  </div>
+  <div>
+    <div class="label mono mb-2">— what makes a good question here</div>
+    <ul class="text-sm space-y-1 leading-relaxed">
+      <li>· concrete, not philosophical</li>
+      <li>· answerable in &lt;1000 words by someone who knows</li>
+      <li>· framed in a way that an outsider can follow</li>
+      <li>· honest about what you've already tried / read</li>
+    </ul>
+    <p class="text-sm mt-3" style="color:var(--muted)">A bounty (5-500 rep) signals it matters to you and gets faster answers.</p>
+  </div>
+  <div>
+    <div class="label mono mb-2">— join the pile</div>
+    <p class="text-sm leading-relaxed">$8/month. Asking is free for first-time contributors. After that you need membership. Answering is always free for anyone. The good answers earn rep. The rep buys nothing — it just gets noticed.</p>
+    <button class="mt-3 px-4 py-2 text-white text-sm font-semibold rounded" style="background:var(--accent)">add to the pile →</button>
+  </div>
+</section>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Pile · D15 · prototype 2026-05-27</div>
+    <div><a href="../index.html" class="qlink">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

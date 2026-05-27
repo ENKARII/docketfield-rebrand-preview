@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Margins · D17 · Library + your annotations (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&family=Caveat:wght@500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f8f4ea; --doc:#ffffff; --margin:#f0e9d5; --ink:#1a1612; --muted:#6b5f4d; --rule:#d6c9aa; --accent:#7a2e1c; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.55; }
+  .serif { font-family:'Source Serif 4',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .hand { font-family:'Caveat',cursive; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; font-weight:500; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .panel { background:var(--doc); border:1px solid var(--rule); }
+  .src { padding:1rem 1.2rem; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:60px 1fr 140px; gap:1rem; align-items:start; }
+  .pages { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); text-align:center; }
+  .pages .n { display:block; font-size:1.8rem; line-height:1; color:var(--ink); font-weight:700; }
+  .anno-mini { background:var(--margin); border:1px solid var(--rule); padding:.65rem .85rem; border-radius:4px; font-size:13px; }
+  .ava { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:600; }
+  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+  .chip { display:inline-block; padding:1px 7px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; }
+  .chip-open { background:#dfeedb; color:#3a5b2c; }
+  .chip-foia { background:#fbecc5; color:#6b4815; }
+  .chip-pub { background:#dde7f3; color:#2c4d6e; }
+  .chip-leak { background:#f8dceb; color:#7a2a5a; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-2xl font-bold tracking-tight">The Margins</div>
+      <span class="label">/ my library</span>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <a href="./main.html" style="color:var(--accent)">a source, annotated →</a>
+      <button class="px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">+ Bring a source</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+
+  <section class="space-y-6">
+
+    <div>
+      <div class="label mono">— sources currently open in The Margins · 52</div>
+      <h1 class="serif text-3xl font-bold tracking-tight mt-1">What we're reading together</h1>
+      <p class="text-sm mt-2" style="color:var(--muted)">Any contributor can bring a source. We open it for collaborative reading. You can join any source, highlight a sentence, and add what you noticed. Everything stays attributed.</p>
+    </div>
+
+    <div class="flex items-center gap-2 flex-wrap text-xs">
+      <span class="label mr-2">filter:</span>
+      <button class="border rule px-2.5 py-1 rounded" style="background:var(--accent); color:white">all open · 52</button>
+      <button class="border rule px-2.5 py-1 rounded">your fields</button>
+      <button class="border rule px-2.5 py-1 rounded">unread by you</button>
+      <button class="border rule px-2.5 py-1 rounded">recently annotated</button>
+      <button class="border rule px-2.5 py-1 rounded">closing comment window</button>
+    </div>
+
+    <div class="panel">
+      <div class="src" style="background:#fffaeb">
+        <div class="pages"><span class="n">14</span>pp</div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip chip-foia">FOIA · DOE</span>
+            <span class="chip chip-open">3 reading now</span>
+            <span class="label">added by @alex.p · May 14</span>
+          </div>
+          <h3 class="serif font-bold text-lg mt-1.5"><a href="./main.html" style="color:var(--ink)">DOE-SC ASCR · "Quantum Sensing Initiative" v1.3</a></h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Program plan, internal version, released via FOIA. Contains the procurement-phasing language driving Brookhaven equipment orders.</p>
+          <div class="mt-2 flex items-center gap-2"><span class="ava a4">AP</span><span class="ava a6">RT</span><span class="ava a1">SA</span><span class="ava a5">JO</span><span class="ava a2">RM</span><span class="ava a3">DT</span><span class="label">+8 readers · 47 annotations · 6 questions</span></div>
+        </div>
+        <div class="text-right">
+          <div class="hand text-2xl" style="color:var(--accent)">"this is the one"</div>
+          <div class="label mt-1">most-pinned source</div>
+        </div>
+      </div>
+
+      <div class="src">
+        <div class="pages"><span class="n">128</span>pp</div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip chip-pub">PUBLIC · EUR-LEX</span>
+            <span class="chip chip-open">9 reading now</span>
+            <span class="label">added by @maya.k · May 4</span>
+          </div>
+          <h3 class="serif font-bold text-lg mt-1.5">EU AI Act · trilogue compromise text (consolidated)</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">128-page consolidated text. Compliance officers + EU staff lawyers + open-source ML researchers collectively making sense of which Article-6 carve-outs got narrowed vs widened.</p>
+          <div class="mt-2 flex items-center gap-2"><span class="ava a2">MK</span><span class="ava a4">+</span><span class="label">9 readers · 87 annotations · 14 questions</span></div>
+        </div>
+        <div class="text-right text-xs label">comment window<br/><strong style="color:var(--ink)">closes Jun 17</strong></div>
+      </div>
+
+      <div class="src">
+        <div class="pages"><span class="n">42</span>pp</div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip chip-pub">FEDREG · DDTC</span>
+            <span class="chip chip-open">6 reading now</span>
+            <span class="label">added by @jess.o · May 7</span>
+          </div>
+          <h3 class="serif font-bold text-lg mt-1.5">ITAR rewrite · NPRM (Federal Register, 2026-04-30)</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Notice of Proposed Rulemaking. Reading focus: clause 4(b) foundational-research carve-out + comment-window timing for university counsel.</p>
+          <div class="mt-2 flex items-center gap-2"><span class="ava a5">JO</span><span class="ava a6">+</span><span class="label">6 readers · 31 annotations</span></div>
+        </div>
+        <div class="text-right text-xs label">comment window<br/><strong style="color:var(--accent)">closes Jun 17 ⏱</strong></div>
+      </div>
+
+      <div class="src">
+        <div class="pages"><span class="n">87</span>pp</div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip chip-pub">PUBLIC · USGS</span>
+            <span class="chip chip-open">11 reading now</span>
+            <span class="label">added by @j.okafor · Apr 22</span>
+          </div>
+          <h3 class="serif font-bold text-lg mt-1.5">USGS Critical Minerals Summary · 2026</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Annual summary. Reading focus: the methodology footnote in §3 that treats upstream-refining as final-stage. Hot debate in margins right now.</p>
+          <div class="mt-2 flex items-center gap-2"><span class="ava a6">JO</span><span class="label">11 readers · 64 annotations · 9 questions</span></div>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="src">
+        <div class="pages"><span class="n">312</span>pp</div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="chip chip-leak">LEAK · ERCOT</span>
+            <span class="chip chip-open">3 reading now</span>
+            <span class="label">added by @w.tx · May 11</span>
+          </div>
+          <h3 class="serif font-bold text-lg mt-1.5">ERCOT day-ahead market log · March 2026</h3>
+          <p class="text-sm mt-1" style="color:var(--muted)">Day-ahead auction logs. Reading focus: the hour-14 anomaly around the demand-response auction, narrated by the battery operator who first noticed.</p>
+          <div class="mt-2 flex items-center gap-2"><span class="ava a3">WT</span><span class="label">3 readers · 14 annotations</span></div>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="src" style="opacity:.85">
+        <div class="pages"><span class="n">+47</span></div>
+        <div>
+          <a href="#" class="serif font-bold text-lg" style="color:var(--accent)">+ 47 more open sources · across 18 fields</a>
+          <p class="text-sm mt-1" style="color:var(--muted)">Papers, court filings, leaked memos, peer-review, congressional transcripts, corporate disclosures, more.</p>
+        </div>
+        <div></div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-6">
+
+    <div class="panel p-5">
+      <div class="label">your annotation history · 30 days</div>
+      <div class="grid grid-cols-3 gap-3 mt-3">
+        <div><div class="serif text-3xl font-bold leading-none">31</div><div class="label mt-1">annotations</div></div>
+        <div><div class="serif text-3xl font-bold leading-none">112</div><div class="label mt-1">thanks</div></div>
+        <div><div class="serif text-3xl font-bold leading-none">8</div><div class="label mt-1">cross-cites</div></div>
+      </div>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label mb-3">your most-thanked annotations</div>
+      <div class="space-y-3">
+        <div class="anno-mini">
+          <div class="label mb-1">on DOE Sensing v1.3 · §3 · 47 thanks</div>
+          "Note the <em>obligated</em> language. What's actually obligated is closer to $890M…"
+        </div>
+        <div class="anno-mini">
+          <div class="label mb-1">on EU AI Act trilogue · Art. 6 · 22 thanks</div>
+          "Three carve-outs narrowed, one widened. Press got this backwards…"
+        </div>
+        <div class="anno-mini">
+          <div class="label mb-1">on USGS Crit. Minerals · §3 footnote · 14 thanks</div>
+          "If you re-cut by who pours the final metal, the concentration jumps…"
+        </div>
+      </div>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label mb-2">people following your annotations · 47</div>
+      <p class="text-sm leading-snug" style="color:var(--muted)">When you annotate a source, your followers get a quiet digest the next morning. Mostly: 9 DOE program managers (declared), 3 university counsel, 11 fellow truck-drivers-with-opinions, 24 across-fields readers.</p>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label mb-2">+ bring a source</div>
+      <p class="text-sm leading-snug" style="color:var(--muted)">Got a document the community should read carefully together? Public, FOIA, leaked, or paywalled (with a recap). Reading rules apply.</p>
+      <button class="mt-3 px-3 py-1.5 text-xs font-semibold rounded" style="background:var(--accent); color:white">propose a source</button>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Margins · D17 · library · backend prototype</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

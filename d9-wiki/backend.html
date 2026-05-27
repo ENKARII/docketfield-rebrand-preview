@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Codex · D9 · Editor's Desk (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#fafafa; --ink:#0a0a0b; --muted:#555a63; --rule:#e9eaee; --accent:#1f3da8; --warn:#c89b1c; --crit:#a3402a; --pos:#0e7f33; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.55; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .panel { background:var(--panel); border:1px solid var(--rule); border-radius:6px; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:4px; font-size:11px; font-family:'JetBrains Mono',monospace; }
+  .pill-pend { background:#fff3e0; color:#8a5b00; }
+  .pill-conf { background:#fce8e0; color:#7a2a14; }
+  .pill-pub { background:#e2efff; color:var(--accent); }
+  .pill-rev { background:#e6f0e2; color:var(--pos); }
+  table.lt th,table.lt td { padding:.5rem .75rem; border-bottom:1px solid var(--rule); text-align:left; font-size:13.5px; }
+  table.lt th { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; background:white; }
+  table.lt tbody tr:hover { background:#fcfcfd; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule sticky top-0 bg-white z-10">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs no-underline" style="color:var(--muted)">←</a>
+      <div class="text-xl font-bold tracking-tight no-underline" style="color:var(--ink)">Codex</div>
+      <span class="mono text-xs" style="color:var(--muted)">/ editor's desk</span>
+    </div>
+    <div class="flex items-center gap-4 text-sm">
+      <a href="./main.html" class="">View public →</a>
+      <span class="mono text-xs" style="color:var(--muted)">A. Patel · Quantum · editor</span>
+    </div>
+  </div>
+</header>
+
+<div class="border-b rule" style="background:var(--panel)">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex items-center gap-6 text-sm">
+    <a href="#" class="font-semibold" style="border-bottom:2px solid var(--accent); padding-bottom:8px">Pending edits (7)</a>
+    <a href="#" style="color:var(--muted)" class="no-underline">Citation health</a>
+    <a href="#" style="color:var(--muted)" class="no-underline">Broken links (3)</a>
+    <a href="#" style="color:var(--muted)" class="no-underline">Stubs (47)</a>
+    <a href="#" style="color:var(--muted)" class="no-underline">Redirect manager</a>
+    <a href="#" style="color:var(--muted)" class="no-underline">Settings</a>
+  </div>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 xl:grid-cols-4 gap-6">
+
+  <section class="xl:col-span-3 space-y-6">
+
+    <div class="grid grid-cols-4 gap-4">
+      <div class="panel p-4"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Entries</div><div class="text-3xl font-bold mt-2">1,247</div><div class="mono text-xs mt-1" style="color:var(--muted)">+ 12 this week</div></div>
+      <div class="panel p-4"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Pending edits</div><div class="text-3xl font-bold mt-2" style="color:var(--warn)">7</div><div class="mono text-xs mt-1" style="color:var(--muted)">2 merge conflicts</div></div>
+      <div class="panel p-4"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Broken links</div><div class="text-3xl font-bold mt-2" style="color:var(--crit)">3</div><div class="mono text-xs mt-1" style="color:var(--muted)">all in Quantum / Defense</div></div>
+      <div class="panel p-4"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Citation health</div><div class="text-3xl font-bold mt-2" style="color:var(--pos)">93%</div><div class="mono text-xs mt-1" style="color:var(--muted)">7 freshness flags</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule flex items-baseline justify-between">
+        <div><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Pending edits</div><h2 class="text-lg font-bold mt-1">Seven proposals queued</h2></div>
+        <a href="#" class="px-3 py-1.5 text-xs font-semibold rounded text-white" style="background:var(--accent)">Bulk review</a>
+      </div>
+      <table class="lt w-full">
+        <thead><tr><th>Entry</th><th>Proposer</th><th>Δ words</th><th>Status</th><th>Opened</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#" class="font-medium">DOE quantum-sensing program</a></td><td>A. Patel</td><td class="mono text-xs">+421</td><td><span class="pill pill-pend">Awaiting review</span></td><td class="mono text-xs">2h ago</td></tr>
+          <tr><td><a href="#" class="font-medium">ITAR controls</a></td><td>S. Chen</td><td class="mono text-xs">+128</td><td><span class="pill pill-conf">Merge conflict</span></td><td class="mono text-xs">5h ago</td></tr>
+          <tr><td><a href="#" class="font-medium">EU AI Act Article 6</a></td><td>M. Kim</td><td class="mono text-xs">+187</td><td><span class="pill pill-rev">Reviewed · ready</span></td><td class="mono text-xs">1d ago</td></tr>
+          <tr><td><a href="#" class="font-medium">Biosec preprint moratorium</a></td><td>L. Vega</td><td class="mono text-xs">+92</td><td><span class="pill pill-pend">Awaiting peer reviewer B</span></td><td class="mono text-xs">1d ago</td></tr>
+          <tr><td><a href="#" class="font-medium">CHIPS-Act framework</a></td><td>K. Ito</td><td class="mono text-xs">+54</td><td><span class="pill pill-rev">Reviewed · ready</span></td><td class="mono text-xs">2d ago</td></tr>
+          <tr><td><a href="#" class="font-medium">[stub] biological quantum sensing</a></td><td>W. Aoki</td><td class="mono text-xs">+812 (claim)</td><td><span class="pill pill-pend">Claim pending</span></td><td class="mono text-xs">3d ago</td></tr>
+          <tr><td><a href="#" class="font-medium">Rare-earth concentration risk</a></td><td>J. Okafor</td><td class="mono text-xs">+247</td><td><span class="pill pill-conf">Merge conflict</span></td><td class="mono text-xs">3d ago</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Citation health</div><h3 class="text-lg font-bold mt-1">93% verified across 1,247 entries</h3></div>
+        <div class="p-5">
+          <div class="grid grid-cols-3 gap-4">
+            <div><div class="text-2xl font-bold" style="color:var(--pos)">8,742</div><div class="mono text-xs" style="color:var(--muted)">verified</div></div>
+            <div><div class="text-2xl font-bold" style="color:var(--warn)">487</div><div class="mono text-xs" style="color:var(--muted)">freshness flags</div></div>
+            <div><div class="text-2xl font-bold" style="color:var(--crit)">158</div><div class="mono text-xs" style="color:var(--muted)">to verify</div></div>
+          </div>
+          <a href="#" class="mt-4 inline-block text-sm">Open verification queue →</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Broken links</div><h3 class="text-lg font-bold mt-1">Three to fix</h3></div>
+        <ul class="px-5 py-4 space-y-3 text-sm">
+          <li class="flex items-baseline justify-between"><div><a href="#">Quantum sensing program</a><div class="mono text-xs" style="color:var(--muted)">→ broken: DOE-fy24 plan PDF</div></div><a href="#" class="text-xs">fix</a></li>
+          <li class="flex items-baseline justify-between"><div><a href="#">ITAR controls</a><div class="mono text-xs" style="color:var(--muted)">→ broken: EAR § 743 ref</div></div><a href="#" class="text-xs">fix</a></li>
+          <li class="flex items-baseline justify-between"><div><a href="#">DIB vendor onboarding</a><div class="mono text-xs" style="color:var(--muted)">→ broken: arch.org capture</div></div><a href="#" class="text-xs">fix</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule"><div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Recent edits to entries you wrote</div><h3 class="text-lg font-bold mt-1">Activity on your work</h3></div>
+      <ul class="divide-y rule text-sm">
+        <li class="px-5 py-3 flex items-baseline gap-4">
+          <span class="mono text-xs" style="color:var(--muted)">2026-05-27 14:01</span>
+          <span class="flex-1">M. Suzuki added 3 citations to <a href="#" class="font-medium">DOE quantum-sensing program</a></span>
+        </li>
+        <li class="px-5 py-3 flex items-baseline gap-4">
+          <span class="mono text-xs" style="color:var(--muted)">2026-05-27 11:48</span>
+          <span class="flex-1">W. Aoki claimed stub <a href="#" class="font-medium">biological quantum sensing</a></span>
+        </li>
+        <li class="px-5 py-3 flex items-baseline gap-4">
+          <span class="mono text-xs" style="color:var(--muted)">2026-05-26 17:12</span>
+          <span class="flex-1">K. Ito proposed +54 words to <a href="#" class="font-medium">CHIPS-Act framework</a></span>
+        </li>
+        <li class="px-5 py-3 flex items-baseline gap-4">
+          <span class="mono text-xs" style="color:var(--muted)">2026-05-26 09:34</span>
+          <span class="flex-1">M. Kim reviewed <a href="#" class="font-medium">DOE grant cycles</a> · accepted</span>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-5">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Your editorial output · 30d</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Edits authored</span><span class="mono font-bold">12</span></li>
+        <li class="flex justify-between"><span>Reviews completed</span><span class="mono font-bold">17</span></li>
+        <li class="flex justify-between"><span>Stubs claimed</span><span class="mono font-bold">2</span></li>
+        <li class="flex justify-between"><span>Sources verified</span><span class="mono font-bold">47</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Redirect manager</div>
+      <ul class="mt-3 space-y-2 text-sm font-mono">
+        <li class="flex justify-between"><span>/q-sensing</span><span class="text-xs" style="color:var(--muted)">→ /quantum/sensing</span></li>
+        <li class="flex justify-between"><span>/itar</span><span class="text-xs" style="color:var(--muted)">→ /defense/itar</span></li>
+        <li class="flex justify-between"><span>/chips</span><span class="text-xs" style="color:var(--muted)">→ /defense/chips-act</span></li>
+        <li class="text-xs" style="color:var(--muted)">+ 11 more</li>
+      </ul>
+      <a href="#" class="mt-3 inline-block text-sm">Manage redirects →</a>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Stubs needing authors</div>
+      <ul class="mt-3 space-y-1.5 text-sm">
+        <li><a href="#" style="color:#a8420f">[stub] biological quantum sensing</a></li>
+        <li><a href="#" style="color:#a8420f">[stub] cryo-magnetometer manufacturing</a></li>
+        <li><a href="#" style="color:#a8420f">[stub] FY2027 reauth timing</a></li>
+        <li><a href="#" style="color:#a8420f">[stub] EU AI Act Art. 6 carve-outs</a></li>
+        <li class="mono text-xs" style="color:var(--muted)">+ 43 more</li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="mono text-xs uppercase tracking-wider" style="color:var(--muted)">Quick actions</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#">→ Open new entry</a></li>
+        <li><a href="#">→ Claim a stub</a></li>
+        <li><a href="#">→ Propose a redirect</a></li>
+        <li><a href="#">→ Verify a source</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>Codex · D9 · editor's desk · backend prototype</div>
+    <div>Σ 45/50 · <a href="../index.html">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

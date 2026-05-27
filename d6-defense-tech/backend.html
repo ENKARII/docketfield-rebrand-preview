@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VECTOR // OPS · D6 · Backend</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --ink:#0a0a0b; --bg:#0a0a0b; --panel:#101013; --paper:#f4f3ef; --rule:#222226; --muted:#74747c; --accent:#ff5722; --grid:#161618; --pos:#00c97a; --warn:#ffa726; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--paper); font-size:13px; line-height:1.4; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .pos { color:var(--pos); }
+  .warn { color:var(--warn); }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  .progress-bar { height:2px; background:var(--rule); }
+  .progress-bar > div { height:100%; background:var(--accent); }
+  .chip { display:inline-block; padding:2px 8px; border:1px solid var(--accent); color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
+  .chip-go { display:inline-block; padding:2px 8px; border:1px solid var(--pos); color:var(--pos); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
+  .chip-warn { display:inline-block; padding:2px 8px; border:1px solid var(--warn); color:var(--warn); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
+  .chip-q { display:inline-block; padding:2px 8px; border:1px solid var(--rule); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+  a.qlink { color:var(--paper); text-decoration:none; }
+  a.qlink:hover { color:var(--accent); }
+  table.lt th,table.lt td { padding:.55rem .75rem; border-bottom:1px solid var(--grid); text-align:left; font-size:13px; }
+  table.lt th { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:500; background:var(--panel); }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="flex items-baseline gap-2"><span class="accent text-lg mono">▦</span><span class="text-lg font-extrabold tracking-tight">VECTOR // OPS</span></div>
+      <span class="mono text-[10px] tracking-[.2em]" style="color:var(--muted)">// CELL 04 // QUANTUM // 14:02 UTC</span>
+    </div>
+    <div class="flex items-center gap-5 mono text-[10px] tracking-widest uppercase">
+      <a href="./main.html" class="qlink" style="color:var(--muted)">VIEW PUBLIC →</a>
+      <span style="color:var(--muted)">OPERATOR · A.PATEL · CHAIR</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 xl:grid-cols-4 gap-5">
+
+  <section class="xl:col-span-3 space-y-5">
+
+    <div class="grid grid-cols-4 gap-4">
+      <div class="panel p-4"><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">SIGNALS</div><div class="text-3xl font-extrabold mt-2 accent">12</div><div class="mono text-[10px] mt-1" style="color:var(--muted)">↑ 4 VS LAST WEEK</div></div>
+      <div class="panel p-4"><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">BRIEFS LIVE</div><div class="text-3xl font-extrabold mt-2 pos">4</div><div class="mono text-[10px] mt-1" style="color:var(--muted)">↑ 1 VS LAST WEEK</div></div>
+      <div class="panel p-4"><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">CELLS ACTIVE</div><div class="text-3xl font-extrabold mt-2">3</div><div class="mono text-[10px] mt-1" style="color:var(--muted)">14 + 9 + 6 OPERATORS</div></div>
+      <div class="panel p-4"><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">FLAGS</div><div class="text-3xl font-extrabold mt-2 warn">7</div><div class="mono text-[10px] mt-1" style="color:var(--muted)">FRESHNESS · 5 SOURCES</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="px-4 py-3 border-b rule flex items-center justify-between">
+        <div class="mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// PIPELINES // 4 IN FLIGHT</div>
+        <a href="#" class="mono text-[10px] tracking-widest uppercase px-3 py-1.5 font-bold" style="background:var(--accent); color:var(--ink)">+ NEW PIPELINE</a>
+      </div>
+      <div class="divide-y" style="border-color:var(--grid)">
+        <div class="p-4">
+          <div class="flex items-center justify-between"><div class="font-bold uppercase tracking-tight text-base">#024 · The Sensing Turn</div><span class="chip-go">DRAFT → REVIEW → EMBARGO → LIVE</span></div>
+          <div class="progress-bar mt-3"><div style="width:67%"></div></div>
+          <div class="mono text-[10px] mt-2 tracking-widest flex justify-between" style="color:var(--muted)">
+            <span>STAGE 3/4 · EDITORIAL · REVIEWER PENDING</span>
+            <span>67% · EMBARGO MON 27 09:00 ET</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex items-center justify-between"><div class="font-bold uppercase tracking-tight text-base">#023 · EU AI Act, Annotated</div><span class="chip-warn">DRAFT → REVIEW → EMBARGO → LIVE</span></div>
+          <div class="progress-bar mt-3"><div style="width:34%"></div></div>
+          <div class="mono text-[10px] mt-2 tracking-widest flex justify-between" style="color:var(--muted)">
+            <span>STAGE 1/4 · DRAFT · 2 SOURCES TO VERIFY</span>
+            <span>34% · EMBARGO WED 29 09:00 ET</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex items-center justify-between"><div class="font-bold uppercase tracking-tight text-base">#022 · Preprint Norms Breaking</div><span class="chip">DRAFT → REVIEW → EMBARGO → LIVE</span></div>
+          <div class="progress-bar mt-3"><div style="width:89%"></div></div>
+          <div class="mono text-[10px] mt-2 tracking-widest flex justify-between" style="color:var(--muted)">
+            <span>STAGE 3/4 · EMBARGO QUEUE · 14 SOURCES CLEAN</span>
+            <span>89% · EMBARGO FRI 31 09:00 ET</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex items-center justify-between"><div class="font-bold uppercase tracking-tight text-base">#021 · ITAR For University Labs</div><span class="chip-q">DRAFT</span></div>
+          <div class="progress-bar mt-3"><div style="width:22%"></div></div>
+          <div class="mono text-[10px] mt-2 tracking-widest flex justify-between" style="color:var(--muted)">
+            <span>STAGE 1/4 · DRAFT · 4 SOURCES TO VERIFY</span>
+            <span>22% · EMBARGO TBD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-5">
+      <div class="panel">
+        <div class="px-4 py-3 border-b rule mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// SIGNAL QUEUE</div>
+        <ul class="divide-y" style="border-color:var(--grid)">
+          <li class="p-4 flex items-center gap-3"><span class="accent mono text-sm font-bold">▲</span><div class="flex-1"><div class="font-semibold text-sm">NEW SOURCE → #024</div><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">DOE-ARPA-E TRANSCRIPT 2026-05-26</div></div><span class="mono text-[10px]" style="color:var(--muted)">14:02</span></li>
+          <li class="p-4 flex items-center gap-3"><span class="warn mono text-sm font-bold">!</span><div class="flex-1"><div class="font-semibold text-sm">FRESH FLAG → #021</div><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">SOURCE 11Q-2024-103 STALE</div></div><span class="mono text-[10px]" style="color:var(--muted)">11:48</span></li>
+          <li class="p-4 flex items-center gap-3"><span class="pos mono text-sm font-bold">●</span><div class="flex-1"><div class="font-semibold text-sm">REVIEW ACCEPTED → #023</div><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">REVIEWER M. SUZUKI · 2 NOTES</div></div><span class="mono text-[10px]" style="color:var(--muted)">09:12</span></li>
+          <li class="p-4 flex items-center gap-3"><span class="mono text-sm font-bold" style="color:var(--muted)">→</span><div class="flex-1"><div class="font-semibold text-sm">CITATION ADDED → #022</div><div class="mono text-[10px] tracking-widest" style="color:var(--muted)">ARXIV 2501.04772 · CAPTURED</div></div><span class="mono text-[10px]" style="color:var(--muted)">08:33</span></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="px-4 py-3 border-b rule mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// DELIVERABLE COUNTDOWN</div>
+        <div class="p-5 space-y-4">
+          <div>
+            <div class="flex items-baseline justify-between"><div class="font-bold text-sm">#024 EMBARGO LIFT</div><div class="text-2xl font-extrabold accent mono">00D 19H</div></div>
+            <div class="progress-bar mt-2"><div style="width:93%"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><div class="font-bold text-sm">#024 BRIEF SHIP</div><div class="text-2xl font-extrabold mono pos">16D 19H</div></div>
+            <div class="progress-bar mt-2"><div style="width:50%; background:var(--pos)"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><div class="font-bold text-sm">#018 MEMO SHIP</div><div class="text-2xl font-extrabold mono pos">35D 19H</div></div>
+            <div class="progress-bar mt-2"><div style="width:30%; background:var(--pos)"></div></div>
+          </div>
+          <div>
+            <div class="flex items-baseline justify-between"><div class="font-bold text-sm">DC CONVENING JUN 3</div><div class="text-2xl font-extrabold mono warn">07D 19H</div></div>
+            <div class="progress-bar mt-2"><div style="width:72%; background:var(--warn)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-4">
+      <div class="mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// CELL ROSTER · QUANTUM · 14</div>
+      <ul class="mt-3 space-y-1.5 text-sm">
+        <li class="flex justify-between"><span class="font-bold">A. PATEL</span><span class="chip-q">CHAIR</span></li>
+        <li class="flex justify-between"><span class="font-semibold">M. SUZUKI</span><span class="mono text-[10px]" style="color:var(--muted)">DEPUTY</span></li>
+        <li class="flex justify-between"><span class="font-semibold">L. VEGA</span><span class="mono text-[10px]" style="color:var(--muted)">FELLOW</span></li>
+        <li class="flex justify-between"><span class="font-semibold">S. CHEN</span><span class="mono text-[10px]" style="color:var(--muted)">FELLOW</span></li>
+        <li class="flex justify-between"><span class="font-semibold">W. AOKI</span><span class="mono text-[10px]" style="color:var(--muted)">FELLOW</span></li>
+        <li class="flex justify-between"><span class="font-semibold">K. ITO</span><span class="mono text-[10px]" style="color:var(--muted)">FELLOW</span></li>
+        <li class="mono text-[10px]" style="color:var(--muted)">+ 8 MORE</li>
+      </ul>
+    </div>
+
+    <div class="panel p-4">
+      <div class="mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// SPONSOR · QUANTUM DESK</div>
+      <ul class="mt-3 space-y-3">
+        <li><div class="font-bold text-sm">FRONTIER SENSING INC.</div><div class="mono text-[10px] mt-0.5" style="color:var(--muted)">ANCHOR · 2026-Q2</div></li>
+        <li><div class="font-bold text-sm">RIDGE NATIONAL LAB</div><div class="mono text-[10px] mt-0.5" style="color:var(--muted)">SUPPORTER · 2026-Q2</div></li>
+      </ul>
+      <p class="mono text-[10px] mt-3 tracking-wide" style="color:var(--muted)">SPONSORS FUND DESKS. THEY DO NOT EDIT BRIEFS. POLICY → G-08</p>
+    </div>
+
+    <div class="panel p-4">
+      <div class="mono text-[10px] tracking-[.18em] uppercase" style="color:var(--muted)">// HOTKEYS</div>
+      <ul class="mt-3 space-y-1.5 mono text-xs" style="color:var(--muted)">
+        <li>⌘ K · CMD PALETTE</li>
+        <li>⌘ N · NEW BRIEF</li>
+        <li>⌘ ⇧ E · EMBARGO</li>
+        <li>⌘ ⇧ V · VERIFY SOURCE</li>
+      </ul>
+    </div>
+
+    <div class="panel p-4" style="background:#1a0f06; border-color:var(--accent)">
+      <div class="mono text-[10px] tracking-[.18em] uppercase accent">// QUICK · NEW</div>
+      <ul class="mt-3 space-y-2 mono text-xs">
+        <li><a href="#" class="qlink accent">► OPEN BRIEF</a></li>
+        <li><a href="#" class="qlink accent">► OPEN MEMO</a></li>
+        <li><a href="#" class="qlink accent">► OPEN CELL</a></li>
+        <li><a href="#" class="qlink accent">► SCHEDULE CONVENING</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="py-5 border-t rule">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>▦ VECTOR · D6 · OPS · BACKEND PROTOTYPE</div>
+    <div>Σ 44/50 · <a href="../index.html" class="accent">SCORECARD</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

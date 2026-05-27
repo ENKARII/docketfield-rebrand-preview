@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Standfirst · D1 Editorial · Backend (Editor's queue)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f8f4ee; --panel:#fdfaf3; --ink:#1a1612; --muted:#5f574b; --rule:#cfc6b5; --accent:#6f1e2a; }
+  body { font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink); font-size:14px; }
+  .display { font-family:'Playfair Display',serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .smcap { font-variant:small-caps; letter-spacing:.16em; font-weight:500; font-size:11px; color:var(--muted); }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  a.qlink { color:var(--ink); text-decoration:underline; text-decoration-color:var(--rule); text-underline-offset:4px; }
+  a.qlink:hover { color:var(--accent); }
+  .pill { display:inline-block; padding:1px 7px; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+  .pill-d { background:#efe8d8; color:#5f574b; }
+  .pill-r { background:#e3d7c4; color:#3a3429; }
+  .pill-p { background:var(--accent); color:white; }
+  table.lt th,table.lt td { padding:.65rem .8rem; border-bottom:1px solid var(--rule); text-align:left; }
+  table.lt th { font-variant:small-caps; letter-spacing:.16em; font-size:11px; color:var(--muted); font-weight:500; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule" style="border-bottom-width:2px">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="display text-2xl font-bold tracking-tight">Standfirst</div>
+      <div class="smcap">Editor's queue</div>
+    </div>
+    <div class="flex items-baseline gap-5">
+      <a href="./main.html" class="smcap qlink">View public</a>
+      <div class="smcap">A. Patel · Quantum desk · Chief editor</div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 xl:grid-cols-4 gap-7">
+
+  <section class="xl:col-span-3 space-y-7">
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule flex items-baseline justify-between">
+        <div>
+          <div class="smcap" style="color:var(--accent)">Drafts in flight</div>
+          <h2 class="display text-xl font-semibold mt-1">Four briefs currently in editorial</h2>
+        </div>
+        <a href="#" class="px-3 py-1.5 mono text-xs" style="background:var(--ink); color:var(--paper)">+ NEW BRIEF</a>
+      </div>
+      <table class="lt w-full">
+        <thead><tr><th>Title</th><th>Desk</th><th>By</th><th>Stage</th><th>Provenance</th><th>Edition</th></tr></thead>
+        <tbody class="display">
+          <tr><td>The Sensing Turn</td><td>Quantum</td><td>A. Patel</td><td><span class="pill pill-r">Review</span></td><td><span class="mono text-xs">12 cites · 1 flag</span></td><td><span class="mono text-xs">Vol I · #24</span></td></tr>
+          <tr><td>The EU AI Act compromise text</td><td>Cyber</td><td>M. Kim</td><td><span class="pill pill-d">Draft</span></td><td><span class="mono text-xs">8 cites · 2 to verify</span></td><td><span class="mono text-xs">Vol I · #25</span></td></tr>
+          <tr><td>The biosec preprint norm is breaking</td><td>Biosec</td><td>L. Vega</td><td><span class="pill pill-r">Ready</span></td><td><span class="mono text-xs">14 cites · clean</span></td><td><span class="mono text-xs">Vol I · #25</span></td></tr>
+          <tr><td>ITAR reform for university labs</td><td>Defense</td><td>S. Chen</td><td><span class="pill pill-d">Draft</span></td><td><span class="mono text-xs">5 cites · 4 to verify</span></td><td><span class="mono text-xs">Vol I · #26</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule">
+          <div class="smcap" style="color:var(--accent)">Scheduled · Edition #24</div>
+          <h3 class="display text-lg font-semibold mt-1">Monday, May 27 · 09:00 ET</h3>
+        </div>
+        <ul class="px-5 py-4 space-y-3 text-sm">
+          <li class="flex justify-between"><span class="display">The Sensing Turn</span><span class="pill pill-p">Lead</span></li>
+          <li class="flex justify-between"><span class="display">From the editors · on independence</span><span class="pill pill-p">Sched</span></li>
+          <li class="flex justify-between"><span class="display">Across the desks · summary</span><span class="pill pill-p">Sched</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule">
+          <div class="smcap" style="color:var(--accent)">Byline assignments</div>
+          <h3 class="display text-lg font-semibold mt-1">Desks &amp; rotations</h3>
+        </div>
+        <ul class="px-5 py-4 space-y-3 text-sm">
+          <li class="flex justify-between"><span class="display">Quantum</span><span>A. Patel <span class="smcap">lead</span> · M. Suzuki <span class="smcap">deputy</span></span></li>
+          <li class="flex justify-between"><span class="display">Cyber</span><span>M. Kim <span class="smcap">lead</span> · rotating · 3</span></li>
+          <li class="flex justify-between"><span class="display">Biosec</span><span>L. Vega <span class="smcap">lead</span> · M. Akoto <span class="smcap">deputy</span></span></li>
+          <li class="flex justify-between"><span class="display">Defense</span><span>S. Chen <span class="smcap">lead</span> · rotating · 2</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule">
+        <div class="smcap" style="color:var(--accent)">Working group · Quantum Sensing Standards</div>
+        <h3 class="display text-lg font-semibold mt-1">Brief #024 toward publication · 67%</h3>
+      </div>
+      <div class="px-5 py-4">
+        <div class="w-full h-1.5" style="background:var(--rule)"><div class="h-1.5" style="width:67%;background:var(--accent)"></div></div>
+        <div class="mt-5 grid grid-cols-4 gap-4">
+          <div><div class="smcap">Chair</div><div class="display mt-1">A. Patel</div></div>
+          <div><div class="smcap">Members</div><div class="display mt-1">14 active</div></div>
+          <div><div class="smcap">Sources</div><div class="display mt-1">47 collected</div></div>
+          <div><div class="smcap">Due</div><div class="display mt-1">Jun 12</div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-5">
+      <div class="smcap" style="color:var(--accent)">Masthead</div>
+      <ul class="mt-3 space-y-2 display text-sm">
+        <li>A. Patel · Chief editor</li>
+        <li>M. Kim · Cyber editor</li>
+        <li>L. Vega · Biosec editor</li>
+        <li>S. Chen · Defense editor</li>
+      </ul>
+      <a href="#" class="mt-4 inline-block smcap qlink">Edit masthead →</a>
+    </div>
+
+    <div class="panel p-5">
+      <div class="smcap" style="color:var(--accent)">Provenance · across drafts</div>
+      <div class="display text-4xl font-semibold mt-2">92<span class="text-lg" style="color:var(--muted)">%</span></div>
+      <div class="text-xs mt-1" style="color:var(--muted)">sources verified</div>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li class="flex justify-between"><span>To verify</span><span class="mono">12</span></li>
+        <li class="flex justify-between"><span>Freshness flags</span><span class="mono">7</span></li>
+        <li class="flex justify-between"><span>Conflict disclosures</span><span class="mono">2</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="smcap" style="color:var(--accent)">This week's reading</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Briefs published</span><span class="mono">4</span></li>
+        <li class="flex justify-between"><span>Dispatches</span><span class="mono">12</span></li>
+        <li class="flex justify-between"><span>Member reads</span><span class="mono">3,847</span></li>
+        <li class="flex justify-between"><span>New members</span><span class="mono">11</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="smcap" style="color:var(--accent)">Editorial calendar</div>
+      <ul class="mt-3 space-y-3 text-sm display">
+        <li><span class="mono text-xs" style="color:var(--muted)">May 27</span> · Edition #24</li>
+        <li><span class="mono text-xs" style="color:var(--muted)">May 31</span> · Edition #25</li>
+        <li><span class="mono text-xs" style="color:var(--muted)">Jun 03</span> · Convening · DC</li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6" style="border-top-width:2px">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono" style="color:var(--muted)">
+    <div>Standfirst · D1 Editorial · backend prototype</div>
+    <div>Σ 44/50 · <a href="../index.html" class="underline">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Round · D8 · Green Room (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#f8f2e8; --card:#fdf8ee; --ink:#1a0e14; --muted:#5e4a48; --rule:#d6c4a8; --accent:#3b0f1f; --gold:#b68b3e; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; }
+  .serif { font-family:'Playfair Display',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .accent { color:var(--accent); }
+  .gold { color:var(--gold); }
+  .label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  a.qlink { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule); }
+  a.qlink:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  .frame { border:1px solid var(--rule); }
+  .panel { background:var(--card); border:1px solid var(--rule); }
+  .portrait { aspect-ratio:1; background:linear-gradient(140deg,#3b0f1f 0%,#1a0e14 65%,#b68b3e 130%); display:flex; align-items:flex-end; justify-content:flex-start; padding:.6rem; color:var(--paper); font-family:'Playfair Display',serif; font-size:1.3rem; line-height:1; font-weight:600; }
+  .portrait.p2 { background:linear-gradient(140deg,#3a5530 0%,#1c2a17 65%,#b68b3e 130%); }
+  .portrait.p3 { background:linear-gradient(140deg,#6b3826 0%,#1f1310 65%,#b68b3e 130%); }
+  .portrait.p4 { background:linear-gradient(140deg,#2d3855 0%,#0f1422 65%,#b68b3e 130%); }
+  .portrait.p5 { background:linear-gradient(140deg,#5a472d 0%,#231a10 65%,#b68b3e 130%); }
+  .pill-conf { padding:1px 8px; border-radius:99px; background:#e6f0e2; color:#3a5530; font-size:11px; font-weight:600; }
+  .pill-pend { padding:1px 8px; border-radius:99px; background:#f6ecd6; color:#705216; font-size:11px; font-weight:600; }
+  .pill-dec { padding:1px 8px; border-radius:99px; background:#eedfd6; color:#6b3826; font-size:11px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">← all directions</a>
+      <div class="serif text-2xl font-semibold tracking-tight" style="letter-spacing:-.02em">The Round</div>
+      <span class="label">Green Room</span>
+    </div>
+    <div class="flex items-baseline gap-5 text-sm">
+      <a href="./main.html" class="qlink">View the Round →</a>
+      <span class="label">A. PATEL · QUANTUM · CHAIR</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 xl:grid-cols-4 gap-6">
+
+  <section class="xl:col-span-3 space-y-6">
+
+    <div class="panel p-6">
+      <div class="label gold">Welcome back, Alex.</div>
+      <h1 class="serif text-3xl font-medium tracking-tight mt-2">You're moderating Tuesday's Round. Here's the run-of-show.</h1>
+      <div class="mt-6 grid grid-cols-4 gap-5">
+        <div><div class="label">Your sessions</div><div class="serif text-3xl font-semibold mt-1">3</div></div>
+        <div><div class="label">Pending guests</div><div class="serif text-3xl font-semibold mt-1">3</div></div>
+        <div><div class="label">Recordings live</div><div class="serif text-3xl font-semibold mt-1">12</div></div>
+        <div><div class="label">In editorial</div><div class="serif text-3xl font-semibold mt-1">3</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="px-5 py-4 border-b rule flex items-baseline justify-between">
+        <div class="label gold">Your upcoming sessions</div>
+        <a href="#" class="px-3 py-1.5 text-xs font-semibold" style="background:var(--accent); color:var(--paper)">+ NEW SESSION</a>
+      </div>
+      <div class="divide-y rule">
+        <div class="p-5 grid grid-cols-12 gap-4 items-baseline">
+          <div class="col-span-2 label gold">JUN 03 · DC · DINNER</div>
+          <div class="col-span-7">
+            <div class="serif text-xl">The Quantum dinner</div>
+            <div class="text-sm mt-1" style="color:var(--muted)">You're moderating · 14 RSVP'd · off-the-record</div>
+          </div>
+          <div class="col-span-3 text-right text-sm">
+            <a href="#" class="qlink">Open run-of-show →</a>
+            <div class="label mt-1">VENUE · COSMOS CLUB</div>
+          </div>
+        </div>
+        <div class="p-5 grid grid-cols-12 gap-4 items-baseline">
+          <div class="col-span-2 label gold">JUN 17 · VIRTUAL · PANEL</div>
+          <div class="col-span-7">
+            <div class="serif text-xl">The biosecurity panel</div>
+            <div class="text-sm mt-1" style="color:var(--muted)">You're a guest panelist · L. Vega chairs · 38 RSVP'd</div>
+          </div>
+          <div class="col-span-3 text-right text-sm">
+            <a href="#" class="qlink">Open prep doc →</a>
+            <div class="label mt-1">PLATFORM · ZOOM</div>
+          </div>
+        </div>
+        <div class="p-5 grid grid-cols-12 gap-4 items-baseline">
+          <div class="col-span-2 label gold">JUL 08 · DC · ROUNDTABLE</div>
+          <div class="col-span-7">
+            <div class="serif text-xl">The ITAR roundtable</div>
+            <div class="text-sm mt-1" style="color:var(--muted)">You're attending · S. Chen chairs · 11 RSVP'd</div>
+          </div>
+          <div class="col-span-3 text-right text-sm">
+            <a href="#" class="qlink">RSVP confirmed →</a>
+            <div class="label mt-1">VENUE · CARNEGIE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule label gold">Your invited guests · Jun 3</div>
+        <div class="divide-y rule">
+          <div class="p-4 flex items-center gap-4">
+            <div style="width:48px"><div class="portrait p3">MK</div></div>
+            <div class="flex-1"><div class="font-semibold serif">M. Kim</div><div class="label">CYBER · GUEST PANELIST</div></div>
+            <span class="pill-conf">Accepted</span>
+          </div>
+          <div class="p-4 flex items-center gap-4">
+            <div style="width:48px"><div class="portrait p4">SC</div></div>
+            <div class="flex-1"><div class="font-semibold serif">S. Chen</div><div class="label">DEFENSE · GUEST</div></div>
+            <span class="pill-pend">Pending</span>
+          </div>
+          <div class="p-4 flex items-center gap-4">
+            <div style="width:48px"><div class="portrait p5">WA</div></div>
+            <div class="flex-1"><div class="font-semibold serif">W. Aoki</div><div class="label">QUANTUM · DEPUTY</div></div>
+            <span class="pill-conf">Accepted</span>
+          </div>
+          <div class="p-4 flex items-center gap-4">
+            <div style="width:48px"><div class="portrait p2">LV</div></div>
+            <div class="flex-1"><div class="font-semibold serif">L. Vega</div><div class="label">BIOSEC · GUEST</div></div>
+            <span class="pill-dec">Declined · Jun 3 conflict</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="px-5 py-4 border-b rule label gold">Your recordings · 12 live</div>
+        <ul class="divide-y rule">
+          <li class="p-4">
+            <div class="serif text-lg">"Three years out, the labs are still hiring."</div>
+            <div class="label mt-1">QUANTUM · MAY ROUND · 8 MIN · 412 LISTENS</div>
+          </li>
+          <li class="p-4">
+            <div class="serif text-lg">"What changed at Brookhaven this month."</div>
+            <div class="label mt-1">QUANTUM · APR ROUND · 6 MIN · 318 LISTENS</div>
+          </li>
+          <li class="p-4">
+            <div class="serif text-lg">"On standards bodies and the work of consensus."</div>
+            <div class="label mt-1">QUANTUM · MAR ROUND · 11 MIN · 224 LISTENS</div>
+          </li>
+        </ul>
+        <div class="p-4 border-t rule label" style="color:var(--muted)">+ 9 more in archive</div>
+      </div>
+
+    </div>
+
+    <div class="panel p-6">
+      <div class="label gold">Editorial · in flight after the Round</div>
+      <ul class="mt-3 divide-y rule">
+        <li class="py-3 flex items-baseline justify-between"><div><div class="serif text-lg">May Round transcript</div><div class="label">EDITORIAL · IN REVIEW</div></div><span class="label">DRAFT V3</span></li>
+        <li class="py-3 flex items-baseline justify-between"><div><div class="serif text-lg">May Round audio · mastered</div><div class="label">PRODUCTION · UPLOAD QUEUE</div></div><span class="label">READY</span></li>
+        <li class="py-3 flex items-baseline justify-between"><div><div class="serif text-lg">June Round prep doc</div><div class="label">EDITORIAL · DRAFT</div></div><span class="label">42%</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-5">
+      <div class="label gold">Your guest book · 30 days</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Sessions hosted</span><span class="mono font-semibold">2</span></li>
+        <li class="flex justify-between"><span>Guest invitations</span><span class="mono font-semibold">11</span></li>
+        <li class="flex justify-between"><span>Acceptance rate</span><span class="mono font-semibold">82%</span></li>
+        <li class="flex justify-between"><span>Recordings shipped</span><span class="mono font-semibold">3</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label gold">House rules</div>
+      <ul class="mt-3 space-y-2 text-sm" style="color:var(--muted)">
+        <li>Members may bring one guest per quarter.</li>
+        <li>Convenings are off-the-record unless agreed.</li>
+        <li>Recordings ship within 24 hours.</li>
+        <li>Transcripts are member-only for 30 days.</li>
+      </ul>
+      <a href="#" class="mt-3 inline-block qlink text-sm">→ Full house rules</a>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label gold">Tools</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#" class="qlink">→ New session</a></li>
+        <li><a href="#" class="qlink">→ Invite a guest</a></li>
+        <li><a href="#" class="qlink">→ Upload a recording</a></li>
+        <li><a href="#" class="qlink">→ Open your prep doc</a></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5" style="background:var(--accent); color:var(--paper)">
+      <div class="label" style="color:var(--gold)">Membership</div>
+      <div class="serif text-base mt-2">You hold founding seat #7.</div>
+      <p class="text-xs mt-2" style="opacity:.85">Founding seats remaining for the year: 14.</p>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-6">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label">
+    <div>The Round · D8 · Green Room · backend prototype</div>
+    <div>Σ 42/50 · <a href="../index.html" class="qlink">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

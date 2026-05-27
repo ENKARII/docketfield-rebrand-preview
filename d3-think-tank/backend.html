@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vantage · D3 · Program Command (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#fafaf7; --panel:#ffffff; --ink:#0f1e3f; --muted:#5b6378; --rule:#d8dde6; --gold:#b68b3e; --soft:#eef1f7; --pos:#1f7a32; --warn:#c89b1c; --crit:#a3402a; }
+  * { font-variant-numeric:tabular-nums; }
+  body { font-family:'Manrope',system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:14px; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+  .gold { color:var(--gold); }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  .pill { display:inline-block; padding:2px 8px; border-radius:99px; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .pill-go { background:#e3f0e3; color:var(--pos); }
+  .pill-warn { background:#fbf0d8; color:var(--warn); }
+  .pill-crit { background:#fae2dc; color:var(--crit); }
+  .bar { height:6px; background:var(--rule); border-radius:99px; overflow:hidden; }
+  .bar > div { height:100%; background:var(--gold); }
+  table.lt th,table.lt td { padding:.7rem .85rem; border-bottom:1px solid var(--rule); text-align:left; }
+  table.lt th { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+</style>
+</head>
+<body>
+
+<header style="background:var(--ink)" class="text-white">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-baseline justify-between">
+    <div class="flex items-baseline gap-6">
+      <a href="../index.html" class="mono text-xs opacity-70">← all directions</a>
+      <div class="text-xl font-extrabold tracking-tight">VANTAGE</div>
+      <span class="mono text-[10px] tracking-widest opacity-70">PROGRAM COMMAND</span>
+    </div>
+    <div class="flex items-baseline gap-5 text-sm">
+      <a href="./main.html" class="opacity-80 hover:opacity-100">View public →</a>
+      <span class="mono text-xs opacity-80">A. Patel · Quantum chair</span>
+    </div>
+  </div>
+</header>
+
+<div class="border-b rule" style="background:white">
+  <div class="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-between text-sm">
+    <div class="flex items-center gap-6">
+      <a href="#" class="font-semibold gold" style="border-bottom:2px solid var(--gold); padding-bottom:8px">Quantum Sensing</a>
+      <a href="#" style="color:var(--muted)">Biosec Norms</a>
+      <a href="#" style="color:var(--muted)">ITAR Reform</a>
+      <a href="#" style="color:var(--muted)">+ 9 more</a>
+    </div>
+    <div class="mono text-xs" style="color:var(--muted)">PROGRAM · CHARTERED APR 22 · 14 FELLOWS</div>
+  </div>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 xl:grid-cols-4 gap-6">
+
+  <section class="xl:col-span-3 space-y-6">
+
+    <div class="panel p-6">
+      <div class="flex items-baseline justify-between">
+        <div>
+          <div class="label gold">Program · Quantum Sensing Standards</div>
+          <h2 class="text-3xl font-extrabold tracking-tight mt-2">67% toward Q2 deliverables</h2>
+        </div>
+        <span class="pill pill-go">On track</span>
+      </div>
+      <div class="mt-5 bar"><div style="width:67%"></div></div>
+      <div class="mt-6 grid grid-cols-4 gap-6">
+        <div><div class="label">Chair</div><div class="text-lg font-bold mt-1">A. Patel</div></div>
+        <div><div class="label">Deputy</div><div class="text-lg font-bold mt-1">M. Suzuki</div></div>
+        <div><div class="label">Fellows</div><div class="text-lg font-bold mt-1">14 active</div></div>
+        <div><div class="label">Sponsor desk</div><div class="text-lg font-bold mt-1">Quantum</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="px-6 py-4 border-b rule flex items-baseline justify-between">
+        <div><div class="label gold">Workstreams</div><h3 class="text-lg font-bold mt-1">Four in flight</h3></div>
+        <a href="#" class="px-3 py-1.5 mono text-xs font-bold uppercase tracking-wider text-white" style="background:var(--ink)">+ Workstream</a>
+      </div>
+      <div class="divide-y" style="border-color:var(--rule)">
+        <div class="px-6 py-4">
+          <div class="flex items-baseline justify-between">
+            <div class="font-bold text-base">Sensing → Defense procurement</div>
+            <span class="pill pill-go">Drafting</span>
+          </div>
+          <div class="mt-2 bar"><div style="width:67%"></div></div>
+          <div class="flex justify-between mt-2 mono text-xs" style="color:var(--muted)">
+            <span>Lead: A. Patel · M. Suzuki · W. Aoki</span>
+            <span>Brief #024 · due Jun 12 · 67%</span>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <div class="flex items-baseline justify-between">
+            <div class="font-bold text-base">EU lab capacity audit</div>
+            <span class="pill pill-warn">Research</span>
+          </div>
+          <div class="mt-2 bar"><div style="width:34%"></div></div>
+          <div class="flex justify-between mt-2 mono text-xs" style="color:var(--muted)">
+            <span>Lead: M. Suzuki · 5 contributors</span>
+            <span>Brief #027 · due Jul 1 · 34%</span>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <div class="flex items-baseline justify-between">
+            <div class="font-bold text-base">Standards body negotiation log</div>
+            <span class="pill pill-go">Drafting</span>
+          </div>
+          <div class="mt-2 bar"><div style="width:81%"></div></div>
+          <div class="flex justify-between mt-2 mono text-xs" style="color:var(--muted)">
+            <span>Lead: K. Ito · 3 contributors</span>
+            <span>Memo #018 · due Jul 1 · 81%</span>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <div class="flex items-baseline justify-between">
+            <div class="font-bold text-base">DC convening · agenda + speakers</div>
+            <span class="pill pill-warn">Logistics</span>
+          </div>
+          <div class="mt-2 bar"><div style="width:55%"></div></div>
+          <div class="flex justify-between mt-2 mono text-xs" style="color:var(--muted)">
+            <span>Lead: A. Patel · ops: J. Park</span>
+            <span>Jun 3 · 14 RSVP · venue confirmed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="px-6 py-4 border-b rule"><div class="label gold">Deliverables · this program</div><h3 class="text-lg font-bold mt-1">Q2 + Q3 pipeline</h3></div>
+      <table class="lt w-full">
+        <thead><tr><th>Deliverable</th><th>Type</th><th>Owner</th><th>Status</th><th>Due</th></tr></thead>
+        <tbody>
+          <tr><td class="font-semibold">Brief #024 · Sensing Turn</td><td>Brief</td><td>A. Patel</td><td><span class="pill pill-go">Editorial</span></td><td class="mono text-xs">Jun 12</td></tr>
+          <tr><td class="font-semibold">Memo #018 · Standards-body log</td><td>Memo</td><td>K. Ito</td><td><span class="pill pill-go">Drafting</span></td><td class="mono text-xs">Jul 01</td></tr>
+          <tr><td class="font-semibold">Brief #027 · EU lab audit</td><td>Brief</td><td>M. Suzuki</td><td><span class="pill pill-warn">Research</span></td><td class="mono text-xs">Jul 01</td></tr>
+          <tr><td class="font-semibold">Convening · DC dinner</td><td>Event</td><td>A. Patel</td><td><span class="pill pill-warn">Logistics</span></td><td class="mono text-xs">Jun 03</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-5">
+      <div class="label gold">Fellow roster · 14</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span class="font-semibold">A. Patel</span><span class="mono text-xs gold">chair</span></li>
+        <li class="flex justify-between"><span class="font-semibold">M. Suzuki</span><span class="mono text-xs" style="color:var(--muted)">deputy</span></li>
+        <li class="flex justify-between"><span class="font-semibold">L. Vega</span><span class="mono text-xs" style="color:var(--muted)">fellow</span></li>
+        <li class="flex justify-between"><span class="font-semibold">S. Chen</span><span class="mono text-xs" style="color:var(--muted)">fellow</span></li>
+        <li class="flex justify-between"><span class="font-semibold">W. Aoki</span><span class="mono text-xs" style="color:var(--muted)">fellow</span></li>
+        <li class="flex justify-between"><span class="font-semibold">K. Ito</span><span class="mono text-xs" style="color:var(--muted)">fellow</span></li>
+        <li class="flex justify-between"><span class="font-semibold">J. Park</span><span class="mono text-xs" style="color:var(--muted)">ops</span></li>
+        <li class="text-xs" style="color:var(--muted)">+ 7 more</li>
+      </ul>
+      <a href="#" class="mt-4 inline-block text-sm gold font-semibold">Manage roster →</a>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label gold">Sponsorship · this program</div>
+      <ul class="mt-3 space-y-3 text-sm">
+        <li>
+          <div class="font-semibold">Frontier Sensing Inc.</div>
+          <div class="mono text-xs" style="color:var(--muted)">Anchor sponsor · Quantum desk</div>
+        </li>
+        <li>
+          <div class="font-semibold">Ridge National Lab</div>
+          <div class="mono text-xs" style="color:var(--muted)">Supporter · Quantum desk</div>
+        </li>
+      </ul>
+      <p class="mt-3 text-xs" style="color:var(--muted)">Sponsors fund desks. They do not see, edit, or shape briefs before publication. <a href="#" class="gold underline">G-08 policy →</a></p>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label gold">Program metrics · this month</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Workstream hours</span><span class="mono font-bold">187</span></li>
+        <li class="flex justify-between"><span>Briefs in editorial</span><span class="mono font-bold">3</span></li>
+        <li class="flex justify-between"><span>Sources collected</span><span class="mono font-bold">47</span></li>
+        <li class="flex justify-between"><span>Fellow attendance</span><span class="mono font-bold">93%</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-5">
+      <div class="label gold">Quick actions</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#" class="gold font-semibold">→ Charter new workstream</a></li>
+        <li><a href="#" class="gold font-semibold">→ Schedule convening</a></li>
+        <li><a href="#" class="gold font-semibold">→ Add fellow</a></li>
+        <li><a href="#" class="gold font-semibold">→ Edit charter</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="py-6 border-t rule" style="background:var(--ink); color:white">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between text-xs mono opacity-80">
+    <div>VANTAGE · D3 · Program Command · backend prototype</div>
+    <div>Σ 46/50 · <a href="../index.html" class="underline" style="color:var(--gold)">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

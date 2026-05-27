@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Throughline · D10 · Analyst Console (Backend)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --paper:#ffffff; --panel:#f4f6fa; --ink:#0d1929; --muted:#5a6477; --rule:#dde1ea; --signal:#0046cc; --pos:#0a7032; --neg:#a3220e; --warn:#b88300; }
+  * { font-variant-numeric:tabular-nums; }
+  body { font-family:'Inter',Helvetica,system-ui,sans-serif; background:var(--paper); color:var(--ink); font-size:13.5px; line-height:1.45; -webkit-font-smoothing:antialiased; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .signal { color:var(--signal); }
+  a { color:var(--signal); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .panel { background:var(--panel); border:1px solid var(--rule); }
+  .pill { display:inline-block; padding:1px 7px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; }
+  .pill-pub { background:#e6eefb; color:var(--signal); }
+  .pill-draft { background:#f8eed5; color:var(--warn); }
+  .pill-rev { background:#dfeedb; color:var(--pos); }
+  .pill-sched { background:#dfeedb; color:var(--pos); }
+  table.lt th,table.lt td { padding:.5rem .75rem; border-bottom:1px solid var(--rule); text-align:left; font-size:13px; }
+  table.lt th { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; background:var(--panel); }
+  .conv-up { color:var(--pos); font-family:'JetBrains Mono',monospace; font-size:11px; }
+  .conv-dn { color:var(--neg); font-family:'JetBrains Mono',monospace; font-size:11px; }
+  .conv-fl { color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; }
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="../index.html" class="mono text-xs no-underline" style="color:var(--muted)">←</a>
+      <div class="text-lg font-extrabold tracking-tight" style="color:var(--ink)">Throughline</div>
+      <span class="label">Analyst console</span>
+    </div>
+    <div class="flex items-center gap-5 text-sm">
+      <a href="./main.html">View public →</a>
+      <span class="label">A. Patel · Quantum · lead analyst</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 xl:grid-cols-4 gap-5">
+
+  <section class="xl:col-span-3 space-y-5">
+
+    <div class="grid grid-cols-4 gap-4">
+      <div class="panel p-4"><div class="label">Memos · published 30d</div><div class="text-3xl font-bold mt-2">4</div><div class="conv-up mt-1">▲ 1 vs prior 30d</div></div>
+      <div class="panel p-4"><div class="label">Memos · in flight</div><div class="text-3xl font-bold mt-2">3</div><div class="mono text-xs mt-1" style="color:var(--muted)">2 review · 1 draft</div></div>
+      <div class="panel p-4"><div class="label">Tracker positions</div><div class="text-3xl font-bold mt-2">12</div><div class="mono text-xs mt-1" style="color:var(--muted)">5 high · 4 med · 3 low conv.</div></div>
+      <div class="panel p-4"><div class="label">Distribution reach</div><div class="text-3xl font-bold mt-2">847</div><div class="conv-up mt-1">▲ 12% vs prior 30d</div></div>
+    </div>
+
+    <div class="border rule">
+      <div class="px-4 py-3 border-b rule flex items-center justify-between" style="background:var(--panel)">
+        <div class="label">Your memos</div>
+        <a href="#" class="px-3 py-1.5 mono text-xs font-bold text-white rounded" style="background:var(--ink)">+ NEW MEMO</a>
+      </div>
+      <table class="lt w-full">
+        <thead><tr><th>Memo</th><th>Desk</th><th>Status</th><th>BLUF conviction</th><th>Reads</th><th>Updated</th></tr></thead>
+        <tbody>
+          <tr><td class="font-semibold"><a href="#">#024 · The quantum sensing turn</a></td><td>Quantum</td><td><span class="pill pill-rev">REVIEW</span></td><td><span class="conv-up">▲ med-high</span></td><td class="mono">—</td><td class="mono text-xs" style="color:var(--muted)">2h ago</td></tr>
+          <tr><td class="font-semibold"><a href="#">#023 · EU AI Act, annotated</a></td><td>Cyber</td><td><span class="pill pill-pub">LIVE</span></td><td><span class="conv-fl">→ medium</span></td><td class="mono">843</td><td class="mono text-xs" style="color:var(--muted)">5h ago</td></tr>
+          <tr><td class="font-semibold"><a href="#">#022 · Preprint moratorium</a></td><td>Biosec</td><td><span class="pill pill-sched">SCHED FRI</span></td><td><span class="conv-dn">▼ low</span></td><td class="mono">—</td><td class="mono text-xs" style="color:var(--muted)">3h ago</td></tr>
+          <tr><td class="font-semibold"><a href="#">#021 · ITAR for univ. labs</a></td><td>Defense</td><td><span class="pill pill-draft">DRAFT</span></td><td><span class="conv-fl">→ medium</span></td><td class="mono">—</td><td class="mono text-xs" style="color:var(--muted)">4d ago</td></tr>
+          <tr><td class="font-semibold"><a href="#">#020 · Rare-earth concentration</a></td><td>Materials</td><td><span class="pill pill-pub">LIVE</span></td><td><span class="conv-up">▲ medium</span></td><td class="mono">412</td><td class="mono text-xs" style="color:var(--muted)">1w ago</td></tr>
+          <tr><td class="font-semibold"><a href="#">#019 · CHIPS subgrant timing</a></td><td>Defense</td><td><span class="pill pill-pub">LIVE</span></td><td><span class="conv-up">▲ high</span></td><td class="mono">621</td><td class="mono text-xs" style="color:var(--muted)">2w ago</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <div class="border rule">
+        <div class="px-4 py-3 border-b rule label" style="background:var(--panel)">Your tracker · positions</div>
+        <ul class="divide-y rule">
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">DOE Q4-26 procurement signal</span><span class="conv-up">▲ med-high</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">window Q4-2026 · last update May 27 · sources: 12</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">EU AI Act enforcement window</span><span class="conv-fl">→ medium</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">window Q3-2026 · last update May 26 · sources: 8</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">Biosec moratorium survives Q3</span><span class="conv-dn">▼ low</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">window Q3-2026 · last update May 25 · sources: 14</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">ITAR + AI overlap clarifies</span><span class="conv-fl">→ medium</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">window H2-2026 · last update May 23 · sources: 5</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="border rule">
+        <div class="px-4 py-3 border-b rule label" style="background:var(--panel)">Your distribution lists</div>
+        <ul class="divide-y rule">
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">Quantum-allocators</span><span class="mono text-xs" style="color:var(--muted)">38 subs · ▲ 4</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">last sent May 22 · open-rate 87%</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">Cyber-CISOs</span><span class="mono text-xs" style="color:var(--muted)">27 subs · ▲ 2</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">last sent May 26 · open-rate 81%</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">Materials-GPs</span><span class="mono text-xs" style="color:var(--muted)">14 subs · → flat</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">last sent May 18 · open-rate 92%</div>
+          </li>
+          <li class="px-4 py-3">
+            <div class="flex items-baseline justify-between"><span class="font-semibold">Defense-LPs (private)</span><span class="mono text-xs" style="color:var(--muted)">11 subs · ▲ 1</span></div>
+            <div class="mono text-xs mt-1" style="color:var(--muted)">last sent May 21 · open-rate 100%</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border rule">
+      <div class="px-4 py-3 border-b rule label" style="background:var(--panel)">Memo #024 · BLUF workshop · v3 → v4</div>
+      <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <div class="label">v3 (current draft)</div>
+          <p class="mt-2 text-sm">DOE's $1.4&nbsp;B sensing allocation has not yet produced a defense-procurement signal three years in. Earliest credible window is Q4-2026.</p>
+        </div>
+        <div>
+          <div class="label signal">v4 (proposed)</div>
+          <p class="mt-2 text-sm"><strong>DOE's $1.4&nbsp;B sensing allocation has not yet produced a defense-procurement signal three years in.</strong> Earliest credible window is Q4-2026. The four labs concentrating 78% of obligations are still hiring rather than transitioning; <strong>the standards-body fight is the binding constraint, not science risk.</strong></p>
+          <a href="#" class="mt-3 inline-block text-xs">Promote to v4 →</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="space-y-5">
+
+    <div class="panel p-4">
+      <div class="label">This week's calendar</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span class="mono text-xs">Mon 27 09:00</span><span class="font-semibold">Ship #024</span></li>
+        <li class="flex justify-between"><span class="mono text-xs">Tue 28 14:00</span><span class="font-semibold">Tracker review</span></li>
+        <li class="flex justify-between"><span class="mono text-xs">Fri 31 09:00</span><span class="font-semibold">Ship #022</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label">Your output · 30d</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li class="flex justify-between"><span>Memos shipped</span><span class="mono font-semibold">4</span></li>
+        <li class="flex justify-between"><span>Tracker updates</span><span class="mono font-semibold">17</span></li>
+        <li class="flex justify-between"><span>Member meetings</span><span class="mono font-semibold">11</span></li>
+        <li class="flex justify-between"><span>Reads total</span><span class="mono font-semibold">2,341</span></li>
+      </ul>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label">Citations · this memo</div>
+      <ul class="mt-3 space-y-1 text-xs mono" style="color:var(--muted)">
+        <li>1 · Pub. L. 118–42 · ✓</li>
+        <li>2 · DOE-SC ASCR plan · ✓</li>
+        <li>3 · Pub. L. 118–303 · ✓</li>
+        <li>4 · Brookhaven memo #017 · ✓</li>
+        <li>5 · DOE-ARPA-E 2026-05-26 · ⚠ pending</li>
+        <li>+ 7 more</li>
+      </ul>
+      <a href="#" class="mt-3 inline-block text-xs">→ Open citation bench</a>
+    </div>
+
+    <div class="panel p-4">
+      <div class="label">Quick actions</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#">→ Start new memo</a></li>
+        <li><a href="#">→ Open tracker position</a></li>
+        <li><a href="#">→ Send to distribution list</a></li>
+        <li><a href="#">→ Schedule embargo</a></li>
+      </ul>
+    </div>
+
+    <div class="panel p-4" style="background:var(--ink); color:white; border-color:var(--ink)">
+      <div class="label" style="color:#a3b5d6">CLI</div>
+      <pre class="mt-2 p-2 text-xs mono leading-relaxed">$ throughline memo new \
+  --desk quantum \
+  --bluf "..." \
+  --conv ▲high</pre>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="border-t rule py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between mono text-xs" style="color:var(--muted)">
+    <div>Throughline · D10 · analyst console · backend prototype</div>
+    <div>Σ 42/50 · <a href="../index.html">scorecard</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

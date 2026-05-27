@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Cinema · D16 · Main</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --bg:#0d0d10; --panel:#16161a; --paper:#f4f1e8; --ink:#f4f1e8; --muted:#8a8a93; --rule:#28282e; --accent:#e4683b; --gold:#caa44a; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--ink); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .serif { font-family:'Fraunces',Georgia,serif; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .rule { border-color:var(--rule); }
+  .label { font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+  a { color:var(--ink); text-decoration:none; transition:.1s; }
+  a:hover { color:var(--accent); }
+  .player { background:#000; aspect-ratio:16/9; border-radius:4px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .player::before { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at center, transparent 40%, rgba(0,0,0,.6) 100%); }
+  .play-btn { width:96px; height:96px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:.15s; z-index:1; }
+  .play-btn:hover { transform:scale(1.05); background:white; }
+  .play-btn::before { content:""; border-left:24px solid var(--bg); border-top:14px solid transparent; border-bottom:14px solid transparent; margin-left:6px; }
+  .duration { position:absolute; bottom:14px; right:14px; background:rgba(0,0,0,.78); color:white; padding:3px 9px; font-family:'JetBrains Mono',monospace; font-size:11px; border-radius:3px; z-index:1; }
+  .chapter-dot { position:absolute; bottom:9px; width:3px; height:6px; background:var(--gold); border-radius:1px; z-index:1; }
+  .grid-tile { background:var(--panel); border:1px solid var(--rule); transition:.15s; cursor:pointer; }
+  .grid-tile:hover { border-color:var(--accent); }
+  .grid-tile .thumb { aspect-ratio:16/10; background:linear-gradient(135deg,#1a1a22,#080810); position:relative; display:flex; align-items:center; justify-content:center; }
+  .grid-tile .play-mini { width:36px; height:36px; border-radius:50%; background:rgba(228,104,59,.92); display:flex; align-items:center; justify-content:center; }
+  .grid-tile .play-mini::before { content:""; border-left:11px solid white; border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px; }
+  .grid-tile .duration-mini { position:absolute; bottom:8px; right:8px; background:rgba(0,0,0,.85); color:white; padding:2px 6px; font-family:'JetBrains Mono',monospace; font-size:10px; border-radius:2px; }
+  .grid-tile .gradient { position:absolute; inset:0; background:linear-gradient(135deg,rgba(228,104,59,.18),rgba(202,164,74,.18)); }
+  .grid-tile.t2 .gradient { background:linear-gradient(135deg,rgba(74,124,202,.2),rgba(108,202,164,.18)); }
+  .grid-tile.t3 .gradient { background:linear-gradient(135deg,rgba(186,74,124,.2),rgba(202,124,74,.18)); }
+  .grid-tile.t4 .gradient { background:linear-gradient(135deg,rgba(124,140,80,.2),rgba(202,164,74,.18)); }
+  .grid-tile.t5 .gradient { background:linear-gradient(135deg,rgba(80,80,80,.4),rgba(180,180,180,.15)); }
+  .grid-tile.t6 .gradient { background:linear-gradient(135deg,rgba(190,80,80,.25),rgba(60,60,80,.3)); }
+  .chip { display:inline-block; padding:2px 9px; border:1px solid var(--gold); color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
+  .ava { width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:10px; font-weight:600; }
+  .a1{background:#c25a1f}.a2{background:#5c87a8}.a3{background:#7b9070}.a4{background:#a07a2c}.a5{background:#8a3a5f}.a6{background:#5e5e63}
+</style>
+</head>
+<body>
+
+<header class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-baseline gap-5">
+      <a href="../index.html" class="mono text-xs" style="color:var(--muted)">←</a>
+      <div class="serif text-2xl tracking-tight" style="color:var(--gold)">The Cinema</div>
+      <span class="label hidden md:inline">long-form conversations · across twenty fields</span>
+    </div>
+    <nav class="flex items-center gap-6 text-sm">
+      <a href="#">Now playing</a>
+      <a href="#">Archive</a>
+      <a href="#">Voices</a>
+      <a href="#">Live tonight</a>
+      <a href="#" class="px-3 py-1.5 text-xs font-semibold" style="background:var(--accent); color:white">+ Pitch a conversation</a>
+    </nav>
+  </div>
+</header>
+
+<section class="border-b rule">
+  <div class="max-w-7xl mx-auto px-6 py-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-9 items-start">
+
+      <div>
+        <div class="player">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#3a1a08 0%,#080404 80%)"></div>
+          <div class="absolute inset-0 flex items-center justify-center" style="background-image:radial-gradient(circle at 30% 40%, rgba(228,104,59,.3) 0, transparent 50%)"></div>
+          <button class="play-btn"></button>
+          <div class="duration">1:42:18</div>
+          <div class="chapter-dot" style="left:12%"></div>
+          <div class="chapter-dot" style="left:28%"></div>
+          <div class="chapter-dot" style="left:47%"></div>
+          <div class="chapter-dot" style="left:64%"></div>
+          <div class="chapter-dot" style="left:81%"></div>
+        </div>
+
+        <div class="mt-6">
+          <div class="flex items-center gap-3"><span class="chip">NOW PLAYING · TONIGHT</span><span class="label">Episode #024 · Quantum</span></div>
+          <h1 class="serif text-5xl mt-3 leading-[1.05] font-medium tracking-tight">A truck driver, a quantum physicist, and a federal-grants accountant walk into a conversation.</h1>
+          <p class="serif text-xl mt-4 leading-snug" style="color:var(--muted)">What does the DOE's $1.4 billion bet on quantum sensing look like from three completely different vantage points — and what does that say about how we know when a federal program is actually real?</p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3 flex-wrap">
+          <span class="flex items-center gap-2"><span class="ava a1">SA</span> Sam Ahmadi <span class="label">· freight, route-13</span></span>
+          <span class="label">×</span>
+          <span class="flex items-center gap-2"><span class="ava a4">AP</span> Alex Patel <span class="label">· Brookhaven</span></span>
+          <span class="label">×</span>
+          <span class="flex items-center gap-2"><span class="ava a6">RT</span> Rosa Torres <span class="label">· federal-grants accountant</span></span>
+          <span class="ml-auto label mono">moderated by The Cinema editors · 1h 42m · captions + transcript</span>
+        </div>
+
+        <div class="mt-7 grid grid-cols-2 md:grid-cols-5 gap-1.5">
+          <a href="#" class="border rule p-3" style="border-color:var(--accent)"><div class="mono text-[10px]" style="color:var(--accent)">00:00</div><div class="serif text-sm mt-1">Cold open</div></a>
+          <a href="#" class="border rule p-3"><div class="mono text-[10px] label">12:04</div><div class="serif text-sm mt-1">"What I see from the truck"</div></a>
+          <a href="#" class="border rule p-3"><div class="mono text-[10px] label">28:47</div><div class="serif text-sm mt-1">The cryo-gear evidence</div></a>
+          <a href="#" class="border rule p-3"><div class="mono text-[10px] label">47:11</div><div class="serif text-sm mt-1">"The accountants knew first"</div></a>
+          <a href="#" class="border rule p-3"><div class="mono text-[10px] label">1:23:00</div><div class="serif text-sm mt-1">What an outsider taught us</div></a>
+        </div>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="border rule p-5" style="background:var(--panel)">
+          <div class="label mono mb-3">— companion brief, on-screen now</div>
+          <h3 class="serif text-xl font-semibold leading-snug">The procurement signal is six months earlier than the official brief says</h3>
+          <p class="text-sm mt-2" style="color:var(--muted)">A. Patel's 14-min companion brief, sourced from Sam Ahmadi's freight evidence + Rachel Moss's service-tech evidence + Rosa Torres's set-aside data. Updated this morning, will keep updating in real-time during tonight's conversation.</p>
+          <a href="#" class="mt-3 inline-block text-sm" style="color:var(--accent)">read the brief →</a>
+        </div>
+
+        <div class="border rule p-5" style="background:var(--panel)">
+          <div class="label mono mb-3">— live tonight · 7:30 ET</div>
+          <div class="flex items-center gap-2 mb-2">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff4848; box-shadow:0 0 0 3px rgba(255,72,72,.2)"></span>
+            <span class="text-sm font-semibold">post-show Q&amp;A · open to everyone</span>
+          </div>
+          <p class="text-sm" style="color:var(--muted)">Sam, Alex, and Rosa stay on after the conversation. Anyone (no membership needed) can ask a question. Top 5 questions by upvote get answered live. Recording stays public.</p>
+          <button class="mt-3 px-3.5 py-2 text-xs font-semibold rounded" style="background:var(--accent); color:white">add to calendar →</button>
+        </div>
+
+        <div class="border rule p-5" style="background:var(--panel)">
+          <div class="label mono mb-3">— who's recommending this conversation</div>
+          <div class="flex items-center gap-2 flex-wrap text-sm">
+            <span class="flex items-center gap-1"><span class="ava a3">DT</span> a HS teacher</span>
+            <span class="label">·</span>
+            <span class="flex items-center gap-1"><span class="ava a5">JO</span> an ex-Treasury parent</span>
+            <span class="label">·</span>
+            <span class="flex items-center gap-1"><span class="ava a2">MK</span> a bank compliance officer</span>
+            <span class="label">·</span>
+            <span class="label">+ 412 more in the first 6 hours</span>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule">
+  <div class="flex items-baseline justify-between mb-6">
+    <div>
+      <div class="chip">RECENT</div>
+      <h2 class="serif text-3xl mt-3 font-medium tracking-tight">Conversations from the last fortnight</h2>
+    </div>
+    <a href="#" class="mono text-xs" style="color:var(--accent)">all 47 episodes →</a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <div class="grid-tile">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">58:14</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Cyber · Episode #023 · May 22</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"The EU AI Act compromise from inside three different jobs"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">A regional-bank compliance officer, an EU staff lawyer, and an open-source ML researcher walk through what the trilogue text actually did.</p>
+      </div>
+    </div>
+
+    <div class="grid-tile t2">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">1:12:04</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Biosec · Episode #022 · May 18</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"Why a high-school teacher asked the question that broke our framing"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">A chemistry teacher's question about gain-of-function pulled three biosec voices into the most concrete public definition we've seen.</p>
+      </div>
+    </div>
+
+    <div class="grid-tile t3">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">42:31</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Defense · Episode #021 · May 14</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"ITAR rewrite: a parent at nap-time and a university counsel"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">An ex-Treasury analyst spotted what university counsel offices missed. This is the conversation that followed.</p>
+      </div>
+    </div>
+
+    <div class="grid-tile t4">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">1:05:48</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Materials · Episode #020 · May 10</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"Rare-earth concentration, told by a mining-equipment salesperson"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">Why the "diversified" sourcing graph is wrong, and what the corrected picture actually says about supply risk.</p>
+      </div>
+    </div>
+
+    <div class="grid-tile t5">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">2:14:09</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Energy · Episode #019 · May 5</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"ERCOT hour-14: what a battery operator saw before the papers did"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">Texas summer auction anomaly, narrated by the small operator who first noticed it on a Tuesday afternoon in March.</p>
+      </div>
+    </div>
+
+    <div class="grid-tile t6">
+      <div class="thumb">
+        <div class="gradient"></div>
+        <div class="play-mini"></div>
+        <div class="duration-mini">34:21</div>
+      </div>
+      <div class="p-4">
+        <div class="label mono">Geopolitics · Episode #018 · Apr 28</div>
+        <h3 class="serif text-lg font-semibold leading-snug mt-2">"Reading sanctions through a freight-forwarder's eyes"</h3>
+        <p class="text-sm mt-2" style="color:var(--muted)">A working freight-forwarder explains how sanctions actually bite, and what the policy debate misses about ground-level enforcement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-6 py-12 border-b rule grid grid-cols-1 lg:grid-cols-3 gap-9">
+  <div>
+    <div class="chip">PITCH</div>
+    <h2 class="serif text-3xl mt-3 font-medium tracking-tight">A conversation we should have?</h2>
+    <p class="mt-3" style="color:var(--muted)">Anyone can pitch a long-form conversation. We don't gate by your job. We pair pitchers with two or three other voices we think would make the conversation matter. Average pitch-to-record is ~3 weeks.</p>
+    <button class="mt-4 px-4 py-2.5 text-sm font-semibold rounded" style="background:var(--accent); color:white">+ pitch a conversation</button>
+  </div>
+  <div>
+    <div class="chip">TONIGHT</div>
+    <h3 class="serif text-2xl mt-3 font-medium">"Sensing Turn" Q&amp;A · 7:30 ET</h3>
+    <p class="mt-3" style="color:var(--muted)">Sam, Alex, and Rosa stay on after the conversation. Q&amp;A is open to everyone — no membership needed to ask. Best 5 questions get answered live; the recording becomes a chapter of episode #024.</p>
+    <a href="#" class="mt-3 inline-block text-sm" style="color:var(--accent)">add to calendar →</a>
+  </div>
+  <div>
+    <div class="chip">MEMBERSHIP</div>
+    <h3 class="serif text-2xl mt-3 font-medium">$10 / month</h3>
+    <p class="mt-3" style="color:var(--muted)">Watch everything live; ask questions in any Q&amp;A; full transcripts; archive search; companion briefs. Pitching a conversation is free for anyone — including non-members.</p>
+    <button class="mt-3 px-3.5 py-2 text-sm font-semibold border" style="border-color:var(--accent); color:var(--accent)">join the cinema →</button>
+  </div>
+</section>
+
+<footer class="py-5">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between label mono">
+    <div>The Cinema · D16 · prototype 2026-05-27</div>
+    <div><a href="../index.html" style="color:var(--accent)">← all 20 directions</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
