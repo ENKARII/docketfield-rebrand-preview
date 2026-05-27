@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D26 Observatory · Inside a thread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* D26 · OBSERVATORY — thread detail. Shares the home page's design system. */
+  :root {
+    --ground:#FBFCFD; --paper:#FFFFFF; --ink:#14181F; --ink-soft:#38414F;
+    --muted:#5A6472; --faint:#8C95A3; --line:#E4E8EE; --line-soft:#EFF2F6;
+    --indigo:#2D4ECF; --indigo-dk:#1E3AA8; --consensus:#0E7C66;
+    --consensus-bg:#E6F4EF; --indigo-bg:#EEF1FC; --r:4px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  body { font-family: 'Inter Tight', -apple-system, sans-serif; background: var(--ground); color: var(--ink); font-size: 16px; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--indigo-bg); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+  .masthead { border-bottom: 1px solid var(--line); background: rgba(251,252,253,0.85); backdrop-filter: saturate(140%) blur(8px); position: sticky; top: 0; z-index: 50; }
+  .masthead-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: baseline; gap: 12px; }
+  .brand .mark { font-family: 'Newsreader', serif; font-size: 23px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .tag { font-size: 11.5px; color: var(--muted); letter-spacing: 0.02em; border-left: 1px solid var(--line); padding-left: 12px; }
+  .nav { display: flex; align-items: center; gap: 30px; }
+  .nav a { font-size: 13.5px; color: var(--ink-soft); font-weight: 500; transition: color 150ms; }
+  .nav a:hover { color: var(--indigo); }
+  .nav .signin { color: var(--paper); background: var(--ink); padding: 8px 16px; border-radius: var(--r); font-size: 13px; transition: background 150ms; }
+  .nav .signin:hover { background: var(--indigo); }
+  @media (max-width: 760px) { .nav a:not(.signin) { display: none; } .brand .tag { display: none; } }
+
+  .surface-switch { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 22px 0 0; }
+  .surface-switch .ss-label { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .surface-switch .ss-tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 100px; overflow: hidden; background: var(--paper); }
+  .surface-switch .ss-tab { font-size: 13px; font-weight: 500; padding: 8px 18px; color: var(--ink-soft); transition: background 140ms, color 140ms; display: inline-flex; align-items: center; gap: 7px; }
+  .surface-switch .ss-tab + .ss-tab { border-left: 1px solid var(--line); }
+  .surface-switch .ss-tab:hover { background: var(--indigo-bg); color: var(--indigo-dk); }
+  .surface-switch .ss-tab.is-active { background: var(--ink); color: var(--paper); }
+  .surface-switch .ss-tab.is-active:hover { background: var(--ink); color: var(--paper); }
+
+  /* breadcrumb */
+  .crumb { font-size: 13px; color: var(--muted); padding: 34px 0 0; display: flex; align-items: center; gap: 9px; }
+  .crumb a:hover { color: var(--indigo); }
+  .crumb .chip { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--indigo-dk); background: var(--indigo-bg); padding: 3px 9px; border-radius: 100px; }
+
+  /* thread layout */
+  .thread { display: grid; grid-template-columns: 1fr 280px; gap: 56px; padding: 28px 0 90px; align-items: start; }
+  @media (max-width: 900px) { .thread { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* original post */
+  .op { padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+  .op h1 { font-family: 'Newsreader', serif; font-weight: 500; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.018em; margin-bottom: 22px; }
+  .author { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+  .av { width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 16px; }
+  .author .nm { font-weight: 600; font-size: 15.5px; }
+  .author .rl { font-size: 13px; color: var(--muted); }
+  .op-body { font-family: 'Newsreader', serif; font-size: 20px; line-height: 1.6; color: var(--ink-soft); max-width: 64ch; }
+  .op-body p + p { margin-top: 18px; }
+  .op-body em { font-style: italic; color: var(--ink); }
+  .op-actions { display: flex; align-items: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+  .act { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 500; padding: 9px 16px; border-radius: 100px; border: 1px solid var(--line); color: var(--ink-soft); background: var(--paper); cursor: pointer; transition: all 140ms; }
+  .act:hover { border-color: var(--indigo); color: var(--indigo); }
+  .act svg { width: 15px; height: 15px; }
+  .act.primary { background: var(--consensus); border-color: var(--consensus); color: #fff; }
+  .act.primary:hover { background: #0a6553; border-color: #0a6553; color: #fff; }
+
+  /* replies */
+  .replies-head { display: flex; align-items: baseline; justify-content: space-between; margin: 40px 0 6px; }
+  .replies-head h2 { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+  .replies-head .sort { font-size: 12.5px; color: var(--muted); }
+
+  .reply { padding: 28px 0; border-bottom: 1px solid var(--line-soft); }
+  .reply.changed { padding-left: 22px; border-left: 2px solid var(--consensus); background: linear-gradient(90deg, var(--consensus-bg), transparent 60%); border-radius: var(--r); margin: 8px 0; border-bottom: none; }
+  .reply-top { display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
+  .reply-top .av { width: 38px; height: 38px; font-size: 14px; }
+  .reply-top .nm { font-weight: 600; font-size: 14.5px; }
+  .reply-top .rl { font-size: 12.5px; color: var(--muted); }
+  .reply-top .badge { margin-left: auto; font-size: 11px; font-weight: 600; color: var(--consensus); background: var(--consensus-bg); padding: 4px 11px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; }
+  .reply-top .badge svg { width: 12px; height: 12px; }
+  .reply-body { font-family: 'Newsreader', serif; font-size: 18px; line-height: 1.56; color: var(--ink-soft); max-width: 62ch; }
+  .reply-body em { font-style: italic; color: var(--ink); }
+  .reply-foot { display: flex; align-items: center; gap: 18px; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+  .reply-foot a:hover { color: var(--indigo); }
+  .reply.nested { margin-left: 38px; }
+
+  /* composer */
+  .composer { margin-top: 36px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+  .composer .field { width: 100%; border: none; outline: none; font-family: 'Newsreader', serif; font-size: 18px; color: var(--ink); resize: none; line-height: 1.5; }
+  .composer .field::placeholder { color: var(--faint); }
+  .composer-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .composer-foot .hint { font-size: 12.5px; color: var(--muted); }
+  .composer-foot .post { background: var(--ink); color: var(--paper); padding: 9px 20px; border-radius: 100px; font-size: 13.5px; font-weight: 500; border: none; cursor: pointer; transition: background 150ms; }
+  .composer-foot .post:hover { background: var(--indigo); }
+
+  /* sidebar */
+  .aside { position: sticky; top: 92px; }
+  .aside-card { border: 1px solid var(--line); border-radius: 8px; background: var(--paper); padding: 22px; margin-bottom: 18px; }
+  .aside-card h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
+  .stat-line { display: flex; align-items: baseline; justify-content: space-between; padding: 7px 0; }
+  .stat-line + .stat-line { border-top: 1px solid var(--line-soft); }
+  .stat-line .k { font-size: 13.5px; color: var(--ink-soft); }
+  .stat-line .v { font-family: 'Newsreader', serif; font-size: 18px; font-weight: 600; }
+  .stat-line .v.green { color: var(--consensus); }
+  .participants { display: flex; flex-direction: column; gap: 12px; }
+  .pt { display: flex; align-items: center; gap: 10px; }
+  .pt .av { width: 30px; height: 30px; font-size: 12px; }
+  .pt .nm { font-size: 13.5px; font-weight: 500; }
+  .pt .rl { font-size: 11.5px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--ink); padding: 30px 0 60px; display: flex; align-items: baseline; justify-content: space-between; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; gap: 14px; }
+  footer .mark { font-family: 'Newsreader', serif; font-weight: 600; color: var(--ink); font-size: 15px; }
+  footer a:hover { color: var(--indigo); }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="brand">
+        <span class="mark">DocketField</span>
+        <span class="tag">An open record across twenty fields</span>
+      </div>
+      <nav class="nav">
+        <a href="main.html">The Lobby</a>
+        <a href="#">Fields</a>
+        <a href="#">About</a>
+        <a href="../index.html" class="signin">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="surface-switch">
+      <span class="ss-label">This direction · two views</span>
+      <span class="ss-tabs">
+        <a class="ss-tab" href="main.html">← The Lobby — community home</a>
+        <a class="ss-tab is-active" href="thread.html">Inside one thread</a>
+      </span>
+    </div>
+
+    <div class="crumb">
+      <a href="main.html">The Lobby</a> <span>/</span> <span class="chip">Quantum</span> <span>/</span> <span>a thread on FY24 program timelines</span>
+    </div>
+
+    <div class="thread">
+      <div class="thread-main">
+
+        <article class="op">
+          <h1>The published quantum-sensing timeline doesn't match what's arriving at the Brookhaven loading dock.</h1>
+          <div class="author">
+            <div class="av" style="background:#e3e8fb;color:#2d4ecf">SA</div>
+            <div><div class="nm">Sam Ahmadi</div><div class="rl">Freight driver — Route-13 logistics, Eastern Seaboard · 2 hours ago</div></div>
+          </div>
+          <div class="op-body">
+            <p>I drive freight out of Brookhaven Lab three times a week. Over the last six weeks the hiring on the loading dock is visibly up — and the gear coming in is cryogenic handling equipment that, as far as I can tell from the public FY24 plan, isn't scheduled to arrive until next year.</p>
+            <p><em>I don't know quantum sensing. I know what shows up on the dock, who unloads it, and when.</em> And it doesn't match the timeline everyone in this field seems to be working from. Posting it here in case the gap means something to someone who'd know.</p>
+          </div>
+          <div class="op-actions">
+            <button class="act primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>This changed my mind · 47</button>
+            <button class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Reply</button>
+            <button class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Save</button>
+          </div>
+        </article>
+
+        <div class="replies-head">
+          <h2>23 replies</h2>
+          <span class="sort">Ranked by minds changed</span>
+        </div>
+
+        <article class="reply changed">
+          <div class="reply-top">
+            <div class="av" style="background:#dceee7;color:#0e7c66">AP</div>
+            <div><div class="nm">Alex Patel</div><div class="rl">Quantum researcher — Brookhaven, off-duty</div></div>
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>changed 22 minds</span>
+          </div>
+          <div class="reply-body">Sam — that's the ground truth I keep missing from my desk. Dock-level hiring and equipment arrival is something I literally cannot see from where I sit, and you're right that it doesn't line up with the public schedule. <em>I'm going into v2 of the brief with your observation attributed. Thank you for posting it.</em></div>
+          <div class="reply-foot">
+            <a href="#">31 thanks</a><span>·</span><a href="#">8 replies</a><span>·</span><span>1 hour ago</span>
+          </div>
+        </article>
+
+        <article class="reply nested">
+          <div class="reply-top">
+            <div class="av" style="background:#e3e8fb;color:#2d4ecf">SA</div>
+            <div><div class="nm">Sam Ahmadi</div><div class="rl">replying to Alex</div></div>
+          </div>
+          <div class="reply-body">Glad it's useful. I can note delivery dates and rough crate counts going forward if that helps — I'm on that route Mon/Wed/Fri regardless.</div>
+          <div class="reply-foot"><a href="#">14 thanks</a><span>·</span><span>52 min ago</span></div>
+        </article>
+
+        <article class="reply">
+          <div class="reply-top">
+            <div class="av" style="background:#f0e6d2;color:#8a6a1f">RW</div>
+            <div><div class="nm">Renata Whitlock</div><div class="rl">Procurement analyst — defense supplier, contract side</div></div>
+          </div>
+          <div class="reply-body">Worth flagging: cryo handling gear arriving ahead of a published schedule usually means the line item was re-baselined in a modification nobody publishes. The dock is often the only place the real date is observable. <em>This is exactly the kind of signal that never reaches the people modeling the field.</em></div>
+          <div class="reply-foot"><a href="#">19 thanks</a><span>·</span><a href="#">3 replies</a><span>·</span><span>40 min ago</span></div>
+        </article>
+
+        <article class="reply">
+          <div class="reply-top">
+            <div class="av" style="background:#e6dcef;color:#6b3f8f">TN</div>
+            <div><div class="nm">Theo Nakamura</div><div class="rl">Grad student — applied physics</div></div>
+          </div>
+          <div class="reply-body">Saving this whole thread for my advisor's group meeting. We've been treating the public roadmap as authoritative and it clearly isn't the full picture.</div>
+          <div class="reply-foot"><a href="#">7 thanks</a><span>·</span><span>22 min ago</span></div>
+        </article>
+
+        <div class="composer">
+          <textarea class="field" rows="3" placeholder="Add something that holds up — a fact, a correction, a question only you can answer…"></textarea>
+          <div class="composer-foot">
+            <span class="hint">Posting as a member · anyone can reply, no credential check</span>
+            <button class="post">Post reply</button>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="aside">
+        <div class="aside-card">
+          <h3>This thread</h3>
+          <div class="stat-line"><span class="k">Minds changed</span><span class="v green">71</span></div>
+          <div class="stat-line"><span class="k">Replies</span><span class="v">23</span></div>
+          <div class="stat-line"><span class="k">Pinned by stewards</span><span class="v">8</span></div>
+          <div class="stat-line"><span class="k">Opened</span><span class="v" style="font-size:14px;font-weight:500;">2h ago</span></div>
+        </div>
+        <div class="aside-card">
+          <h3>In the room</h3>
+          <div class="participants">
+            <div class="pt"><div class="av" style="background:#e3e8fb;color:#2d4ecf">SA</div><div><div class="nm">Sam Ahmadi</div><div class="rl">freight driver</div></div></div>
+            <div class="pt"><div class="av" style="background:#dceee7;color:#0e7c66">AP</div><div><div class="nm">Alex Patel</div><div class="rl">Brookhaven researcher</div></div></div>
+            <div class="pt"><div class="av" style="background:#f0e6d2;color:#8a6a1f">RW</div><div><div class="nm">Renata Whitlock</div><div class="rl">procurement analyst</div></div></div>
+            <div class="pt"><div class="av" style="background:#e6dcef;color:#6b3f8f">TN</div><div><div class="nm">Theo Nakamura</div><div class="rl">grad student</div></div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </main>
+
+  <footer class="wrap">
+    <span class="mark">DocketField</span>
+    <span>D26 — Observatory · thread detail</span>
+    <a href="../index.html">← all directions</a>
+  </footer>
+
+</body>
+</html>

@@ -80,8 +80,30 @@
   .nav .signin:hover { background: var(--indigo); }
   @media (max-width: 760px) { .nav a:not(.signin) { display: none; } .brand .tag { display: none; } }
 
+  /* ── surface switcher ──────────────────────────── */
+  .surface-switch {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 22px 0 0;
+  }
+  .surface-switch .ss-label {
+    font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600;
+  }
+  .surface-switch .ss-tabs {
+    display: inline-flex; border: 1px solid var(--line); border-radius: 100px;
+    overflow: hidden; background: var(--paper);
+  }
+  .surface-switch .ss-tab {
+    font-size: 13px; font-weight: 500; padding: 8px 18px; color: var(--ink-soft);
+    transition: background 140ms, color 140ms; display: inline-flex; align-items: center; gap: 7px;
+  }
+  .surface-switch .ss-tab + .ss-tab { border-left: 1px solid var(--line); }
+  .surface-switch .ss-tab:hover { background: var(--indigo-bg); color: var(--indigo-dk); }
+  .surface-switch .ss-tab.is-active { background: var(--ink); color: var(--paper); }
+  .surface-switch .ss-tab.is-active:hover { background: var(--ink); color: var(--paper); }
+
   /* ── hero ──────────────────────────────────────── */
-  .hero { padding: 84px 0 56px; max-width: 880px; }
+  .hero { padding: 44px 0 56px; max-width: 880px; }
   .hero .kicker {
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--indigo); font-weight: 600; margin-bottom: 22px;
@@ -265,6 +287,14 @@
   </header>
 
   <main class="wrap">
+
+    <div class="surface-switch">
+      <span class="ss-label">This direction · two views</span>
+      <span class="ss-tabs">
+        <a class="ss-tab is-active" href="main.html">The Lobby — community home</a>
+        <a class="ss-tab" href="thread.html">Inside one thread →</a>
+      </span>
+    </div>
 
     <section class="hero">
       <div class="kicker">The Lobby · live across all desks</div>

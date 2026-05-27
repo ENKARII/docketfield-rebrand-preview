@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocketField — D28 Commons · Inside a conversation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* D28 · COMMONS — conversation detail. Shares the home page's design system. */
+  :root {
+    --ground:#F4F1EA; --paper:#FCFBF7; --ink:#20201C; --ink-soft:#4A483F;
+    --muted:#74716A; --line:#E2DDD1; --line-2:#D6D0C2; --forest:#1F5C45;
+    --forest-dk:#164533; --forest-bg:#E6EFE9; --gold:#9C7A2E; --r:14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  body { font-family: 'Mulish', -apple-system, sans-serif; background: var(--ground); color: var(--ink); font-size: 17px; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--forest-bg); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 44px; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 26px 44px; max-width: 1080px; margin: 0 auto; }
+  .brand { display: flex; align-items: baseline; gap: 13px; }
+  .brand .mark { font-family: 'Fraunces', serif; font-size: 25px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .tag { font-size: 13px; color: var(--muted); }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a { font-size: 14.5px; color: var(--ink-soft); font-weight: 500; transition: color 150ms; }
+  nav a:hover { color: var(--forest); }
+  nav .join { background: var(--forest); color: #fff; padding: 9px 18px; border-radius: 100px; font-weight: 600; font-size: 14px; transition: background 150ms; }
+  nav .join:hover { background: var(--forest-dk); }
+  @media (max-width: 760px) { nav a:not(.join) { display: none; } .brand .tag { display: none; } }
+
+  .surface-switch { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 4px 0 0; }
+  .surface-switch .ss-label { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .surface-switch .ss-tabs { display: inline-flex; background: var(--paper); border: 1px solid var(--line-2); border-radius: 100px; padding: 4px; gap: 3px; }
+  .surface-switch .ss-tab { font-size: 13.5px; font-weight: 600; padding: 8px 18px; border-radius: 100px; color: var(--ink-soft); transition: all 150ms; }
+  .surface-switch .ss-tab:hover { color: var(--forest); }
+  .surface-switch .ss-tab.is-active { background: var(--forest); color: #fff; }
+  .surface-switch .ss-tab.is-active:hover { background: var(--forest-dk); color: #fff; }
+
+  .crumb { font-size: 13.5px; color: var(--muted); padding: 30px 0 0; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .crumb a:hover { color: var(--forest); }
+  .crumb .chip { font-size: 12px; font-weight: 600; color: var(--forest); background: var(--forest-bg); padding: 4px 12px; border-radius: 100px; }
+
+  .conv { max-width: 760px; padding: 22px 0 90px; }
+
+  .op { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+  .op h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(30px, 4.6vw, 46px); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .author { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .av { width: 50px; height: 50px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; }
+  .author .nm { font-weight: 700; font-size: 16.5px; }
+  .author .rl { font-size: 13.5px; color: var(--muted); }
+  .op-body { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.5; letter-spacing: -0.005em; color: var(--ink); }
+  .op-body p + p { margin-top: 20px; }
+  .op-body em { font-style: italic; color: var(--forest-dk); }
+  .op-actions { display: flex; align-items: center; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .act { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding: 11px 20px; border-radius: 100px; border: 1px solid var(--line-2); color: var(--ink-soft); background: var(--paper); cursor: pointer; transition: all 150ms; font-family: inherit; }
+  .act:hover { border-color: var(--forest); color: var(--forest); }
+  .act svg { width: 16px; height: 16px; }
+  .act.primary { background: var(--forest); border-color: var(--forest); color: #fff; }
+  .act.primary:hover { background: var(--forest-dk); color: #fff; }
+
+  .replies-head { margin: 40px 0 8px; }
+  .replies-head h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+  .replies-head p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  .reply { padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .reply.changed { background: var(--forest-bg); border-radius: var(--r); padding: 24px 26px; border-bottom: none; margin: 12px 0; }
+  .reply.nested { margin-left: 40px; }
+  .reply-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .reply-top .av { width: 42px; height: 42px; font-size: 15px; }
+  .reply-top .nm { font-weight: 700; font-size: 15px; }
+  .reply-top .rl { font-size: 12.5px; color: var(--muted); }
+  .reply-top .badge { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--forest); display: inline-flex; align-items: center; gap: 6px; }
+  .reply-top .badge svg { width: 14px; height: 14px; }
+  .reply-body { font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.5; color: var(--ink); }
+  .reply-body em { font-style: italic; color: var(--forest-dk); }
+  .reply-foot { display: flex; align-items: center; gap: 18px; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+  .reply-foot a:hover { color: var(--forest); }
+
+  .composer { margin-top: 30px; background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--r); padding: 22px 24px; }
+  .composer textarea { width: 100%; background: transparent; border: none; outline: none; font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.5; color: var(--ink); resize: none; }
+  .composer textarea::placeholder { color: var(--muted); }
+  .composer-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .composer-foot .hint { font-size: 13px; color: var(--muted); }
+  .composer-foot .post { background: var(--forest); color: #fff; border: none; padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 150ms; }
+  .composer-foot .post:hover { background: var(--forest-dk); }
+
+  @media (max-width: 720px) {
+    .wrap, header { padding-left: 22px; padding-right: 22px; }
+    .reply.nested { margin-left: 18px; }
+  }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 64px; display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+  footer .mark { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); font-size: 16px; }
+  footer a:hover { color: var(--forest); }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="brand"><span class="mark">DocketField</span><span class="tag">a commons across twenty fields</span></div>
+    <nav>
+      <a href="main.html">The room</a>
+      <a href="#">Fields</a>
+      <a href="#">What this is</a>
+      <a href="../index.html" class="join">Join · $8/mo</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <div class="surface-switch">
+      <span class="ss-label">This direction · two views</span>
+      <span class="ss-tabs">
+        <a class="ss-tab" href="main.html">← The room</a>
+        <a class="ss-tab is-active" href="thread.html">Inside one conversation</a>
+      </span>
+    </div>
+
+    <div class="crumb">
+      <a href="main.html">The room</a> <span>/</span> <span class="chip">Quantum</span> <span>/</span> <span>what Sam saw at the dock</span>
+    </div>
+
+    <div class="conv">
+
+      <article class="op">
+        <h1>What's arriving at the Brookhaven dock doesn't match the published quantum timeline.</h1>
+        <div class="author">
+          <div class="av" style="background:#dbe7e0;color:#1f5c45">SA</div>
+          <div><div class="nm">Sam Ahmadi</div><div class="rl">Freight driver — Route-13 logistics, Eastern Seaboard · 2 hours ago</div></div>
+        </div>
+        <div class="op-body">
+          <p>I drive freight out of Brookhaven Lab three times a week. Over the last six weeks the hiring on the loading dock is visibly up — and the gear coming in is cryogenic handling equipment that, as far as I can tell from the public FY24 plan, isn't due until next year.</p>
+          <p><em>I don't know quantum sensing. I know what shows up on the dock, who unloads it, and when.</em> It doesn't match the timeline everyone here seems to be working from. Posting it in case the gap means something to someone who'd know.</p>
+        </div>
+        <div class="op-actions">
+          <button class="act primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>This changed my mind · 47</button>
+          <button class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Reply</button>
+          <button class="act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Save</button>
+        </div>
+      </article>
+
+      <div class="replies-head">
+        <h2>23 people answered</h2>
+        <p>Ordered by minds changed, not by who spoke loudest.</p>
+      </div>
+
+      <article class="reply changed">
+        <div class="reply-top">
+          <div class="av" style="background:#cfe3d8;color:#164533">AP</div>
+          <div><div class="nm">Alex Patel</div><div class="rl">Quantum researcher — Brookhaven, off-duty</div></div>
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>changed 22 minds</span>
+        </div>
+        <div class="reply-body">Sam — that's the ground truth I keep missing from my desk. Dock-level hiring and equipment arrival is something I literally cannot see from where I sit, and you're right that it doesn't line up with the public schedule. <em>I'm going into v2 of the brief with your observation attributed. Thank you for posting it.</em></div>
+        <div class="reply-foot"><a href="#">31 thanks</a><span>·</span><a href="#">8 replies</a><span>·</span><span>1 hour ago</span></div>
+      </article>
+
+      <article class="reply nested">
+        <div class="reply-top">
+          <div class="av" style="background:#dbe7e0;color:#1f5c45">SA</div>
+          <div><div class="nm">Sam Ahmadi</div><div class="rl">replying to Alex</div></div>
+        </div>
+        <div class="reply-body">Glad it's useful. I can note delivery dates and rough crate counts going forward if that helps — I'm on that route Mon/Wed/Fri regardless.</div>
+        <div class="reply-foot"><a href="#">14 thanks</a><span>·</span><span>52 min ago</span></div>
+      </article>
+
+      <article class="reply">
+        <div class="reply-top">
+          <div class="av" style="background:#ece0d4;color:#9c5a2e">RW</div>
+          <div><div class="nm">Renata Whitlock</div><div class="rl">Procurement analyst — defense supplier</div></div>
+        </div>
+        <div class="reply-body">Worth flagging: cryo handling gear arriving ahead of a published schedule usually means the line item was re-baselined in a modification nobody publishes. The dock is often the only place the real date is observable. <em>This is exactly the kind of signal that never reaches the people modeling the field.</em></div>
+        <div class="reply-foot"><a href="#">19 thanks</a><span>·</span><a href="#">3 replies</a><span>·</span><span>40 min ago</span></div>
+      </article>
+
+      <article class="reply">
+        <div class="reply-top">
+          <div class="av" style="background:#e0e7da;color:#3f5a2e">TN</div>
+          <div><div class="nm">Theo Nakamura</div><div class="rl">Grad student — applied physics</div></div>
+        </div>
+        <div class="reply-body">Saving this whole conversation for my advisor's group meeting. We've been treating the public roadmap as authoritative and it clearly isn't the full picture.</div>
+        <div class="reply-foot"><a href="#">7 thanks</a><span>·</span><span>22 min ago</span></div>
+      </article>
+
+      <div class="composer">
+        <textarea rows="3" placeholder="Add something that holds up — a fact, a correction, a question only you can answer…"></textarea>
+        <div class="composer-foot">
+          <span class="hint">Posting as a member · anyone can reply, no credential check</span>
+          <button class="post">Post reply</button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="wrap">
+    <span class="mark">DocketField</span>
+    <span>D28 — Commons · conversation detail</span>
+    <a href="../index.html">← all directions</a>
+  </footer>
+
+</body>
+</html>

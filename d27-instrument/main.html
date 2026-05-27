@@ -111,7 +111,16 @@
   .btn-pri { background: var(--accent); border-color: var(--accent); color: #fff; }
   .btn-pri:hover { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; }
 
-  .content { padding: 34px 26px 80px; max-width: 920px; }
+  .content { padding: 26px 26px 80px; max-width: 920px; }
+
+  /* surface switcher */
+  .surface-switch { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+  .surface-switch .ss-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .surface-switch .ss-tabs { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 3px; gap: 2px; }
+  .surface-switch .ss-tab { font-size: 13px; font-weight: 500; padding: 7px 15px; border-radius: 6px; color: var(--text-2); transition: all 130ms; }
+  .surface-switch .ss-tab:hover { color: var(--text); background: var(--panel-2); }
+  .surface-switch .ss-tab.is-active { background: var(--accent); color: #fff; }
+  .surface-switch .ss-tab.is-active:hover { background: var(--accent); color: #fff; }
 
   .lede h1 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
   .lede h1 em { font-style: normal; color: var(--accent); }
@@ -245,6 +254,13 @@
     </div>
 
     <div class="content">
+      <div class="surface-switch">
+        <span class="ss-label">This direction · two views</span>
+        <span class="ss-tabs">
+          <a class="ss-tab is-active" href="main.html">Feed — all fields</a>
+          <a class="ss-tab" href="thread.html">Open a thread →</a>
+        </span>
+      </div>
       <div class="lede">
         <h1>The room is open. <em>Anyone with something real to add belongs here.</em></h1>
         <p>Twenty fields, one record. No credential check — a freight driver's observation can outrank a desk model, because the only question is whether it holds up.</p>

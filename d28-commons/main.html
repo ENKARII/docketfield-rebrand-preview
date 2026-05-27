@@ -60,8 +60,17 @@
   nav .join:hover { background: var(--forest-dk); }
   @media (max-width: 760px) { nav a:not(.join) { display: none; } .brand .tag { display: none; } }
 
+  /* ── surface switcher ─────────────────────────── */
+  .surface-switch { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 8px 0 0; }
+  .surface-switch .ss-label { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .surface-switch .ss-tabs { display: inline-flex; background: var(--paper); border: 1px solid var(--line-2); border-radius: 100px; padding: 4px; gap: 3px; }
+  .surface-switch .ss-tab { font-size: 13.5px; font-weight: 600; padding: 8px 18px; border-radius: 100px; color: var(--ink-soft); transition: all 150ms; }
+  .surface-switch .ss-tab:hover { color: var(--forest); }
+  .surface-switch .ss-tab.is-active { background: var(--forest); color: #fff; }
+  .surface-switch .ss-tab.is-active:hover { background: var(--forest-dk); color: #fff; }
+
   /* ── hero ─────────────────────────────────────── */
-  .hero { padding: 70px 0 56px; max-width: 880px; }
+  .hero { padding: 36px 0 56px; max-width: 880px; }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 9px;
     font-size: 13px; font-weight: 600; color: var(--forest);
@@ -219,6 +228,14 @@
   </header>
 
   <main class="wrap">
+
+    <div class="surface-switch">
+      <span class="ss-label">This direction · two views</span>
+      <span class="ss-tabs">
+        <a class="ss-tab is-active" href="main.html">The room</a>
+        <a class="ss-tab" href="thread.html">Inside one conversation →</a>
+      </span>
+    </div>
 
     <section class="hero">
       <span class="eyebrow"><span class="pip"></span>312 people are thinking out loud right now</span>

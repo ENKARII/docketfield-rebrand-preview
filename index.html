@@ -67,7 +67,12 @@
     .ftile-name { font-size: 26px; line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 8px; font-weight: 600; }
     .ftile-school { font-size: 13px; color: var(--indigo); font-weight: 500; margin-bottom: 14px; }
     .ftile-desc { font-size: 15px; line-height: 1.58; color: var(--ink-soft); max-width: 460px; }
-    .ftile-link { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--indigo); font-weight: 500; }
+    .ftile-links { margin-top: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .ftile-go { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.03em; font-weight: 500; padding: 8px 14px; border-radius: 7px; border: 1px solid var(--line); color: var(--ink-soft); transition: all 150ms; }
+    .ftile-go:hover { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-bg); }
+    .ftile-go.is-primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .ftile-go.is-primary:hover { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+    .ftile-twoviews { font-size: 11.5px; color: var(--muted); margin-left: 2px; }
 
     /* per-direction preview flavor */
     .pv-obs { background: #FBFCFD; }
@@ -148,12 +153,12 @@
           <div class="section-eyebrow feature-eyebrow">★ Round 4 · the real candidates</div>
           <h2>Three serious directions</h2>
         </div>
-        <div class="section-count">3 directions · 1 complete community home each</div>
+        <div class="section-count">3 directions · 2 views each (community home + thread)</div>
       </div>
 
       <div class="features">
 
-        <a class="ftile" href="d26-observatory/main.html">
+        <div class="ftile">
           <div class="ftile-preview pv-obs">
             <div class="pv-mark">DocketField</div>
             <div class="pv-sub">A working record for serious questions.</div>
@@ -164,11 +169,15 @@
             <div class="ftile-name">Observatory</div>
             <div class="ftile-school">Quanta Magazine · Distill.pub · scholarly digital publication</div>
             <p class="ftile-desc">Reads like a great science journal — calm, credible, intelligent. Newsreader serif for reading; a single indigo for structure; one reserved green for the one metric that matters (minds changed). Cool, light, scholarly. The register that says "this is where serious ideas get worked out."</p>
-            <span class="ftile-link">open the community home →</span>
+            <div class="ftile-links">
+              <a class="ftile-go is-primary" href="d26-observatory/main.html">Community home →</a>
+              <a class="ftile-go" href="d26-observatory/thread.html">Inside a thread →</a>
+              <span class="ftile-twoviews">two views</span>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="ftile" href="d27-instrument/main.html">
+        <div class="ftile">
           <div class="ftile-preview pv-ins">
             <div class="pv-mark">Docket<em>Field</em></div>
             <div class="pv-row"><span class="pv-dot"></span>Quantum · 4 live</div>
@@ -179,11 +188,15 @@
             <div class="ftile-name">Instrument</div>
             <div class="ftile-school">Linear · Are.na · the tool-for-thought serious people open daily</div>
             <p class="ftile-desc">Precise software, not a publication. Refined dark canvas, a tight grid, a slim field-switchboard rail, mono for every number and label, one restrained blue. Dense but calm, fast, command-palette-first. The register that says "this is the instrument brilliant people live in."</p>
-            <span class="ftile-link">open the community home →</span>
+            <div class="ftile-links">
+              <a class="ftile-go is-primary" href="d27-instrument/main.html">Feed — all fields →</a>
+              <a class="ftile-go" href="d27-instrument/thread.html">Open a thread →</a>
+              <span class="ftile-twoviews">two views</span>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <a class="ftile" href="d28-commons/main.html">
+        <div class="ftile">
           <div class="ftile-preview pv-com">
             <div class="pv-mark">Anyone with something <em>real</em> to add.</div>
             <div class="pv-sub">$8/month · anyone can read, anyone can post</div>
@@ -194,9 +207,13 @@
             <div class="ftile-name">Commons</div>
             <div class="ftile-school">Anthropic · Stripe Press · a beautifully made members' commons</div>
             <p class="ftile-desc">Warm and human without being stuffy — the register that resolves "open to all walks of life" and "serious enough for universities" at once. A sophisticated warm bone (not the rejected cream-yellow), a serious Fraunces display, one deep forest accent, generous reading space. Welcome plus gravitas.</p>
-            <span class="ftile-link">open the community home →</span>
+            <div class="ftile-links">
+              <a class="ftile-go is-primary" href="d28-commons/main.html">The room →</a>
+              <a class="ftile-go" href="d28-commons/thread.html">Inside a conversation →</a>
+              <span class="ftile-twoviews">two views</span>
+            </div>
           </div>
-        </a>
+        </div>
 
       </div>
     </div>
